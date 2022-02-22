@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **Currency** | **CurrencyEnum** | The credit note&#39;s currency. | [optional] 
 **RemoteCreatedAt** | **DateTime?** | When the third party&#39;s credit note was created. | [optional] 
 **RemoteUpdatedAt** | **DateTime?** | When the third party&#39;s credit note was updated. | [optional] 
-**Payments** | **List&lt;Guid&gt;** | Array of &#x60;Payment&#x60; object IDs | 
+**Payments** | **List&lt;Guid?&gt;** | Array of &#x60;Payment&#x60; object IDs | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -51,7 +51,7 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <param name="remoteId">The third-party API ID of the matching object..</param>
         /// <param name="type">The invoice&#39;s type..</param>
-        /// <param name="contact">The invoice&#39;s contact..</param>
+        /// <param name="contact">contact.</param>
         /// <param name="number">The invoice&#39;s number..</param>
         /// <param name="issueDate">The invoice&#39;s issue date..</param>
         /// <param name="dueDate">The invoice&#39;s due date..</param>
@@ -64,8 +64,7 @@ namespace Merge.AccountingClient.Model
         /// <param name="balance">The invoice&#39;s remaining balance..</param>
         /// <param name="remoteUpdatedAt">When the third party&#39;s invoice entry was updated..</param>
         /// <param name="payments">Array of &#x60;Payment&#x60; object IDs..</param>
-        /// <param name="lineItems">lineItems.</param>
-        public Invoice(string remoteId = default(string), InvoiceTypeEnum? type = default(InvoiceTypeEnum?), Guid? contact = default(Guid?), string number = default(string), DateTime? issueDate = default(DateTime?), DateTime? dueDate = default(DateTime?), DateTime? paidOnDate = default(DateTime?), CurrencyEnum? currency = default(CurrencyEnum?), float? totalDiscount = default(float?), float? subTotal = default(float?), float? totalTaxAmount = default(float?), float? totalAmount = default(float?), float? balance = default(float?), DateTime? remoteUpdatedAt = default(DateTime?), List<Guid?> payments = default(List<Guid?>), List<Guid?> lineItems = default(List<Guid?>))
+        public Invoice(string remoteId = default(string), InvoiceTypeEnum? type = default(InvoiceTypeEnum?), Guid? contact = default(Guid?), string number = default(string), DateTime? issueDate = default(DateTime?), DateTime? dueDate = default(DateTime?), DateTime? paidOnDate = default(DateTime?), CurrencyEnum? currency = default(CurrencyEnum?), float? totalDiscount = default(float?), float? subTotal = default(float?), float? totalTaxAmount = default(float?), float? totalAmount = default(float?), float? balance = default(float?), DateTime? remoteUpdatedAt = default(DateTime?), List<Guid?> payments = default(List<Guid?>))
         {
             this.RemoteId = remoteId;
             this.Type = type;
@@ -82,7 +81,6 @@ namespace Merge.AccountingClient.Model
             this.Balance = balance;
             this.RemoteUpdatedAt = remoteUpdatedAt;
             this.Payments = payments;
-            this.LineItems = lineItems;
         }
 
         /// <summary>
@@ -123,9 +121,8 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
-        /// The invoice&#39;s contact.
+        /// Gets or Sets Contact
         /// </summary>
-        /// <value>The invoice&#39;s contact.</value>
         [DataMember(Name = "contact", EmitDefaultValue = true)]
         public Guid? Contact { get; set; }
 
@@ -210,7 +207,16 @@ namespace Merge.AccountingClient.Model
         /// Gets or Sets LineItems
         /// </summary>
         [DataMember(Name = "line_items", EmitDefaultValue = false)]
-        public List<Guid?> LineItems { get; set; }
+        public List<InvoiceLineItem> LineItems { get; private set; }
+
+        /// <summary>
+        /// Returns false as LineItems should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeLineItems()
+        {
+            return false;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object

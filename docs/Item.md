@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **Status** | **Status7d1Enum** | The item&#39;s status. | [optional] 
 **UnitPrice** | **float?** | The item&#39;s unit price. | [optional] 
 **PurchasePrice** | **float?** | The item&#39;s purchase price. | [optional] 
-**PurchaseAccount** | **Guid?** | The item&#39;s purchase account. | [optional] 
-**SalesAccount** | **Guid?** | The item&#39;s sales account. | [optional] 
+**PurchaseAccount** | **Guid?** |  | [optional] 
+**SalesAccount** | **Guid?** |  | [optional] 
 **RemoteUpdatedAt** | **DateTime?** | When the third party&#39;s item note was updated. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

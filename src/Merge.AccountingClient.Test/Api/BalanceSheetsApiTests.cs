@@ -66,12 +66,13 @@ namespace Merge.AccountingClient.Test.Api
             //DateTime? createdAfter = null;
             //DateTime? createdBefore = null;
             //string cursor = null;
+            //bool? includeDeletedData = null;
             //bool? includeRemoteData = null;
             //DateTime? modifiedAfter = null;
             //DateTime? modifiedBefore = null;
             //int? pageSize = null;
             //string remoteId = null;
-            //var response = instance.BalanceSheetsList(xAccountToken, createdAfter, createdBefore, cursor, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+            //var response = instance.BalanceSheetsList(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
             //Assert.IsType<PaginatedBalanceSheetList>(response);
         }
 

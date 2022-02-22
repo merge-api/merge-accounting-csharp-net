@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **RemoteId** | **string** | The third-party API ID of the matching object. | [optional] 
 **RemoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  | [optional] [readonly] 
 **TransactionDate** | **DateTime?** | The payment&#39;s transaction date. | [optional] 
-**Contact** | **Guid?** | The payment&#39;s contact. | [optional] 
-**Account** | **Guid?** | The payment&#39;s account. | [optional] 
+**Contact** | **Guid?** |  | [optional] 
+**Account** | **Guid?** |  | [optional] 
 **TotalAmount** | **float?** | The payment&#39;s total amount. | [optional] 
 **RemoteUpdatedAt** | **DateTime?** | When the third party&#39;s payment entry was updated. | [optional] 
 

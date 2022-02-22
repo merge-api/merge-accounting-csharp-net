@@ -97,6 +97,14 @@ namespace Merge.AccountingClient.Test.Model
         {
             // TODO unit test for the property 'Integration'
         }
+        /// <summary>
+        /// Test the property 'LinkExpiryMins'
+        /// </summary>
+        [Fact]
+        public void LinkExpiryMinsTest()
+        {
+            // TODO unit test for the property 'LinkExpiryMins'
+        }
 
     }
 

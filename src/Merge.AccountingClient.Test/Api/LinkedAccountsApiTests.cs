@@ -63,7 +63,7 @@ namespace Merge.AccountingClient.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string category = null;
-            //int? cursor = null;
+            //string cursor = null;
             //string endUserEmailAddress = null;
             //string endUserOrganizationName = null;
             //string endUserOriginId = null;

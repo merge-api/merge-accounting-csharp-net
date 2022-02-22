@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **UnitPrice** | **float?** | The line item&#39;s unit price. | [optional] 
 **Quantity** | **float?** | The line item&#39;s quantity. | [optional] 
 **TotalAmount** | **float?** | The line item&#39;s total amount. | [optional] 
-**Item** | **Guid?** | The line item&#39;s item. | [optional] 
+**Item** | **Guid?** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

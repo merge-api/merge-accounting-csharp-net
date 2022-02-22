@@ -63,22 +63,10 @@ namespace Merge.AccountingClient.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string xAccountToken = null;
-            //int? cursor = null;
+            //string cursor = null;
             //int? pageSize = null;
             //var response = instance.SyncStatusList(xAccountToken, cursor, pageSize);
             //Assert.IsType<PaginatedSyncStatusList>(response);
-        }
-
-        /// <summary>
-        /// Test SyncStatusResyncCreate
-        /// </summary>
-        [Fact]
-        public void SyncStatusResyncCreateTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string xAccountToken = null;
-            //var response = instance.SyncStatusResyncCreate(xAccountToken);
-            //Assert.IsType<SyncStatus>(response);
         }
     }
 }

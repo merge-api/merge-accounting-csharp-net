@@ -36,13 +36,15 @@ namespace Merge.AccountingClient.Model
         /// Initializes a new instance of the <see cref="JournalLine" /> class.
         /// </summary>
         /// <param name="remoteId">The third-party API ID of the matching object..</param>
-        /// <param name="account">The line&#39;s account..</param>
+        /// <param name="account">account.</param>
         /// <param name="netAmount">The line&#39;s net amount..</param>
-        public JournalLine(string remoteId = default(string), Guid? account = default(Guid?), float? netAmount = default(float?))
+        /// <param name="trackingCategory">trackingCategory.</param>
+        public JournalLine(string remoteId = default(string), Guid? account = default(Guid?), float? netAmount = default(float?), Guid? trackingCategory = default(Guid?))
         {
             this.RemoteId = remoteId;
             this.Account = account;
             this.NetAmount = netAmount;
+            this.TrackingCategory = trackingCategory;
         }
 
         /// <summary>
@@ -53,9 +55,8 @@ namespace Merge.AccountingClient.Model
         public string RemoteId { get; set; }
 
         /// <summary>
-        /// The line&#39;s account.
+        /// Gets or Sets Account
         /// </summary>
-        /// <value>The line&#39;s account.</value>
         [DataMember(Name = "account", EmitDefaultValue = true)]
         public Guid? Account { get; set; }
 
@@ -65,6 +66,12 @@ namespace Merge.AccountingClient.Model
         /// <value>The line&#39;s net amount.</value>
         [DataMember(Name = "net_amount", EmitDefaultValue = true)]
         public float? NetAmount { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TrackingCategory
+        /// </summary>
+        [DataMember(Name = "tracking_category", EmitDefaultValue = true)]
+        public Guid? TrackingCategory { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -77,6 +84,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  NetAmount: ").Append(NetAmount).Append("\n");
+            sb.Append("  TrackingCategory: ").Append(TrackingCategory).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -125,6 +133,11 @@ namespace Merge.AccountingClient.Model
                     this.NetAmount == input.NetAmount ||
                     (this.NetAmount != null &&
                     this.NetAmount.Equals(input.NetAmount))
+                ) && 
+                (
+                    this.TrackingCategory == input.TrackingCategory ||
+                    (this.TrackingCategory != null &&
+                    this.TrackingCategory.Equals(input.TrackingCategory))
                 );
         }
 
@@ -143,6 +156,8 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.Account.GetHashCode();
                 if (this.NetAmount != null)
                     hashCode = hashCode * 59 + this.NetAmount.GetHashCode();
+                if (this.TrackingCategory != null)
+                    hashCode = hashCode * 59 + this.TrackingCategory.GetHashCode();
                 return hashCode;
             }
         }

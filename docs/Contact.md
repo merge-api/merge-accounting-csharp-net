@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **Status** | **Status7d1Enum** | The contact&#39;s status | [optional] 
 **Currency** | **string** | The currency the contact&#39;s transactions are in. | [optional] 
 **RemoteUpdatedAt** | **DateTime?** | When the third party&#39;s contact was updated. | [optional] 
-**Addresses** | **List&lt;Guid&gt;** | &#x60;Address&#x60; object IDs for the given &#x60;Contacts&#x60; object. | [optional] 
+**Addresses** | **List&lt;Guid?&gt;** | &#x60;Address&#x60; object IDs for the given &#x60;Contacts&#x60; object. | [optional] 
 **PhoneNumbers** | [**List&lt;AccountingPhoneNumber&gt;**](AccountingPhoneNumber.md) | &#x60;AccountingPhoneNumber&#x60; object for the given &#x60;Contacts&#x60; object. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

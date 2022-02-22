@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="issueslist"></a>
 # **IssuesList**
-> PaginatedIssueList IssuesList (string accountToken = null, int? cursor = null, string endDate = null, string endUserOrganizationName = null, string includeMuted = null, string integrationName = null, int? pageSize = null, string startDate = null, string status = null)
+> PaginatedIssueList IssuesList (string accountToken = null, string cursor = null, string endDate = null, string endUserOrganizationName = null, string includeMuted = null, string integrationName = null, int? pageSize = null, string startDate = null, string status = null)
 
 
 
@@ -39,7 +39,7 @@ namespace Example
 
             var apiInstance = new IssuesApi(config);
             var accountToken = accountToken_example;  // string |  (optional) 
-            var cursor = 56;  // int? | The pagination cursor value. (optional) 
+            var cursor = cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw;  // string | The pagination cursor value. (optional) 
             var endDate = endDate_example;  // string | If included, will only include issues whose most recent action occurred before this time (optional) 
             var endUserOrganizationName = endUserOrganizationName_example;  // string |  (optional) 
             var includeMuted = includeMuted_example;  // string | If True, will include muted issues (optional) 
@@ -69,7 +69,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **accountToken** | **string**|  | [optional] 
- **cursor** | **int?**| The pagination cursor value. | [optional] 
+ **cursor** | **string**| The pagination cursor value. | [optional] 
  **endDate** | **string**| If included, will only include issues whose most recent action occurred before this time | [optional] 
  **endUserOrganizationName** | **string**|  | [optional] 
  **includeMuted** | **string**| If True, will include muted issues | [optional] 

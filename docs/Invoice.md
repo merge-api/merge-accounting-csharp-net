@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **RemoteId** | **string** | The third-party API ID of the matching object. | [optional] 
 **RemoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  | [optional] [readonly] 
 **Type** | **InvoiceTypeEnum** | The invoice&#39;s type. | [optional] 
-**Contact** | **Guid?** | The invoice&#39;s contact. | [optional] 
+**Contact** | **Guid?** |  | [optional] 
 **Number** | **string** | The invoice&#39;s number. | [optional] 
 **IssueDate** | **DateTime?** | The invoice&#39;s issue date. | [optional] 
 **DueDate** | **DateTime?** | The invoice&#39;s due date. | [optional] 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **Balance** | **float?** | The invoice&#39;s remaining balance. | [optional] 
 **RemoteUpdatedAt** | **DateTime?** | When the third party&#39;s invoice entry was updated. | [optional] 
 **Payments** | **List&lt;Guid?&gt;** | Array of &#x60;Payment&#x60; object IDs. | [optional] 
-**LineItems** | **List&lt;Guid?&gt;** |  | [optional] 
+**LineItems** | [**List&lt;InvoiceLineItem&gt;**](InvoiceLineItem.md) |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

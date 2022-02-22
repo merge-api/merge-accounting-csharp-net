@@ -56,10 +56,9 @@ namespace Merge.AccountingClient.Model
         /// <param name="deliveryAddress">The purchase order&#39;s delivery address..</param>
         /// <param name="totalAmount">The purchase order&#39;s total amount..</param>
         /// <param name="currency">The purchase order&#39;s currency..</param>
-        /// <param name="lineItems">lineItems.</param>
         /// <param name="remoteCreatedAt">When the third party&#39;s purchase order note was created..</param>
         /// <param name="remoteUpdatedAt">When the third party&#39;s purchase order note was updated..</param>
-        public PurchaseOrder(string remoteId = default(string), PurchaseOrderStatusEnum? status = default(PurchaseOrderStatusEnum?), DateTime? issueDate = default(DateTime?), DateTime? deliveryDate = default(DateTime?), Guid? deliveryAddress = default(Guid?), float? totalAmount = default(float?), CurrencyEnum? currency = default(CurrencyEnum?), List<Guid> lineItems = default(List<Guid>), DateTime? remoteCreatedAt = default(DateTime?), DateTime? remoteUpdatedAt = default(DateTime?))
+        public PurchaseOrder(string remoteId = default(string), PurchaseOrderStatusEnum? status = default(PurchaseOrderStatusEnum?), DateTime? issueDate = default(DateTime?), DateTime? deliveryDate = default(DateTime?), Guid? deliveryAddress = default(Guid?), float? totalAmount = default(float?), CurrencyEnum? currency = default(CurrencyEnum?), DateTime? remoteCreatedAt = default(DateTime?), DateTime? remoteUpdatedAt = default(DateTime?))
         {
             this.RemoteId = remoteId;
             this.Status = status;
@@ -68,7 +67,6 @@ namespace Merge.AccountingClient.Model
             this.DeliveryAddress = deliveryAddress;
             this.TotalAmount = totalAmount;
             this.Currency = currency;
-            this.LineItems = lineItems;
             this.RemoteCreatedAt = remoteCreatedAt;
             this.RemoteUpdatedAt = remoteUpdatedAt;
         }
@@ -142,7 +140,16 @@ namespace Merge.AccountingClient.Model
         /// Gets or Sets LineItems
         /// </summary>
         [DataMember(Name = "line_items", EmitDefaultValue = false)]
-        public List<Guid> LineItems { get; set; }
+        public List<PurchaseOrderLineItem> LineItems { get; private set; }
+
+        /// <summary>
+        /// Returns false as LineItems should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeLineItems()
+        {
+            return false;
+        }
 
         /// <summary>
         /// When the third party&#39;s purchase order note was created.

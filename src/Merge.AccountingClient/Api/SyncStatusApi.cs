@@ -31,48 +31,27 @@ namespace Merge.AccountingClient.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Get syncing status.
+        /// Get syncing status. Possible values: &#x60;DISABLED&#x60;, &#x60;DONE&#x60;, &#x60;FAILED&#x60;, &#x60;SYNCING&#x60;
         /// </remarks>
         /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>PaginatedSyncStatusList</returns>
-        PaginatedSyncStatusList SyncStatusList(string xAccountToken, int? cursor = default(int?), int? pageSize = default(int?));
+        PaginatedSyncStatusList SyncStatusList(string xAccountToken, string cursor = default(string), int? pageSize = default(int?));
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get syncing status.
+        /// Get syncing status. Possible values: &#x60;DISABLED&#x60;, &#x60;DONE&#x60;, &#x60;FAILED&#x60;, &#x60;SYNCING&#x60;
         /// </remarks>
         /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>ApiResponse of PaginatedSyncStatusList</returns>
-        ApiResponse<PaginatedSyncStatusList> SyncStatusListWithHttpInfo(string xAccountToken, int? cursor = default(int?), int? pageSize = default(int?));
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Force re-sync of all models. This is only available for organizations on Merge&#39;s Grow and Expand plans.
-        /// </remarks>
-        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="xAccountToken">Token identifying the end user.</param>
-        /// <returns>SyncStatus</returns>
-        SyncStatus SyncStatusResyncCreate(string xAccountToken);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Force re-sync of all models. This is only available for organizations on Merge&#39;s Grow and Expand plans.
-        /// </remarks>
-        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="xAccountToken">Token identifying the end user.</param>
-        /// <returns>ApiResponse of SyncStatus</returns>
-        ApiResponse<SyncStatus> SyncStatusResyncCreateWithHttpInfo(string xAccountToken);
+        ApiResponse<PaginatedSyncStatusList> SyncStatusListWithHttpInfo(string xAccountToken, string cursor = default(string), int? pageSize = default(int?));
         #endregion Synchronous Operations
     }
 
@@ -86,7 +65,7 @@ namespace Merge.AccountingClient.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Get syncing status.
+        /// Get syncing status. Possible values: &#x60;DISABLED&#x60;, &#x60;DONE&#x60;, &#x60;FAILED&#x60;, &#x60;SYNCING&#x60;
         /// </remarks>
         /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xAccountToken">Token identifying the end user.</param>
@@ -94,13 +73,13 @@ namespace Merge.AccountingClient.Api
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PaginatedSyncStatusList</returns>
-        System.Threading.Tasks.Task<PaginatedSyncStatusList> SyncStatusListAsync(string xAccountToken, int? cursor = default(int?), int? pageSize = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PaginatedSyncStatusList> SyncStatusListAsync(string xAccountToken, string cursor = default(string), int? pageSize = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Get syncing status.
+        /// Get syncing status. Possible values: &#x60;DISABLED&#x60;, &#x60;DONE&#x60;, &#x60;FAILED&#x60;, &#x60;SYNCING&#x60;
         /// </remarks>
         /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xAccountToken">Token identifying the end user.</param>
@@ -108,30 +87,7 @@ namespace Merge.AccountingClient.Api
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PaginatedSyncStatusList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PaginatedSyncStatusList>> SyncStatusListWithHttpInfoAsync(string xAccountToken, int? cursor = default(int?), int? pageSize = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Force re-sync of all models. This is only available for organizations on Merge&#39;s Grow and Expand plans.
-        /// </remarks>
-        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="xAccountToken">Token identifying the end user.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of SyncStatus</returns>
-        System.Threading.Tasks.Task<SyncStatus> SyncStatusResyncCreateAsync(string xAccountToken, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Force re-sync of all models. This is only available for organizations on Merge&#39;s Grow and Expand plans.
-        /// </remarks>
-        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="xAccountToken">Token identifying the end user.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (SyncStatus)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SyncStatus>> SyncStatusResyncCreateWithHttpInfoAsync(string xAccountToken, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PaginatedSyncStatusList>> SyncStatusListWithHttpInfoAsync(string xAccountToken, string cursor = default(string), int? pageSize = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -253,28 +209,28 @@ namespace Merge.AccountingClient.Api
         }
 
         /// <summary>
-        ///  Get syncing status.
+        ///  Get syncing status. Possible values: &#x60;DISABLED&#x60;, &#x60;DONE&#x60;, &#x60;FAILED&#x60;, &#x60;SYNCING&#x60;
         /// </summary>
         /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>PaginatedSyncStatusList</returns>
-        public PaginatedSyncStatusList SyncStatusList(string xAccountToken, int? cursor = default(int?), int? pageSize = default(int?))
+        public PaginatedSyncStatusList SyncStatusList(string xAccountToken, string cursor = default(string), int? pageSize = default(int?))
         {
             Merge.AccountingClient.Client.ApiResponse<PaginatedSyncStatusList> localVarResponse = SyncStatusListWithHttpInfo(xAccountToken, cursor, pageSize);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Get syncing status.
+        ///  Get syncing status. Possible values: &#x60;DISABLED&#x60;, &#x60;DONE&#x60;, &#x60;FAILED&#x60;, &#x60;SYNCING&#x60;
         /// </summary>
         /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <returns>ApiResponse of PaginatedSyncStatusList</returns>
-        public Merge.AccountingClient.Client.ApiResponse<PaginatedSyncStatusList> SyncStatusListWithHttpInfo(string xAccountToken, int? cursor = default(int?), int? pageSize = default(int?))
+        public Merge.AccountingClient.Client.ApiResponse<PaginatedSyncStatusList> SyncStatusListWithHttpInfo(string xAccountToken, string cursor = default(string), int? pageSize = default(int?))
         {
             // verify the required parameter 'xAccountToken' is set
             if (xAccountToken == null)
@@ -325,7 +281,7 @@ namespace Merge.AccountingClient.Api
         }
 
         /// <summary>
-        ///  Get syncing status.
+        ///  Get syncing status. Possible values: &#x60;DISABLED&#x60;, &#x60;DONE&#x60;, &#x60;FAILED&#x60;, &#x60;SYNCING&#x60;
         /// </summary>
         /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xAccountToken">Token identifying the end user.</param>
@@ -333,14 +289,14 @@ namespace Merge.AccountingClient.Api
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PaginatedSyncStatusList</returns>
-        public async System.Threading.Tasks.Task<PaginatedSyncStatusList> SyncStatusListAsync(string xAccountToken, int? cursor = default(int?), int? pageSize = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PaginatedSyncStatusList> SyncStatusListAsync(string xAccountToken, string cursor = default(string), int? pageSize = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Merge.AccountingClient.Client.ApiResponse<PaginatedSyncStatusList> localVarResponse = await SyncStatusListWithHttpInfoAsync(xAccountToken, cursor, pageSize, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        ///  Get syncing status.
+        ///  Get syncing status. Possible values: &#x60;DISABLED&#x60;, &#x60;DONE&#x60;, &#x60;FAILED&#x60;, &#x60;SYNCING&#x60;
         /// </summary>
         /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xAccountToken">Token identifying the end user.</param>
@@ -348,7 +304,7 @@ namespace Merge.AccountingClient.Api
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PaginatedSyncStatusList)</returns>
-        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<PaginatedSyncStatusList>> SyncStatusListWithHttpInfoAsync(string xAccountToken, int? cursor = default(int?), int? pageSize = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<PaginatedSyncStatusList>> SyncStatusListWithHttpInfoAsync(string xAccountToken, string cursor = default(string), int? pageSize = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'xAccountToken' is set
             if (xAccountToken == null)
@@ -395,131 +351,6 @@ namespace Merge.AccountingClient.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("SyncStatusList", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        ///  Force re-sync of all models. This is only available for organizations on Merge&#39;s Grow and Expand plans.
-        /// </summary>
-        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="xAccountToken">Token identifying the end user.</param>
-        /// <returns>SyncStatus</returns>
-        public SyncStatus SyncStatusResyncCreate(string xAccountToken)
-        {
-            Merge.AccountingClient.Client.ApiResponse<SyncStatus> localVarResponse = SyncStatusResyncCreateWithHttpInfo(xAccountToken);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Force re-sync of all models. This is only available for organizations on Merge&#39;s Grow and Expand plans.
-        /// </summary>
-        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="xAccountToken">Token identifying the end user.</param>
-        /// <returns>ApiResponse of SyncStatus</returns>
-        public Merge.AccountingClient.Client.ApiResponse<SyncStatus> SyncStatusResyncCreateWithHttpInfo(string xAccountToken)
-        {
-            // verify the required parameter 'xAccountToken' is set
-            if (xAccountToken == null)
-                throw new Merge.AccountingClient.Client.ApiException(400, "Missing required parameter 'xAccountToken' when calling SyncStatusApi->SyncStatusResyncCreate");
-
-            Merge.AccountingClient.Client.RequestOptions localVarRequestOptions = new Merge.AccountingClient.Client.RequestOptions();
-
-            String[] _contentTypes = new String[] {
-            };
-
-            // to determine the Accept header
-            String[] _accepts = new String[] {
-                "application/json"
-            };
-
-            var localVarContentType = Merge.AccountingClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Merge.AccountingClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
-
-            // authentication (tokenAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<SyncStatus>("/sync-status/resync", localVarRequestOptions, this.Configuration);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("SyncStatusResyncCreate", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        ///  Force re-sync of all models. This is only available for organizations on Merge&#39;s Grow and Expand plans.
-        /// </summary>
-        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="xAccountToken">Token identifying the end user.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of SyncStatus</returns>
-        public async System.Threading.Tasks.Task<SyncStatus> SyncStatusResyncCreateAsync(string xAccountToken, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            Merge.AccountingClient.Client.ApiResponse<SyncStatus> localVarResponse = await SyncStatusResyncCreateWithHttpInfoAsync(xAccountToken, cancellationToken).ConfigureAwait(false);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///  Force re-sync of all models. This is only available for organizations on Merge&#39;s Grow and Expand plans.
-        /// </summary>
-        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="xAccountToken">Token identifying the end user.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (SyncStatus)</returns>
-        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<SyncStatus>> SyncStatusResyncCreateWithHttpInfoAsync(string xAccountToken, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'xAccountToken' is set
-            if (xAccountToken == null)
-                throw new Merge.AccountingClient.Client.ApiException(400, "Missing required parameter 'xAccountToken' when calling SyncStatusApi->SyncStatusResyncCreate");
-
-
-            Merge.AccountingClient.Client.RequestOptions localVarRequestOptions = new Merge.AccountingClient.Client.RequestOptions();
-
-            String[] _contentTypes = new String[] {
-            };
-
-            // to determine the Accept header
-            String[] _accepts = new String[] {
-                "application/json"
-            };
-
-
-            var localVarContentType = Merge.AccountingClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Merge.AccountingClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
-
-            // authentication (tokenAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
-
-            // make the HTTP request
-
-            var localVarResponse = await this.AsynchronousClient.PostAsync<SyncStatus>("/sync-status/resync", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("SyncStatusResyncCreate", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
