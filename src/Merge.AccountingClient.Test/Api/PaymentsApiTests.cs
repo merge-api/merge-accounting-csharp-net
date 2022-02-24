@@ -68,13 +68,13 @@ namespace Merge.AccountingClient.Test.Api
             //DateTime? createdAfter = null;
             //DateTime? createdBefore = null;
             //string cursor = null;
-            //string expand = null;
+            //bool? includeDeletedData = null;
             //bool? includeRemoteData = null;
             //DateTime? modifiedAfter = null;
             //DateTime? modifiedBefore = null;
             //int? pageSize = null;
             //string remoteId = null;
-            //var response = instance.PaymentsList(xAccountToken, accountId, contactId, createdAfter, createdBefore, cursor, expand, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+            //var response = instance.PaymentsList(xAccountToken, accountId, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
             //Assert.IsType<PaginatedPaymentList>(response);
         }
 
@@ -87,9 +87,8 @@ namespace Merge.AccountingClient.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string xAccountToken = null;
             //Guid id = null;
-            //string expand = null;
             //bool? includeRemoteData = null;
-            //var response = instance.PaymentsRetrieve(xAccountToken, id, expand, includeRemoteData);
+            //var response = instance.PaymentsRetrieve(xAccountToken, id, includeRemoteData);
             //Assert.IsType<Payment>(response);
         }
     }

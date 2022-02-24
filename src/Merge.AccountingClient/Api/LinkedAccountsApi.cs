@@ -47,7 +47,7 @@ namespace Merge.AccountingClient.Api
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <param name="status">Filter by status. Options: &#x60;COMPLETE&#x60;, &#x60;INCOMPLETE&#x60;, &#x60;RELINK_NEEDED&#x60; (optional)</param>
         /// <returns>PaginatedAccountDetailsAndActionsList</returns>
-        PaginatedAccountDetailsAndActionsList LinkedAccountsList(string category = default(string), int? cursor = default(int?), string endUserEmailAddress = default(string), string endUserOrganizationName = default(string), string endUserOriginId = default(string), string endUserOriginIds = default(string), Guid? id = default(Guid?), string ids = default(string), string integrationName = default(string), string isTestAccount = default(string), int? pageSize = default(int?), string status = default(string));
+        PaginatedAccountDetailsAndActionsList LinkedAccountsList(string category = default(string), string cursor = default(string), string endUserEmailAddress = default(string), string endUserOrganizationName = default(string), string endUserOriginId = default(string), string endUserOriginIds = default(string), Guid? id = default(Guid?), string ids = default(string), string integrationName = default(string), string isTestAccount = default(string), int? pageSize = default(int?), string status = default(string));
 
         /// <summary>
         /// 
@@ -69,7 +69,7 @@ namespace Merge.AccountingClient.Api
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <param name="status">Filter by status. Options: &#x60;COMPLETE&#x60;, &#x60;INCOMPLETE&#x60;, &#x60;RELINK_NEEDED&#x60; (optional)</param>
         /// <returns>ApiResponse of PaginatedAccountDetailsAndActionsList</returns>
-        ApiResponse<PaginatedAccountDetailsAndActionsList> LinkedAccountsListWithHttpInfo(string category = default(string), int? cursor = default(int?), string endUserEmailAddress = default(string), string endUserOrganizationName = default(string), string endUserOriginId = default(string), string endUserOriginIds = default(string), Guid? id = default(Guid?), string ids = default(string), string integrationName = default(string), string isTestAccount = default(string), int? pageSize = default(int?), string status = default(string));
+        ApiResponse<PaginatedAccountDetailsAndActionsList> LinkedAccountsListWithHttpInfo(string category = default(string), string cursor = default(string), string endUserEmailAddress = default(string), string endUserOrganizationName = default(string), string endUserOriginId = default(string), string endUserOriginIds = default(string), Guid? id = default(Guid?), string ids = default(string), string integrationName = default(string), string isTestAccount = default(string), int? pageSize = default(int?), string status = default(string));
         #endregion Synchronous Operations
     }
 
@@ -100,7 +100,7 @@ namespace Merge.AccountingClient.Api
         /// <param name="status">Filter by status. Options: &#x60;COMPLETE&#x60;, &#x60;INCOMPLETE&#x60;, &#x60;RELINK_NEEDED&#x60; (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PaginatedAccountDetailsAndActionsList</returns>
-        System.Threading.Tasks.Task<PaginatedAccountDetailsAndActionsList> LinkedAccountsListAsync(string category = default(string), int? cursor = default(int?), string endUserEmailAddress = default(string), string endUserOrganizationName = default(string), string endUserOriginId = default(string), string endUserOriginIds = default(string), Guid? id = default(Guid?), string ids = default(string), string integrationName = default(string), string isTestAccount = default(string), int? pageSize = default(int?), string status = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PaginatedAccountDetailsAndActionsList> LinkedAccountsListAsync(string category = default(string), string cursor = default(string), string endUserEmailAddress = default(string), string endUserOrganizationName = default(string), string endUserOriginId = default(string), string endUserOriginIds = default(string), Guid? id = default(Guid?), string ids = default(string), string integrationName = default(string), string isTestAccount = default(string), int? pageSize = default(int?), string status = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -123,7 +123,7 @@ namespace Merge.AccountingClient.Api
         /// <param name="status">Filter by status. Options: &#x60;COMPLETE&#x60;, &#x60;INCOMPLETE&#x60;, &#x60;RELINK_NEEDED&#x60; (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PaginatedAccountDetailsAndActionsList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PaginatedAccountDetailsAndActionsList>> LinkedAccountsListWithHttpInfoAsync(string category = default(string), int? cursor = default(int?), string endUserEmailAddress = default(string), string endUserOrganizationName = default(string), string endUserOriginId = default(string), string endUserOriginIds = default(string), Guid? id = default(Guid?), string ids = default(string), string integrationName = default(string), string isTestAccount = default(string), int? pageSize = default(int?), string status = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PaginatedAccountDetailsAndActionsList>> LinkedAccountsListWithHttpInfoAsync(string category = default(string), string cursor = default(string), string endUserEmailAddress = default(string), string endUserOrganizationName = default(string), string endUserOriginId = default(string), string endUserOriginIds = default(string), Guid? id = default(Guid?), string ids = default(string), string integrationName = default(string), string isTestAccount = default(string), int? pageSize = default(int?), string status = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -261,7 +261,7 @@ namespace Merge.AccountingClient.Api
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <param name="status">Filter by status. Options: &#x60;COMPLETE&#x60;, &#x60;INCOMPLETE&#x60;, &#x60;RELINK_NEEDED&#x60; (optional)</param>
         /// <returns>PaginatedAccountDetailsAndActionsList</returns>
-        public PaginatedAccountDetailsAndActionsList LinkedAccountsList(string category = default(string), int? cursor = default(int?), string endUserEmailAddress = default(string), string endUserOrganizationName = default(string), string endUserOriginId = default(string), string endUserOriginIds = default(string), Guid? id = default(Guid?), string ids = default(string), string integrationName = default(string), string isTestAccount = default(string), int? pageSize = default(int?), string status = default(string))
+        public PaginatedAccountDetailsAndActionsList LinkedAccountsList(string category = default(string), string cursor = default(string), string endUserEmailAddress = default(string), string endUserOrganizationName = default(string), string endUserOriginId = default(string), string endUserOriginIds = default(string), Guid? id = default(Guid?), string ids = default(string), string integrationName = default(string), string isTestAccount = default(string), int? pageSize = default(int?), string status = default(string))
         {
             Merge.AccountingClient.Client.ApiResponse<PaginatedAccountDetailsAndActionsList> localVarResponse = LinkedAccountsListWithHttpInfo(category, cursor, endUserEmailAddress, endUserOrganizationName, endUserOriginId, endUserOriginIds, id, ids, integrationName, isTestAccount, pageSize, status);
             return localVarResponse.Data;
@@ -284,7 +284,7 @@ namespace Merge.AccountingClient.Api
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <param name="status">Filter by status. Options: &#x60;COMPLETE&#x60;, &#x60;INCOMPLETE&#x60;, &#x60;RELINK_NEEDED&#x60; (optional)</param>
         /// <returns>ApiResponse of PaginatedAccountDetailsAndActionsList</returns>
-        public Merge.AccountingClient.Client.ApiResponse<PaginatedAccountDetailsAndActionsList> LinkedAccountsListWithHttpInfo(string category = default(string), int? cursor = default(int?), string endUserEmailAddress = default(string), string endUserOrganizationName = default(string), string endUserOriginId = default(string), string endUserOriginIds = default(string), Guid? id = default(Guid?), string ids = default(string), string integrationName = default(string), string isTestAccount = default(string), int? pageSize = default(int?), string status = default(string))
+        public Merge.AccountingClient.Client.ApiResponse<PaginatedAccountDetailsAndActionsList> LinkedAccountsListWithHttpInfo(string category = default(string), string cursor = default(string), string endUserEmailAddress = default(string), string endUserOrganizationName = default(string), string endUserOriginId = default(string), string endUserOriginIds = default(string), Guid? id = default(Guid?), string ids = default(string), string integrationName = default(string), string isTestAccount = default(string), int? pageSize = default(int?), string status = default(string))
         {
             Merge.AccountingClient.Client.RequestOptions localVarRequestOptions = new Merge.AccountingClient.Client.RequestOptions();
 
@@ -387,7 +387,7 @@ namespace Merge.AccountingClient.Api
         /// <param name="status">Filter by status. Options: &#x60;COMPLETE&#x60;, &#x60;INCOMPLETE&#x60;, &#x60;RELINK_NEEDED&#x60; (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PaginatedAccountDetailsAndActionsList</returns>
-        public async System.Threading.Tasks.Task<PaginatedAccountDetailsAndActionsList> LinkedAccountsListAsync(string category = default(string), int? cursor = default(int?), string endUserEmailAddress = default(string), string endUserOrganizationName = default(string), string endUserOriginId = default(string), string endUserOriginIds = default(string), Guid? id = default(Guid?), string ids = default(string), string integrationName = default(string), string isTestAccount = default(string), int? pageSize = default(int?), string status = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PaginatedAccountDetailsAndActionsList> LinkedAccountsListAsync(string category = default(string), string cursor = default(string), string endUserEmailAddress = default(string), string endUserOrganizationName = default(string), string endUserOriginId = default(string), string endUserOriginIds = default(string), Guid? id = default(Guid?), string ids = default(string), string integrationName = default(string), string isTestAccount = default(string), int? pageSize = default(int?), string status = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Merge.AccountingClient.Client.ApiResponse<PaginatedAccountDetailsAndActionsList> localVarResponse = await LinkedAccountsListWithHttpInfoAsync(category, cursor, endUserEmailAddress, endUserOrganizationName, endUserOriginId, endUserOriginIds, id, ids, integrationName, isTestAccount, pageSize, status, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -411,7 +411,7 @@ namespace Merge.AccountingClient.Api
         /// <param name="status">Filter by status. Options: &#x60;COMPLETE&#x60;, &#x60;INCOMPLETE&#x60;, &#x60;RELINK_NEEDED&#x60; (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PaginatedAccountDetailsAndActionsList)</returns>
-        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<PaginatedAccountDetailsAndActionsList>> LinkedAccountsListWithHttpInfoAsync(string category = default(string), int? cursor = default(int?), string endUserEmailAddress = default(string), string endUserOrganizationName = default(string), string endUserOriginId = default(string), string endUserOriginIds = default(string), Guid? id = default(Guid?), string ids = default(string), string integrationName = default(string), string isTestAccount = default(string), int? pageSize = default(int?), string status = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<PaginatedAccountDetailsAndActionsList>> LinkedAccountsListWithHttpInfoAsync(string category = default(string), string cursor = default(string), string endUserEmailAddress = default(string), string endUserOrganizationName = default(string), string endUserOriginId = default(string), string endUserOriginIds = default(string), Guid? id = default(Guid?), string ids = default(string), string integrationName = default(string), string isTestAccount = default(string), int? pageSize = default(int?), string status = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Merge.AccountingClient.Client.RequestOptions localVarRequestOptions = new Merge.AccountingClient.Client.RequestOptions();

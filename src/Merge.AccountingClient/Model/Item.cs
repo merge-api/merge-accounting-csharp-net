@@ -47,8 +47,8 @@ namespace Merge.AccountingClient.Model
         /// <param name="status">The item&#39;s status..</param>
         /// <param name="unitPrice">The item&#39;s unit price..</param>
         /// <param name="purchasePrice">The item&#39;s purchase price..</param>
-        /// <param name="purchaseAccount">The item&#39;s purchase account..</param>
-        /// <param name="salesAccount">The item&#39;s sales account..</param>
+        /// <param name="purchaseAccount">purchaseAccount.</param>
+        /// <param name="salesAccount">salesAccount.</param>
         /// <param name="remoteUpdatedAt">When the third party&#39;s item note was updated..</param>
         public Item(string remoteId = default(string), string name = default(string), Status7d1Enum? status = default(Status7d1Enum?), float? unitPrice = default(float?), float? purchasePrice = default(float?), Guid? purchaseAccount = default(Guid?), Guid? salesAccount = default(Guid?), DateTime? remoteUpdatedAt = default(DateTime?))
         {
@@ -121,16 +121,14 @@ namespace Merge.AccountingClient.Model
         public float? PurchasePrice { get; set; }
 
         /// <summary>
-        /// The item&#39;s purchase account.
+        /// Gets or Sets PurchaseAccount
         /// </summary>
-        /// <value>The item&#39;s purchase account.</value>
         [DataMember(Name = "purchase_account", EmitDefaultValue = true)]
         public Guid? PurchaseAccount { get; set; }
 
         /// <summary>
-        /// The item&#39;s sales account.
+        /// Gets or Sets SalesAccount
         /// </summary>
-        /// <value>The item&#39;s sales account.</value>
         [DataMember(Name = "sales_account", EmitDefaultValue = true)]
         public Guid? SalesAccount { get; set; }
 

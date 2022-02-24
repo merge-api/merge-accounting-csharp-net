@@ -42,7 +42,13 @@ namespace Merge.AccountingClient.Model
         /// Enum XML for value: XML
         /// </summary>
         [EnumMember(Value = "XML")]
-        XML = 2
+        XML = 2,
+
+        /// <summary>
+        /// Enum MULTIPART for value: MULTIPART
+        /// </summary>
+        [EnumMember(Value = "MULTIPART")]
+        MULTIPART = 3
 
     }
 

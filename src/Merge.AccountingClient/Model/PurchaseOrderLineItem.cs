@@ -38,7 +38,7 @@ namespace Merge.AccountingClient.Model
         /// <param name="description">The line item&#39;s description..</param>
         /// <param name="unitPrice">The line item&#39;s unit price..</param>
         /// <param name="quantity">The line item&#39;s quantity..</param>
-        /// <param name="item">The line item&#39;s item..</param>
+        /// <param name="item">item.</param>
         public PurchaseOrderLineItem(string description = default(string), float? unitPrice = default(float?), float? quantity = default(float?), Guid? item = default(Guid?))
         {
             this.Description = description;
@@ -69,9 +69,8 @@ namespace Merge.AccountingClient.Model
         public float? Quantity { get; set; }
 
         /// <summary>
-        /// The line item&#39;s item.
+        /// Gets or Sets Item
         /// </summary>
-        /// <value>The line item&#39;s item.</value>
         [DataMember(Name = "item", EmitDefaultValue = true)]
         public Guid? Item { get; set; }
 

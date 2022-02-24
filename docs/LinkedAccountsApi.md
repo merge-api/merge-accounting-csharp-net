@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="linkedaccountslist"></a>
 # **LinkedAccountsList**
-> PaginatedAccountDetailsAndActionsList LinkedAccountsList (string category = null, int? cursor = null, string endUserEmailAddress = null, string endUserOrganizationName = null, string endUserOriginId = null, string endUserOriginIds = null, Guid? id = null, string ids = null, string integrationName = null, string isTestAccount = null, int? pageSize = null, string status = null)
+> PaginatedAccountDetailsAndActionsList LinkedAccountsList (string category = null, string cursor = null, string endUserEmailAddress = null, string endUserOrganizationName = null, string endUserOriginId = null, string endUserOriginIds = null, Guid? id = null, string ids = null, string integrationName = null, string isTestAccount = null, int? pageSize = null, string status = null)
 
 
 
@@ -38,7 +38,7 @@ namespace Example
 
             var apiInstance = new LinkedAccountsApi(config);
             var category = category_example;  // string |  (optional) 
-            var cursor = 56;  // int? | The pagination cursor value. (optional) 
+            var cursor = cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw;  // string | The pagination cursor value. (optional) 
             var endUserEmailAddress = endUserEmailAddress_example;  // string |  (optional) 
             var endUserOrganizationName = endUserOrganizationName_example;  // string |  (optional) 
             var endUserOriginId = endUserOriginId_example;  // string |  (optional) 
@@ -71,7 +71,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **category** | **string**|  | [optional] 
- **cursor** | **int?**| The pagination cursor value. | [optional] 
+ **cursor** | **string**| The pagination cursor value. | [optional] 
  **endUserEmailAddress** | **string**|  | [optional] 
  **endUserOrganizationName** | **string**|  | [optional] 
  **endUserOriginId** | **string**|  | [optional] 

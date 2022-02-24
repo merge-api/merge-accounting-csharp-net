@@ -49,11 +49,6 @@ namespace Merge.AccountingClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreditNote" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CreditNote() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreditNote" /> class.
-        /// </summary>
         /// <param name="remoteId">The third-party API ID of the matching object..</param>
         /// <param name="transactionDate">The credit note&#39;s transaction date..</param>
         /// <param name="status">The credit note&#39;s status..</param>
@@ -62,11 +57,9 @@ namespace Merge.AccountingClient.Model
         /// <param name="currency">The credit note&#39;s currency..</param>
         /// <param name="remoteCreatedAt">When the third party&#39;s credit note was created..</param>
         /// <param name="remoteUpdatedAt">When the third party&#39;s credit note was updated..</param>
-        /// <param name="payments">Array of &#x60;Payment&#x60; object IDs (required).</param>
-        public CreditNote(string remoteId = default(string), DateTime? transactionDate = default(DateTime?), CreditNoteStatusEnum? status = default(CreditNoteStatusEnum?), float? totalAmount = default(float?), float? remainingCredit = default(float?), CurrencyEnum? currency = default(CurrencyEnum?), DateTime? remoteCreatedAt = default(DateTime?), DateTime? remoteUpdatedAt = default(DateTime?), List<Guid> payments = default(List<Guid>))
+        /// <param name="payments">Array of &#x60;Payment&#x60; object IDs.</param>
+        public CreditNote(string remoteId = default(string), DateTime? transactionDate = default(DateTime?), CreditNoteStatusEnum? status = default(CreditNoteStatusEnum?), float? totalAmount = default(float?), float? remainingCredit = default(float?), CurrencyEnum? currency = default(CurrencyEnum?), DateTime? remoteCreatedAt = default(DateTime?), DateTime? remoteUpdatedAt = default(DateTime?), List<Guid?> payments = default(List<Guid?>))
         {
-            // to ensure "payments" is required (not null)
-            this.Payments = payments ?? throw new ArgumentNullException("payments is a required property for CreditNote and cannot be null");
             this.RemoteId = remoteId;
             this.TransactionDate = transactionDate;
             this.Status = status;
@@ -75,6 +68,7 @@ namespace Merge.AccountingClient.Model
             this.Currency = currency;
             this.RemoteCreatedAt = remoteCreatedAt;
             this.RemoteUpdatedAt = remoteUpdatedAt;
+            this.Payments = payments;
         }
 
         /// <summary>
@@ -153,8 +147,8 @@ namespace Merge.AccountingClient.Model
         /// Array of &#x60;Payment&#x60; object IDs
         /// </summary>
         /// <value>Array of &#x60;Payment&#x60; object IDs</value>
-        [DataMember(Name = "payments", IsRequired = true, EmitDefaultValue = false)]
-        public List<Guid> Payments { get; set; }
+        [DataMember(Name = "payments", EmitDefaultValue = false)]
+        public List<Guid?> Payments { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

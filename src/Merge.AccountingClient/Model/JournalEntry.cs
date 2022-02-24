@@ -39,14 +39,12 @@ namespace Merge.AccountingClient.Model
         /// <param name="transactionDate">The journal entry&#39;s transaction date..</param>
         /// <param name="remoteCreatedAt">When the third party&#39;s journal entry was created..</param>
         /// <param name="payments">Array of &#x60;Payment&#x60; object IDs..</param>
-        /// <param name="lines">lines.</param>
-        public JournalEntry(string remoteId = default(string), DateTime? transactionDate = default(DateTime?), DateTime? remoteCreatedAt = default(DateTime?), List<Guid> payments = default(List<Guid>), List<Guid> lines = default(List<Guid>))
+        public JournalEntry(string remoteId = default(string), DateTime? transactionDate = default(DateTime?), DateTime? remoteCreatedAt = default(DateTime?), List<Guid?> payments = default(List<Guid?>))
         {
             this.RemoteId = remoteId;
             this.TransactionDate = transactionDate;
             this.RemoteCreatedAt = remoteCreatedAt;
             this.Payments = payments;
-            this.Lines = lines;
         }
 
         /// <summary>
@@ -105,13 +103,22 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>Array of &#x60;Payment&#x60; object IDs.</value>
         [DataMember(Name = "payments", EmitDefaultValue = false)]
-        public List<Guid> Payments { get; set; }
+        public List<Guid?> Payments { get; set; }
 
         /// <summary>
         /// Gets or Sets Lines
         /// </summary>
         [DataMember(Name = "lines", EmitDefaultValue = false)]
-        public List<Guid> Lines { get; set; }
+        public List<JournalLine> Lines { get; private set; }
+
+        /// <summary>
+        /// Returns false as Lines should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeLines()
+        {
+            return false;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object

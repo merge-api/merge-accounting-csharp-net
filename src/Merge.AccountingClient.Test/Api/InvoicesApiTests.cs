@@ -56,6 +56,21 @@ namespace Merge.AccountingClient.Test.Api
         }
 
         /// <summary>
+        /// Test InvoicesCreate
+        /// </summary>
+        [Fact]
+        public void InvoicesCreateTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string xAccountToken = null;
+            //InvoiceEndpointRequest invoiceEndpointRequest = null;
+            //bool? isDebugMode = null;
+            //bool? runAsync = null;
+            //var response = instance.InvoicesCreate(xAccountToken, invoiceEndpointRequest, isDebugMode, runAsync);
+            //Assert.IsType<InvoiceResponse>(response);
+        }
+
+        /// <summary>
         /// Test InvoicesList
         /// </summary>
         [Fact]
@@ -67,13 +82,13 @@ namespace Merge.AccountingClient.Test.Api
             //DateTime? createdAfter = null;
             //DateTime? createdBefore = null;
             //string cursor = null;
-            //string expand = null;
+            //bool? includeDeletedData = null;
             //bool? includeRemoteData = null;
             //DateTime? modifiedAfter = null;
             //DateTime? modifiedBefore = null;
             //int? pageSize = null;
             //string remoteId = null;
-            //var response = instance.InvoicesList(xAccountToken, contactId, createdAfter, createdBefore, cursor, expand, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+            //var response = instance.InvoicesList(xAccountToken, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
             //Assert.IsType<PaginatedInvoiceList>(response);
         }
 
@@ -86,9 +101,8 @@ namespace Merge.AccountingClient.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string xAccountToken = null;
             //Guid id = null;
-            //string expand = null;
             //bool? includeRemoteData = null;
-            //var response = instance.InvoicesRetrieve(xAccountToken, id, expand, includeRemoteData);
+            //var response = instance.InvoicesRetrieve(xAccountToken, id, includeRemoteData);
             //Assert.IsType<Invoice>(response);
         }
     }

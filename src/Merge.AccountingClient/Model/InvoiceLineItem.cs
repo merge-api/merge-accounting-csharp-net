@@ -40,7 +40,7 @@ namespace Merge.AccountingClient.Model
         /// <param name="unitPrice">The line item&#39;s unit price..</param>
         /// <param name="quantity">The line item&#39;s quantity..</param>
         /// <param name="totalAmount">The line item&#39;s total amount..</param>
-        /// <param name="item">The line item&#39;s item..</param>
+        /// <param name="item">item.</param>
         public InvoiceLineItem(string remoteId = default(string), string description = default(string), float? unitPrice = default(float?), float? quantity = default(float?), float? totalAmount = default(float?), Guid? item = default(Guid?))
         {
             this.RemoteId = remoteId;
@@ -117,9 +117,8 @@ namespace Merge.AccountingClient.Model
         public float? TotalAmount { get; set; }
 
         /// <summary>
-        /// The line item&#39;s item.
+        /// Gets or Sets Item
         /// </summary>
-        /// <value>The line item&#39;s item.</value>
         [DataMember(Name = "item", EmitDefaultValue = true)]
         public Guid? Item { get; set; }
 

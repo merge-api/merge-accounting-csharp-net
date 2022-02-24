@@ -48,7 +48,13 @@ namespace Merge.AccountingClient.Model
         /// Enum FAILED for value: FAILED
         /// </summary>
         [EnumMember(Value = "FAILED")]
-        FAILED = 3
+        FAILED = 3,
+
+        /// <summary>
+        /// Enum DISABLED for value: DISABLED
+        /// </summary>
+        [EnumMember(Value = "DISABLED")]
+        DISABLED = 4
 
     }
 

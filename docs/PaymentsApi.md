@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="paymentslist"></a>
 # **PaymentsList**
-> PaginatedPaymentList PaymentsList (string xAccountToken, string accountId = null, string contactId = null, DateTime? createdAfter = null, DateTime? createdBefore = null, string cursor = null, string expand = null, bool? includeRemoteData = null, DateTime? modifiedAfter = null, DateTime? modifiedBefore = null, int? pageSize = null, string remoteId = null)
+> PaginatedPaymentList PaymentsList (string xAccountToken, string accountId = null, string contactId = null, DateTime? createdAfter = null, DateTime? createdBefore = null, string cursor = null, bool? includeDeletedData = null, bool? includeRemoteData = null, DateTime? modifiedAfter = null, DateTime? modifiedBefore = null, int? pageSize = null, string remoteId = null)
 
 
 
@@ -44,7 +44,7 @@ namespace Example
             var createdAfter = 2013-10-20T19:20:30+01:00;  // DateTime? | If provided, will only return objects created after this datetime. (optional) 
             var createdBefore = 2013-10-20T19:20:30+01:00;  // DateTime? | If provided, will only return objects created before this datetime. (optional) 
             var cursor = cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw;  // string | The pagination cursor value. (optional) 
-            var expand = contact,account;  // string | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional) 
+            var includeDeletedData = true;  // bool? | Whether to include data that was deleted in the third-party service. (optional) 
             var includeRemoteData = true;  // bool? | Whether to include the original data Merge fetched from the third-party to produce these models. (optional) 
             var modifiedAfter = 2013-10-20T19:20:30+01:00;  // DateTime? | If provided, will only return objects modified after this datetime. (optional) 
             var modifiedBefore = 2013-10-20T19:20:30+01:00;  // DateTime? | If provided, will only return objects modified before this datetime. (optional) 
@@ -53,7 +53,7 @@ namespace Example
 
             try
             {
-                PaginatedPaymentList result = apiInstance.PaymentsList(xAccountToken, accountId, contactId, createdAfter, createdBefore, cursor, expand, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+                PaginatedPaymentList result = apiInstance.PaymentsList(xAccountToken, accountId, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
  **createdAfter** | **DateTime?**| If provided, will only return objects created after this datetime. | [optional] 
  **createdBefore** | **DateTime?**| If provided, will only return objects created before this datetime. | [optional] 
  **cursor** | **string**| The pagination cursor value. | [optional] 
- **expand** | **string**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] 
+ **includeDeletedData** | **bool?**| Whether to include data that was deleted in the third-party service. | [optional] 
  **includeRemoteData** | **bool?**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional] 
  **modifiedAfter** | **DateTime?**| If provided, will only return objects modified after this datetime. | [optional] 
  **modifiedBefore** | **DateTime?**| If provided, will only return objects modified before this datetime. | [optional] 
@@ -107,7 +107,7 @@ Name | Type | Description  | Notes
 
 <a name="paymentsretrieve"></a>
 # **PaymentsRetrieve**
-> Payment PaymentsRetrieve (string xAccountToken, Guid id, string expand = null, bool? includeRemoteData = null)
+> Payment PaymentsRetrieve (string xAccountToken, Guid id, bool? includeRemoteData = null)
 
 
 
@@ -137,12 +137,11 @@ namespace Example
             var apiInstance = new PaymentsApi(config);
             var xAccountToken = xAccountToken_example;  // string | Token identifying the end user.
             var id = new Guid(); // Guid | 
-            var expand = contact,account;  // string | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. (optional) 
             var includeRemoteData = true;  // bool? | Whether to include the original data Merge fetched from the third-party to produce these models. (optional) 
 
             try
             {
-                Payment result = apiInstance.PaymentsRetrieve(xAccountToken, id, expand, includeRemoteData);
+                Payment result = apiInstance.PaymentsRetrieve(xAccountToken, id, includeRemoteData);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -162,7 +161,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **string**| Token identifying the end user. | 
  **id** | [**Guid**](Guid.md)|  | 
- **expand** | **string**| Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] 
  **includeRemoteData** | **bool?**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional] 
 
 ### Return type

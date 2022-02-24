@@ -53,7 +53,7 @@ namespace Merge.AccountingClient.Model
         /// <param name="remoteUpdatedAt">When the third party&#39;s contact was updated..</param>
         /// <param name="addresses">&#x60;Address&#x60; object IDs for the given &#x60;Contacts&#x60; object..</param>
         /// <param name="phoneNumbers">&#x60;AccountingPhoneNumber&#x60; object for the given &#x60;Contacts&#x60; object..</param>
-        public Contact(string remoteId = default(string), string name = default(string), bool? isSupplier = default(bool?), bool? isCustomer = default(bool?), string emailAddress = default(string), string taxNumber = default(string), Status7d1Enum? status = default(Status7d1Enum?), string currency = default(string), DateTime? remoteUpdatedAt = default(DateTime?), List<Guid> addresses = default(List<Guid>), List<AccountingPhoneNumber> phoneNumbers = default(List<AccountingPhoneNumber>))
+        public Contact(string remoteId = default(string), string name = default(string), bool? isSupplier = default(bool?), bool? isCustomer = default(bool?), string emailAddress = default(string), string taxNumber = default(string), Status7d1Enum? status = default(Status7d1Enum?), string currency = default(string), DateTime? remoteUpdatedAt = default(DateTime?), List<Guid?> addresses = default(List<Guid?>), List<AccountingPhoneNumber> phoneNumbers = default(List<AccountingPhoneNumber>))
         {
             this.RemoteId = remoteId;
             this.Name = name;
@@ -159,7 +159,7 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>&#x60;Address&#x60; object IDs for the given &#x60;Contacts&#x60; object.</value>
         [DataMember(Name = "addresses", EmitDefaultValue = false)]
-        public List<Guid> Addresses { get; set; }
+        public List<Guid?> Addresses { get; set; }
 
         /// <summary>
         /// &#x60;AccountingPhoneNumber&#x60; object for the given &#x60;Contacts&#x60; object.

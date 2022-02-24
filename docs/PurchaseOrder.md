@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **DeliveryAddress** | **Guid?** | The purchase order&#39;s delivery address. | [optional] 
 **TotalAmount** | **float?** | The purchase order&#39;s total amount. | [optional] 
 **Currency** | **CurrencyEnum** | The purchase order&#39;s currency. | [optional] 
-**LineItems** | **List&lt;Guid&gt;** |  | [optional] 
+**LineItems** | [**List&lt;PurchaseOrderLineItem&gt;**](PurchaseOrderLineItem.md) |  | [optional] [readonly] 
 **RemoteCreatedAt** | **DateTime?** | When the third party&#39;s purchase order note was created. | [optional] 
 **RemoteUpdatedAt** | **DateTime?** | When the third party&#39;s purchase order note was updated. | [optional] 
 

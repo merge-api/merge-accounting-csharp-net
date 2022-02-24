@@ -56,6 +56,21 @@ namespace Merge.AccountingClient.Test.Api
         }
 
         /// <summary>
+        /// Test JournalEntriesCreate
+        /// </summary>
+        [Fact]
+        public void JournalEntriesCreateTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string xAccountToken = null;
+            //JournalEntryEndpointRequest journalEntryEndpointRequest = null;
+            //bool? isDebugMode = null;
+            //bool? runAsync = null;
+            //var response = instance.JournalEntriesCreate(xAccountToken, journalEntryEndpointRequest, isDebugMode, runAsync);
+            //Assert.IsType<JournalEntryResponse>(response);
+        }
+
+        /// <summary>
         /// Test JournalEntriesList
         /// </summary>
         [Fact]
@@ -66,13 +81,13 @@ namespace Merge.AccountingClient.Test.Api
             //DateTime? createdAfter = null;
             //DateTime? createdBefore = null;
             //string cursor = null;
-            //string expand = null;
+            //bool? includeDeletedData = null;
             //bool? includeRemoteData = null;
             //DateTime? modifiedAfter = null;
             //DateTime? modifiedBefore = null;
             //int? pageSize = null;
             //string remoteId = null;
-            //var response = instance.JournalEntriesList(xAccountToken, createdAfter, createdBefore, cursor, expand, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+            //var response = instance.JournalEntriesList(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
             //Assert.IsType<PaginatedJournalEntryList>(response);
         }
 
@@ -85,9 +100,8 @@ namespace Merge.AccountingClient.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string xAccountToken = null;
             //Guid id = null;
-            //string expand = null;
             //bool? includeRemoteData = null;
-            //var response = instance.JournalEntriesRetrieve(xAccountToken, id, expand, includeRemoteData);
+            //var response = instance.JournalEntriesRetrieve(xAccountToken, id, includeRemoteData);
             //Assert.IsType<JournalEntry>(response);
         }
     }

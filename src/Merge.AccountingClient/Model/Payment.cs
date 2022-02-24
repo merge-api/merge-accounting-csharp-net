@@ -37,8 +37,8 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <param name="remoteId">The third-party API ID of the matching object..</param>
         /// <param name="transactionDate">The payment&#39;s transaction date..</param>
-        /// <param name="contact">The payment&#39;s contact..</param>
-        /// <param name="account">The payment&#39;s account..</param>
+        /// <param name="contact">contact.</param>
+        /// <param name="account">account.</param>
         /// <param name="totalAmount">The payment&#39;s total amount..</param>
         /// <param name="remoteUpdatedAt">When the third party&#39;s payment entry was updated..</param>
         public Payment(string remoteId = default(string), DateTime? transactionDate = default(DateTime?), Guid? contact = default(Guid?), Guid? account = default(Guid?), float? totalAmount = default(float?), DateTime? remoteUpdatedAt = default(DateTime?))
@@ -96,16 +96,14 @@ namespace Merge.AccountingClient.Model
         public DateTime? TransactionDate { get; set; }
 
         /// <summary>
-        /// The payment&#39;s contact.
+        /// Gets or Sets Contact
         /// </summary>
-        /// <value>The payment&#39;s contact.</value>
         [DataMember(Name = "contact", EmitDefaultValue = true)]
         public Guid? Contact { get; set; }
 
         /// <summary>
-        /// The payment&#39;s account.
+        /// Gets or Sets Account
         /// </summary>
-        /// <value>The payment&#39;s account.</value>
         [DataMember(Name = "account", EmitDefaultValue = true)]
         public Guid? Account { get; set; }
 

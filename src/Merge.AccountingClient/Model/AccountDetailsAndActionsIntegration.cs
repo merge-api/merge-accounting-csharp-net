@@ -32,12 +32,6 @@ namespace Merge.AccountingClient.Model
     [DataContract(Name = "AccountDetailsAndActionsIntegration")]
     public partial class AccountDetailsAndActionsIntegration : IEquatable<AccountDetailsAndActionsIntegration>, IValidatableObject
     {
-
-        /// <summary>
-        /// Gets or Sets Categories
-        /// </summary>
-        [DataMember(Name = "categories", IsRequired = true, EmitDefaultValue = false)]
-        public CategoriesEnum Categories { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountDetailsAndActionsIntegration" /> class.
         /// </summary>
@@ -54,11 +48,12 @@ namespace Merge.AccountingClient.Model
         /// <param name="slug">slug (required).</param>
         /// <param name="passthroughAvailable">passthroughAvailable (required).</param>
         /// <param name="availableModelOperations">availableModelOperations.</param>
-        public AccountDetailsAndActionsIntegration(string name = default(string), CategoriesEnum categories = default(CategoriesEnum), string image = default(string), string squareImage = default(string), string color = default(string), string slug = default(string), bool passthroughAvailable = default(bool), List<ModelOperation> availableModelOperations = default(List<ModelOperation>))
+        public AccountDetailsAndActionsIntegration(string name = default(string), List<CategoriesEnum> categories = default(List<CategoriesEnum>), string image = default(string), string squareImage = default(string), string color = default(string), string slug = default(string), bool passthroughAvailable = default(bool), List<ModelOperation> availableModelOperations = default(List<ModelOperation>))
         {
             // to ensure "name" is required (not null)
             this.Name = name ?? throw new ArgumentNullException("name is a required property for AccountDetailsAndActionsIntegration and cannot be null");
-            this.Categories = categories;
+            // to ensure "categories" is required (not null)
+            this.Categories = categories ?? throw new ArgumentNullException("categories is a required property for AccountDetailsAndActionsIntegration and cannot be null");
             // to ensure "color" is required (not null)
             this.Color = color ?? throw new ArgumentNullException("color is a required property for AccountDetailsAndActionsIntegration and cannot be null");
             // to ensure "slug" is required (not null)
@@ -74,6 +69,12 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = false)]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Categories
+        /// </summary>
+        [DataMember(Name = "categories", IsRequired = true, EmitDefaultValue = false)]
+        public List<CategoriesEnum> Categories { get; set; }
 
         /// <summary>
         /// Gets or Sets Image
@@ -168,7 +169,9 @@ namespace Merge.AccountingClient.Model
                 ) && 
                 (
                     this.Categories == input.Categories ||
-                    this.Categories.Equals(input.Categories)
+                    this.Categories != null &&
+                    input.Categories != null &&
+                    this.Categories.SequenceEqual(input.Categories)
                 ) && 
                 (
                     this.Image == input.Image ||
@@ -213,7 +216,8 @@ namespace Merge.AccountingClient.Model
                 int hashCode = 41;
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
-                hashCode = hashCode * 59 + this.Categories.GetHashCode();
+                if (this.Categories != null)
+                    hashCode = hashCode * 59 + this.Categories.GetHashCode();
                 if (this.Image != null)
                     hashCode = hashCode * 59 + this.Image.GetHashCode();
                 if (this.SquareImage != null)
