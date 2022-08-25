@@ -89,6 +89,22 @@ namespace Merge.AccountingClient.Test.Model
         {
             // TODO unit test for the property 'Payments'
         }
+        /// <summary>
+        /// Test the property 'Memo'
+        /// </summary>
+        [Fact]
+        public void MemoTest()
+        {
+            // TODO unit test for the property 'Memo'
+        }
+        /// <summary>
+        /// Test the property 'Currency'
+        /// </summary>
+        [Fact]
+        public void CurrencyTest()
+        {
+            // TODO unit test for the property 'Currency'
+        }
 
     }
 

@@ -6,13 +6,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RemoteId** | **string** | The third-party API ID of the matching object. | [optional] 
-**Type** | **InvoiceTypeEnum** | The invoice&#39;s type. | [optional] 
+**Type** | **string** | The invoice&#39;s type. | [optional] 
 **Contact** | **Guid?** |  | [optional] 
 **Number** | **string** | The invoice&#39;s number. | [optional] 
 **IssueDate** | **DateTime?** | The invoice&#39;s issue date. | [optional] 
 **DueDate** | **DateTime?** | The invoice&#39;s due date. | [optional] 
 **PaidOnDate** | **DateTime?** | The invoice&#39;s paid date. | [optional] 
-**Currency** | **CurrencyEnum** | The invoice&#39;s currency. | [optional] 
+**Memo** | **string** | The invoice&#39;s private note. | [optional] 
+**Currency** | **string** | The invoice&#39;s currency. | [optional] 
 **TotalDiscount** | **float?** | The invoice&#39;s total discount. | [optional] 
 **SubTotal** | **float?** | The invoice&#39;s sub-total. | [optional] 
 **TotalTaxAmount** | **float?** | The invoice&#39;s total tax amount. | [optional] 

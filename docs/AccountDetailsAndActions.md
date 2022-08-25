@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **EndUserOriginId** | **string** |  | [optional] 
 **EndUserOrganizationName** | **string** |  | 
 **EndUserEmailAddress** | **string** |  | 
+**WebhookListenerUrl** | **string** |  | 
+**IsDuplicate** | **bool?** | Whether a Production Linked Account&#39;s credentials match another existing Production Linked Account. This field is &#x60;null&#x60; for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets. | [optional] 
 **Integration** | [**AccountDetailsAndActionsIntegration**](AccountDetailsAndActionsIntegration.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

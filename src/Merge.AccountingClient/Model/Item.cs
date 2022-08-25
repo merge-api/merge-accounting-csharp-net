@@ -38,7 +38,7 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The item&#39;s status.</value>
         [DataMember(Name = "status", EmitDefaultValue = true)]
-        public Status7d1Enum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Item" /> class.
         /// </summary>
@@ -50,7 +50,7 @@ namespace Merge.AccountingClient.Model
         /// <param name="purchaseAccount">purchaseAccount.</param>
         /// <param name="salesAccount">salesAccount.</param>
         /// <param name="remoteUpdatedAt">When the third party&#39;s item note was updated..</param>
-        public Item(string remoteId = default(string), string name = default(string), Status7d1Enum? status = default(Status7d1Enum?), float? unitPrice = default(float?), float? purchasePrice = default(float?), Guid? purchaseAccount = default(Guid?), Guid? salesAccount = default(Guid?), DateTime? remoteUpdatedAt = default(DateTime?))
+        public Item(string remoteId = default(string), string name = default(string), string status = default(string), float? unitPrice = default(float?), float? purchasePrice = default(float?), Guid? purchaseAccount = default(Guid?), Guid? salesAccount = default(Guid?), DateTime? remoteUpdatedAt = default(DateTime?))
         {
             this.RemoteId = remoteId;
             this.Name = name;
@@ -140,6 +140,22 @@ namespace Merge.AccountingClient.Model
         public DateTime? RemoteUpdatedAt { get; set; }
 
         /// <summary>
+        /// Indicates whether or not this object has been deleted by third party webhooks.
+        /// </summary>
+        /// <value>Indicates whether or not this object has been deleted by third party webhooks.</value>
+        [DataMember(Name = "remote_was_deleted", EmitDefaultValue = true)]
+        public bool RemoteWasDeleted { get; private set; }
+
+        /// <summary>
+        /// Returns false as RemoteWasDeleted should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeRemoteWasDeleted()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -157,6 +173,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  PurchaseAccount: ").Append(PurchaseAccount).Append("\n");
             sb.Append("  SalesAccount: ").Append(SalesAccount).Append("\n");
             sb.Append("  RemoteUpdatedAt: ").Append(RemoteUpdatedAt).Append("\n");
+            sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -240,6 +257,10 @@ namespace Merge.AccountingClient.Model
                     this.RemoteUpdatedAt == input.RemoteUpdatedAt ||
                     (this.RemoteUpdatedAt != null &&
                     this.RemoteUpdatedAt.Equals(input.RemoteUpdatedAt))
+                ) && 
+                (
+                    this.RemoteWasDeleted == input.RemoteWasDeleted ||
+                    this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
                 );
         }
 
@@ -271,6 +292,7 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.SalesAccount.GetHashCode();
                 if (this.RemoteUpdatedAt != null)
                     hashCode = hashCode * 59 + this.RemoteUpdatedAt.GetHashCode();
+                hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
                 return hashCode;
             }
         }

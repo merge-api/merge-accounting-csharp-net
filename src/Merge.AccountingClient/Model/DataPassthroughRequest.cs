@@ -37,13 +37,13 @@ namespace Merge.AccountingClient.Model
         /// Gets or Sets Method
         /// </summary>
         [DataMember(Name = "method", IsRequired = true, EmitDefaultValue = false)]
-        public MethodEnum Method { get; set; }
+        public string Method { get; set; }
 
         /// <summary>
         /// Gets or Sets RequestFormat
         /// </summary>
         [DataMember(Name = "request_format", EmitDefaultValue = true)]
-        public RequestFormatEnum? RequestFormat { get; set; }
+        public string RequestFormat { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="DataPassthroughRequest" /> class.
         /// </summary>
@@ -56,17 +56,21 @@ namespace Merge.AccountingClient.Model
         /// <param name="path">path (required).</param>
         /// <param name="baseUrlOverride">baseUrlOverride.</param>
         /// <param name="data">data.</param>
-        /// <param name="headers">headers.</param>
+        /// <param name="multipartFormData">Pass an array of &#x60;MultipartFormField&#x60; objects in here instead of using the &#x60;data&#x60; param if &#x60;request_format&#x60; is set to &#x60;MULTIPART&#x60;..</param>
+        /// <param name="headers">The headers to use for the request (Merge will handle the account&#39;s authorization headers). &#x60;Content-Type&#x60; header is required for passthrough. Choose content type corresponding to expected format of receiving server..</param>
         /// <param name="requestFormat">requestFormat.</param>
-        public DataPassthroughRequest(MethodEnum method = default(MethodEnum), string path = default(string), string baseUrlOverride = default(string), string data = default(string), Dictionary<string, Object> headers = default(Dictionary<string, Object>), RequestFormatEnum? requestFormat = default(RequestFormatEnum?))
+        /// <param name="normalizeResponse">normalizeResponse.</param>
+        public DataPassthroughRequest(string method = default(string), string path = default(string), string baseUrlOverride = default(string), string data = default(string), List<MultipartFormFieldRequest> multipartFormData = default(List<MultipartFormFieldRequest>), Dictionary<string, Object> headers = default(Dictionary<string, Object>), string requestFormat = default(string), bool normalizeResponse = default(bool))
         {
             this.Method = method;
             // to ensure "path" is required (not null)
             this.Path = path ?? throw new ArgumentNullException("path is a required property for DataPassthroughRequest and cannot be null");
             this.BaseUrlOverride = baseUrlOverride;
             this.Data = data;
+            this.MultipartFormData = multipartFormData;
             this.Headers = headers;
             this.RequestFormat = requestFormat;
+            this.NormalizeResponse = normalizeResponse;
         }
 
         /// <summary>
@@ -88,10 +92,24 @@ namespace Merge.AccountingClient.Model
         public string Data { get; set; }
 
         /// <summary>
-        /// Gets or Sets Headers
+        /// Pass an array of &#x60;MultipartFormField&#x60; objects in here instead of using the &#x60;data&#x60; param if &#x60;request_format&#x60; is set to &#x60;MULTIPART&#x60;.
         /// </summary>
+        /// <value>Pass an array of &#x60;MultipartFormField&#x60; objects in here instead of using the &#x60;data&#x60; param if &#x60;request_format&#x60; is set to &#x60;MULTIPART&#x60;.</value>
+        [DataMember(Name = "multipart_form_data", EmitDefaultValue = true)]
+        public List<MultipartFormFieldRequest> MultipartFormData { get; set; }
+
+        /// <summary>
+        /// The headers to use for the request (Merge will handle the account&#39;s authorization headers). &#x60;Content-Type&#x60; header is required for passthrough. Choose content type corresponding to expected format of receiving server.
+        /// </summary>
+        /// <value>The headers to use for the request (Merge will handle the account&#39;s authorization headers). &#x60;Content-Type&#x60; header is required for passthrough. Choose content type corresponding to expected format of receiving server.</value>
         [DataMember(Name = "headers", EmitDefaultValue = true)]
         public Dictionary<string, Object> Headers { get; set; }
+
+        /// <summary>
+        /// Gets or Sets NormalizeResponse
+        /// </summary>
+        [DataMember(Name = "normalize_response", EmitDefaultValue = true)]
+        public bool NormalizeResponse { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -105,8 +123,10 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Path: ").Append(Path).Append("\n");
             sb.Append("  BaseUrlOverride: ").Append(BaseUrlOverride).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  MultipartFormData: ").Append(MultipartFormData).Append("\n");
             sb.Append("  Headers: ").Append(Headers).Append("\n");
             sb.Append("  RequestFormat: ").Append(RequestFormat).Append("\n");
+            sb.Append("  NormalizeResponse: ").Append(NormalizeResponse).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -161,6 +181,12 @@ namespace Merge.AccountingClient.Model
                     this.Data.Equals(input.Data))
                 ) && 
                 (
+                    this.MultipartFormData == input.MultipartFormData ||
+                    this.MultipartFormData != null &&
+                    input.MultipartFormData != null &&
+                    this.MultipartFormData.SequenceEqual(input.MultipartFormData)
+                ) && 
+                (
                     this.Headers == input.Headers ||
                     this.Headers != null &&
                     input.Headers != null &&
@@ -169,6 +195,10 @@ namespace Merge.AccountingClient.Model
                 (
                     this.RequestFormat == input.RequestFormat ||
                     this.RequestFormat.Equals(input.RequestFormat)
+                ) && 
+                (
+                    this.NormalizeResponse == input.NormalizeResponse ||
+                    this.NormalizeResponse.Equals(input.NormalizeResponse)
                 );
         }
 
@@ -188,9 +218,12 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.BaseUrlOverride.GetHashCode();
                 if (this.Data != null)
                     hashCode = hashCode * 59 + this.Data.GetHashCode();
+                if (this.MultipartFormData != null)
+                    hashCode = hashCode * 59 + this.MultipartFormData.GetHashCode();
                 if (this.Headers != null)
                     hashCode = hashCode * 59 + this.Headers.GetHashCode();
                 hashCode = hashCode * 59 + this.RequestFormat.GetHashCode();
+                hashCode = hashCode * 59 + this.NormalizeResponse.GetHashCode();
                 return hashCode;
             }
         }

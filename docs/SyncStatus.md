@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ModelName** | **string** |  | 
 **ModelId** | **string** |  | 
-**LastSyncStart** | **DateTime** |  | 
-**NextSyncStart** | **DateTime** |  | 
-**Status** | **SyncStatusStatusEnum** |  | 
+**LastSyncStart** | **DateTime** |  | [optional] 
+**NextSyncStart** | **DateTime** |  | [optional] 
+**Status** | **string** |  | 
 **IsInitialSync** | **bool** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

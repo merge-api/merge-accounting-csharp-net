@@ -130,6 +130,14 @@ namespace Merge.AccountingClient.Test.Model
             // TODO unit test for the property 'PaidOnDate'
         }
         /// <summary>
+        /// Test the property 'Memo'
+        /// </summary>
+        [Fact]
+        public void MemoTest()
+        {
+            // TODO unit test for the property 'Memo'
+        }
+        /// <summary>
         /// Test the property 'Currency'
         /// </summary>
         [Fact]
@@ -200,6 +208,14 @@ namespace Merge.AccountingClient.Test.Model
         public void LineItemsTest()
         {
             // TODO unit test for the property 'LineItems'
+        }
+        /// <summary>
+        /// Test the property 'RemoteWasDeleted'
+        /// </summary>
+        [Fact]
+        public void RemoteWasDeletedTest()
+        {
+            // TODO unit test for the property 'RemoteWasDeleted'
         }
 
     }

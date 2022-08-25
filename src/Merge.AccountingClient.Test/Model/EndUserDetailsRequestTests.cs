@@ -105,6 +105,14 @@ namespace Merge.AccountingClient.Test.Model
         {
             // TODO unit test for the property 'LinkExpiryMins'
         }
+        /// <summary>
+        /// Test the property 'ShouldCreateMagicLinkUrl'
+        /// </summary>
+        [Fact]
+        public void ShouldCreateMagicLinkUrlTest()
+        {
+            // TODO unit test for the property 'ShouldCreateMagicLinkUrl'
+        }
 
     }
 

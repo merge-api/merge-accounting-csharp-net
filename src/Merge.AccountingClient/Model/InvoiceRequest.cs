@@ -38,14 +38,14 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The invoice&#39;s type.</value>
         [DataMember(Name = "type", EmitDefaultValue = true)]
-        public InvoiceTypeEnum? Type { get; set; }
+        public string Type { get; set; }
 
         /// <summary>
         /// The invoice&#39;s currency.
         /// </summary>
         /// <value>The invoice&#39;s currency.</value>
         [DataMember(Name = "currency", EmitDefaultValue = true)]
-        public CurrencyEnum? Currency { get; set; }
+        public string Currency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="InvoiceRequest" /> class.
         /// </summary>
@@ -56,6 +56,7 @@ namespace Merge.AccountingClient.Model
         /// <param name="issueDate">The invoice&#39;s issue date..</param>
         /// <param name="dueDate">The invoice&#39;s due date..</param>
         /// <param name="paidOnDate">The invoice&#39;s paid date..</param>
+        /// <param name="memo">The invoice&#39;s private note..</param>
         /// <param name="currency">The invoice&#39;s currency..</param>
         /// <param name="totalDiscount">The invoice&#39;s total discount..</param>
         /// <param name="subTotal">The invoice&#39;s sub-total..</param>
@@ -64,7 +65,7 @@ namespace Merge.AccountingClient.Model
         /// <param name="balance">The invoice&#39;s remaining balance..</param>
         /// <param name="remoteUpdatedAt">When the third party&#39;s invoice entry was updated..</param>
         /// <param name="payments">Array of &#x60;Payment&#x60; object IDs..</param>
-        public InvoiceRequest(string remoteId = default(string), InvoiceTypeEnum? type = default(InvoiceTypeEnum?), Guid? contact = default(Guid?), string number = default(string), DateTime? issueDate = default(DateTime?), DateTime? dueDate = default(DateTime?), DateTime? paidOnDate = default(DateTime?), CurrencyEnum? currency = default(CurrencyEnum?), float? totalDiscount = default(float?), float? subTotal = default(float?), float? totalTaxAmount = default(float?), float? totalAmount = default(float?), float? balance = default(float?), DateTime? remoteUpdatedAt = default(DateTime?), List<Guid?> payments = default(List<Guid?>))
+        public InvoiceRequest(string remoteId = default(string), string type = default(string), Guid? contact = default(Guid?), string number = default(string), DateTime? issueDate = default(DateTime?), DateTime? dueDate = default(DateTime?), DateTime? paidOnDate = default(DateTime?), string memo = default(string), string currency = default(string), float? totalDiscount = default(float?), float? subTotal = default(float?), float? totalTaxAmount = default(float?), float? totalAmount = default(float?), float? balance = default(float?), DateTime? remoteUpdatedAt = default(DateTime?), List<Guid?> payments = default(List<Guid?>))
         {
             this.RemoteId = remoteId;
             this.Type = type;
@@ -73,6 +74,7 @@ namespace Merge.AccountingClient.Model
             this.IssueDate = issueDate;
             this.DueDate = dueDate;
             this.PaidOnDate = paidOnDate;
+            this.Memo = memo;
             this.Currency = currency;
             this.TotalDiscount = totalDiscount;
             this.SubTotal = subTotal;
@@ -123,6 +125,13 @@ namespace Merge.AccountingClient.Model
         /// <value>The invoice&#39;s paid date.</value>
         [DataMember(Name = "paid_on_date", EmitDefaultValue = true)]
         public DateTime? PaidOnDate { get; set; }
+
+        /// <summary>
+        /// The invoice&#39;s private note.
+        /// </summary>
+        /// <value>The invoice&#39;s private note.</value>
+        [DataMember(Name = "memo", EmitDefaultValue = true)]
+        public string Memo { get; set; }
 
         /// <summary>
         /// The invoice&#39;s total discount.
@@ -188,6 +197,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  IssueDate: ").Append(IssueDate).Append("\n");
             sb.Append("  DueDate: ").Append(DueDate).Append("\n");
             sb.Append("  PaidOnDate: ").Append(PaidOnDate).Append("\n");
+            sb.Append("  Memo: ").Append(Memo).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  TotalDiscount: ").Append(TotalDiscount).Append("\n");
             sb.Append("  SubTotal: ").Append(SubTotal).Append("\n");
@@ -265,6 +275,11 @@ namespace Merge.AccountingClient.Model
                     this.PaidOnDate.Equals(input.PaidOnDate))
                 ) && 
                 (
+                    this.Memo == input.Memo ||
+                    (this.Memo != null &&
+                    this.Memo.Equals(input.Memo))
+                ) && 
+                (
                     this.Currency == input.Currency ||
                     this.Currency.Equals(input.Currency)
                 ) && 
@@ -328,6 +343,8 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.DueDate.GetHashCode();
                 if (this.PaidOnDate != null)
                     hashCode = hashCode * 59 + this.PaidOnDate.GetHashCode();
+                if (this.Memo != null)
+                    hashCode = hashCode * 59 + this.Memo.GetHashCode();
                 hashCode = hashCode * 59 + this.Currency.GetHashCode();
                 if (this.TotalDiscount != null)
                     hashCode = hashCode * 59 + this.TotalDiscount.GetHashCode();

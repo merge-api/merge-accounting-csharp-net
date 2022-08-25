@@ -38,14 +38,14 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The purchase order&#39;s status.</value>
         [DataMember(Name = "status", EmitDefaultValue = true)]
-        public PurchaseOrderStatusEnum? Status { get; set; }
+        public string Status { get; set; }
 
         /// <summary>
         /// The purchase order&#39;s currency.
         /// </summary>
         /// <value>The purchase order&#39;s currency.</value>
         [DataMember(Name = "currency", EmitDefaultValue = true)]
-        public CurrencyEnum? Currency { get; set; }
+        public string Currency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PurchaseOrder" /> class.
         /// </summary>
@@ -54,17 +54,23 @@ namespace Merge.AccountingClient.Model
         /// <param name="issueDate">The purchase order&#39;s issue date..</param>
         /// <param name="deliveryDate">The purchase order&#39;s delivery date..</param>
         /// <param name="deliveryAddress">The purchase order&#39;s delivery address..</param>
+        /// <param name="customer">The purchase order&#39;s customer..</param>
+        /// <param name="vendor">The purchase_order&#39;s vendor..</param>
+        /// <param name="memo">A memo attached to the purchase order..</param>
         /// <param name="totalAmount">The purchase order&#39;s total amount..</param>
         /// <param name="currency">The purchase order&#39;s currency..</param>
         /// <param name="remoteCreatedAt">When the third party&#39;s purchase order note was created..</param>
         /// <param name="remoteUpdatedAt">When the third party&#39;s purchase order note was updated..</param>
-        public PurchaseOrder(string remoteId = default(string), PurchaseOrderStatusEnum? status = default(PurchaseOrderStatusEnum?), DateTime? issueDate = default(DateTime?), DateTime? deliveryDate = default(DateTime?), Guid? deliveryAddress = default(Guid?), float? totalAmount = default(float?), CurrencyEnum? currency = default(CurrencyEnum?), DateTime? remoteCreatedAt = default(DateTime?), DateTime? remoteUpdatedAt = default(DateTime?))
+        public PurchaseOrder(string remoteId = default(string), string status = default(string), DateTime? issueDate = default(DateTime?), DateTime? deliveryDate = default(DateTime?), Guid? deliveryAddress = default(Guid?), Guid? customer = default(Guid?), Guid? vendor = default(Guid?), string memo = default(string), float? totalAmount = default(float?), string currency = default(string), DateTime? remoteCreatedAt = default(DateTime?), DateTime? remoteUpdatedAt = default(DateTime?))
         {
             this.RemoteId = remoteId;
             this.Status = status;
             this.IssueDate = issueDate;
             this.DeliveryDate = deliveryDate;
             this.DeliveryAddress = deliveryAddress;
+            this.Customer = customer;
+            this.Vendor = vendor;
+            this.Memo = memo;
             this.TotalAmount = totalAmount;
             this.Currency = currency;
             this.RemoteCreatedAt = remoteCreatedAt;
@@ -130,6 +136,27 @@ namespace Merge.AccountingClient.Model
         public Guid? DeliveryAddress { get; set; }
 
         /// <summary>
+        /// The purchase order&#39;s customer.
+        /// </summary>
+        /// <value>The purchase order&#39;s customer.</value>
+        [DataMember(Name = "customer", EmitDefaultValue = true)]
+        public Guid? Customer { get; set; }
+
+        /// <summary>
+        /// The purchase_order&#39;s vendor.
+        /// </summary>
+        /// <value>The purchase_order&#39;s vendor.</value>
+        [DataMember(Name = "vendor", EmitDefaultValue = true)]
+        public Guid? Vendor { get; set; }
+
+        /// <summary>
+        /// A memo attached to the purchase order.
+        /// </summary>
+        /// <value>A memo attached to the purchase order.</value>
+        [DataMember(Name = "memo", EmitDefaultValue = true)]
+        public string Memo { get; set; }
+
+        /// <summary>
         /// The purchase order&#39;s total amount.
         /// </summary>
         /// <value>The purchase order&#39;s total amount.</value>
@@ -166,6 +193,22 @@ namespace Merge.AccountingClient.Model
         public DateTime? RemoteUpdatedAt { get; set; }
 
         /// <summary>
+        /// Indicates whether or not this object has been deleted by third party webhooks.
+        /// </summary>
+        /// <value>Indicates whether or not this object has been deleted by third party webhooks.</value>
+        [DataMember(Name = "remote_was_deleted", EmitDefaultValue = true)]
+        public bool RemoteWasDeleted { get; private set; }
+
+        /// <summary>
+        /// Returns false as RemoteWasDeleted should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeRemoteWasDeleted()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -180,11 +223,15 @@ namespace Merge.AccountingClient.Model
             sb.Append("  IssueDate: ").Append(IssueDate).Append("\n");
             sb.Append("  DeliveryDate: ").Append(DeliveryDate).Append("\n");
             sb.Append("  DeliveryAddress: ").Append(DeliveryAddress).Append("\n");
+            sb.Append("  Customer: ").Append(Customer).Append("\n");
+            sb.Append("  Vendor: ").Append(Vendor).Append("\n");
+            sb.Append("  Memo: ").Append(Memo).Append("\n");
             sb.Append("  TotalAmount: ").Append(TotalAmount).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  LineItems: ").Append(LineItems).Append("\n");
             sb.Append("  RemoteCreatedAt: ").Append(RemoteCreatedAt).Append("\n");
             sb.Append("  RemoteUpdatedAt: ").Append(RemoteUpdatedAt).Append("\n");
+            sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -255,6 +302,21 @@ namespace Merge.AccountingClient.Model
                     this.DeliveryAddress.Equals(input.DeliveryAddress))
                 ) && 
                 (
+                    this.Customer == input.Customer ||
+                    (this.Customer != null &&
+                    this.Customer.Equals(input.Customer))
+                ) && 
+                (
+                    this.Vendor == input.Vendor ||
+                    (this.Vendor != null &&
+                    this.Vendor.Equals(input.Vendor))
+                ) && 
+                (
+                    this.Memo == input.Memo ||
+                    (this.Memo != null &&
+                    this.Memo.Equals(input.Memo))
+                ) && 
+                (
                     this.TotalAmount == input.TotalAmount ||
                     (this.TotalAmount != null &&
                     this.TotalAmount.Equals(input.TotalAmount))
@@ -278,6 +340,10 @@ namespace Merge.AccountingClient.Model
                     this.RemoteUpdatedAt == input.RemoteUpdatedAt ||
                     (this.RemoteUpdatedAt != null &&
                     this.RemoteUpdatedAt.Equals(input.RemoteUpdatedAt))
+                ) && 
+                (
+                    this.RemoteWasDeleted == input.RemoteWasDeleted ||
+                    this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
                 );
         }
 
@@ -303,6 +369,12 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.DeliveryDate.GetHashCode();
                 if (this.DeliveryAddress != null)
                     hashCode = hashCode * 59 + this.DeliveryAddress.GetHashCode();
+                if (this.Customer != null)
+                    hashCode = hashCode * 59 + this.Customer.GetHashCode();
+                if (this.Vendor != null)
+                    hashCode = hashCode * 59 + this.Vendor.GetHashCode();
+                if (this.Memo != null)
+                    hashCode = hashCode * 59 + this.Memo.GetHashCode();
                 if (this.TotalAmount != null)
                     hashCode = hashCode * 59 + this.TotalAmount.GetHashCode();
                 hashCode = hashCode * 59 + this.Currency.GetHashCode();
@@ -312,6 +384,7 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.RemoteCreatedAt.GetHashCode();
                 if (this.RemoteUpdatedAt != null)
                     hashCode = hashCode * 59 + this.RemoteUpdatedAt.GetHashCode();
+                hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
                 return hashCode;
             }
         }

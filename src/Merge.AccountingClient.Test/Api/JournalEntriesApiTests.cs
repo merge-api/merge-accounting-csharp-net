@@ -92,6 +92,18 @@ namespace Merge.AccountingClient.Test.Api
         }
 
         /// <summary>
+        /// Test JournalEntriesMetaPostRetrieve
+        /// </summary>
+        [Fact]
+        public void JournalEntriesMetaPostRetrieveTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string xAccountToken = null;
+            //var response = instance.JournalEntriesMetaPostRetrieve(xAccountToken);
+            //Assert.IsType<MetaResponse>(response);
+        }
+
+        /// <summary>
         /// Test JournalEntriesRetrieve
         /// </summary>
         [Fact]

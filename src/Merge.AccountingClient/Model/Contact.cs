@@ -38,7 +38,7 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The contact&#39;s status</value>
         [DataMember(Name = "status", EmitDefaultValue = true)]
-        public Status7d1Enum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Contact" /> class.
         /// </summary>
@@ -53,7 +53,7 @@ namespace Merge.AccountingClient.Model
         /// <param name="remoteUpdatedAt">When the third party&#39;s contact was updated..</param>
         /// <param name="addresses">&#x60;Address&#x60; object IDs for the given &#x60;Contacts&#x60; object..</param>
         /// <param name="phoneNumbers">&#x60;AccountingPhoneNumber&#x60; object for the given &#x60;Contacts&#x60; object..</param>
-        public Contact(string remoteId = default(string), string name = default(string), bool? isSupplier = default(bool?), bool? isCustomer = default(bool?), string emailAddress = default(string), string taxNumber = default(string), Status7d1Enum? status = default(Status7d1Enum?), string currency = default(string), DateTime? remoteUpdatedAt = default(DateTime?), List<Guid?> addresses = default(List<Guid?>), List<AccountingPhoneNumber> phoneNumbers = default(List<AccountingPhoneNumber>))
+        public Contact(string remoteId = default(string), string name = default(string), bool? isSupplier = default(bool?), bool? isCustomer = default(bool?), string emailAddress = default(string), string taxNumber = default(string), string status = default(string), string currency = default(string), DateTime? remoteUpdatedAt = default(DateTime?), List<Guid?> addresses = default(List<Guid?>), List<AccountingPhoneNumber> phoneNumbers = default(List<AccountingPhoneNumber>))
         {
             this.RemoteId = remoteId;
             this.Name = name;
@@ -169,6 +169,22 @@ namespace Merge.AccountingClient.Model
         public List<AccountingPhoneNumber> PhoneNumbers { get; set; }
 
         /// <summary>
+        /// Indicates whether or not this object has been deleted by third party webhooks.
+        /// </summary>
+        /// <value>Indicates whether or not this object has been deleted by third party webhooks.</value>
+        [DataMember(Name = "remote_was_deleted", EmitDefaultValue = true)]
+        public bool RemoteWasDeleted { get; private set; }
+
+        /// <summary>
+        /// Returns false as RemoteWasDeleted should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeRemoteWasDeleted()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -189,6 +205,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  RemoteUpdatedAt: ").Append(RemoteUpdatedAt).Append("\n");
             sb.Append("  Addresses: ").Append(Addresses).Append("\n");
             sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
+            sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -289,6 +306,10 @@ namespace Merge.AccountingClient.Model
                     this.PhoneNumbers != null &&
                     input.PhoneNumbers != null &&
                     this.PhoneNumbers.SequenceEqual(input.PhoneNumbers)
+                ) && 
+                (
+                    this.RemoteWasDeleted == input.RemoteWasDeleted ||
+                    this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
                 );
         }
 
@@ -326,6 +347,7 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.Addresses.GetHashCode();
                 if (this.PhoneNumbers != null)
                     hashCode = hashCode * 59 + this.PhoneNumbers.GetHashCode();
+                hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
                 return hashCode;
             }
         }

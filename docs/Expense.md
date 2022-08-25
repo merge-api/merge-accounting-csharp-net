@@ -13,8 +13,10 @@ Name | Type | Description | Notes
 **Account** | **Guid?** |  | [optional] 
 **Contact** | **Guid?** |  | [optional] 
 **TotalAmount** | **float?** | The expense&#39;s total amount. | [optional] 
-**Currency** | **CurrencyEnum** | The expense&#39;s currency. | [optional] 
+**Currency** | **string** | The expense&#39;s currency. | [optional] 
+**Memo** | **string** | The expense&#39;s private note. | [optional] 
 **Lines** | [**List&lt;ExpenseLine&gt;**](ExpenseLine.md) |  | [optional] [readonly] 
+**RemoteWasDeleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

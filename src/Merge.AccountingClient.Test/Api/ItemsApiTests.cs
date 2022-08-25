@@ -71,8 +71,9 @@ namespace Merge.AccountingClient.Test.Api
             //DateTime? modifiedAfter = null;
             //DateTime? modifiedBefore = null;
             //int? pageSize = null;
+            //string remoteFields = null;
             //string remoteId = null;
-            //var response = instance.ItemsList(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+            //var response = instance.ItemsList(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
             //Assert.IsType<PaginatedItemList>(response);
         }
 
@@ -86,7 +87,8 @@ namespace Merge.AccountingClient.Test.Api
             //string xAccountToken = null;
             //Guid id = null;
             //bool? includeRemoteData = null;
-            //var response = instance.ItemsRetrieve(xAccountToken, id, includeRemoteData);
+            //string remoteFields = null;
+            //var response = instance.ItemsRetrieve(xAccountToken, id, includeRemoteData, remoteFields);
             //Assert.IsType<Item>(response);
         }
     }

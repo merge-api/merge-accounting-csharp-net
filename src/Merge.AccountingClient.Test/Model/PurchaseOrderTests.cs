@@ -114,6 +114,30 @@ namespace Merge.AccountingClient.Test.Model
             // TODO unit test for the property 'DeliveryAddress'
         }
         /// <summary>
+        /// Test the property 'Customer'
+        /// </summary>
+        [Fact]
+        public void CustomerTest()
+        {
+            // TODO unit test for the property 'Customer'
+        }
+        /// <summary>
+        /// Test the property 'Vendor'
+        /// </summary>
+        [Fact]
+        public void VendorTest()
+        {
+            // TODO unit test for the property 'Vendor'
+        }
+        /// <summary>
+        /// Test the property 'Memo'
+        /// </summary>
+        [Fact]
+        public void MemoTest()
+        {
+            // TODO unit test for the property 'Memo'
+        }
+        /// <summary>
         /// Test the property 'TotalAmount'
         /// </summary>
         [Fact]
@@ -152,6 +176,14 @@ namespace Merge.AccountingClient.Test.Model
         public void RemoteUpdatedAtTest()
         {
             // TODO unit test for the property 'RemoteUpdatedAt'
+        }
+        /// <summary>
+        /// Test the property 'RemoteWasDeleted'
+        /// </summary>
+        [Fact]
+        public void RemoteWasDeletedTest()
+        {
+            // TODO unit test for the property 'RemoteWasDeleted'
         }
 
     }

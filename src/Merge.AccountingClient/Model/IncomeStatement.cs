@@ -193,6 +193,22 @@ namespace Merge.AccountingClient.Model
         public float? NetIncome { get; set; }
 
         /// <summary>
+        /// Indicates whether or not this object has been deleted by third party webhooks.
+        /// </summary>
+        /// <value>Indicates whether or not this object has been deleted by third party webhooks.</value>
+        [DataMember(Name = "remote_was_deleted", EmitDefaultValue = true)]
+        public bool RemoteWasDeleted { get; private set; }
+
+        /// <summary>
+        /// Returns false as RemoteWasDeleted should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeRemoteWasDeleted()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -213,6 +229,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  NetOperatingIncome: ").Append(NetOperatingIncome).Append("\n");
             sb.Append("  NonOperatingExpenses: ").Append(NonOperatingExpenses).Append("\n");
             sb.Append("  NetIncome: ").Append(NetIncome).Append("\n");
+            sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -316,6 +333,10 @@ namespace Merge.AccountingClient.Model
                     this.NetIncome == input.NetIncome ||
                     (this.NetIncome != null &&
                     this.NetIncome.Equals(input.NetIncome))
+                ) && 
+                (
+                    this.RemoteWasDeleted == input.RemoteWasDeleted ||
+                    this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
                 );
         }
 
@@ -354,6 +375,7 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.NonOperatingExpenses.GetHashCode();
                 if (this.NetIncome != null)
                     hashCode = hashCode * 59 + this.NetIncome.GetHashCode();
+                hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
                 return hashCode;
             }
         }

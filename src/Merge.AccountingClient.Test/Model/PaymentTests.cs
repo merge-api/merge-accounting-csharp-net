@@ -121,6 +121,14 @@ namespace Merge.AccountingClient.Test.Model
         {
             // TODO unit test for the property 'RemoteUpdatedAt'
         }
+        /// <summary>
+        /// Test the property 'RemoteWasDeleted'
+        /// </summary>
+        [Fact]
+        public void RemoteWasDeletedTest()
+        {
+            // TODO unit test for the property 'RemoteWasDeleted'
+        }
 
     }
 
