@@ -332,7 +332,7 @@ namespace Merge.AccountingClient.Model
         {
             // TotalAmount (decimal?) pattern
             Regex regexTotalAmount = new Regex(@"^\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
-            if (false == regexTotalAmount.Match(this.TotalAmount).Success)
+            if (false == regexTotalAmount.Match(this.TotalAmount.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TotalAmount, must match a pattern of " + regexTotalAmount, new [] { "TotalAmount" });
             }
