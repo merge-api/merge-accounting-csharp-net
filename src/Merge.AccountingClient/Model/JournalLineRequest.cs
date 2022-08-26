@@ -39,12 +39,16 @@ namespace Merge.AccountingClient.Model
         /// <param name="account">account.</param>
         /// <param name="netAmount">The line&#39;s net amount..</param>
         /// <param name="trackingCategory">trackingCategory.</param>
-        public JournalLineRequest(string remoteId = default(string), Guid? account = default(Guid?), float? netAmount = default(float?), Guid? trackingCategory = default(Guid?))
+        /// <param name="contact">contact.</param>
+        /// <param name="description">The line&#39;s description..</param>
+        public JournalLineRequest(string remoteId = default(string), Guid? account = default(Guid?), float? netAmount = default(float?), Guid? trackingCategory = default(Guid?), Guid? contact = default(Guid?), string description = default(string))
         {
             this.RemoteId = remoteId;
             this.Account = account;
             this.NetAmount = netAmount;
             this.TrackingCategory = trackingCategory;
+            this.Contact = contact;
+            this.Description = description;
         }
 
         /// <summary>
@@ -74,6 +78,19 @@ namespace Merge.AccountingClient.Model
         public Guid? TrackingCategory { get; set; }
 
         /// <summary>
+        /// Gets or Sets Contact
+        /// </summary>
+        [DataMember(Name = "contact", EmitDefaultValue = true)]
+        public Guid? Contact { get; set; }
+
+        /// <summary>
+        /// The line&#39;s description.
+        /// </summary>
+        /// <value>The line&#39;s description.</value>
+        [DataMember(Name = "description", EmitDefaultValue = true)]
+        public string Description { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -85,6 +102,8 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  NetAmount: ").Append(NetAmount).Append("\n");
             sb.Append("  TrackingCategory: ").Append(TrackingCategory).Append("\n");
+            sb.Append("  Contact: ").Append(Contact).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -138,6 +157,16 @@ namespace Merge.AccountingClient.Model
                     this.TrackingCategory == input.TrackingCategory ||
                     (this.TrackingCategory != null &&
                     this.TrackingCategory.Equals(input.TrackingCategory))
+                ) && 
+                (
+                    this.Contact == input.Contact ||
+                    (this.Contact != null &&
+                    this.Contact.Equals(input.Contact))
+                ) && 
+                (
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 );
         }
 
@@ -158,6 +187,10 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.NetAmount.GetHashCode();
                 if (this.TrackingCategory != null)
                     hashCode = hashCode * 59 + this.TrackingCategory.GetHashCode();
+                if (this.Contact != null)
+                    hashCode = hashCode * 59 + this.Contact.GetHashCode();
+                if (this.Description != null)
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
                 return hashCode;
             }
         }

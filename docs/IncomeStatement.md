@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **NetOperatingIncome** | **float?** | The income statement&#39;s net operating profit. | [optional] 
 **NonOperatingExpenses** | [**List&lt;ReportItem&gt;**](ReportItem.md) |  | [optional] [readonly] 
 **NetIncome** | **float?** | The income statement&#39;s net income. | [optional] 
+**RemoteWasDeleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -9,6 +9,10 @@ Name | Type | Description | Notes
 **UnitPrice** | **float?** | The line item&#39;s unit price. | [optional] 
 **Quantity** | **float?** | The line item&#39;s quantity. | [optional] 
 **Item** | **Guid?** |  | [optional] 
+**Account** | **Guid?** | The purchase order line item&#39;s account. | [optional] 
+**TrackingCategory** | **Guid?** | The purchase order line item&#39;s associated tracking category. | [optional] 
+**TaxAmount** | **decimal?** | The purchase order line item&#39;s tax amount. | [optional] 
+**TotalLineAmount** | **decimal?** | The purchase order line item&#39;s total amount. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

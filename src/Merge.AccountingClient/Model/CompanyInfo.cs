@@ -38,7 +38,7 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The currency set in the company&#39;s accounting platform.</value>
         [DataMember(Name = "currency", EmitDefaultValue = true)]
-        public CurrencyEnum? Currency { get; set; }
+        public string Currency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CompanyInfo" /> class.
         /// </summary>
@@ -53,7 +53,7 @@ namespace Merge.AccountingClient.Model
         /// <param name="urls">The company&#39;s urls..</param>
         /// <param name="addresses">addresses.</param>
         /// <param name="phoneNumbers">phoneNumbers.</param>
-        public CompanyInfo(string remoteId = default(string), string name = default(string), string legalName = default(string), string taxNumber = default(string), int? fiscalYearEndMonth = default(int?), int? fiscalYearEndDay = default(int?), CurrencyEnum? currency = default(CurrencyEnum?), DateTime? remoteCreatedAt = default(DateTime?), List<string> urls = default(List<string>), List<Address> addresses = default(List<Address>), List<AccountingPhoneNumber> phoneNumbers = default(List<AccountingPhoneNumber>))
+        public CompanyInfo(string remoteId = default(string), string name = default(string), string legalName = default(string), string taxNumber = default(string), int? fiscalYearEndMonth = default(int?), int? fiscalYearEndDay = default(int?), string currency = default(string), DateTime? remoteCreatedAt = default(DateTime?), List<string> urls = default(List<string>), List<Address> addresses = default(List<Address>), List<AccountingPhoneNumber> phoneNumbers = default(List<AccountingPhoneNumber>))
         {
             this.RemoteId = remoteId;
             this.Name = name;
@@ -167,6 +167,22 @@ namespace Merge.AccountingClient.Model
         public List<AccountingPhoneNumber> PhoneNumbers { get; set; }
 
         /// <summary>
+        /// Indicates whether or not this object has been deleted by third party webhooks.
+        /// </summary>
+        /// <value>Indicates whether or not this object has been deleted by third party webhooks.</value>
+        [DataMember(Name = "remote_was_deleted", EmitDefaultValue = true)]
+        public bool RemoteWasDeleted { get; private set; }
+
+        /// <summary>
+        /// Returns false as RemoteWasDeleted should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeRemoteWasDeleted()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -187,6 +203,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Urls: ").Append(Urls).Append("\n");
             sb.Append("  Addresses: ").Append(Addresses).Append("\n");
             sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
+            sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -288,6 +305,10 @@ namespace Merge.AccountingClient.Model
                     this.PhoneNumbers != null &&
                     input.PhoneNumbers != null &&
                     this.PhoneNumbers.SequenceEqual(input.PhoneNumbers)
+                ) && 
+                (
+                    this.RemoteWasDeleted == input.RemoteWasDeleted ||
+                    this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
                 );
         }
 
@@ -325,6 +346,7 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.Addresses.GetHashCode();
                 if (this.PhoneNumbers != null)
                     hashCode = hashCode * 59 + this.PhoneNumbers.GetHashCode();
+                hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
                 return hashCode;
             }
         }

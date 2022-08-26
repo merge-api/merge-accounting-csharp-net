@@ -41,7 +41,9 @@ namespace Merge.AccountingClient.Model
         /// <param name="quantity">The line item&#39;s quantity..</param>
         /// <param name="totalAmount">The line item&#39;s total amount..</param>
         /// <param name="item">item.</param>
-        public InvoiceLineItemRequest(string remoteId = default(string), string description = default(string), float? unitPrice = default(float?), float? quantity = default(float?), float? totalAmount = default(float?), Guid? item = default(Guid?))
+        /// <param name="account">account.</param>
+        /// <param name="trackingCategory">trackingCategory.</param>
+        public InvoiceLineItemRequest(string remoteId = default(string), string description = default(string), float? unitPrice = default(float?), float? quantity = default(float?), float? totalAmount = default(float?), Guid? item = default(Guid?), Guid? account = default(Guid?), Guid? trackingCategory = default(Guid?))
         {
             this.RemoteId = remoteId;
             this.Description = description;
@@ -49,6 +51,8 @@ namespace Merge.AccountingClient.Model
             this.Quantity = quantity;
             this.TotalAmount = totalAmount;
             this.Item = item;
+            this.Account = account;
+            this.TrackingCategory = trackingCategory;
         }
 
         /// <summary>
@@ -93,6 +97,18 @@ namespace Merge.AccountingClient.Model
         public Guid? Item { get; set; }
 
         /// <summary>
+        /// Gets or Sets Account
+        /// </summary>
+        [DataMember(Name = "account", EmitDefaultValue = true)]
+        public Guid? Account { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TrackingCategory
+        /// </summary>
+        [DataMember(Name = "tracking_category", EmitDefaultValue = true)]
+        public Guid? TrackingCategory { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -106,6 +122,8 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Quantity: ").Append(Quantity).Append("\n");
             sb.Append("  TotalAmount: ").Append(TotalAmount).Append("\n");
             sb.Append("  Item: ").Append(Item).Append("\n");
+            sb.Append("  Account: ").Append(Account).Append("\n");
+            sb.Append("  TrackingCategory: ").Append(TrackingCategory).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -169,6 +187,16 @@ namespace Merge.AccountingClient.Model
                     this.Item == input.Item ||
                     (this.Item != null &&
                     this.Item.Equals(input.Item))
+                ) && 
+                (
+                    this.Account == input.Account ||
+                    (this.Account != null &&
+                    this.Account.Equals(input.Account))
+                ) && 
+                (
+                    this.TrackingCategory == input.TrackingCategory ||
+                    (this.TrackingCategory != null &&
+                    this.TrackingCategory.Equals(input.TrackingCategory))
                 );
         }
 
@@ -193,6 +221,10 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.TotalAmount.GetHashCode();
                 if (this.Item != null)
                     hashCode = hashCode * 59 + this.Item.GetHashCode();
+                if (this.Account != null)
+                    hashCode = hashCode * 59 + this.Account.GetHashCode();
+                if (this.TrackingCategory != null)
+                    hashCode = hashCode * 59 + this.TrackingCategory.GetHashCode();
                 return hashCode;
             }
         }

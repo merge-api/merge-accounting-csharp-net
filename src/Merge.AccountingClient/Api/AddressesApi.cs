@@ -37,8 +37,9 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>Address</returns>
-        Address AddressesRetrieve(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?));
+        Address AddressesRetrieve(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string));
 
         /// <summary>
         /// 
@@ -50,8 +51,9 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>ApiResponse of Address</returns>
-        ApiResponse<Address> AddressesRetrieveWithHttpInfo(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?));
+        ApiResponse<Address> AddressesRetrieveWithHttpInfo(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string));
         #endregion Synchronous Operations
     }
 
@@ -71,9 +73,10 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Address</returns>
-        System.Threading.Tasks.Task<Address> AddressesRetrieveAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<Address> AddressesRetrieveAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -85,9 +88,10 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Address)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Address>> AddressesRetrieveWithHttpInfoAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Address>> AddressesRetrieveWithHttpInfoAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -215,10 +219,11 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>Address</returns>
-        public Address AddressesRetrieve(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?))
+        public Address AddressesRetrieve(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string))
         {
-            Merge.AccountingClient.Client.ApiResponse<Address> localVarResponse = AddressesRetrieveWithHttpInfo(xAccountToken, id, includeRemoteData);
+            Merge.AccountingClient.Client.ApiResponse<Address> localVarResponse = AddressesRetrieveWithHttpInfo(xAccountToken, id, includeRemoteData, remoteFields);
             return localVarResponse.Data;
         }
 
@@ -229,8 +234,9 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>ApiResponse of Address</returns>
-        public Merge.AccountingClient.Client.ApiResponse<Address> AddressesRetrieveWithHttpInfo(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?))
+        public Merge.AccountingClient.Client.ApiResponse<Address> AddressesRetrieveWithHttpInfo(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string))
         {
             // verify the required parameter 'xAccountToken' is set
             if (xAccountToken == null)
@@ -256,6 +262,10 @@ namespace Merge.AccountingClient.Api
             if (includeRemoteData != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "include_remote_data", includeRemoteData));
+            }
+            if (remoteFields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "remote_fields", remoteFields));
             }
             localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
 
@@ -284,11 +294,12 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Address</returns>
-        public async System.Threading.Tasks.Task<Address> AddressesRetrieveAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Address> AddressesRetrieveAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Merge.AccountingClient.Client.ApiResponse<Address> localVarResponse = await AddressesRetrieveWithHttpInfoAsync(xAccountToken, id, includeRemoteData, cancellationToken).ConfigureAwait(false);
+            Merge.AccountingClient.Client.ApiResponse<Address> localVarResponse = await AddressesRetrieveWithHttpInfoAsync(xAccountToken, id, includeRemoteData, remoteFields, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -299,9 +310,10 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Address)</returns>
-        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<Address>> AddressesRetrieveWithHttpInfoAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<Address>> AddressesRetrieveWithHttpInfoAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'xAccountToken' is set
             if (xAccountToken == null)
@@ -329,6 +341,10 @@ namespace Merge.AccountingClient.Api
             if (includeRemoteData != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "include_remote_data", includeRemoteData));
+            }
+            if (remoteFields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "remote_fields", remoteFields));
             }
             localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
 

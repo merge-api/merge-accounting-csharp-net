@@ -137,6 +137,22 @@ namespace Merge.AccountingClient.Test.Model
         {
             // TODO unit test for the property 'Currency'
         }
+        /// <summary>
+        /// Test the property 'AccountNumber'
+        /// </summary>
+        [Fact]
+        public void AccountNumberTest()
+        {
+            // TODO unit test for the property 'AccountNumber'
+        }
+        /// <summary>
+        /// Test the property 'RemoteWasDeleted'
+        /// </summary>
+        [Fact]
+        public void RemoteWasDeletedTest()
+        {
+            // TODO unit test for the property 'RemoteWasDeleted'
+        }
 
     }
 

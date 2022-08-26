@@ -105,6 +105,22 @@ namespace Merge.AccountingClient.Test.Model
         {
             // TODO unit test for the property 'Item'
         }
+        /// <summary>
+        /// Test the property 'Account'
+        /// </summary>
+        [Fact]
+        public void AccountTest()
+        {
+            // TODO unit test for the property 'Account'
+        }
+        /// <summary>
+        /// Test the property 'TrackingCategory'
+        /// </summary>
+        [Fact]
+        public void TrackingCategoryTest()
+        {
+            // TODO unit test for the property 'TrackingCategory'
+        }
 
     }
 

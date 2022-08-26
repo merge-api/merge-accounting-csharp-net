@@ -1,5 +1,5 @@
 # Merge.AccountingClient.Model.JournalEntry
-# The JournalEntry Object ### Description The `JournalEntry` object is used to represent a company's journey entries  ### Usage Example Fetch from the `GET JournalEntry` endpoint and view a company's journey entry.
+# The JournalEntry Object ### Description The `JournalEntry` object is used to represent a company's journey entries.  ### Usage Example Fetch from the `GET JournalEntry` endpoint and view a company's journey entry.
 
 ## Properties
 
@@ -11,7 +11,10 @@ Name | Type | Description | Notes
 **TransactionDate** | **DateTime?** | The journal entry&#39;s transaction date. | [optional] 
 **RemoteCreatedAt** | **DateTime?** | When the third party&#39;s journal entry was created. | [optional] 
 **Payments** | **List&lt;Guid?&gt;** | Array of &#x60;Payment&#x60; object IDs. | [optional] 
+**Memo** | **string** | The journal entry&#39;s private note. | [optional] 
+**Currency** | **string** | The journal&#39;s currency. | [optional] 
 **Lines** | [**List&lt;JournalLine&gt;**](JournalLine.md) |  | [optional] [readonly] 
+**RemoteWasDeleted** | **bool** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

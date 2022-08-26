@@ -65,7 +65,8 @@ namespace Merge.AccountingClient.Test.Api
             //string xAccountToken = null;
             //Guid id = null;
             //bool? includeRemoteData = null;
-            //var response = instance.AddressesRetrieve(xAccountToken, id, includeRemoteData);
+            //string remoteFields = null;
+            //var response = instance.AddressesRetrieve(xAccountToken, id, includeRemoteData, remoteFields);
             //Assert.IsType<Address>(response);
         }
     }

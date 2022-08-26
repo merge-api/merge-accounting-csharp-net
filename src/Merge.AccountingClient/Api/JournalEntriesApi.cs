@@ -65,7 +65,7 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
@@ -85,7 +85,7 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
@@ -93,6 +93,27 @@ namespace Merge.AccountingClient.Api
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
         /// <returns>ApiResponse of PaginatedJournalEntryList</returns>
         ApiResponse<PaginatedJournalEntryList> JournalEntriesListWithHttpInfo(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteId = default(string));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns metadata for &#x60;JournalEntry&#x60; POSTs.
+        /// </remarks>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <returns>MetaResponse</returns>
+        MetaResponse JournalEntriesMetaPostRetrieve(string xAccountToken);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns metadata for &#x60;JournalEntry&#x60; POSTs.
+        /// </remarks>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <returns>ApiResponse of MetaResponse</returns>
+        ApiResponse<MetaResponse> JournalEntriesMetaPostRetrieveWithHttpInfo(string xAccountToken);
         /// <summary>
         /// 
         /// </summary>
@@ -167,7 +188,7 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
@@ -188,7 +209,7 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
@@ -197,6 +218,29 @@ namespace Merge.AccountingClient.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PaginatedJournalEntryList)</returns>
         System.Threading.Tasks.Task<ApiResponse<PaginatedJournalEntryList>> JournalEntriesListWithHttpInfoAsync(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns metadata for &#x60;JournalEntry&#x60; POSTs.
+        /// </remarks>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of MetaResponse</returns>
+        System.Threading.Tasks.Task<MetaResponse> JournalEntriesMetaPostRetrieveAsync(string xAccountToken, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns metadata for &#x60;JournalEntry&#x60; POSTs.
+        /// </remarks>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (MetaResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<MetaResponse>> JournalEntriesMetaPostRetrieveWithHttpInfoAsync(string xAccountToken, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -521,7 +565,7 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
@@ -542,7 +586,7 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
@@ -635,7 +679,7 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
@@ -657,7 +701,7 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
@@ -740,6 +784,131 @@ namespace Merge.AccountingClient.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("JournalEntriesList", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Returns metadata for &#x60;JournalEntry&#x60; POSTs.
+        /// </summary>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <returns>MetaResponse</returns>
+        public MetaResponse JournalEntriesMetaPostRetrieve(string xAccountToken)
+        {
+            Merge.AccountingClient.Client.ApiResponse<MetaResponse> localVarResponse = JournalEntriesMetaPostRetrieveWithHttpInfo(xAccountToken);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Returns metadata for &#x60;JournalEntry&#x60; POSTs.
+        /// </summary>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <returns>ApiResponse of MetaResponse</returns>
+        public Merge.AccountingClient.Client.ApiResponse<MetaResponse> JournalEntriesMetaPostRetrieveWithHttpInfo(string xAccountToken)
+        {
+            // verify the required parameter 'xAccountToken' is set
+            if (xAccountToken == null)
+                throw new Merge.AccountingClient.Client.ApiException(400, "Missing required parameter 'xAccountToken' when calling JournalEntriesApi->JournalEntriesMetaPostRetrieve");
+
+            Merge.AccountingClient.Client.RequestOptions localVarRequestOptions = new Merge.AccountingClient.Client.RequestOptions();
+
+            String[] _contentTypes = new String[] {
+            };
+
+            // to determine the Accept header
+            String[] _accepts = new String[] {
+                "application/json"
+            };
+
+            var localVarContentType = Merge.AccountingClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Merge.AccountingClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
+
+            // authentication (tokenAuth) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<MetaResponse>("/journal-entries/meta/post", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("JournalEntriesMetaPostRetrieve", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Returns metadata for &#x60;JournalEntry&#x60; POSTs.
+        /// </summary>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of MetaResponse</returns>
+        public async System.Threading.Tasks.Task<MetaResponse> JournalEntriesMetaPostRetrieveAsync(string xAccountToken, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            Merge.AccountingClient.Client.ApiResponse<MetaResponse> localVarResponse = await JournalEntriesMetaPostRetrieveWithHttpInfoAsync(xAccountToken, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Returns metadata for &#x60;JournalEntry&#x60; POSTs.
+        /// </summary>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (MetaResponse)</returns>
+        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<MetaResponse>> JournalEntriesMetaPostRetrieveWithHttpInfoAsync(string xAccountToken, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'xAccountToken' is set
+            if (xAccountToken == null)
+                throw new Merge.AccountingClient.Client.ApiException(400, "Missing required parameter 'xAccountToken' when calling JournalEntriesApi->JournalEntriesMetaPostRetrieve");
+
+
+            Merge.AccountingClient.Client.RequestOptions localVarRequestOptions = new Merge.AccountingClient.Client.RequestOptions();
+
+            String[] _contentTypes = new String[] {
+            };
+
+            // to determine the Accept header
+            String[] _accepts = new String[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Merge.AccountingClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Merge.AccountingClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
+
+            // authentication (tokenAuth) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<MetaResponse>("/journal-entries/meta/post", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("JournalEntriesMetaPostRetrieve", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

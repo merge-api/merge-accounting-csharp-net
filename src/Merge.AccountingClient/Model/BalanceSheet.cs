@@ -160,6 +160,22 @@ namespace Merge.AccountingClient.Model
         public DateTime? RemoteGeneratedAt { get; set; }
 
         /// <summary>
+        /// Indicates whether or not this object has been deleted by third party webhooks.
+        /// </summary>
+        /// <value>Indicates whether or not this object has been deleted by third party webhooks.</value>
+        [DataMember(Name = "remote_was_deleted", EmitDefaultValue = true)]
+        public bool RemoteWasDeleted { get; private set; }
+
+        /// <summary>
+        /// Returns false as RemoteWasDeleted should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeRemoteWasDeleted()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -177,6 +193,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Liabilities: ").Append(Liabilities).Append("\n");
             sb.Append("  Equity: ").Append(Equity).Append("\n");
             sb.Append("  RemoteGeneratedAt: ").Append(RemoteGeneratedAt).Append("\n");
+            sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -264,6 +281,10 @@ namespace Merge.AccountingClient.Model
                     this.RemoteGeneratedAt == input.RemoteGeneratedAt ||
                     (this.RemoteGeneratedAt != null &&
                     this.RemoteGeneratedAt.Equals(input.RemoteGeneratedAt))
+                ) && 
+                (
+                    this.RemoteWasDeleted == input.RemoteWasDeleted ||
+                    this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
                 );
         }
 
@@ -296,6 +317,7 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.Equity.GetHashCode();
                 if (this.RemoteGeneratedAt != null)
                     hashCode = hashCode * 59 + this.RemoteGeneratedAt.GetHashCode();
+                hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
                 return hashCode;
             }
         }

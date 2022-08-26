@@ -66,14 +66,16 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
+        /// <param name="type">If provided, will only return Invoices with this type (optional)</param>
         /// <returns>PaginatedInvoiceList</returns>
-        PaginatedInvoiceList InvoicesList(string xAccountToken, string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteId = default(string));
+        PaginatedInvoiceList InvoicesList(string xAccountToken, string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string type = default(string));
 
         /// <summary>
         /// 
@@ -87,14 +89,37 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
+        /// <param name="type">If provided, will only return Invoices with this type (optional)</param>
         /// <returns>ApiResponse of PaginatedInvoiceList</returns>
-        ApiResponse<PaginatedInvoiceList> InvoicesListWithHttpInfo(string xAccountToken, string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteId = default(string));
+        ApiResponse<PaginatedInvoiceList> InvoicesListWithHttpInfo(string xAccountToken, string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string type = default(string));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns metadata for &#x60;Invoice&#x60; POSTs.
+        /// </remarks>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <returns>MetaResponse</returns>
+        MetaResponse InvoicesMetaPostRetrieve(string xAccountToken);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns metadata for &#x60;Invoice&#x60; POSTs.
+        /// </remarks>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <returns>ApiResponse of MetaResponse</returns>
+        ApiResponse<MetaResponse> InvoicesMetaPostRetrieveWithHttpInfo(string xAccountToken);
         /// <summary>
         /// 
         /// </summary>
@@ -105,8 +130,9 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>Invoice</returns>
-        Invoice InvoicesRetrieve(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?));
+        Invoice InvoicesRetrieve(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string));
 
         /// <summary>
         /// 
@@ -118,8 +144,9 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>ApiResponse of Invoice</returns>
-        ApiResponse<Invoice> InvoicesRetrieveWithHttpInfo(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?));
+        ApiResponse<Invoice> InvoicesRetrieveWithHttpInfo(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string));
         #endregion Synchronous Operations
     }
 
@@ -170,15 +197,17 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
+        /// <param name="type">If provided, will only return Invoices with this type (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PaginatedInvoiceList</returns>
-        System.Threading.Tasks.Task<PaginatedInvoiceList> InvoicesListAsync(string xAccountToken, string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PaginatedInvoiceList> InvoicesListAsync(string xAccountToken, string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string type = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -192,15 +221,40 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
+        /// <param name="type">If provided, will only return Invoices with this type (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PaginatedInvoiceList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PaginatedInvoiceList>> InvoicesListWithHttpInfoAsync(string xAccountToken, string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PaginatedInvoiceList>> InvoicesListWithHttpInfoAsync(string xAccountToken, string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string type = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns metadata for &#x60;Invoice&#x60; POSTs.
+        /// </remarks>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of MetaResponse</returns>
+        System.Threading.Tasks.Task<MetaResponse> InvoicesMetaPostRetrieveAsync(string xAccountToken, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns metadata for &#x60;Invoice&#x60; POSTs.
+        /// </remarks>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (MetaResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<MetaResponse>> InvoicesMetaPostRetrieveWithHttpInfoAsync(string xAccountToken, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -211,9 +265,10 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Invoice</returns>
-        System.Threading.Tasks.Task<Invoice> InvoicesRetrieveAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<Invoice> InvoicesRetrieveAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -225,9 +280,10 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Invoice)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Invoice>> InvoicesRetrieveWithHttpInfoAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Invoice>> InvoicesRetrieveWithHttpInfoAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -526,16 +582,18 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
+        /// <param name="type">If provided, will only return Invoices with this type (optional)</param>
         /// <returns>PaginatedInvoiceList</returns>
-        public PaginatedInvoiceList InvoicesList(string xAccountToken, string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteId = default(string))
+        public PaginatedInvoiceList InvoicesList(string xAccountToken, string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string type = default(string))
         {
-            Merge.AccountingClient.Client.ApiResponse<PaginatedInvoiceList> localVarResponse = InvoicesListWithHttpInfo(xAccountToken, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+            Merge.AccountingClient.Client.ApiResponse<PaginatedInvoiceList> localVarResponse = InvoicesListWithHttpInfo(xAccountToken, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, type);
             return localVarResponse.Data;
         }
 
@@ -548,14 +606,16 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
+        /// <param name="type">If provided, will only return Invoices with this type (optional)</param>
         /// <returns>ApiResponse of PaginatedInvoiceList</returns>
-        public Merge.AccountingClient.Client.ApiResponse<PaginatedInvoiceList> InvoicesListWithHttpInfo(string xAccountToken, string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteId = default(string))
+        public Merge.AccountingClient.Client.ApiResponse<PaginatedInvoiceList> InvoicesListWithHttpInfo(string xAccountToken, string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string type = default(string))
         {
             // verify the required parameter 'xAccountToken' is set
             if (xAccountToken == null)
@@ -613,9 +673,17 @@ namespace Merge.AccountingClient.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
+            if (remoteFields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "remote_fields", remoteFields));
+            }
             if (remoteId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "remote_id", remoteId));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "type", type));
             }
             localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
 
@@ -646,17 +714,19 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
+        /// <param name="type">If provided, will only return Invoices with this type (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PaginatedInvoiceList</returns>
-        public async System.Threading.Tasks.Task<PaginatedInvoiceList> InvoicesListAsync(string xAccountToken, string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PaginatedInvoiceList> InvoicesListAsync(string xAccountToken, string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string type = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Merge.AccountingClient.Client.ApiResponse<PaginatedInvoiceList> localVarResponse = await InvoicesListWithHttpInfoAsync(xAccountToken, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, cancellationToken).ConfigureAwait(false);
+            Merge.AccountingClient.Client.ApiResponse<PaginatedInvoiceList> localVarResponse = await InvoicesListWithHttpInfoAsync(xAccountToken, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, type, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -669,15 +739,17 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
+        /// <param name="type">If provided, will only return Invoices with this type (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PaginatedInvoiceList)</returns>
-        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<PaginatedInvoiceList>> InvoicesListWithHttpInfoAsync(string xAccountToken, string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<PaginatedInvoiceList>> InvoicesListWithHttpInfoAsync(string xAccountToken, string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string type = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'xAccountToken' is set
             if (xAccountToken == null)
@@ -737,9 +809,17 @@ namespace Merge.AccountingClient.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
+            if (remoteFields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "remote_fields", remoteFields));
+            }
             if (remoteId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "remote_id", remoteId));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "type", type));
             }
             localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
 
@@ -763,16 +843,142 @@ namespace Merge.AccountingClient.Api
         }
 
         /// <summary>
+        ///  Returns metadata for &#x60;Invoice&#x60; POSTs.
+        /// </summary>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <returns>MetaResponse</returns>
+        public MetaResponse InvoicesMetaPostRetrieve(string xAccountToken)
+        {
+            Merge.AccountingClient.Client.ApiResponse<MetaResponse> localVarResponse = InvoicesMetaPostRetrieveWithHttpInfo(xAccountToken);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Returns metadata for &#x60;Invoice&#x60; POSTs.
+        /// </summary>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <returns>ApiResponse of MetaResponse</returns>
+        public Merge.AccountingClient.Client.ApiResponse<MetaResponse> InvoicesMetaPostRetrieveWithHttpInfo(string xAccountToken)
+        {
+            // verify the required parameter 'xAccountToken' is set
+            if (xAccountToken == null)
+                throw new Merge.AccountingClient.Client.ApiException(400, "Missing required parameter 'xAccountToken' when calling InvoicesApi->InvoicesMetaPostRetrieve");
+
+            Merge.AccountingClient.Client.RequestOptions localVarRequestOptions = new Merge.AccountingClient.Client.RequestOptions();
+
+            String[] _contentTypes = new String[] {
+            };
+
+            // to determine the Accept header
+            String[] _accepts = new String[] {
+                "application/json"
+            };
+
+            var localVarContentType = Merge.AccountingClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Merge.AccountingClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
+
+            // authentication (tokenAuth) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<MetaResponse>("/invoices/meta/post", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("InvoicesMetaPostRetrieve", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Returns metadata for &#x60;Invoice&#x60; POSTs.
+        /// </summary>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of MetaResponse</returns>
+        public async System.Threading.Tasks.Task<MetaResponse> InvoicesMetaPostRetrieveAsync(string xAccountToken, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            Merge.AccountingClient.Client.ApiResponse<MetaResponse> localVarResponse = await InvoicesMetaPostRetrieveWithHttpInfoAsync(xAccountToken, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Returns metadata for &#x60;Invoice&#x60; POSTs.
+        /// </summary>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (MetaResponse)</returns>
+        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<MetaResponse>> InvoicesMetaPostRetrieveWithHttpInfoAsync(string xAccountToken, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'xAccountToken' is set
+            if (xAccountToken == null)
+                throw new Merge.AccountingClient.Client.ApiException(400, "Missing required parameter 'xAccountToken' when calling InvoicesApi->InvoicesMetaPostRetrieve");
+
+
+            Merge.AccountingClient.Client.RequestOptions localVarRequestOptions = new Merge.AccountingClient.Client.RequestOptions();
+
+            String[] _contentTypes = new String[] {
+            };
+
+            // to determine the Accept header
+            String[] _accepts = new String[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Merge.AccountingClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Merge.AccountingClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
+
+            // authentication (tokenAuth) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<MetaResponse>("/invoices/meta/post", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("InvoicesMetaPostRetrieve", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         ///  Returns an &#x60;Invoice&#x60; object with the given &#x60;id&#x60;.
         /// </summary>
         /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>Invoice</returns>
-        public Invoice InvoicesRetrieve(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?))
+        public Invoice InvoicesRetrieve(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string))
         {
-            Merge.AccountingClient.Client.ApiResponse<Invoice> localVarResponse = InvoicesRetrieveWithHttpInfo(xAccountToken, id, includeRemoteData);
+            Merge.AccountingClient.Client.ApiResponse<Invoice> localVarResponse = InvoicesRetrieveWithHttpInfo(xAccountToken, id, includeRemoteData, remoteFields);
             return localVarResponse.Data;
         }
 
@@ -783,8 +989,9 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>ApiResponse of Invoice</returns>
-        public Merge.AccountingClient.Client.ApiResponse<Invoice> InvoicesRetrieveWithHttpInfo(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?))
+        public Merge.AccountingClient.Client.ApiResponse<Invoice> InvoicesRetrieveWithHttpInfo(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string))
         {
             // verify the required parameter 'xAccountToken' is set
             if (xAccountToken == null)
@@ -810,6 +1017,10 @@ namespace Merge.AccountingClient.Api
             if (includeRemoteData != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "include_remote_data", includeRemoteData));
+            }
+            if (remoteFields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "remote_fields", remoteFields));
             }
             localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
 
@@ -838,11 +1049,12 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Invoice</returns>
-        public async System.Threading.Tasks.Task<Invoice> InvoicesRetrieveAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Invoice> InvoicesRetrieveAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Merge.AccountingClient.Client.ApiResponse<Invoice> localVarResponse = await InvoicesRetrieveWithHttpInfoAsync(xAccountToken, id, includeRemoteData, cancellationToken).ConfigureAwait(false);
+            Merge.AccountingClient.Client.ApiResponse<Invoice> localVarResponse = await InvoicesRetrieveWithHttpInfoAsync(xAccountToken, id, includeRemoteData, remoteFields, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -853,9 +1065,10 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Invoice)</returns>
-        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<Invoice>> InvoicesRetrieveWithHttpInfoAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<Invoice>> InvoicesRetrieveWithHttpInfoAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'xAccountToken' is set
             if (xAccountToken == null)
@@ -883,6 +1096,10 @@ namespace Merge.AccountingClient.Api
             if (includeRemoteData != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "include_remote_data", includeRemoteData));
+            }
+            if (remoteFields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "remote_fields", remoteFields));
             }
             localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
 

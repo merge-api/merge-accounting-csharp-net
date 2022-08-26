@@ -38,21 +38,21 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The account&#39;s classification.</value>
         [DataMember(Name = "classification", EmitDefaultValue = true)]
-        public ClassificationEnum? Classification { get; set; }
+        public string Classification { get; set; }
 
         /// <summary>
         /// The account&#39;s status.
         /// </summary>
         /// <value>The account&#39;s status.</value>
         [DataMember(Name = "status", EmitDefaultValue = true)]
-        public AccountStatusEnum? Status { get; set; }
+        public string Status { get; set; }
 
         /// <summary>
         /// The account&#39;s currency.
         /// </summary>
         /// <value>The account&#39;s currency.</value>
         [DataMember(Name = "currency", EmitDefaultValue = true)]
-        public CurrencyEnum? Currency { get; set; }
+        public string Currency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Account" /> class.
         /// </summary>
@@ -64,7 +64,8 @@ namespace Merge.AccountingClient.Model
         /// <param name="status">The account&#39;s status..</param>
         /// <param name="currentBalance">The account&#39;s current balance..</param>
         /// <param name="currency">The account&#39;s currency..</param>
-        public Account(string remoteId = default(string), string name = default(string), string description = default(string), ClassificationEnum? classification = default(ClassificationEnum?), string type = default(string), AccountStatusEnum? status = default(AccountStatusEnum?), float? currentBalance = default(float?), CurrencyEnum? currency = default(CurrencyEnum?))
+        /// <param name="accountNumber">The account&#39;s number..</param>
+        public Account(string remoteId = default(string), string name = default(string), string description = default(string), string classification = default(string), string type = default(string), string status = default(string), float? currentBalance = default(float?), string currency = default(string), string accountNumber = default(string))
         {
             this.RemoteId = remoteId;
             this.Name = name;
@@ -74,6 +75,7 @@ namespace Merge.AccountingClient.Model
             this.Status = status;
             this.CurrentBalance = currentBalance;
             this.Currency = currency;
+            this.AccountNumber = accountNumber;
         }
 
         /// <summary>
@@ -142,6 +144,29 @@ namespace Merge.AccountingClient.Model
         public float? CurrentBalance { get; set; }
 
         /// <summary>
+        /// The account&#39;s number.
+        /// </summary>
+        /// <value>The account&#39;s number.</value>
+        [DataMember(Name = "account_number", EmitDefaultValue = true)]
+        public string AccountNumber { get; set; }
+
+        /// <summary>
+        /// Indicates whether or not this object has been deleted by third party webhooks.
+        /// </summary>
+        /// <value>Indicates whether or not this object has been deleted by third party webhooks.</value>
+        [DataMember(Name = "remote_was_deleted", EmitDefaultValue = true)]
+        public bool RemoteWasDeleted { get; private set; }
+
+        /// <summary>
+        /// Returns false as RemoteWasDeleted should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeRemoteWasDeleted()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -159,6 +184,8 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  CurrentBalance: ").Append(CurrentBalance).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
+            sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
+            sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -240,6 +267,15 @@ namespace Merge.AccountingClient.Model
                 (
                     this.Currency == input.Currency ||
                     this.Currency.Equals(input.Currency)
+                ) && 
+                (
+                    this.AccountNumber == input.AccountNumber ||
+                    (this.AccountNumber != null &&
+                    this.AccountNumber.Equals(input.AccountNumber))
+                ) && 
+                (
+                    this.RemoteWasDeleted == input.RemoteWasDeleted ||
+                    this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
                 );
         }
 
@@ -269,6 +305,9 @@ namespace Merge.AccountingClient.Model
                 if (this.CurrentBalance != null)
                     hashCode = hashCode * 59 + this.CurrentBalance.GetHashCode();
                 hashCode = hashCode * 59 + this.Currency.GetHashCode();
+                if (this.AccountNumber != null)
+                    hashCode = hashCode * 59 + this.AccountNumber.GetHashCode();
+                hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
                 return hashCode;
             }
         }

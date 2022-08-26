@@ -38,7 +38,7 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The expense&#39;s currency.</value>
         [DataMember(Name = "currency", EmitDefaultValue = true)]
-        public CurrencyEnum? Currency { get; set; }
+        public string Currency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Expense" /> class.
         /// </summary>
@@ -49,7 +49,8 @@ namespace Merge.AccountingClient.Model
         /// <param name="contact">contact.</param>
         /// <param name="totalAmount">The expense&#39;s total amount..</param>
         /// <param name="currency">The expense&#39;s currency..</param>
-        public Expense(string remoteId = default(string), DateTime? transactionDate = default(DateTime?), DateTime? remoteCreatedAt = default(DateTime?), Guid? account = default(Guid?), Guid? contact = default(Guid?), float? totalAmount = default(float?), CurrencyEnum? currency = default(CurrencyEnum?))
+        /// <param name="memo">The expense&#39;s private note..</param>
+        public Expense(string remoteId = default(string), DateTime? transactionDate = default(DateTime?), DateTime? remoteCreatedAt = default(DateTime?), Guid? account = default(Guid?), Guid? contact = default(Guid?), float? totalAmount = default(float?), string currency = default(string), string memo = default(string))
         {
             this.RemoteId = remoteId;
             this.TransactionDate = transactionDate;
@@ -58,6 +59,7 @@ namespace Merge.AccountingClient.Model
             this.Contact = contact;
             this.TotalAmount = totalAmount;
             this.Currency = currency;
+            this.Memo = memo;
         }
 
         /// <summary>
@@ -131,6 +133,13 @@ namespace Merge.AccountingClient.Model
         public float? TotalAmount { get; set; }
 
         /// <summary>
+        /// The expense&#39;s private note.
+        /// </summary>
+        /// <value>The expense&#39;s private note.</value>
+        [DataMember(Name = "memo", EmitDefaultValue = true)]
+        public string Memo { get; set; }
+
+        /// <summary>
         /// Gets or Sets Lines
         /// </summary>
         [DataMember(Name = "lines", EmitDefaultValue = false)]
@@ -141,6 +150,22 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <returns>false (boolean)</returns>
         public bool ShouldSerializeLines()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// Indicates whether or not this object has been deleted by third party webhooks.
+        /// </summary>
+        /// <value>Indicates whether or not this object has been deleted by third party webhooks.</value>
+        [DataMember(Name = "remote_was_deleted", EmitDefaultValue = true)]
+        public bool RemoteWasDeleted { get; private set; }
+
+        /// <summary>
+        /// Returns false as RemoteWasDeleted should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeRemoteWasDeleted()
         {
             return false;
         }
@@ -162,7 +187,9 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  TotalAmount: ").Append(TotalAmount).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
+            sb.Append("  Memo: ").Append(Memo).Append("\n");
             sb.Append("  Lines: ").Append(Lines).Append("\n");
+            sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -243,10 +270,19 @@ namespace Merge.AccountingClient.Model
                     this.Currency.Equals(input.Currency)
                 ) && 
                 (
+                    this.Memo == input.Memo ||
+                    (this.Memo != null &&
+                    this.Memo.Equals(input.Memo))
+                ) && 
+                (
                     this.Lines == input.Lines ||
                     this.Lines != null &&
                     input.Lines != null &&
                     this.Lines.SequenceEqual(input.Lines)
+                ) && 
+                (
+                    this.RemoteWasDeleted == input.RemoteWasDeleted ||
+                    this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
                 );
         }
 
@@ -276,8 +312,11 @@ namespace Merge.AccountingClient.Model
                 if (this.TotalAmount != null)
                     hashCode = hashCode * 59 + this.TotalAmount.GetHashCode();
                 hashCode = hashCode * 59 + this.Currency.GetHashCode();
+                if (this.Memo != null)
+                    hashCode = hashCode * 59 + this.Memo.GetHashCode();
                 if (this.Lines != null)
                     hashCode = hashCode * 59 + this.Lines.GetHashCode();
+                hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
                 return hashCode;
             }
         }

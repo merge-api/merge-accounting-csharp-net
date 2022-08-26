@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Account** | **Guid?** |  | [optional] 
 **TotalAmount** | **float?** | The payment&#39;s total amount. | [optional] 
 **RemoteUpdatedAt** | **DateTime?** | When the third party&#39;s payment entry was updated. | [optional] 
+**RemoteWasDeleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

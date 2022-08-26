@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **Account** | **Guid?** |  | [optional] 
 **NetAmount** | **float?** | The line&#39;s net amount. | [optional] 
 **TrackingCategory** | **Guid?** |  | [optional] 
+**Contact** | **Guid?** |  | [optional] 
+**Description** | **string** | The line&#39;s description. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

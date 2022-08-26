@@ -10,11 +10,13 @@ Name | Type | Description | Notes
 **RemoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  | [optional] [readonly] 
 **Name** | **string** | The account&#39;s name. | [optional] 
 **Description** | **string** | The account&#39;s description. | [optional] 
-**Classification** | **ClassificationEnum** | The account&#39;s classification. | [optional] 
+**Classification** | **string** | The account&#39;s classification. | [optional] 
 **Type** | **string** | The account&#39;s type. | [optional] 
-**Status** | **AccountStatusEnum** | The account&#39;s status. | [optional] 
+**Status** | **string** | The account&#39;s status. | [optional] 
 **CurrentBalance** | **float?** | The account&#39;s current balance. | [optional] 
-**Currency** | **CurrencyEnum** | The account&#39;s currency. | [optional] 
+**Currency** | **string** | The account&#39;s currency. | [optional] 
+**AccountNumber** | **string** | The account&#39;s number. | [optional] 
+**RemoteWasDeleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

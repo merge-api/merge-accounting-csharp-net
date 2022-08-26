@@ -38,14 +38,14 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The tracking category&#39;s status.</value>
         [DataMember(Name = "status", EmitDefaultValue = true)]
-        public Status7d1Enum? Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TrackingCategory" /> class.
         /// </summary>
         /// <param name="remoteId">The third-party API ID of the matching object..</param>
         /// <param name="name">The tracking category&#39;s name..</param>
         /// <param name="status">The tracking category&#39;s status..</param>
-        public TrackingCategory(string remoteId = default(string), string name = default(string), Status7d1Enum? status = default(Status7d1Enum?))
+        public TrackingCategory(string remoteId = default(string), string name = default(string), string status = default(string))
         {
             this.RemoteId = remoteId;
             this.Name = name;
@@ -97,6 +97,22 @@ namespace Merge.AccountingClient.Model
         public string Name { get; set; }
 
         /// <summary>
+        /// Indicates whether or not this object has been deleted by third party webhooks.
+        /// </summary>
+        /// <value>Indicates whether or not this object has been deleted by third party webhooks.</value>
+        [DataMember(Name = "remote_was_deleted", EmitDefaultValue = true)]
+        public bool RemoteWasDeleted { get; private set; }
+
+        /// <summary>
+        /// Returns false as RemoteWasDeleted should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeRemoteWasDeleted()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -109,6 +125,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  RemoteData: ").Append(RemoteData).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -167,6 +184,10 @@ namespace Merge.AccountingClient.Model
                 (
                     this.Status == input.Status ||
                     this.Status.Equals(input.Status)
+                ) && 
+                (
+                    this.RemoteWasDeleted == input.RemoteWasDeleted ||
+                    this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
                 );
         }
 
@@ -188,6 +209,7 @@ namespace Merge.AccountingClient.Model
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
                 hashCode = hashCode * 59 + this.Status.GetHashCode();
+                hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
                 return hashCode;
             }
         }

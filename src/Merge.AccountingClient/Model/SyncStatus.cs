@@ -37,7 +37,7 @@ namespace Merge.AccountingClient.Model
         /// Gets or Sets Status
         /// </summary>
         [DataMember(Name = "status", IsRequired = true, EmitDefaultValue = false)]
-        public SyncStatusStatusEnum Status { get; set; }
+        public string Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SyncStatus" /> class.
         /// </summary>
@@ -48,20 +48,20 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <param name="modelName">modelName (required).</param>
         /// <param name="modelId">modelId (required).</param>
-        /// <param name="lastSyncStart">lastSyncStart (required).</param>
-        /// <param name="nextSyncStart">nextSyncStart (required).</param>
+        /// <param name="lastSyncStart">lastSyncStart.</param>
+        /// <param name="nextSyncStart">nextSyncStart.</param>
         /// <param name="status">status (required).</param>
         /// <param name="isInitialSync">isInitialSync (required).</param>
-        public SyncStatus(string modelName = default(string), string modelId = default(string), DateTime lastSyncStart = default(DateTime), DateTime nextSyncStart = default(DateTime), SyncStatusStatusEnum status = default(SyncStatusStatusEnum), bool isInitialSync = default(bool))
+        public SyncStatus(string modelName = default(string), string modelId = default(string), DateTime lastSyncStart = default(DateTime), DateTime nextSyncStart = default(DateTime), string status = default(string), bool isInitialSync = default(bool))
         {
             // to ensure "modelName" is required (not null)
             this.ModelName = modelName ?? throw new ArgumentNullException("modelName is a required property for SyncStatus and cannot be null");
             // to ensure "modelId" is required (not null)
             this.ModelId = modelId ?? throw new ArgumentNullException("modelId is a required property for SyncStatus and cannot be null");
-            this.LastSyncStart = lastSyncStart;
-            this.NextSyncStart = nextSyncStart;
             this.Status = status;
             this.IsInitialSync = isInitialSync;
+            this.LastSyncStart = lastSyncStart;
+            this.NextSyncStart = nextSyncStart;
         }
 
         /// <summary>
@@ -79,13 +79,13 @@ namespace Merge.AccountingClient.Model
         /// <summary>
         /// Gets or Sets LastSyncStart
         /// </summary>
-        [DataMember(Name = "last_sync_start", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "last_sync_start", EmitDefaultValue = false)]
         public DateTime LastSyncStart { get; set; }
 
         /// <summary>
         /// Gets or Sets NextSyncStart
         /// </summary>
-        [DataMember(Name = "next_sync_start", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "next_sync_start", EmitDefaultValue = false)]
         public DateTime NextSyncStart { get; set; }
 
         /// <summary>

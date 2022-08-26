@@ -27,11 +27,18 @@ using OpenAPIDateConverter = Merge.AccountingClient.Client.OpenAPIDateConverter;
 namespace Merge.AccountingClient.Model
 {
     /// <summary>
-    /// # The JournalEntry Object ### Description The &#x60;JournalEntry&#x60; object is used to represent a company&#39;s journey entries  ### Usage Example Fetch from the &#x60;GET JournalEntry&#x60; endpoint and view a company&#39;s journey entry.
+    /// # The JournalEntry Object ### Description The &#x60;JournalEntry&#x60; object is used to represent a company&#39;s journey entries.  ### Usage Example Fetch from the &#x60;GET JournalEntry&#x60; endpoint and view a company&#39;s journey entry.
     /// </summary>
     [DataContract(Name = "JournalEntry")]
     public partial class JournalEntry : IEquatable<JournalEntry>, IValidatableObject
     {
+
+        /// <summary>
+        /// The journal&#39;s currency.
+        /// </summary>
+        /// <value>The journal&#39;s currency.</value>
+        [DataMember(Name = "currency", EmitDefaultValue = true)]
+        public string Currency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalEntry" /> class.
         /// </summary>
@@ -39,12 +46,16 @@ namespace Merge.AccountingClient.Model
         /// <param name="transactionDate">The journal entry&#39;s transaction date..</param>
         /// <param name="remoteCreatedAt">When the third party&#39;s journal entry was created..</param>
         /// <param name="payments">Array of &#x60;Payment&#x60; object IDs..</param>
-        public JournalEntry(string remoteId = default(string), DateTime? transactionDate = default(DateTime?), DateTime? remoteCreatedAt = default(DateTime?), List<Guid?> payments = default(List<Guid?>))
+        /// <param name="memo">The journal entry&#39;s private note..</param>
+        /// <param name="currency">The journal&#39;s currency..</param>
+        public JournalEntry(string remoteId = default(string), DateTime? transactionDate = default(DateTime?), DateTime? remoteCreatedAt = default(DateTime?), List<Guid?> payments = default(List<Guid?>), string memo = default(string), string currency = default(string))
         {
             this.RemoteId = remoteId;
             this.TransactionDate = transactionDate;
             this.RemoteCreatedAt = remoteCreatedAt;
             this.Payments = payments;
+            this.Memo = memo;
+            this.Currency = currency;
         }
 
         /// <summary>
@@ -106,6 +117,13 @@ namespace Merge.AccountingClient.Model
         public List<Guid?> Payments { get; set; }
 
         /// <summary>
+        /// The journal entry&#39;s private note.
+        /// </summary>
+        /// <value>The journal entry&#39;s private note.</value>
+        [DataMember(Name = "memo", EmitDefaultValue = true)]
+        public string Memo { get; set; }
+
+        /// <summary>
         /// Gets or Sets Lines
         /// </summary>
         [DataMember(Name = "lines", EmitDefaultValue = false)]
@@ -116,6 +134,21 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <returns>false (boolean)</returns>
         public bool ShouldSerializeLines()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// Gets or Sets RemoteWasDeleted
+        /// </summary>
+        [DataMember(Name = "remote_was_deleted", EmitDefaultValue = true)]
+        public bool RemoteWasDeleted { get; private set; }
+
+        /// <summary>
+        /// Returns false as RemoteWasDeleted should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeRemoteWasDeleted()
         {
             return false;
         }
@@ -134,7 +167,10 @@ namespace Merge.AccountingClient.Model
             sb.Append("  TransactionDate: ").Append(TransactionDate).Append("\n");
             sb.Append("  RemoteCreatedAt: ").Append(RemoteCreatedAt).Append("\n");
             sb.Append("  Payments: ").Append(Payments).Append("\n");
+            sb.Append("  Memo: ").Append(Memo).Append("\n");
+            sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  Lines: ").Append(Lines).Append("\n");
+            sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -202,10 +238,23 @@ namespace Merge.AccountingClient.Model
                     this.Payments.SequenceEqual(input.Payments)
                 ) && 
                 (
+                    this.Memo == input.Memo ||
+                    (this.Memo != null &&
+                    this.Memo.Equals(input.Memo))
+                ) && 
+                (
+                    this.Currency == input.Currency ||
+                    this.Currency.Equals(input.Currency)
+                ) && 
+                (
                     this.Lines == input.Lines ||
                     this.Lines != null &&
                     input.Lines != null &&
                     this.Lines.SequenceEqual(input.Lines)
+                ) && 
+                (
+                    this.RemoteWasDeleted == input.RemoteWasDeleted ||
+                    this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
                 );
         }
 
@@ -230,8 +279,12 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.RemoteCreatedAt.GetHashCode();
                 if (this.Payments != null)
                     hashCode = hashCode * 59 + this.Payments.GetHashCode();
+                if (this.Memo != null)
+                    hashCode = hashCode * 59 + this.Memo.GetHashCode();
+                hashCode = hashCode * 59 + this.Currency.GetHashCode();
                 if (this.Lines != null)
                     hashCode = hashCode * 59 + this.Lines.GetHashCode();
+                hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
                 return hashCode;
             }
         }

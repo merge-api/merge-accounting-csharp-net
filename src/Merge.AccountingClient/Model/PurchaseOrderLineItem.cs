@@ -39,12 +39,20 @@ namespace Merge.AccountingClient.Model
         /// <param name="unitPrice">The line item&#39;s unit price..</param>
         /// <param name="quantity">The line item&#39;s quantity..</param>
         /// <param name="item">item.</param>
-        public PurchaseOrderLineItem(string description = default(string), float? unitPrice = default(float?), float? quantity = default(float?), Guid? item = default(Guid?))
+        /// <param name="account">The purchase order line item&#39;s account..</param>
+        /// <param name="trackingCategory">The purchase order line item&#39;s associated tracking category..</param>
+        /// <param name="taxAmount">The purchase order line item&#39;s tax amount..</param>
+        /// <param name="totalLineAmount">The purchase order line item&#39;s total amount..</param>
+        public PurchaseOrderLineItem(string description = default(string), float? unitPrice = default(float?), float? quantity = default(float?), Guid? item = default(Guid?), Guid? account = default(Guid?), Guid? trackingCategory = default(Guid?), decimal? taxAmount = default(decimal?), decimal? totalLineAmount = default(decimal?))
         {
             this.Description = description;
             this.UnitPrice = unitPrice;
             this.Quantity = quantity;
             this.Item = item;
+            this.Account = account;
+            this.TrackingCategory = trackingCategory;
+            this.TaxAmount = taxAmount;
+            this.TotalLineAmount = totalLineAmount;
         }
 
         /// <summary>
@@ -75,6 +83,34 @@ namespace Merge.AccountingClient.Model
         public Guid? Item { get; set; }
 
         /// <summary>
+        /// The purchase order line item&#39;s account.
+        /// </summary>
+        /// <value>The purchase order line item&#39;s account.</value>
+        [DataMember(Name = "account", EmitDefaultValue = true)]
+        public Guid? Account { get; set; }
+
+        /// <summary>
+        /// The purchase order line item&#39;s associated tracking category.
+        /// </summary>
+        /// <value>The purchase order line item&#39;s associated tracking category.</value>
+        [DataMember(Name = "tracking_category", EmitDefaultValue = true)]
+        public Guid? TrackingCategory { get; set; }
+
+        /// <summary>
+        /// The purchase order line item&#39;s tax amount.
+        /// </summary>
+        /// <value>The purchase order line item&#39;s tax amount.</value>
+        [DataMember(Name = "tax_amount", EmitDefaultValue = true)]
+        public decimal? TaxAmount { get; set; }
+
+        /// <summary>
+        /// The purchase order line item&#39;s total amount.
+        /// </summary>
+        /// <value>The purchase order line item&#39;s total amount.</value>
+        [DataMember(Name = "total_line_amount", EmitDefaultValue = true)]
+        public decimal? TotalLineAmount { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -86,6 +122,10 @@ namespace Merge.AccountingClient.Model
             sb.Append("  UnitPrice: ").Append(UnitPrice).Append("\n");
             sb.Append("  Quantity: ").Append(Quantity).Append("\n");
             sb.Append("  Item: ").Append(Item).Append("\n");
+            sb.Append("  Account: ").Append(Account).Append("\n");
+            sb.Append("  TrackingCategory: ").Append(TrackingCategory).Append("\n");
+            sb.Append("  TaxAmount: ").Append(TaxAmount).Append("\n");
+            sb.Append("  TotalLineAmount: ").Append(TotalLineAmount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -139,6 +179,26 @@ namespace Merge.AccountingClient.Model
                     this.Item == input.Item ||
                     (this.Item != null &&
                     this.Item.Equals(input.Item))
+                ) && 
+                (
+                    this.Account == input.Account ||
+                    (this.Account != null &&
+                    this.Account.Equals(input.Account))
+                ) && 
+                (
+                    this.TrackingCategory == input.TrackingCategory ||
+                    (this.TrackingCategory != null &&
+                    this.TrackingCategory.Equals(input.TrackingCategory))
+                ) && 
+                (
+                    this.TaxAmount == input.TaxAmount ||
+                    (this.TaxAmount != null &&
+                    this.TaxAmount.Equals(input.TaxAmount))
+                ) && 
+                (
+                    this.TotalLineAmount == input.TotalLineAmount ||
+                    (this.TotalLineAmount != null &&
+                    this.TotalLineAmount.Equals(input.TotalLineAmount))
                 );
         }
 
@@ -159,6 +219,14 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.Quantity.GetHashCode();
                 if (this.Item != null)
                     hashCode = hashCode * 59 + this.Item.GetHashCode();
+                if (this.Account != null)
+                    hashCode = hashCode * 59 + this.Account.GetHashCode();
+                if (this.TrackingCategory != null)
+                    hashCode = hashCode * 59 + this.TrackingCategory.GetHashCode();
+                if (this.TaxAmount != null)
+                    hashCode = hashCode * 59 + this.TaxAmount.GetHashCode();
+                if (this.TotalLineAmount != null)
+                    hashCode = hashCode * 59 + this.TotalLineAmount.GetHashCode();
                 return hashCode;
             }
         }
@@ -170,6 +238,20 @@ namespace Merge.AccountingClient.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // TaxAmount (decimal?) pattern
+            Regex regexTaxAmount = new Regex(@"^\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
+            if (false == regexTaxAmount.Match(this.TaxAmount.ToString()).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TaxAmount, must match a pattern of " + regexTaxAmount, new [] { "TaxAmount" });
+            }
+
+            // TotalLineAmount (decimal?) pattern
+            Regex regexTotalLineAmount = new Regex(@"^\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
+            if (false == regexTotalLineAmount.Match(this.TotalLineAmount.ToString()).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TotalLineAmount, must match a pattern of " + regexTotalLineAmount, new [] { "TotalLineAmount" });
+            }
+
             yield break;
         }
     }

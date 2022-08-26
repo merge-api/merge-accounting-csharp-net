@@ -38,14 +38,15 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
         /// <returns>PaginatedPurchaseOrderList</returns>
-        PaginatedPurchaseOrderList PurchaseOrdersList(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteId = default(string));
+        PaginatedPurchaseOrderList PurchaseOrdersList(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string));
 
         /// <summary>
         /// 
@@ -58,14 +59,15 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
         /// <returns>ApiResponse of PaginatedPurchaseOrderList</returns>
-        ApiResponse<PaginatedPurchaseOrderList> PurchaseOrdersListWithHttpInfo(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteId = default(string));
+        ApiResponse<PaginatedPurchaseOrderList> PurchaseOrdersListWithHttpInfo(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string));
         /// <summary>
         /// 
         /// </summary>
@@ -76,8 +78,9 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>PurchaseOrder</returns>
-        PurchaseOrder PurchaseOrdersRetrieve(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?));
+        PurchaseOrder PurchaseOrdersRetrieve(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string));
 
         /// <summary>
         /// 
@@ -89,8 +92,9 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>ApiResponse of PurchaseOrder</returns>
-        ApiResponse<PurchaseOrder> PurchaseOrdersRetrieveWithHttpInfo(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?));
+        ApiResponse<PurchaseOrder> PurchaseOrdersRetrieveWithHttpInfo(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string));
         #endregion Synchronous Operations
     }
 
@@ -111,15 +115,16 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PaginatedPurchaseOrderList</returns>
-        System.Threading.Tasks.Task<PaginatedPurchaseOrderList> PurchaseOrdersListAsync(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PaginatedPurchaseOrderList> PurchaseOrdersListAsync(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -132,15 +137,16 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PaginatedPurchaseOrderList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PaginatedPurchaseOrderList>> PurchaseOrdersListWithHttpInfoAsync(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PaginatedPurchaseOrderList>> PurchaseOrdersListWithHttpInfoAsync(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -151,9 +157,10 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PurchaseOrder</returns>
-        System.Threading.Tasks.Task<PurchaseOrder> PurchaseOrdersRetrieveAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PurchaseOrder> PurchaseOrdersRetrieveAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -165,9 +172,10 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PurchaseOrder)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PurchaseOrder>> PurchaseOrdersRetrieveWithHttpInfoAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PurchaseOrder>> PurchaseOrdersRetrieveWithHttpInfoAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -296,16 +304,17 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
         /// <returns>PaginatedPurchaseOrderList</returns>
-        public PaginatedPurchaseOrderList PurchaseOrdersList(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteId = default(string))
+        public PaginatedPurchaseOrderList PurchaseOrdersList(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string))
         {
-            Merge.AccountingClient.Client.ApiResponse<PaginatedPurchaseOrderList> localVarResponse = PurchaseOrdersListWithHttpInfo(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+            Merge.AccountingClient.Client.ApiResponse<PaginatedPurchaseOrderList> localVarResponse = PurchaseOrdersListWithHttpInfo(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
             return localVarResponse.Data;
         }
 
@@ -317,14 +326,15 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
         /// <returns>ApiResponse of PaginatedPurchaseOrderList</returns>
-        public Merge.AccountingClient.Client.ApiResponse<PaginatedPurchaseOrderList> PurchaseOrdersListWithHttpInfo(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteId = default(string))
+        public Merge.AccountingClient.Client.ApiResponse<PaginatedPurchaseOrderList> PurchaseOrdersListWithHttpInfo(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string))
         {
             // verify the required parameter 'xAccountToken' is set
             if (xAccountToken == null)
@@ -377,6 +387,10 @@ namespace Merge.AccountingClient.Api
             if (pageSize != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
+            }
+            if (remoteFields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "remote_fields", remoteFields));
             }
             if (remoteId != null)
             {
@@ -410,17 +424,18 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PaginatedPurchaseOrderList</returns>
-        public async System.Threading.Tasks.Task<PaginatedPurchaseOrderList> PurchaseOrdersListAsync(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PaginatedPurchaseOrderList> PurchaseOrdersListAsync(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Merge.AccountingClient.Client.ApiResponse<PaginatedPurchaseOrderList> localVarResponse = await PurchaseOrdersListWithHttpInfoAsync(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, cancellationToken).ConfigureAwait(false);
+            Merge.AccountingClient.Client.ApiResponse<PaginatedPurchaseOrderList> localVarResponse = await PurchaseOrdersListWithHttpInfoAsync(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -432,15 +447,16 @@ namespace Merge.AccountingClient.Api
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
-        /// <param name="includeDeletedData">Whether to include data that was deleted in the third-party service. (optional)</param>
+        /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PaginatedPurchaseOrderList)</returns>
-        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<PaginatedPurchaseOrderList>> PurchaseOrdersListWithHttpInfoAsync(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<PaginatedPurchaseOrderList>> PurchaseOrdersListWithHttpInfoAsync(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'xAccountToken' is set
             if (xAccountToken == null)
@@ -496,6 +512,10 @@ namespace Merge.AccountingClient.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
+            if (remoteFields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "remote_fields", remoteFields));
+            }
             if (remoteId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "remote_id", remoteId));
@@ -528,10 +548,11 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>PurchaseOrder</returns>
-        public PurchaseOrder PurchaseOrdersRetrieve(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?))
+        public PurchaseOrder PurchaseOrdersRetrieve(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string))
         {
-            Merge.AccountingClient.Client.ApiResponse<PurchaseOrder> localVarResponse = PurchaseOrdersRetrieveWithHttpInfo(xAccountToken, id, includeRemoteData);
+            Merge.AccountingClient.Client.ApiResponse<PurchaseOrder> localVarResponse = PurchaseOrdersRetrieveWithHttpInfo(xAccountToken, id, includeRemoteData, remoteFields);
             return localVarResponse.Data;
         }
 
@@ -542,8 +563,9 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>ApiResponse of PurchaseOrder</returns>
-        public Merge.AccountingClient.Client.ApiResponse<PurchaseOrder> PurchaseOrdersRetrieveWithHttpInfo(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?))
+        public Merge.AccountingClient.Client.ApiResponse<PurchaseOrder> PurchaseOrdersRetrieveWithHttpInfo(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string))
         {
             // verify the required parameter 'xAccountToken' is set
             if (xAccountToken == null)
@@ -569,6 +591,10 @@ namespace Merge.AccountingClient.Api
             if (includeRemoteData != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "include_remote_data", includeRemoteData));
+            }
+            if (remoteFields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "remote_fields", remoteFields));
             }
             localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
 
@@ -597,11 +623,12 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PurchaseOrder</returns>
-        public async System.Threading.Tasks.Task<PurchaseOrder> PurchaseOrdersRetrieveAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PurchaseOrder> PurchaseOrdersRetrieveAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Merge.AccountingClient.Client.ApiResponse<PurchaseOrder> localVarResponse = await PurchaseOrdersRetrieveWithHttpInfoAsync(xAccountToken, id, includeRemoteData, cancellationToken).ConfigureAwait(false);
+            Merge.AccountingClient.Client.ApiResponse<PurchaseOrder> localVarResponse = await PurchaseOrdersRetrieveWithHttpInfoAsync(xAccountToken, id, includeRemoteData, remoteFields, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -612,9 +639,10 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
+        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PurchaseOrder)</returns>
-        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<PurchaseOrder>> PurchaseOrdersRetrieveWithHttpInfoAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<PurchaseOrder>> PurchaseOrdersRetrieveWithHttpInfoAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'xAccountToken' is set
             if (xAccountToken == null)
@@ -642,6 +670,10 @@ namespace Merge.AccountingClient.Api
             if (includeRemoteData != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "include_remote_data", includeRemoteData));
+            }
+            if (remoteFields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "remote_fields", remoteFields));
             }
             localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
 
