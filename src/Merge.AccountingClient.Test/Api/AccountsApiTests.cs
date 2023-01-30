@@ -56,6 +56,21 @@ namespace Merge.AccountingClient.Test.Api
         }
 
         /// <summary>
+        /// Test AccountsCreate
+        /// </summary>
+        [Fact]
+        public void AccountsCreateTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string xAccountToken = null;
+            //AccountEndpointRequest accountEndpointRequest = null;
+            //bool? isDebugMode = null;
+            //bool? runAsync = null;
+            //var response = instance.AccountsCreate(xAccountToken, accountEndpointRequest, isDebugMode, runAsync);
+            //Assert.IsType<AccountResponse>(response);
+        }
+
+        /// <summary>
         /// Test AccountsList
         /// </summary>
         [Fact]
@@ -63,6 +78,7 @@ namespace Merge.AccountingClient.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string xAccountToken = null;
+            //string companyId = null;
             //DateTime? createdAfter = null;
             //DateTime? createdBefore = null;
             //string cursor = null;
@@ -73,8 +89,21 @@ namespace Merge.AccountingClient.Test.Api
             //int? pageSize = null;
             //string remoteFields = null;
             //string remoteId = null;
-            //var response = instance.AccountsList(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
+            //string showEnumOrigins = null;
+            //var response = instance.AccountsList(xAccountToken, companyId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, showEnumOrigins);
             //Assert.IsType<PaginatedAccountList>(response);
+        }
+
+        /// <summary>
+        /// Test AccountsMetaPostRetrieve
+        /// </summary>
+        [Fact]
+        public void AccountsMetaPostRetrieveTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string xAccountToken = null;
+            //var response = instance.AccountsMetaPostRetrieve(xAccountToken);
+            //Assert.IsType<MetaResponse>(response);
         }
 
         /// <summary>
@@ -88,7 +117,8 @@ namespace Merge.AccountingClient.Test.Api
             //Guid id = null;
             //bool? includeRemoteData = null;
             //string remoteFields = null;
-            //var response = instance.AccountsRetrieve(xAccountToken, id, includeRemoteData, remoteFields);
+            //string showEnumOrigins = null;
+            //var response = instance.AccountsRetrieve(xAccountToken, id, includeRemoteData, remoteFields, showEnumOrigins);
             //Assert.IsType<Account>(response);
         }
     }

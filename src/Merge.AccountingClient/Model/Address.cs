@@ -41,13 +41,6 @@ namespace Merge.AccountingClient.Model
         public AddressTypeEnum? Type { get; set; }
 
         /// <summary>
-        /// The address&#39;s state.
-        /// </summary>
-        /// <value>The address&#39;s state.</value>
-        [DataMember(Name = "state", EmitDefaultValue = true)]
-        public StateEnum? State { get; set; }
-
-        /// <summary>
         /// The address&#39;s country.
         /// </summary>
         /// <value>The address&#39;s country.</value>
@@ -60,16 +53,16 @@ namespace Merge.AccountingClient.Model
         /// <param name="street1">Line 1 of the address&#39;s street..</param>
         /// <param name="street2">Line 2 of the address&#39;s street..</param>
         /// <param name="city">The address&#39;s city..</param>
-        /// <param name="state">The address&#39;s state..</param>
+        /// <param name="countrySubdivision">The address&#39;s state or region..</param>
         /// <param name="country">The address&#39;s country..</param>
         /// <param name="zipCode">The address&#39;s zip code..</param>
-        public Address(AddressTypeEnum? type = default(AddressTypeEnum?), string street1 = default(string), string street2 = default(string), string city = default(string), StateEnum? state = default(StateEnum?), CountryEnum? country = default(CountryEnum?), string zipCode = default(string))
+        public Address(AddressTypeEnum? type = default(AddressTypeEnum?), string street1 = default(string), string street2 = default(string), string city = default(string), string countrySubdivision = default(string), CountryEnum? country = default(CountryEnum?), string zipCode = default(string))
         {
             this.Type = type;
             this.Street1 = street1;
             this.Street2 = street2;
             this.City = city;
-            this.State = state;
+            this.CountrySubdivision = countrySubdivision;
             this.Country = country;
             this.ZipCode = zipCode;
         }
@@ -96,6 +89,29 @@ namespace Merge.AccountingClient.Model
         public string City { get; set; }
 
         /// <summary>
+        /// The address&#39;s state or region.
+        /// </summary>
+        /// <value>The address&#39;s state or region.</value>
+        [DataMember(Name = "state", EmitDefaultValue = true)]
+        public Object State { get; private set; }
+
+        /// <summary>
+        /// Returns false as State should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeState()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// The address&#39;s state or region.
+        /// </summary>
+        /// <value>The address&#39;s state or region.</value>
+        [DataMember(Name = "country_subdivision", EmitDefaultValue = true)]
+        public string CountrySubdivision { get; set; }
+
+        /// <summary>
         /// The address&#39;s zip code.
         /// </summary>
         /// <value>The address&#39;s zip code.</value>
@@ -115,6 +131,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Street2: ").Append(Street2).Append("\n");
             sb.Append("  City: ").Append(City).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
+            sb.Append("  CountrySubdivision: ").Append(CountrySubdivision).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  ZipCode: ").Append(ZipCode).Append("\n");
             sb.Append("}\n");
@@ -172,7 +189,13 @@ namespace Merge.AccountingClient.Model
                 ) && 
                 (
                     this.State == input.State ||
-                    this.State.Equals(input.State)
+                    (this.State != null &&
+                    this.State.Equals(input.State))
+                ) && 
+                (
+                    this.CountrySubdivision == input.CountrySubdivision ||
+                    (this.CountrySubdivision != null &&
+                    this.CountrySubdivision.Equals(input.CountrySubdivision))
                 ) && 
                 (
                     this.Country == input.Country ||
@@ -201,7 +224,10 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.Street2.GetHashCode();
                 if (this.City != null)
                     hashCode = hashCode * 59 + this.City.GetHashCode();
-                hashCode = hashCode * 59 + this.State.GetHashCode();
+                if (this.State != null)
+                    hashCode = hashCode * 59 + this.State.GetHashCode();
+                if (this.CountrySubdivision != null)
+                    hashCode = hashCode * 59 + this.CountrySubdivision.GetHashCode();
                 hashCode = hashCode * 59 + this.Country.GetHashCode();
                 if (this.ZipCode != null)
                     hashCode = hashCode * 59 + this.ZipCode.GetHashCode();

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="creditnoteslist"></a>
 # **CreditNotesList**
-> PaginatedCreditNoteList CreditNotesList (string xAccountToken, DateTime? createdAfter = null, DateTime? createdBefore = null, string cursor = null, bool? includeDeletedData = null, bool? includeRemoteData = null, DateTime? modifiedAfter = null, DateTime? modifiedBefore = null, int? pageSize = null, string remoteFields = null, string remoteId = null)
+> PaginatedCreditNoteList CreditNotesList (string xAccountToken, string companyId = null, DateTime? createdAfter = null, DateTime? createdBefore = null, string cursor = null, bool? includeDeletedData = null, bool? includeRemoteData = null, DateTime? modifiedAfter = null, DateTime? modifiedBefore = null, int? pageSize = null, string remoteFields = null, string remoteId = null, string showEnumOrigins = null)
 
 
 
@@ -39,6 +39,7 @@ namespace Example
 
             var apiInstance = new CreditNotesApi(config);
             var xAccountToken = xAccountToken_example;  // string | Token identifying the end user.
+            var companyId = companyId_example;  // string | If provided, will only return credit notes for this company. (optional) 
             var createdAfter = 2013-10-20T19:20:30+01:00;  // DateTime? | If provided, will only return objects created after this datetime. (optional) 
             var createdBefore = 2013-10-20T19:20:30+01:00;  // DateTime? | If provided, will only return objects created before this datetime. (optional) 
             var cursor = cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw;  // string | The pagination cursor value. (optional) 
@@ -47,12 +48,13 @@ namespace Example
             var modifiedAfter = 2013-10-20T19:20:30+01:00;  // DateTime? | If provided, will only return objects modified after this datetime. (optional) 
             var modifiedBefore = 2013-10-20T19:20:30+01:00;  // DateTime? | If provided, will only return objects modified before this datetime. (optional) 
             var pageSize = 56;  // int? | Number of results to return per page. (optional) 
-            var remoteFields = status,type;  // string | Which fields should be returned in non-normalized form. (optional) 
+            var remoteFields = status,type;  // string | Deprecated. Use show_enum_origins. (optional) 
             var remoteId = remoteId_example;  // string | The API provider's ID for the given object. (optional) 
+            var showEnumOrigins = status,type;  // string | Which fields should be returned in non-normalized form. (optional) 
 
             try
             {
-                PaginatedCreditNoteList result = apiInstance.CreditNotesList(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
+                PaginatedCreditNoteList result = apiInstance.CreditNotesList(xAccountToken, companyId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, showEnumOrigins);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -71,6 +73,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **string**| Token identifying the end user. | 
+ **companyId** | **string**| If provided, will only return credit notes for this company. | [optional] 
  **createdAfter** | **DateTime?**| If provided, will only return objects created after this datetime. | [optional] 
  **createdBefore** | **DateTime?**| If provided, will only return objects created before this datetime. | [optional] 
  **cursor** | **string**| The pagination cursor value. | [optional] 
@@ -79,8 +82,9 @@ Name | Type | Description  | Notes
  **modifiedAfter** | **DateTime?**| If provided, will only return objects modified after this datetime. | [optional] 
  **modifiedBefore** | **DateTime?**| If provided, will only return objects modified before this datetime. | [optional] 
  **pageSize** | **int?**| Number of results to return per page. | [optional] 
- **remoteFields** | **string**| Which fields should be returned in non-normalized form. | [optional] 
+ **remoteFields** | **string**| Deprecated. Use show_enum_origins. | [optional] 
  **remoteId** | **string**| The API provider&#39;s ID for the given object. | [optional] 
+ **showEnumOrigins** | **string**| Which fields should be returned in non-normalized form. | [optional] 
 
 ### Return type
 
@@ -105,7 +109,7 @@ Name | Type | Description  | Notes
 
 <a name="creditnotesretrieve"></a>
 # **CreditNotesRetrieve**
-> CreditNote CreditNotesRetrieve (string xAccountToken, Guid id, bool? includeRemoteData = null, string remoteFields = null)
+> CreditNote CreditNotesRetrieve (string xAccountToken, Guid id, bool? includeRemoteData = null, string remoteFields = null, string showEnumOrigins = null)
 
 
 
@@ -136,11 +140,12 @@ namespace Example
             var xAccountToken = xAccountToken_example;  // string | Token identifying the end user.
             var id = new Guid(); // Guid | 
             var includeRemoteData = true;  // bool? | Whether to include the original data Merge fetched from the third-party to produce these models. (optional) 
-            var remoteFields = status,type;  // string | Which fields should be returned in non-normalized form. (optional) 
+            var remoteFields = status,type;  // string | Deprecated. Use show_enum_origins. (optional) 
+            var showEnumOrigins = status,type;  // string | Which fields should be returned in non-normalized form. (optional) 
 
             try
             {
-                CreditNote result = apiInstance.CreditNotesRetrieve(xAccountToken, id, includeRemoteData, remoteFields);
+                CreditNote result = apiInstance.CreditNotesRetrieve(xAccountToken, id, includeRemoteData, remoteFields, showEnumOrigins);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -161,7 +166,8 @@ Name | Type | Description  | Notes
  **xAccountToken** | **string**| Token identifying the end user. | 
  **id** | [**Guid**](Guid.md)|  | 
  **includeRemoteData** | **bool?**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional] 
- **remoteFields** | **string**| Which fields should be returned in non-normalized form. | [optional] 
+ **remoteFields** | **string**| Deprecated. Use show_enum_origins. | [optional] 
+ **showEnumOrigins** | **string**| Which fields should be returned in non-normalized form. | [optional] 
 
 ### Return type
 

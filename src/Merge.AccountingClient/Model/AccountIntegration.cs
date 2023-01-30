@@ -41,7 +41,7 @@ namespace Merge.AccountingClient.Model
         /// Initializes a new instance of the <see cref="AccountIntegration" /> class.
         /// </summary>
         /// <param name="name">Company name. (required).</param>
-        /// <param name="categories">Category or categories this integration belongs to. Multiple categories should be comma separated.&lt;br/&gt;&lt;br&gt;Example: For [ats, hris], enter &lt;i&gt;ats,hris&lt;/i&gt;.</param>
+        /// <param name="categories">Category or categories this integration belongs to. Multiple categories should be comma separated, i.e. [ats, hris]..</param>
         /// <param name="image">Company logo in rectangular shape. &lt;b&gt;Upload an image with a clear background.&lt;/b&gt;.</param>
         /// <param name="squareImage">Company logo in square shape. &lt;b&gt;Upload an image with a white background.&lt;/b&gt;.</param>
         /// <param name="color">The color of this integration used for buttons and text throughout the app and landing pages. &lt;b&gt;Choose a darker, saturated color.&lt;/b&gt;.</param>
@@ -63,9 +63,9 @@ namespace Merge.AccountingClient.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Category or categories this integration belongs to. Multiple categories should be comma separated.&lt;br/&gt;&lt;br&gt;Example: For [ats, hris], enter &lt;i&gt;ats,hris&lt;/i&gt;
+        /// Category or categories this integration belongs to. Multiple categories should be comma separated, i.e. [ats, hris].
         /// </summary>
-        /// <value>Category or categories this integration belongs to. Multiple categories should be comma separated.&lt;br/&gt;&lt;br&gt;Example: For [ats, hris], enter &lt;i&gt;ats,hris&lt;/i&gt;</value>
+        /// <value>Category or categories this integration belongs to. Multiple categories should be comma separated, i.e. [ats, hris].</value>
         [DataMember(Name = "categories", EmitDefaultValue = false)]
         public List<CategoriesEnum> Categories { get; set; }
 

@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Merge.AccountingClient.Client.OpenAPIDateConverter;
 namespace Merge.AccountingClient.Model
 {
     /// <summary>
-    /// # The JournalEntry Object ### Description The &#x60;JournalEntry&#x60; object is used to represent a company&#39;s journey entries.  ### Usage Example Fetch from the &#x60;GET JournalEntry&#x60; endpoint and view a company&#39;s journey entry.
+    /// # The JournalEntry Object ### Description The &#x60;JournalEntry&#x60; object is used to get a record of all manually created entries made in a company’s general ledger. The journal line items for each journal entry should sum to zero.  ### Usage Example Fetch from the &#x60;GET JournalEntry&#x60; endpoint and view a company&#39;s journey entry.
     /// </summary>
     [DataContract(Name = "JournalEntry")]
     public partial class JournalEntry : IEquatable<JournalEntry>, IValidatableObject
@@ -38,47 +38,33 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The journal&#39;s currency.</value>
         [DataMember(Name = "currency", EmitDefaultValue = true)]
-        public string Currency { get; set; }
+        public CurrencyEnum? Currency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalEntry" /> class.
         /// </summary>
-        /// <param name="remoteId">The third-party API ID of the matching object..</param>
         /// <param name="transactionDate">The journal entry&#39;s transaction date..</param>
         /// <param name="remoteCreatedAt">When the third party&#39;s journal entry was created..</param>
+        /// <param name="remoteUpdatedAt">When the third party&#39;s journal entry was updated..</param>
         /// <param name="payments">Array of &#x60;Payment&#x60; object IDs..</param>
         /// <param name="memo">The journal entry&#39;s private note..</param>
         /// <param name="currency">The journal&#39;s currency..</param>
-        public JournalEntry(string remoteId = default(string), DateTime? transactionDate = default(DateTime?), DateTime? remoteCreatedAt = default(DateTime?), List<Guid?> payments = default(List<Guid?>), string memo = default(string), string currency = default(string))
+        /// <param name="exchangeRate">The journal entry&#39;s exchange rate..</param>
+        /// <param name="company">The company the journal entry belongs to..</param>
+        /// <param name="lines">lines.</param>
+        /// <param name="remoteId">The third-party API ID of the matching object..</param>
+        public JournalEntry(DateTime? transactionDate = default(DateTime?), DateTime? remoteCreatedAt = default(DateTime?), DateTime? remoteUpdatedAt = default(DateTime?), List<Guid?> payments = default(List<Guid?>), string memo = default(string), CurrencyEnum? currency = default(CurrencyEnum?), decimal? exchangeRate = default(decimal?), Guid? company = default(Guid?), List<JournalLine> lines = default(List<JournalLine>), string remoteId = default(string))
         {
-            this.RemoteId = remoteId;
             this.TransactionDate = transactionDate;
             this.RemoteCreatedAt = remoteCreatedAt;
+            this.RemoteUpdatedAt = remoteUpdatedAt;
             this.Payments = payments;
             this.Memo = memo;
             this.Currency = currency;
+            this.ExchangeRate = exchangeRate;
+            this.Company = company;
+            this.Lines = lines;
+            this.RemoteId = remoteId;
         }
-
-        /// <summary>
-        /// Gets or Sets Id
-        /// </summary>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
-        public Guid Id { get; private set; }
-
-        /// <summary>
-        /// Returns false as Id should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeId()
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// The third-party API ID of the matching object.
-        /// </summary>
-        /// <value>The third-party API ID of the matching object.</value>
-        [DataMember(Name = "remote_id", EmitDefaultValue = true)]
-        public string RemoteId { get; set; }
 
         /// <summary>
         /// Gets or Sets RemoteData
@@ -110,6 +96,13 @@ namespace Merge.AccountingClient.Model
         public DateTime? RemoteCreatedAt { get; set; }
 
         /// <summary>
+        /// When the third party&#39;s journal entry was updated.
+        /// </summary>
+        /// <value>When the third party&#39;s journal entry was updated.</value>
+        [DataMember(Name = "remote_updated_at", EmitDefaultValue = true)]
+        public DateTime? RemoteUpdatedAt { get; set; }
+
+        /// <summary>
         /// Array of &#x60;Payment&#x60; object IDs.
         /// </summary>
         /// <value>Array of &#x60;Payment&#x60; object IDs.</value>
@@ -124,19 +117,24 @@ namespace Merge.AccountingClient.Model
         public string Memo { get; set; }
 
         /// <summary>
+        /// The journal entry&#39;s exchange rate.
+        /// </summary>
+        /// <value>The journal entry&#39;s exchange rate.</value>
+        [DataMember(Name = "exchange_rate", EmitDefaultValue = true)]
+        public decimal? ExchangeRate { get; set; }
+
+        /// <summary>
+        /// The company the journal entry belongs to.
+        /// </summary>
+        /// <value>The company the journal entry belongs to.</value>
+        [DataMember(Name = "company", EmitDefaultValue = true)]
+        public Guid? Company { get; set; }
+
+        /// <summary>
         /// Gets or Sets Lines
         /// </summary>
         [DataMember(Name = "lines", EmitDefaultValue = false)]
-        public List<JournalLine> Lines { get; private set; }
-
-        /// <summary>
-        /// Returns false as Lines should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeLines()
-        {
-            return false;
-        }
+        public List<JournalLine> Lines { get; set; }
 
         /// <summary>
         /// Gets or Sets RemoteWasDeleted
@@ -154,6 +152,43 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
+        /// Gets or Sets Id
+        /// </summary>
+        [DataMember(Name = "id", EmitDefaultValue = false)]
+        public Guid Id { get; private set; }
+
+        /// <summary>
+        /// Returns false as Id should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeId()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// The third-party API ID of the matching object.
+        /// </summary>
+        /// <value>The third-party API ID of the matching object.</value>
+        [DataMember(Name = "remote_id", EmitDefaultValue = true)]
+        public string RemoteId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets FieldMappings
+        /// </summary>
+        [DataMember(Name = "field_mappings", EmitDefaultValue = true)]
+        public Dictionary<string, Object> FieldMappings { get; private set; }
+
+        /// <summary>
+        /// Returns false as FieldMappings should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeFieldMappings()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -161,16 +196,20 @@ namespace Merge.AccountingClient.Model
         {
             var sb = new StringBuilder();
             sb.Append("class JournalEntry {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
             sb.Append("  RemoteData: ").Append(RemoteData).Append("\n");
             sb.Append("  TransactionDate: ").Append(TransactionDate).Append("\n");
             sb.Append("  RemoteCreatedAt: ").Append(RemoteCreatedAt).Append("\n");
+            sb.Append("  RemoteUpdatedAt: ").Append(RemoteUpdatedAt).Append("\n");
             sb.Append("  Payments: ").Append(Payments).Append("\n");
             sb.Append("  Memo: ").Append(Memo).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
+            sb.Append("  ExchangeRate: ").Append(ExchangeRate).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  Lines: ").Append(Lines).Append("\n");
             sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
+            sb.Append("  FieldMappings: ").Append(FieldMappings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -206,16 +245,6 @@ namespace Merge.AccountingClient.Model
 
             return 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
-                (
-                    this.RemoteId == input.RemoteId ||
-                    (this.RemoteId != null &&
-                    this.RemoteId.Equals(input.RemoteId))
-                ) && 
-                (
                     this.RemoteData == input.RemoteData ||
                     this.RemoteData != null &&
                     input.RemoteData != null &&
@@ -230,6 +259,11 @@ namespace Merge.AccountingClient.Model
                     this.RemoteCreatedAt == input.RemoteCreatedAt ||
                     (this.RemoteCreatedAt != null &&
                     this.RemoteCreatedAt.Equals(input.RemoteCreatedAt))
+                ) && 
+                (
+                    this.RemoteUpdatedAt == input.RemoteUpdatedAt ||
+                    (this.RemoteUpdatedAt != null &&
+                    this.RemoteUpdatedAt.Equals(input.RemoteUpdatedAt))
                 ) && 
                 (
                     this.Payments == input.Payments ||
@@ -247,6 +281,16 @@ namespace Merge.AccountingClient.Model
                     this.Currency.Equals(input.Currency)
                 ) && 
                 (
+                    this.ExchangeRate == input.ExchangeRate ||
+                    (this.ExchangeRate != null &&
+                    this.ExchangeRate.Equals(input.ExchangeRate))
+                ) && 
+                (
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
+                ) && 
+                (
                     this.Lines == input.Lines ||
                     this.Lines != null &&
                     input.Lines != null &&
@@ -255,6 +299,22 @@ namespace Merge.AccountingClient.Model
                 (
                     this.RemoteWasDeleted == input.RemoteWasDeleted ||
                     this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
+                ) && 
+                (
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.RemoteId == input.RemoteId ||
+                    (this.RemoteId != null &&
+                    this.RemoteId.Equals(input.RemoteId))
+                ) && 
+                (
+                    this.FieldMappings == input.FieldMappings ||
+                    this.FieldMappings != null &&
+                    input.FieldMappings != null &&
+                    this.FieldMappings.SequenceEqual(input.FieldMappings)
                 );
         }
 
@@ -267,24 +327,32 @@ namespace Merge.AccountingClient.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.RemoteId != null)
-                    hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
                 if (this.RemoteData != null)
                     hashCode = hashCode * 59 + this.RemoteData.GetHashCode();
                 if (this.TransactionDate != null)
                     hashCode = hashCode * 59 + this.TransactionDate.GetHashCode();
                 if (this.RemoteCreatedAt != null)
                     hashCode = hashCode * 59 + this.RemoteCreatedAt.GetHashCode();
+                if (this.RemoteUpdatedAt != null)
+                    hashCode = hashCode * 59 + this.RemoteUpdatedAt.GetHashCode();
                 if (this.Payments != null)
                     hashCode = hashCode * 59 + this.Payments.GetHashCode();
                 if (this.Memo != null)
                     hashCode = hashCode * 59 + this.Memo.GetHashCode();
                 hashCode = hashCode * 59 + this.Currency.GetHashCode();
+                if (this.ExchangeRate != null)
+                    hashCode = hashCode * 59 + this.ExchangeRate.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
                 if (this.Lines != null)
                     hashCode = hashCode * 59 + this.Lines.GetHashCode();
                 hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.RemoteId != null)
+                    hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
+                if (this.FieldMappings != null)
+                    hashCode = hashCode * 59 + this.FieldMappings.GetHashCode();
                 return hashCode;
             }
         }
@@ -296,6 +364,13 @@ namespace Merge.AccountingClient.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // ExchangeRate (decimal?) pattern
+            Regex regexExchangeRate = new Regex(@"^\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
+            if (false == regexExchangeRate.Match(this.ExchangeRate.ToString()).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExchangeRate, must match a pattern of " + regexExchangeRate, new [] { "ExchangeRate" });
+            }
+
             yield break;
         }
     }

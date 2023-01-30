@@ -58,22 +58,6 @@ namespace Merge.AccountingClient.Test.Model
 
 
         /// <summary>
-        /// Test the property 'Id'
-        /// </summary>
-        [Fact]
-        public void IdTest()
-        {
-            // TODO unit test for the property 'Id'
-        }
-        /// <summary>
-        /// Test the property 'RemoteId'
-        /// </summary>
-        [Fact]
-        public void RemoteIdTest()
-        {
-            // TODO unit test for the property 'RemoteId'
-        }
-        /// <summary>
         /// Test the property 'RemoteData'
         /// </summary>
         [Fact]
@@ -98,12 +82,60 @@ namespace Merge.AccountingClient.Test.Model
             // TODO unit test for the property 'Status'
         }
         /// <summary>
+        /// Test the property 'CategoryType'
+        /// </summary>
+        [Fact]
+        public void CategoryTypeTest()
+        {
+            // TODO unit test for the property 'CategoryType'
+        }
+        /// <summary>
+        /// Test the property 'ParentCategory'
+        /// </summary>
+        [Fact]
+        public void ParentCategoryTest()
+        {
+            // TODO unit test for the property 'ParentCategory'
+        }
+        /// <summary>
+        /// Test the property 'Company'
+        /// </summary>
+        [Fact]
+        public void CompanyTest()
+        {
+            // TODO unit test for the property 'Company'
+        }
+        /// <summary>
         /// Test the property 'RemoteWasDeleted'
         /// </summary>
         [Fact]
         public void RemoteWasDeletedTest()
         {
             // TODO unit test for the property 'RemoteWasDeleted'
+        }
+        /// <summary>
+        /// Test the property 'Id'
+        /// </summary>
+        [Fact]
+        public void IdTest()
+        {
+            // TODO unit test for the property 'Id'
+        }
+        /// <summary>
+        /// Test the property 'RemoteId'
+        /// </summary>
+        [Fact]
+        public void RemoteIdTest()
+        {
+            // TODO unit test for the property 'RemoteId'
+        }
+        /// <summary>
+        /// Test the property 'FieldMappings'
+        /// </summary>
+        [Fact]
+        public void FieldMappingsTest()
+        {
+            // TODO unit test for the property 'FieldMappings'
         }
 
     }

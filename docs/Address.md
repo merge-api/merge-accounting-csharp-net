@@ -9,7 +9,8 @@ Name | Type | Description | Notes
 **Street1** | **string** | Line 1 of the address&#39;s street. | [optional] 
 **Street2** | **string** | Line 2 of the address&#39;s street. | [optional] 
 **City** | **string** | The address&#39;s city. | [optional] 
-**State** | **StateEnum** | The address&#39;s state. | [optional] 
+**State** | **Object** | The address&#39;s state or region. | [optional] [readonly] 
+**CountrySubdivision** | **string** | The address&#39;s state or region. | [optional] 
 **Country** | **CountryEnum** | The address&#39;s country. | [optional] 
 **ZipCode** | **string** | The address&#39;s zip code. | [optional] 
 

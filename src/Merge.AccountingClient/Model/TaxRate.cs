@@ -35,39 +35,19 @@ namespace Merge.AccountingClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TaxRate" /> class.
         /// </summary>
-        /// <param name="remoteId">The third-party API ID of the matching object..</param>
         /// <param name="description">The tax rate&#39;s description..</param>
         /// <param name="totalTaxRate">The tax rate&#39;s total tax rate..</param>
         /// <param name="effectiveTaxRate">The tax rate&#39;s effective tax rate..</param>
-        public TaxRate(string remoteId = default(string), string description = default(string), float? totalTaxRate = default(float?), float? effectiveTaxRate = default(float?))
+        /// <param name="company">The company the tax rate belongs to..</param>
+        /// <param name="remoteId">The third-party API ID of the matching object..</param>
+        public TaxRate(string description = default(string), float? totalTaxRate = default(float?), float? effectiveTaxRate = default(float?), Guid? company = default(Guid?), string remoteId = default(string))
         {
-            this.RemoteId = remoteId;
             this.Description = description;
             this.TotalTaxRate = totalTaxRate;
             this.EffectiveTaxRate = effectiveTaxRate;
+            this.Company = company;
+            this.RemoteId = remoteId;
         }
-
-        /// <summary>
-        /// Gets or Sets Id
-        /// </summary>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
-        public Guid Id { get; private set; }
-
-        /// <summary>
-        /// Returns false as Id should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeId()
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// The third-party API ID of the matching object.
-        /// </summary>
-        /// <value>The third-party API ID of the matching object.</value>
-        [DataMember(Name = "remote_id", EmitDefaultValue = true)]
-        public string RemoteId { get; set; }
 
         /// <summary>
         /// Gets or Sets RemoteData
@@ -106,6 +86,13 @@ namespace Merge.AccountingClient.Model
         public float? EffectiveTaxRate { get; set; }
 
         /// <summary>
+        /// The company the tax rate belongs to.
+        /// </summary>
+        /// <value>The company the tax rate belongs to.</value>
+        [DataMember(Name = "company", EmitDefaultValue = true)]
+        public Guid? Company { get; set; }
+
+        /// <summary>
         /// Indicates whether or not this object has been deleted by third party webhooks.
         /// </summary>
         /// <value>Indicates whether or not this object has been deleted by third party webhooks.</value>
@@ -122,6 +109,43 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
+        /// Gets or Sets Id
+        /// </summary>
+        [DataMember(Name = "id", EmitDefaultValue = false)]
+        public Guid Id { get; private set; }
+
+        /// <summary>
+        /// Returns false as Id should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeId()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// The third-party API ID of the matching object.
+        /// </summary>
+        /// <value>The third-party API ID of the matching object.</value>
+        [DataMember(Name = "remote_id", EmitDefaultValue = true)]
+        public string RemoteId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets FieldMappings
+        /// </summary>
+        [DataMember(Name = "field_mappings", EmitDefaultValue = true)]
+        public Dictionary<string, Object> FieldMappings { get; private set; }
+
+        /// <summary>
+        /// Returns false as FieldMappings should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeFieldMappings()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -129,13 +153,15 @@ namespace Merge.AccountingClient.Model
         {
             var sb = new StringBuilder();
             sb.Append("class TaxRate {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
             sb.Append("  RemoteData: ").Append(RemoteData).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  TotalTaxRate: ").Append(TotalTaxRate).Append("\n");
             sb.Append("  EffectiveTaxRate: ").Append(EffectiveTaxRate).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
+            sb.Append("  FieldMappings: ").Append(FieldMappings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -171,16 +197,6 @@ namespace Merge.AccountingClient.Model
 
             return 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
-                (
-                    this.RemoteId == input.RemoteId ||
-                    (this.RemoteId != null &&
-                    this.RemoteId.Equals(input.RemoteId))
-                ) && 
-                (
                     this.RemoteData == input.RemoteData ||
                     this.RemoteData != null &&
                     input.RemoteData != null &&
@@ -202,8 +218,29 @@ namespace Merge.AccountingClient.Model
                     this.EffectiveTaxRate.Equals(input.EffectiveTaxRate))
                 ) && 
                 (
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
+                ) && 
+                (
                     this.RemoteWasDeleted == input.RemoteWasDeleted ||
                     this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
+                ) && 
+                (
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.RemoteId == input.RemoteId ||
+                    (this.RemoteId != null &&
+                    this.RemoteId.Equals(input.RemoteId))
+                ) && 
+                (
+                    this.FieldMappings == input.FieldMappings ||
+                    this.FieldMappings != null &&
+                    input.FieldMappings != null &&
+                    this.FieldMappings.SequenceEqual(input.FieldMappings)
                 );
         }
 
@@ -216,10 +253,6 @@ namespace Merge.AccountingClient.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.RemoteId != null)
-                    hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
                 if (this.RemoteData != null)
                     hashCode = hashCode * 59 + this.RemoteData.GetHashCode();
                 if (this.Description != null)
@@ -228,7 +261,15 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.TotalTaxRate.GetHashCode();
                 if (this.EffectiveTaxRate != null)
                     hashCode = hashCode * 59 + this.EffectiveTaxRate.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
                 hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.RemoteId != null)
+                    hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
+                if (this.FieldMappings != null)
+                    hashCode = hashCode * 59 + this.FieldMappings.GetHashCode();
                 return hashCode;
             }
         }

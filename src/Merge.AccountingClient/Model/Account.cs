@@ -27,45 +27,47 @@ using OpenAPIDateConverter = Merge.AccountingClient.Client.OpenAPIDateConverter;
 namespace Merge.AccountingClient.Model
 {
     /// <summary>
-    /// # The Account Object ### Description The &#x60;Account&#x60; object is what businesses use to track transactions. Accountants often call accounts \&quot;ledgers\&quot;.  ### Usage Example Fetch from the &#x60;LIST Accounts&#x60; endpoint and view a company&#39;s accounts.
+    /// # The Account Object ### Description The &#x60;Account&#x60; object is what companies use to track transactions. They can be both bank accounts or a general ledger account (also called a chart of accounts).  ### Usage Example Fetch from the &#x60;LIST Accounts&#x60; endpoint and view a company&#39;s accounts.
     /// </summary>
     [DataContract(Name = "Account")]
     public partial class Account : IEquatable<Account>, IValidatableObject
     {
 
         /// <summary>
-        /// The account&#39;s classification.
+        /// The account&#39;s broadest grouping.
         /// </summary>
-        /// <value>The account&#39;s classification.</value>
+        /// <value>The account&#39;s broadest grouping.</value>
         [DataMember(Name = "classification", EmitDefaultValue = true)]
-        public string Classification { get; set; }
+        public ClassificationEnum? Classification { get; set; }
 
         /// <summary>
         /// The account&#39;s status.
         /// </summary>
         /// <value>The account&#39;s status.</value>
         [DataMember(Name = "status", EmitDefaultValue = true)]
-        public string Status { get; set; }
+        public AccountStatusEnum? Status { get; set; }
 
         /// <summary>
         /// The account&#39;s currency.
         /// </summary>
         /// <value>The account&#39;s currency.</value>
         [DataMember(Name = "currency", EmitDefaultValue = true)]
-        public string Currency { get; set; }
+        public CurrencyEnum? Currency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Account" /> class.
         /// </summary>
         /// <param name="remoteId">The third-party API ID of the matching object..</param>
         /// <param name="name">The account&#39;s name..</param>
         /// <param name="description">The account&#39;s description..</param>
-        /// <param name="classification">The account&#39;s classification..</param>
-        /// <param name="type">The account&#39;s type..</param>
+        /// <param name="classification">The account&#39;s broadest grouping..</param>
+        /// <param name="type">The account&#39;s type is a narrower and more specific grouping within the account&#39;s classification..</param>
         /// <param name="status">The account&#39;s status..</param>
         /// <param name="currentBalance">The account&#39;s current balance..</param>
         /// <param name="currency">The account&#39;s currency..</param>
         /// <param name="accountNumber">The account&#39;s number..</param>
-        public Account(string remoteId = default(string), string name = default(string), string description = default(string), string classification = default(string), string type = default(string), string status = default(string), float? currentBalance = default(float?), string currency = default(string), string accountNumber = default(string))
+        /// <param name="parentAccount">ID of the parent account..</param>
+        /// <param name="company">The company the account belongs to..</param>
+        public Account(string remoteId = default(string), string name = default(string), string description = default(string), ClassificationEnum? classification = default(ClassificationEnum?), string type = default(string), AccountStatusEnum? status = default(AccountStatusEnum?), float? currentBalance = default(float?), CurrencyEnum? currency = default(CurrencyEnum?), string accountNumber = default(string), Guid? parentAccount = default(Guid?), Guid? company = default(Guid?))
         {
             this.RemoteId = remoteId;
             this.Name = name;
@@ -76,6 +78,8 @@ namespace Merge.AccountingClient.Model
             this.CurrentBalance = currentBalance;
             this.Currency = currency;
             this.AccountNumber = accountNumber;
+            this.ParentAccount = parentAccount;
+            this.Company = company;
         }
 
         /// <summary>
@@ -130,9 +134,9 @@ namespace Merge.AccountingClient.Model
         public string Description { get; set; }
 
         /// <summary>
-        /// The account&#39;s type.
+        /// The account&#39;s type is a narrower and more specific grouping within the account&#39;s classification.
         /// </summary>
-        /// <value>The account&#39;s type.</value>
+        /// <value>The account&#39;s type is a narrower and more specific grouping within the account&#39;s classification.</value>
         [DataMember(Name = "type", EmitDefaultValue = true)]
         public string Type { get; set; }
 
@@ -151,6 +155,20 @@ namespace Merge.AccountingClient.Model
         public string AccountNumber { get; set; }
 
         /// <summary>
+        /// ID of the parent account.
+        /// </summary>
+        /// <value>ID of the parent account.</value>
+        [DataMember(Name = "parent_account", EmitDefaultValue = true)]
+        public Guid? ParentAccount { get; set; }
+
+        /// <summary>
+        /// The company the account belongs to.
+        /// </summary>
+        /// <value>The company the account belongs to.</value>
+        [DataMember(Name = "company", EmitDefaultValue = true)]
+        public Guid? Company { get; set; }
+
+        /// <summary>
         /// Indicates whether or not this object has been deleted by third party webhooks.
         /// </summary>
         /// <value>Indicates whether or not this object has been deleted by third party webhooks.</value>
@@ -162,6 +180,21 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <returns>false (boolean)</returns>
         public bool ShouldSerializeRemoteWasDeleted()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// Gets or Sets FieldMappings
+        /// </summary>
+        [DataMember(Name = "field_mappings", EmitDefaultValue = true)]
+        public Dictionary<string, Object> FieldMappings { get; private set; }
+
+        /// <summary>
+        /// Returns false as FieldMappings should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeFieldMappings()
         {
             return false;
         }
@@ -185,7 +218,10 @@ namespace Merge.AccountingClient.Model
             sb.Append("  CurrentBalance: ").Append(CurrentBalance).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
+            sb.Append("  ParentAccount: ").Append(ParentAccount).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
+            sb.Append("  FieldMappings: ").Append(FieldMappings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -274,8 +310,24 @@ namespace Merge.AccountingClient.Model
                     this.AccountNumber.Equals(input.AccountNumber))
                 ) && 
                 (
+                    this.ParentAccount == input.ParentAccount ||
+                    (this.ParentAccount != null &&
+                    this.ParentAccount.Equals(input.ParentAccount))
+                ) && 
+                (
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
+                ) && 
+                (
                     this.RemoteWasDeleted == input.RemoteWasDeleted ||
                     this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
+                ) && 
+                (
+                    this.FieldMappings == input.FieldMappings ||
+                    this.FieldMappings != null &&
+                    input.FieldMappings != null &&
+                    this.FieldMappings.SequenceEqual(input.FieldMappings)
                 );
         }
 
@@ -307,7 +359,13 @@ namespace Merge.AccountingClient.Model
                 hashCode = hashCode * 59 + this.Currency.GetHashCode();
                 if (this.AccountNumber != null)
                     hashCode = hashCode * 59 + this.AccountNumber.GetHashCode();
+                if (this.ParentAccount != null)
+                    hashCode = hashCode * 59 + this.ParentAccount.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
                 hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
+                if (this.FieldMappings != null)
+                    hashCode = hashCode * 59 + this.FieldMappings.GetHashCode();
                 return hashCode;
             }
         }

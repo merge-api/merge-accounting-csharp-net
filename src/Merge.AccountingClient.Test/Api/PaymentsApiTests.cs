@@ -56,6 +56,21 @@ namespace Merge.AccountingClient.Test.Api
         }
 
         /// <summary>
+        /// Test PaymentsCreate
+        /// </summary>
+        [Fact]
+        public void PaymentsCreateTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string xAccountToken = null;
+            //PaymentEndpointRequest paymentEndpointRequest = null;
+            //bool? isDebugMode = null;
+            //bool? runAsync = null;
+            //var response = instance.PaymentsCreate(xAccountToken, paymentEndpointRequest, isDebugMode, runAsync);
+            //Assert.IsType<PaymentResponse>(response);
+        }
+
+        /// <summary>
         /// Test PaymentsList
         /// </summary>
         [Fact]
@@ -64,6 +79,7 @@ namespace Merge.AccountingClient.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string xAccountToken = null;
             //string accountId = null;
+            //string companyId = null;
             //string contactId = null;
             //DateTime? createdAfter = null;
             //DateTime? createdBefore = null;
@@ -74,8 +90,20 @@ namespace Merge.AccountingClient.Test.Api
             //DateTime? modifiedBefore = null;
             //int? pageSize = null;
             //string remoteId = null;
-            //var response = instance.PaymentsList(xAccountToken, accountId, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+            //var response = instance.PaymentsList(xAccountToken, accountId, companyId, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
             //Assert.IsType<PaginatedPaymentList>(response);
+        }
+
+        /// <summary>
+        /// Test PaymentsMetaPostRetrieve
+        /// </summary>
+        [Fact]
+        public void PaymentsMetaPostRetrieveTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string xAccountToken = null;
+            //var response = instance.PaymentsMetaPostRetrieve(xAccountToken);
+            //Assert.IsType<MetaResponse>(response);
         }
 
         /// <summary>

@@ -114,6 +114,14 @@ namespace Merge.AccountingClient.Test.Model
             // TODO unit test for the property 'Contact'
         }
         /// <summary>
+        /// Test the property 'Company'
+        /// </summary>
+        [Fact]
+        public void CompanyTest()
+        {
+            // TODO unit test for the property 'Company'
+        }
+        /// <summary>
         /// Test the property 'TotalAmount'
         /// </summary>
         [Fact]
@@ -176,6 +184,14 @@ namespace Merge.AccountingClient.Test.Model
         public void RemoteWasDeletedTest()
         {
             // TODO unit test for the property 'RemoteWasDeleted'
+        }
+        /// <summary>
+        /// Test the property 'FieldMappings'
+        /// </summary>
+        [Fact]
+        public void FieldMappingsTest()
+        {
+            // TODO unit test for the property 'FieldMappings'
         }
 
     }

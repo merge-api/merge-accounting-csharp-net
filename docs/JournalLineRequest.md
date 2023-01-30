@@ -5,12 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RemoteId** | **string** | The third-party API ID of the matching object. | [optional] 
 **Account** | **Guid?** |  | [optional] 
-**NetAmount** | **float?** | The line&#39;s net amount. | [optional] 
+**NetAmount** | **float?** | The value of the line item including taxes and other fees. | [optional] 
 **TrackingCategory** | **Guid?** |  | [optional] 
+**TrackingCategories** | **List&lt;Guid?&gt;** |  | [optional] 
 **Contact** | **Guid?** |  | [optional] 
 **Description** | **string** | The line&#39;s description. | [optional] 
+**RemoteId** | **string** | The third-party API ID of the matching object. | [optional] 
+**IntegrationParams** | **Dictionary&lt;string, Object&gt;** |  | [optional] 
+**LinkedAccountParams** | **Dictionary&lt;string, Object&gt;** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

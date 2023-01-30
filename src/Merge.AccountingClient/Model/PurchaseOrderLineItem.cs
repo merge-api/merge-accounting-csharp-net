@@ -32,19 +32,37 @@ namespace Merge.AccountingClient.Model
     [DataContract(Name = "PurchaseOrderLineItem")]
     public partial class PurchaseOrderLineItem : IEquatable<PurchaseOrderLineItem>, IValidatableObject
     {
+
+        /// <summary>
+        /// The purchase order line item&#39;s currency.
+        /// </summary>
+        /// <value>The purchase order line item&#39;s currency.</value>
+        [DataMember(Name = "currency", EmitDefaultValue = true)]
+        public CurrencyEnum? Currency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PurchaseOrderLineItem" /> class.
         /// </summary>
-        /// <param name="description">The line item&#39;s description..</param>
+        [JsonConstructorAttribute]
+        protected PurchaseOrderLineItem() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PurchaseOrderLineItem" /> class.
+        /// </summary>
+        /// <param name="description">A description of the good being purchased..</param>
         /// <param name="unitPrice">The line item&#39;s unit price..</param>
         /// <param name="quantity">The line item&#39;s quantity..</param>
         /// <param name="item">item.</param>
         /// <param name="account">The purchase order line item&#39;s account..</param>
         /// <param name="trackingCategory">The purchase order line item&#39;s associated tracking category..</param>
+        /// <param name="trackingCategories">The purchase order line item&#39;s associated tracking categories. (required).</param>
         /// <param name="taxAmount">The purchase order line item&#39;s tax amount..</param>
         /// <param name="totalLineAmount">The purchase order line item&#39;s total amount..</param>
-        public PurchaseOrderLineItem(string description = default(string), float? unitPrice = default(float?), float? quantity = default(float?), Guid? item = default(Guid?), Guid? account = default(Guid?), Guid? trackingCategory = default(Guid?), decimal? taxAmount = default(decimal?), decimal? totalLineAmount = default(decimal?))
+        /// <param name="currency">The purchase order line item&#39;s currency..</param>
+        /// <param name="exchangeRate">The purchase order line item&#39;s exchange rate..</param>
+        /// <param name="company">The company the purchase order line item belongs to..</param>
+        public PurchaseOrderLineItem(string description = default(string), float? unitPrice = default(float?), float? quantity = default(float?), Guid? item = default(Guid?), Guid? account = default(Guid?), Guid? trackingCategory = default(Guid?), List<Guid> trackingCategories = default(List<Guid>), decimal? taxAmount = default(decimal?), decimal? totalLineAmount = default(decimal?), CurrencyEnum? currency = default(CurrencyEnum?), decimal? exchangeRate = default(decimal?), Guid? company = default(Guid?))
         {
+            // to ensure "trackingCategories" is required (not null)
+            this.TrackingCategories = trackingCategories ?? throw new ArgumentNullException("trackingCategories is a required property for PurchaseOrderLineItem and cannot be null");
             this.Description = description;
             this.UnitPrice = unitPrice;
             this.Quantity = quantity;
@@ -53,12 +71,15 @@ namespace Merge.AccountingClient.Model
             this.TrackingCategory = trackingCategory;
             this.TaxAmount = taxAmount;
             this.TotalLineAmount = totalLineAmount;
+            this.Currency = currency;
+            this.ExchangeRate = exchangeRate;
+            this.Company = company;
         }
 
         /// <summary>
-        /// The line item&#39;s description.
+        /// A description of the good being purchased.
         /// </summary>
-        /// <value>The line item&#39;s description.</value>
+        /// <value>A description of the good being purchased.</value>
         [DataMember(Name = "description", EmitDefaultValue = true)]
         public string Description { get; set; }
 
@@ -97,6 +118,13 @@ namespace Merge.AccountingClient.Model
         public Guid? TrackingCategory { get; set; }
 
         /// <summary>
+        /// The purchase order line item&#39;s associated tracking categories.
+        /// </summary>
+        /// <value>The purchase order line item&#39;s associated tracking categories.</value>
+        [DataMember(Name = "tracking_categories", IsRequired = true, EmitDefaultValue = false)]
+        public List<Guid> TrackingCategories { get; set; }
+
+        /// <summary>
         /// The purchase order line item&#39;s tax amount.
         /// </summary>
         /// <value>The purchase order line item&#39;s tax amount.</value>
@@ -109,6 +137,20 @@ namespace Merge.AccountingClient.Model
         /// <value>The purchase order line item&#39;s total amount.</value>
         [DataMember(Name = "total_line_amount", EmitDefaultValue = true)]
         public decimal? TotalLineAmount { get; set; }
+
+        /// <summary>
+        /// The purchase order line item&#39;s exchange rate.
+        /// </summary>
+        /// <value>The purchase order line item&#39;s exchange rate.</value>
+        [DataMember(Name = "exchange_rate", EmitDefaultValue = true)]
+        public decimal? ExchangeRate { get; set; }
+
+        /// <summary>
+        /// The company the purchase order line item belongs to.
+        /// </summary>
+        /// <value>The company the purchase order line item belongs to.</value>
+        [DataMember(Name = "company", EmitDefaultValue = true)]
+        public Guid? Company { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -124,8 +166,12 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Item: ").Append(Item).Append("\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  TrackingCategory: ").Append(TrackingCategory).Append("\n");
+            sb.Append("  TrackingCategories: ").Append(TrackingCategories).Append("\n");
             sb.Append("  TaxAmount: ").Append(TaxAmount).Append("\n");
             sb.Append("  TotalLineAmount: ").Append(TotalLineAmount).Append("\n");
+            sb.Append("  Currency: ").Append(Currency).Append("\n");
+            sb.Append("  ExchangeRate: ").Append(ExchangeRate).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -191,6 +237,12 @@ namespace Merge.AccountingClient.Model
                     this.TrackingCategory.Equals(input.TrackingCategory))
                 ) && 
                 (
+                    this.TrackingCategories == input.TrackingCategories ||
+                    this.TrackingCategories != null &&
+                    input.TrackingCategories != null &&
+                    this.TrackingCategories.SequenceEqual(input.TrackingCategories)
+                ) && 
+                (
                     this.TaxAmount == input.TaxAmount ||
                     (this.TaxAmount != null &&
                     this.TaxAmount.Equals(input.TaxAmount))
@@ -199,6 +251,20 @@ namespace Merge.AccountingClient.Model
                     this.TotalLineAmount == input.TotalLineAmount ||
                     (this.TotalLineAmount != null &&
                     this.TotalLineAmount.Equals(input.TotalLineAmount))
+                ) && 
+                (
+                    this.Currency == input.Currency ||
+                    this.Currency.Equals(input.Currency)
+                ) && 
+                (
+                    this.ExchangeRate == input.ExchangeRate ||
+                    (this.ExchangeRate != null &&
+                    this.ExchangeRate.Equals(input.ExchangeRate))
+                ) && 
+                (
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
                 );
         }
 
@@ -223,10 +289,17 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.Account.GetHashCode();
                 if (this.TrackingCategory != null)
                     hashCode = hashCode * 59 + this.TrackingCategory.GetHashCode();
+                if (this.TrackingCategories != null)
+                    hashCode = hashCode * 59 + this.TrackingCategories.GetHashCode();
                 if (this.TaxAmount != null)
                     hashCode = hashCode * 59 + this.TaxAmount.GetHashCode();
                 if (this.TotalLineAmount != null)
                     hashCode = hashCode * 59 + this.TotalLineAmount.GetHashCode();
+                hashCode = hashCode * 59 + this.Currency.GetHashCode();
+                if (this.ExchangeRate != null)
+                    hashCode = hashCode * 59 + this.ExchangeRate.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
                 return hashCode;
             }
         }
@@ -250,6 +323,13 @@ namespace Merge.AccountingClient.Model
             if (false == regexTotalLineAmount.Match(this.TotalLineAmount.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TotalLineAmount, must match a pattern of " + regexTotalLineAmount, new [] { "TotalLineAmount" });
+            }
+
+            // ExchangeRate (decimal?) pattern
+            Regex regexExchangeRate = new Regex(@"^\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
+            if (false == regexExchangeRate.Match(this.ExchangeRate.ToString()).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExchangeRate, must match a pattern of " + regexExchangeRate, new [] { "ExchangeRate" });
             }
 
             yield break;

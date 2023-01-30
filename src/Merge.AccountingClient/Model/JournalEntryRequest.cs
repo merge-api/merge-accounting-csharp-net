@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Merge.AccountingClient.Client.OpenAPIDateConverter;
 namespace Merge.AccountingClient.Model
 {
     /// <summary>
-    /// # The JournalEntry Object ### Description The &#x60;JournalEntry&#x60; object is used to represent a company&#39;s journey entries.  ### Usage Example Fetch from the &#x60;GET JournalEntry&#x60; endpoint and view a company&#39;s journey entry.
+    /// # The JournalEntry Object ### Description The &#x60;JournalEntry&#x60; object is used to get a record of all manually created entries made in a company’s general ledger. The journal line items for each journal entry should sum to zero.  ### Usage Example Fetch from the &#x60;GET JournalEntry&#x60; endpoint and view a company&#39;s journey entry.
     /// </summary>
     [DataContract(Name = "JournalEntryRequest")]
     public partial class JournalEntryRequest : IEquatable<JournalEntryRequest>, IValidatableObject
@@ -38,32 +38,31 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The journal&#39;s currency.</value>
         [DataMember(Name = "currency", EmitDefaultValue = true)]
-        public string Currency { get; set; }
+        public CurrencyEnum? Currency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalEntryRequest" /> class.
         /// </summary>
-        /// <param name="remoteId">The third-party API ID of the matching object..</param>
         /// <param name="transactionDate">The journal entry&#39;s transaction date..</param>
-        /// <param name="remoteCreatedAt">When the third party&#39;s journal entry was created..</param>
         /// <param name="payments">Array of &#x60;Payment&#x60; object IDs..</param>
         /// <param name="memo">The journal entry&#39;s private note..</param>
         /// <param name="currency">The journal&#39;s currency..</param>
-        public JournalEntryRequest(string remoteId = default(string), DateTime? transactionDate = default(DateTime?), DateTime? remoteCreatedAt = default(DateTime?), List<Guid?> payments = default(List<Guid?>), string memo = default(string), string currency = default(string))
+        /// <param name="exchangeRate">The journal entry&#39;s exchange rate..</param>
+        /// <param name="company">The company the journal entry belongs to..</param>
+        /// <param name="lines">lines.</param>
+        /// <param name="integrationParams">integrationParams.</param>
+        /// <param name="linkedAccountParams">linkedAccountParams.</param>
+        public JournalEntryRequest(DateTime? transactionDate = default(DateTime?), List<Guid?> payments = default(List<Guid?>), string memo = default(string), CurrencyEnum? currency = default(CurrencyEnum?), decimal? exchangeRate = default(decimal?), Guid? company = default(Guid?), List<JournalLineRequest> lines = default(List<JournalLineRequest>), Dictionary<string, Object> integrationParams = default(Dictionary<string, Object>), Dictionary<string, Object> linkedAccountParams = default(Dictionary<string, Object>))
         {
-            this.RemoteId = remoteId;
             this.TransactionDate = transactionDate;
-            this.RemoteCreatedAt = remoteCreatedAt;
             this.Payments = payments;
             this.Memo = memo;
             this.Currency = currency;
+            this.ExchangeRate = exchangeRate;
+            this.Company = company;
+            this.Lines = lines;
+            this.IntegrationParams = integrationParams;
+            this.LinkedAccountParams = linkedAccountParams;
         }
-
-        /// <summary>
-        /// The third-party API ID of the matching object.
-        /// </summary>
-        /// <value>The third-party API ID of the matching object.</value>
-        [DataMember(Name = "remote_id", EmitDefaultValue = true)]
-        public string RemoteId { get; set; }
 
         /// <summary>
         /// The journal entry&#39;s transaction date.
@@ -71,13 +70,6 @@ namespace Merge.AccountingClient.Model
         /// <value>The journal entry&#39;s transaction date.</value>
         [DataMember(Name = "transaction_date", EmitDefaultValue = true)]
         public DateTime? TransactionDate { get; set; }
-
-        /// <summary>
-        /// When the third party&#39;s journal entry was created.
-        /// </summary>
-        /// <value>When the third party&#39;s journal entry was created.</value>
-        [DataMember(Name = "remote_created_at", EmitDefaultValue = true)]
-        public DateTime? RemoteCreatedAt { get; set; }
 
         /// <summary>
         /// Array of &#x60;Payment&#x60; object IDs.
@@ -94,6 +86,38 @@ namespace Merge.AccountingClient.Model
         public string Memo { get; set; }
 
         /// <summary>
+        /// The journal entry&#39;s exchange rate.
+        /// </summary>
+        /// <value>The journal entry&#39;s exchange rate.</value>
+        [DataMember(Name = "exchange_rate", EmitDefaultValue = true)]
+        public decimal? ExchangeRate { get; set; }
+
+        /// <summary>
+        /// The company the journal entry belongs to.
+        /// </summary>
+        /// <value>The company the journal entry belongs to.</value>
+        [DataMember(Name = "company", EmitDefaultValue = true)]
+        public Guid? Company { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Lines
+        /// </summary>
+        [DataMember(Name = "lines", EmitDefaultValue = false)]
+        public List<JournalLineRequest> Lines { get; set; }
+
+        /// <summary>
+        /// Gets or Sets IntegrationParams
+        /// </summary>
+        [DataMember(Name = "integration_params", EmitDefaultValue = true)]
+        public Dictionary<string, Object> IntegrationParams { get; set; }
+
+        /// <summary>
+        /// Gets or Sets LinkedAccountParams
+        /// </summary>
+        [DataMember(Name = "linked_account_params", EmitDefaultValue = true)]
+        public Dictionary<string, Object> LinkedAccountParams { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -101,12 +125,15 @@ namespace Merge.AccountingClient.Model
         {
             var sb = new StringBuilder();
             sb.Append("class JournalEntryRequest {\n");
-            sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
             sb.Append("  TransactionDate: ").Append(TransactionDate).Append("\n");
-            sb.Append("  RemoteCreatedAt: ").Append(RemoteCreatedAt).Append("\n");
             sb.Append("  Payments: ").Append(Payments).Append("\n");
             sb.Append("  Memo: ").Append(Memo).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
+            sb.Append("  ExchangeRate: ").Append(ExchangeRate).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
+            sb.Append("  Lines: ").Append(Lines).Append("\n");
+            sb.Append("  IntegrationParams: ").Append(IntegrationParams).Append("\n");
+            sb.Append("  LinkedAccountParams: ").Append(LinkedAccountParams).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -142,19 +169,9 @@ namespace Merge.AccountingClient.Model
 
             return 
                 (
-                    this.RemoteId == input.RemoteId ||
-                    (this.RemoteId != null &&
-                    this.RemoteId.Equals(input.RemoteId))
-                ) && 
-                (
                     this.TransactionDate == input.TransactionDate ||
                     (this.TransactionDate != null &&
                     this.TransactionDate.Equals(input.TransactionDate))
-                ) && 
-                (
-                    this.RemoteCreatedAt == input.RemoteCreatedAt ||
-                    (this.RemoteCreatedAt != null &&
-                    this.RemoteCreatedAt.Equals(input.RemoteCreatedAt))
                 ) && 
                 (
                     this.Payments == input.Payments ||
@@ -170,6 +187,34 @@ namespace Merge.AccountingClient.Model
                 (
                     this.Currency == input.Currency ||
                     this.Currency.Equals(input.Currency)
+                ) && 
+                (
+                    this.ExchangeRate == input.ExchangeRate ||
+                    (this.ExchangeRate != null &&
+                    this.ExchangeRate.Equals(input.ExchangeRate))
+                ) && 
+                (
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
+                ) && 
+                (
+                    this.Lines == input.Lines ||
+                    this.Lines != null &&
+                    input.Lines != null &&
+                    this.Lines.SequenceEqual(input.Lines)
+                ) && 
+                (
+                    this.IntegrationParams == input.IntegrationParams ||
+                    this.IntegrationParams != null &&
+                    input.IntegrationParams != null &&
+                    this.IntegrationParams.SequenceEqual(input.IntegrationParams)
+                ) && 
+                (
+                    this.LinkedAccountParams == input.LinkedAccountParams ||
+                    this.LinkedAccountParams != null &&
+                    input.LinkedAccountParams != null &&
+                    this.LinkedAccountParams.SequenceEqual(input.LinkedAccountParams)
                 );
         }
 
@@ -182,17 +227,23 @@ namespace Merge.AccountingClient.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.RemoteId != null)
-                    hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
                 if (this.TransactionDate != null)
                     hashCode = hashCode * 59 + this.TransactionDate.GetHashCode();
-                if (this.RemoteCreatedAt != null)
-                    hashCode = hashCode * 59 + this.RemoteCreatedAt.GetHashCode();
                 if (this.Payments != null)
                     hashCode = hashCode * 59 + this.Payments.GetHashCode();
                 if (this.Memo != null)
                     hashCode = hashCode * 59 + this.Memo.GetHashCode();
                 hashCode = hashCode * 59 + this.Currency.GetHashCode();
+                if (this.ExchangeRate != null)
+                    hashCode = hashCode * 59 + this.ExchangeRate.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
+                if (this.Lines != null)
+                    hashCode = hashCode * 59 + this.Lines.GetHashCode();
+                if (this.IntegrationParams != null)
+                    hashCode = hashCode * 59 + this.IntegrationParams.GetHashCode();
+                if (this.LinkedAccountParams != null)
+                    hashCode = hashCode * 59 + this.LinkedAccountParams.GetHashCode();
                 return hashCode;
             }
         }
@@ -204,6 +255,13 @@ namespace Merge.AccountingClient.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // ExchangeRate (decimal?) pattern
+            Regex regexExchangeRate = new Regex(@"^\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
+            if (false == regexExchangeRate.Match(this.ExchangeRate.ToString()).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExchangeRate, must match a pattern of " + regexExchangeRate, new [] { "ExchangeRate" });
+            }
+
             yield break;
         }
     }

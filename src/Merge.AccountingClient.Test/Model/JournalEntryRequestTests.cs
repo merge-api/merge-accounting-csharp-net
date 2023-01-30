@@ -58,28 +58,12 @@ namespace Merge.AccountingClient.Test.Model
 
 
         /// <summary>
-        /// Test the property 'RemoteId'
-        /// </summary>
-        [Fact]
-        public void RemoteIdTest()
-        {
-            // TODO unit test for the property 'RemoteId'
-        }
-        /// <summary>
         /// Test the property 'TransactionDate'
         /// </summary>
         [Fact]
         public void TransactionDateTest()
         {
             // TODO unit test for the property 'TransactionDate'
-        }
-        /// <summary>
-        /// Test the property 'RemoteCreatedAt'
-        /// </summary>
-        [Fact]
-        public void RemoteCreatedAtTest()
-        {
-            // TODO unit test for the property 'RemoteCreatedAt'
         }
         /// <summary>
         /// Test the property 'Payments'
@@ -104,6 +88,46 @@ namespace Merge.AccountingClient.Test.Model
         public void CurrencyTest()
         {
             // TODO unit test for the property 'Currency'
+        }
+        /// <summary>
+        /// Test the property 'ExchangeRate'
+        /// </summary>
+        [Fact]
+        public void ExchangeRateTest()
+        {
+            // TODO unit test for the property 'ExchangeRate'
+        }
+        /// <summary>
+        /// Test the property 'Company'
+        /// </summary>
+        [Fact]
+        public void CompanyTest()
+        {
+            // TODO unit test for the property 'Company'
+        }
+        /// <summary>
+        /// Test the property 'Lines'
+        /// </summary>
+        [Fact]
+        public void LinesTest()
+        {
+            // TODO unit test for the property 'Lines'
+        }
+        /// <summary>
+        /// Test the property 'IntegrationParams'
+        /// </summary>
+        [Fact]
+        public void IntegrationParamsTest()
+        {
+            // TODO unit test for the property 'IntegrationParams'
+        }
+        /// <summary>
+        /// Test the property 'LinkedAccountParams'
+        /// </summary>
+        [Fact]
+        public void LinkedAccountParamsTest()
+        {
+            // TODO unit test for the property 'LinkedAccountParams'
         }
 
     }

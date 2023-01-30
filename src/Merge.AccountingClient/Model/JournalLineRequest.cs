@@ -35,28 +35,27 @@ namespace Merge.AccountingClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalLineRequest" /> class.
         /// </summary>
-        /// <param name="remoteId">The third-party API ID of the matching object..</param>
         /// <param name="account">account.</param>
-        /// <param name="netAmount">The line&#39;s net amount..</param>
+        /// <param name="netAmount">The value of the line item including taxes and other fees..</param>
         /// <param name="trackingCategory">trackingCategory.</param>
+        /// <param name="trackingCategories">trackingCategories.</param>
         /// <param name="contact">contact.</param>
         /// <param name="description">The line&#39;s description..</param>
-        public JournalLineRequest(string remoteId = default(string), Guid? account = default(Guid?), float? netAmount = default(float?), Guid? trackingCategory = default(Guid?), Guid? contact = default(Guid?), string description = default(string))
+        /// <param name="remoteId">The third-party API ID of the matching object..</param>
+        /// <param name="integrationParams">integrationParams.</param>
+        /// <param name="linkedAccountParams">linkedAccountParams.</param>
+        public JournalLineRequest(Guid? account = default(Guid?), float? netAmount = default(float?), Guid? trackingCategory = default(Guid?), List<Guid?> trackingCategories = default(List<Guid?>), Guid? contact = default(Guid?), string description = default(string), string remoteId = default(string), Dictionary<string, Object> integrationParams = default(Dictionary<string, Object>), Dictionary<string, Object> linkedAccountParams = default(Dictionary<string, Object>))
         {
-            this.RemoteId = remoteId;
             this.Account = account;
             this.NetAmount = netAmount;
             this.TrackingCategory = trackingCategory;
+            this.TrackingCategories = trackingCategories;
             this.Contact = contact;
             this.Description = description;
+            this.RemoteId = remoteId;
+            this.IntegrationParams = integrationParams;
+            this.LinkedAccountParams = linkedAccountParams;
         }
-
-        /// <summary>
-        /// The third-party API ID of the matching object.
-        /// </summary>
-        /// <value>The third-party API ID of the matching object.</value>
-        [DataMember(Name = "remote_id", EmitDefaultValue = true)]
-        public string RemoteId { get; set; }
 
         /// <summary>
         /// Gets or Sets Account
@@ -65,9 +64,9 @@ namespace Merge.AccountingClient.Model
         public Guid? Account { get; set; }
 
         /// <summary>
-        /// The line&#39;s net amount.
+        /// The value of the line item including taxes and other fees.
         /// </summary>
-        /// <value>The line&#39;s net amount.</value>
+        /// <value>The value of the line item including taxes and other fees.</value>
         [DataMember(Name = "net_amount", EmitDefaultValue = true)]
         public float? NetAmount { get; set; }
 
@@ -76,6 +75,12 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         [DataMember(Name = "tracking_category", EmitDefaultValue = true)]
         public Guid? TrackingCategory { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TrackingCategories
+        /// </summary>
+        [DataMember(Name = "tracking_categories", EmitDefaultValue = false)]
+        public List<Guid?> TrackingCategories { get; set; }
 
         /// <summary>
         /// Gets or Sets Contact
@@ -91,6 +96,25 @@ namespace Merge.AccountingClient.Model
         public string Description { get; set; }
 
         /// <summary>
+        /// The third-party API ID of the matching object.
+        /// </summary>
+        /// <value>The third-party API ID of the matching object.</value>
+        [DataMember(Name = "remote_id", EmitDefaultValue = true)]
+        public string RemoteId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets IntegrationParams
+        /// </summary>
+        [DataMember(Name = "integration_params", EmitDefaultValue = true)]
+        public Dictionary<string, Object> IntegrationParams { get; set; }
+
+        /// <summary>
+        /// Gets or Sets LinkedAccountParams
+        /// </summary>
+        [DataMember(Name = "linked_account_params", EmitDefaultValue = true)]
+        public Dictionary<string, Object> LinkedAccountParams { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -98,12 +122,15 @@ namespace Merge.AccountingClient.Model
         {
             var sb = new StringBuilder();
             sb.Append("class JournalLineRequest {\n");
-            sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  NetAmount: ").Append(NetAmount).Append("\n");
             sb.Append("  TrackingCategory: ").Append(TrackingCategory).Append("\n");
+            sb.Append("  TrackingCategories: ").Append(TrackingCategories).Append("\n");
             sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
+            sb.Append("  IntegrationParams: ").Append(IntegrationParams).Append("\n");
+            sb.Append("  LinkedAccountParams: ").Append(LinkedAccountParams).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -139,11 +166,6 @@ namespace Merge.AccountingClient.Model
 
             return 
                 (
-                    this.RemoteId == input.RemoteId ||
-                    (this.RemoteId != null &&
-                    this.RemoteId.Equals(input.RemoteId))
-                ) && 
-                (
                     this.Account == input.Account ||
                     (this.Account != null &&
                     this.Account.Equals(input.Account))
@@ -159,6 +181,12 @@ namespace Merge.AccountingClient.Model
                     this.TrackingCategory.Equals(input.TrackingCategory))
                 ) && 
                 (
+                    this.TrackingCategories == input.TrackingCategories ||
+                    this.TrackingCategories != null &&
+                    input.TrackingCategories != null &&
+                    this.TrackingCategories.SequenceEqual(input.TrackingCategories)
+                ) && 
+                (
                     this.Contact == input.Contact ||
                     (this.Contact != null &&
                     this.Contact.Equals(input.Contact))
@@ -167,6 +195,23 @@ namespace Merge.AccountingClient.Model
                     this.Description == input.Description ||
                     (this.Description != null &&
                     this.Description.Equals(input.Description))
+                ) && 
+                (
+                    this.RemoteId == input.RemoteId ||
+                    (this.RemoteId != null &&
+                    this.RemoteId.Equals(input.RemoteId))
+                ) && 
+                (
+                    this.IntegrationParams == input.IntegrationParams ||
+                    this.IntegrationParams != null &&
+                    input.IntegrationParams != null &&
+                    this.IntegrationParams.SequenceEqual(input.IntegrationParams)
+                ) && 
+                (
+                    this.LinkedAccountParams == input.LinkedAccountParams ||
+                    this.LinkedAccountParams != null &&
+                    input.LinkedAccountParams != null &&
+                    this.LinkedAccountParams.SequenceEqual(input.LinkedAccountParams)
                 );
         }
 
@@ -179,18 +224,24 @@ namespace Merge.AccountingClient.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.RemoteId != null)
-                    hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
                 if (this.Account != null)
                     hashCode = hashCode * 59 + this.Account.GetHashCode();
                 if (this.NetAmount != null)
                     hashCode = hashCode * 59 + this.NetAmount.GetHashCode();
                 if (this.TrackingCategory != null)
                     hashCode = hashCode * 59 + this.TrackingCategory.GetHashCode();
+                if (this.TrackingCategories != null)
+                    hashCode = hashCode * 59 + this.TrackingCategories.GetHashCode();
                 if (this.Contact != null)
                     hashCode = hashCode * 59 + this.Contact.GetHashCode();
                 if (this.Description != null)
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
+                if (this.RemoteId != null)
+                    hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
+                if (this.IntegrationParams != null)
+                    hashCode = hashCode * 59 + this.IntegrationParams.GetHashCode();
+                if (this.LinkedAccountParams != null)
+                    hashCode = hashCode * 59 + this.LinkedAccountParams.GetHashCode();
                 return hashCode;
             }
         }

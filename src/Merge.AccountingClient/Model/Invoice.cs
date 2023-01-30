@@ -27,47 +27,49 @@ using OpenAPIDateConverter = Merge.AccountingClient.Client.OpenAPIDateConverter;
 namespace Merge.AccountingClient.Model
 {
     /// <summary>
-    /// # The Invoice Object ### Description The &#x60;Invoice&#x60; object is used to represent a company&#39;s invoices.  ### Usage Example Fetch from the &#x60;LIST Invoices&#x60; endpoint and view a company&#39;s invoices.
+    /// # The Invoice Object     ### Description     The &#x60;Invoice&#x60; object represents an itemized record of goods and/or services sold to a customer. If type &#x3D; accounts_payable &#x60;Invoice&#x60; is a bill, if type &#x3D; accounts_receivable it&#39;s an invoice.      ### Usage Example     Fetch from the &#x60;LIST Invoices&#x60; endpoint and view a company&#39;s invoices.
     /// </summary>
     [DataContract(Name = "Invoice")]
     public partial class Invoice : IEquatable<Invoice>, IValidatableObject
     {
 
         /// <summary>
-        /// The invoice&#39;s type.
+        /// Whether the invoice is an accounts receivable or accounts payable. Accounts payable invoices are commonly referred to as Bills.
         /// </summary>
-        /// <value>The invoice&#39;s type.</value>
+        /// <value>Whether the invoice is an accounts receivable or accounts payable. Accounts payable invoices are commonly referred to as Bills.</value>
         [DataMember(Name = "type", EmitDefaultValue = true)]
-        public string Type { get; set; }
+        public InvoiceTypeEnum? Type { get; set; }
 
         /// <summary>
         /// The invoice&#39;s currency.
         /// </summary>
         /// <value>The invoice&#39;s currency.</value>
         [DataMember(Name = "currency", EmitDefaultValue = true)]
-        public string Currency { get; set; }
+        public CurrencyEnum? Currency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Invoice" /> class.
         /// </summary>
-        /// <param name="remoteId">The third-party API ID of the matching object..</param>
-        /// <param name="type">The invoice&#39;s type..</param>
-        /// <param name="contact">contact.</param>
+        /// <param name="type">Whether the invoice is an accounts receivable or accounts payable. Accounts payable invoices are commonly referred to as Bills..</param>
+        /// <param name="contact">The invoice&#39;s contact..</param>
         /// <param name="number">The invoice&#39;s number..</param>
         /// <param name="issueDate">The invoice&#39;s issue date..</param>
         /// <param name="dueDate">The invoice&#39;s due date..</param>
         /// <param name="paidOnDate">The invoice&#39;s paid date..</param>
         /// <param name="memo">The invoice&#39;s private note..</param>
+        /// <param name="company">The company the invoice belongs to..</param>
         /// <param name="currency">The invoice&#39;s currency..</param>
-        /// <param name="totalDiscount">The invoice&#39;s total discount..</param>
-        /// <param name="subTotal">The invoice&#39;s sub-total..</param>
-        /// <param name="totalTaxAmount">The invoice&#39;s total tax amount..</param>
+        /// <param name="exchangeRate">The invoice&#39;s exchange rate..</param>
+        /// <param name="totalDiscount">The total discounts applied to the total cost..</param>
+        /// <param name="subTotal">The total amount being paid before taxes..</param>
+        /// <param name="totalTaxAmount">The total amount being paid in taxes..</param>
         /// <param name="totalAmount">The invoice&#39;s total amount..</param>
         /// <param name="balance">The invoice&#39;s remaining balance..</param>
         /// <param name="remoteUpdatedAt">When the third party&#39;s invoice entry was updated..</param>
         /// <param name="payments">Array of &#x60;Payment&#x60; object IDs..</param>
-        public Invoice(string remoteId = default(string), string type = default(string), Guid? contact = default(Guid?), string number = default(string), DateTime? issueDate = default(DateTime?), DateTime? dueDate = default(DateTime?), DateTime? paidOnDate = default(DateTime?), string memo = default(string), string currency = default(string), float? totalDiscount = default(float?), float? subTotal = default(float?), float? totalTaxAmount = default(float?), float? totalAmount = default(float?), float? balance = default(float?), DateTime? remoteUpdatedAt = default(DateTime?), List<Guid?> payments = default(List<Guid?>))
+        /// <param name="lineItems">lineItems.</param>
+        /// <param name="remoteId">The third-party API ID of the matching object..</param>
+        public Invoice(InvoiceTypeEnum? type = default(InvoiceTypeEnum?), Guid? contact = default(Guid?), string number = default(string), DateTime? issueDate = default(DateTime?), DateTime? dueDate = default(DateTime?), DateTime? paidOnDate = default(DateTime?), string memo = default(string), Guid? company = default(Guid?), CurrencyEnum? currency = default(CurrencyEnum?), decimal? exchangeRate = default(decimal?), float? totalDiscount = default(float?), float? subTotal = default(float?), float? totalTaxAmount = default(float?), float? totalAmount = default(float?), float? balance = default(float?), DateTime? remoteUpdatedAt = default(DateTime?), List<Guid?> payments = default(List<Guid?>), List<InvoiceLineItem> lineItems = default(List<InvoiceLineItem>), string remoteId = default(string))
         {
-            this.RemoteId = remoteId;
             this.Type = type;
             this.Contact = contact;
             this.Number = number;
@@ -75,7 +77,9 @@ namespace Merge.AccountingClient.Model
             this.DueDate = dueDate;
             this.PaidOnDate = paidOnDate;
             this.Memo = memo;
+            this.Company = company;
             this.Currency = currency;
+            this.ExchangeRate = exchangeRate;
             this.TotalDiscount = totalDiscount;
             this.SubTotal = subTotal;
             this.TotalTaxAmount = totalTaxAmount;
@@ -83,29 +87,9 @@ namespace Merge.AccountingClient.Model
             this.Balance = balance;
             this.RemoteUpdatedAt = remoteUpdatedAt;
             this.Payments = payments;
+            this.LineItems = lineItems;
+            this.RemoteId = remoteId;
         }
-
-        /// <summary>
-        /// Gets or Sets Id
-        /// </summary>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
-        public Guid Id { get; private set; }
-
-        /// <summary>
-        /// Returns false as Id should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeId()
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// The third-party API ID of the matching object.
-        /// </summary>
-        /// <value>The third-party API ID of the matching object.</value>
-        [DataMember(Name = "remote_id", EmitDefaultValue = true)]
-        public string RemoteId { get; set; }
 
         /// <summary>
         /// Gets or Sets RemoteData
@@ -123,8 +107,9 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
-        /// Gets or Sets Contact
+        /// The invoice&#39;s contact.
         /// </summary>
+        /// <value>The invoice&#39;s contact.</value>
         [DataMember(Name = "contact", EmitDefaultValue = true)]
         public Guid? Contact { get; set; }
 
@@ -164,23 +149,37 @@ namespace Merge.AccountingClient.Model
         public string Memo { get; set; }
 
         /// <summary>
-        /// The invoice&#39;s total discount.
+        /// The company the invoice belongs to.
         /// </summary>
-        /// <value>The invoice&#39;s total discount.</value>
+        /// <value>The company the invoice belongs to.</value>
+        [DataMember(Name = "company", EmitDefaultValue = true)]
+        public Guid? Company { get; set; }
+
+        /// <summary>
+        /// The invoice&#39;s exchange rate.
+        /// </summary>
+        /// <value>The invoice&#39;s exchange rate.</value>
+        [DataMember(Name = "exchange_rate", EmitDefaultValue = true)]
+        public decimal? ExchangeRate { get; set; }
+
+        /// <summary>
+        /// The total discounts applied to the total cost.
+        /// </summary>
+        /// <value>The total discounts applied to the total cost.</value>
         [DataMember(Name = "total_discount", EmitDefaultValue = true)]
         public float? TotalDiscount { get; set; }
 
         /// <summary>
-        /// The invoice&#39;s sub-total.
+        /// The total amount being paid before taxes.
         /// </summary>
-        /// <value>The invoice&#39;s sub-total.</value>
+        /// <value>The total amount being paid before taxes.</value>
         [DataMember(Name = "sub_total", EmitDefaultValue = true)]
         public float? SubTotal { get; set; }
 
         /// <summary>
-        /// The invoice&#39;s total tax amount.
+        /// The total amount being paid in taxes.
         /// </summary>
-        /// <value>The invoice&#39;s total tax amount.</value>
+        /// <value>The total amount being paid in taxes.</value>
         [DataMember(Name = "total_tax_amount", EmitDefaultValue = true)]
         public float? TotalTaxAmount { get; set; }
 
@@ -216,16 +215,7 @@ namespace Merge.AccountingClient.Model
         /// Gets or Sets LineItems
         /// </summary>
         [DataMember(Name = "line_items", EmitDefaultValue = false)]
-        public List<InvoiceLineItem> LineItems { get; private set; }
-
-        /// <summary>
-        /// Returns false as LineItems should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeLineItems()
-        {
-            return false;
-        }
+        public List<InvoiceLineItem> LineItems { get; set; }
 
         /// <summary>
         /// Gets or Sets RemoteWasDeleted
@@ -243,6 +233,43 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
+        /// Gets or Sets Id
+        /// </summary>
+        [DataMember(Name = "id", EmitDefaultValue = false)]
+        public Guid Id { get; private set; }
+
+        /// <summary>
+        /// Returns false as Id should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeId()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// The third-party API ID of the matching object.
+        /// </summary>
+        /// <value>The third-party API ID of the matching object.</value>
+        [DataMember(Name = "remote_id", EmitDefaultValue = true)]
+        public string RemoteId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets FieldMappings
+        /// </summary>
+        [DataMember(Name = "field_mappings", EmitDefaultValue = true)]
+        public Dictionary<string, Object> FieldMappings { get; private set; }
+
+        /// <summary>
+        /// Returns false as FieldMappings should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeFieldMappings()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -250,8 +277,6 @@ namespace Merge.AccountingClient.Model
         {
             var sb = new StringBuilder();
             sb.Append("class Invoice {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
             sb.Append("  RemoteData: ").Append(RemoteData).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Contact: ").Append(Contact).Append("\n");
@@ -260,7 +285,9 @@ namespace Merge.AccountingClient.Model
             sb.Append("  DueDate: ").Append(DueDate).Append("\n");
             sb.Append("  PaidOnDate: ").Append(PaidOnDate).Append("\n");
             sb.Append("  Memo: ").Append(Memo).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
+            sb.Append("  ExchangeRate: ").Append(ExchangeRate).Append("\n");
             sb.Append("  TotalDiscount: ").Append(TotalDiscount).Append("\n");
             sb.Append("  SubTotal: ").Append(SubTotal).Append("\n");
             sb.Append("  TotalTaxAmount: ").Append(TotalTaxAmount).Append("\n");
@@ -270,6 +297,9 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Payments: ").Append(Payments).Append("\n");
             sb.Append("  LineItems: ").Append(LineItems).Append("\n");
             sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
+            sb.Append("  FieldMappings: ").Append(FieldMappings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -304,16 +334,6 @@ namespace Merge.AccountingClient.Model
                 return false;
 
             return 
-                (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
-                (
-                    this.RemoteId == input.RemoteId ||
-                    (this.RemoteId != null &&
-                    this.RemoteId.Equals(input.RemoteId))
-                ) && 
                 (
                     this.RemoteData == input.RemoteData ||
                     this.RemoteData != null &&
@@ -355,8 +375,18 @@ namespace Merge.AccountingClient.Model
                     this.Memo.Equals(input.Memo))
                 ) && 
                 (
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
+                ) && 
+                (
                     this.Currency == input.Currency ||
                     this.Currency.Equals(input.Currency)
+                ) && 
+                (
+                    this.ExchangeRate == input.ExchangeRate ||
+                    (this.ExchangeRate != null &&
+                    this.ExchangeRate.Equals(input.ExchangeRate))
                 ) && 
                 (
                     this.TotalDiscount == input.TotalDiscount ||
@@ -403,6 +433,22 @@ namespace Merge.AccountingClient.Model
                 (
                     this.RemoteWasDeleted == input.RemoteWasDeleted ||
                     this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
+                ) && 
+                (
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.RemoteId == input.RemoteId ||
+                    (this.RemoteId != null &&
+                    this.RemoteId.Equals(input.RemoteId))
+                ) && 
+                (
+                    this.FieldMappings == input.FieldMappings ||
+                    this.FieldMappings != null &&
+                    input.FieldMappings != null &&
+                    this.FieldMappings.SequenceEqual(input.FieldMappings)
                 );
         }
 
@@ -415,10 +461,6 @@ namespace Merge.AccountingClient.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.RemoteId != null)
-                    hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
                 if (this.RemoteData != null)
                     hashCode = hashCode * 59 + this.RemoteData.GetHashCode();
                 hashCode = hashCode * 59 + this.Type.GetHashCode();
@@ -434,7 +476,11 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.PaidOnDate.GetHashCode();
                 if (this.Memo != null)
                     hashCode = hashCode * 59 + this.Memo.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
                 hashCode = hashCode * 59 + this.Currency.GetHashCode();
+                if (this.ExchangeRate != null)
+                    hashCode = hashCode * 59 + this.ExchangeRate.GetHashCode();
                 if (this.TotalDiscount != null)
                     hashCode = hashCode * 59 + this.TotalDiscount.GetHashCode();
                 if (this.SubTotal != null)
@@ -452,6 +498,12 @@ namespace Merge.AccountingClient.Model
                 if (this.LineItems != null)
                     hashCode = hashCode * 59 + this.LineItems.GetHashCode();
                 hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.RemoteId != null)
+                    hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
+                if (this.FieldMappings != null)
+                    hashCode = hashCode * 59 + this.FieldMappings.GetHashCode();
                 return hashCode;
             }
         }
@@ -463,6 +515,13 @@ namespace Merge.AccountingClient.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // ExchangeRate (decimal?) pattern
+            Regex regexExchangeRate = new Regex(@"^\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
+            if (false == regexExchangeRate.Match(this.ExchangeRate.ToString()).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExchangeRate, must match a pattern of " + regexExchangeRate, new [] { "ExchangeRate" });
+            }
+
             yield break;
         }
     }

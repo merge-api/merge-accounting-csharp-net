@@ -4,13 +4,96 @@ All URIs are relative to *https://api.merge.dev/api/accounting/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**PaymentsCreate**](PaymentsApi.md#paymentscreate) | **POST** /payments | 
 [**PaymentsList**](PaymentsApi.md#paymentslist) | **GET** /payments | 
+[**PaymentsMetaPostRetrieve**](PaymentsApi.md#paymentsmetapostretrieve) | **GET** /payments/meta/post | 
 [**PaymentsRetrieve**](PaymentsApi.md#paymentsretrieve) | **GET** /payments/{id} | 
 
 
+<a name="paymentscreate"></a>
+# **PaymentsCreate**
+> PaymentResponse PaymentsCreate (string xAccountToken, PaymentEndpointRequest paymentEndpointRequest, bool? isDebugMode = null, bool? runAsync = null)
+
+
+
+Creates a `Payment` object with the given values.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Merge.AccountingClient.Api;
+using Merge.AccountingClient.Client;
+using Merge.AccountingClient.Model;
+
+namespace Example
+{
+    public class PaymentsCreateExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.merge.dev/api/accounting/v1";
+            // Configure API key authorization: tokenAuth
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+
+            var apiInstance = new PaymentsApi(config);
+            var xAccountToken = xAccountToken_example;  // string | Token identifying the end user.
+            var paymentEndpointRequest = new PaymentEndpointRequest(); // PaymentEndpointRequest | 
+            var isDebugMode = true;  // bool? | Whether to include debug fields (such as log file links) in the response. (optional) 
+            var runAsync = true;  // bool? | Whether or not third-party updates should be run asynchronously. (optional) 
+
+            try
+            {
+                PaymentResponse result = apiInstance.PaymentsCreate(xAccountToken, paymentEndpointRequest, isDebugMode, runAsync);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PaymentsApi.PaymentsCreate: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **string**| Token identifying the end user. | 
+ **paymentEndpointRequest** | [**PaymentEndpointRequest**](PaymentEndpointRequest.md)|  | 
+ **isDebugMode** | **bool?**| Whether to include debug fields (such as log file links) in the response. | [optional] 
+ **runAsync** | **bool?**| Whether or not third-party updates should be run asynchronously. | [optional] 
+
+### Return type
+
+[**PaymentResponse**](PaymentResponse.md)
+
+### Authorization
+
+[tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="paymentslist"></a>
 # **PaymentsList**
-> PaginatedPaymentList PaymentsList (string xAccountToken, string accountId = null, string contactId = null, DateTime? createdAfter = null, DateTime? createdBefore = null, string cursor = null, bool? includeDeletedData = null, bool? includeRemoteData = null, DateTime? modifiedAfter = null, DateTime? modifiedBefore = null, int? pageSize = null, string remoteId = null)
+> PaginatedPaymentList PaymentsList (string xAccountToken, string accountId = null, string companyId = null, string contactId = null, DateTime? createdAfter = null, DateTime? createdBefore = null, string cursor = null, bool? includeDeletedData = null, bool? includeRemoteData = null, DateTime? modifiedAfter = null, DateTime? modifiedBefore = null, int? pageSize = null, string remoteId = null)
 
 
 
@@ -40,6 +123,7 @@ namespace Example
             var apiInstance = new PaymentsApi(config);
             var xAccountToken = xAccountToken_example;  // string | Token identifying the end user.
             var accountId = accountId_example;  // string | If provided, will only return payments for this account. (optional) 
+            var companyId = companyId_example;  // string | If provided, will only return payments for this company. (optional) 
             var contactId = contactId_example;  // string | If provided, will only return payments for this contact. (optional) 
             var createdAfter = 2013-10-20T19:20:30+01:00;  // DateTime? | If provided, will only return objects created after this datetime. (optional) 
             var createdBefore = 2013-10-20T19:20:30+01:00;  // DateTime? | If provided, will only return objects created before this datetime. (optional) 
@@ -53,7 +137,7 @@ namespace Example
 
             try
             {
-                PaginatedPaymentList result = apiInstance.PaymentsList(xAccountToken, accountId, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+                PaginatedPaymentList result = apiInstance.PaymentsList(xAccountToken, accountId, companyId, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -73,6 +157,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **string**| Token identifying the end user. | 
  **accountId** | **string**| If provided, will only return payments for this account. | [optional] 
+ **companyId** | **string**| If provided, will only return payments for this company. | [optional] 
  **contactId** | **string**| If provided, will only return payments for this contact. | [optional] 
  **createdAfter** | **DateTime?**| If provided, will only return objects created after this datetime. | [optional] 
  **createdBefore** | **DateTime?**| If provided, will only return objects created before this datetime. | [optional] 
@@ -87,6 +172,81 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PaginatedPaymentList**](PaginatedPaymentList.md)
+
+### Authorization
+
+[tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="paymentsmetapostretrieve"></a>
+# **PaymentsMetaPostRetrieve**
+> MetaResponse PaymentsMetaPostRetrieve (string xAccountToken)
+
+
+
+Returns metadata for `Payment` POSTs.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Merge.AccountingClient.Api;
+using Merge.AccountingClient.Client;
+using Merge.AccountingClient.Model;
+
+namespace Example
+{
+    public class PaymentsMetaPostRetrieveExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.merge.dev/api/accounting/v1";
+            // Configure API key authorization: tokenAuth
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+
+            var apiInstance = new PaymentsApi(config);
+            var xAccountToken = xAccountToken_example;  // string | Token identifying the end user.
+
+            try
+            {
+                MetaResponse result = apiInstance.PaymentsMetaPostRetrieve(xAccountToken);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PaymentsApi.PaymentsMetaPostRetrieve: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xAccountToken** | **string**| Token identifying the end user. | 
+
+### Return type
+
+[**MetaResponse**](MetaResponse.md)
 
 ### Authorization
 

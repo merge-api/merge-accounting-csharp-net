@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Merge.AccountingClient.Client.OpenAPIDateConverter;
 namespace Merge.AccountingClient.Model
 {
     /// <summary>
-    /// # The CreditNote Object ### Description The &#x60;CreditNote&#x60; object is used to represent a refund or credit of payment.  ### Usage Example Fetch from the &#x60;LIST CreditNotes&#x60; endpoint and view a company&#39;s credit notes.
+    /// # The CreditNote Object ### Description The &#x60;CreditNote&#x60; object are an accounts payable transaction used when to represent a gift or refund to a customer. A credit note will contain information on the amount of credit owed, the customer, and the account.  ### Usage Example Fetch from the &#x60;LIST CreditNotes&#x60; endpoint and view a company&#39;s credit notes.
     /// </summary>
     [DataContract(Name = "CreditNote")]
     public partial class CreditNote : IEquatable<CreditNote>, IValidatableObject
@@ -38,14 +38,14 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The credit note&#39;s status.</value>
         [DataMember(Name = "status", EmitDefaultValue = true)]
-        public string Status { get; set; }
+        public CreditNoteStatusEnum? Status { get; set; }
 
         /// <summary>
         /// The credit note&#39;s currency.
         /// </summary>
         /// <value>The credit note&#39;s currency.</value>
         [DataMember(Name = "currency", EmitDefaultValue = true)]
-        public string Currency { get; set; }
+        public CurrencyEnum? Currency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreditNote" /> class.
         /// </summary>
@@ -54,21 +54,25 @@ namespace Merge.AccountingClient.Model
         /// <param name="status">The credit note&#39;s status..</param>
         /// <param name="number">The credit note&#39;s number..</param>
         /// <param name="contact">The credit note&#39;s contact..</param>
+        /// <param name="company">The company the credit note belongs to..</param>
         /// <param name="totalAmount">The credit note&#39;s total amount..</param>
-        /// <param name="remainingCredit">The credit note&#39;s remaining credit..</param>
+        /// <param name="remainingCredit">The amount of value remaining in the credit note that the customer can use..</param>
+        /// <param name="lineItems">lineItems.</param>
         /// <param name="currency">The credit note&#39;s currency..</param>
         /// <param name="remoteCreatedAt">When the third party&#39;s credit note was created..</param>
         /// <param name="remoteUpdatedAt">When the third party&#39;s credit note was updated..</param>
         /// <param name="payments">Array of &#x60;Payment&#x60; object IDs.</param>
-        public CreditNote(string remoteId = default(string), DateTime? transactionDate = default(DateTime?), string status = default(string), string number = default(string), Guid? contact = default(Guid?), float? totalAmount = default(float?), float? remainingCredit = default(float?), string currency = default(string), DateTime? remoteCreatedAt = default(DateTime?), DateTime? remoteUpdatedAt = default(DateTime?), List<Guid?> payments = default(List<Guid?>))
+        public CreditNote(string remoteId = default(string), DateTime? transactionDate = default(DateTime?), CreditNoteStatusEnum? status = default(CreditNoteStatusEnum?), string number = default(string), Guid? contact = default(Guid?), Guid? company = default(Guid?), float? totalAmount = default(float?), float? remainingCredit = default(float?), List<CreditNoteLineItem> lineItems = default(List<CreditNoteLineItem>), CurrencyEnum? currency = default(CurrencyEnum?), DateTime? remoteCreatedAt = default(DateTime?), DateTime? remoteUpdatedAt = default(DateTime?), List<Guid?> payments = default(List<Guid?>))
         {
             this.RemoteId = remoteId;
             this.TransactionDate = transactionDate;
             this.Status = status;
             this.Number = number;
             this.Contact = contact;
+            this.Company = company;
             this.TotalAmount = totalAmount;
             this.RemainingCredit = remainingCredit;
+            this.LineItems = lineItems;
             this.Currency = currency;
             this.RemoteCreatedAt = remoteCreatedAt;
             this.RemoteUpdatedAt = remoteUpdatedAt;
@@ -134,6 +138,13 @@ namespace Merge.AccountingClient.Model
         public Guid? Contact { get; set; }
 
         /// <summary>
+        /// The company the credit note belongs to.
+        /// </summary>
+        /// <value>The company the credit note belongs to.</value>
+        [DataMember(Name = "company", EmitDefaultValue = true)]
+        public Guid? Company { get; set; }
+
+        /// <summary>
         /// The credit note&#39;s total amount.
         /// </summary>
         /// <value>The credit note&#39;s total amount.</value>
@@ -141,9 +152,9 @@ namespace Merge.AccountingClient.Model
         public float? TotalAmount { get; set; }
 
         /// <summary>
-        /// The credit note&#39;s remaining credit.
+        /// The amount of value remaining in the credit note that the customer can use.
         /// </summary>
-        /// <value>The credit note&#39;s remaining credit.</value>
+        /// <value>The amount of value remaining in the credit note that the customer can use.</value>
         [DataMember(Name = "remaining_credit", EmitDefaultValue = true)]
         public float? RemainingCredit { get; set; }
 
@@ -151,16 +162,7 @@ namespace Merge.AccountingClient.Model
         /// Gets or Sets LineItems
         /// </summary>
         [DataMember(Name = "line_items", EmitDefaultValue = false)]
-        public List<CreditNoteLineItem> LineItems { get; private set; }
-
-        /// <summary>
-        /// Returns false as LineItems should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeLineItems()
-        {
-            return false;
-        }
+        public List<CreditNoteLineItem> LineItems { get; set; }
 
         /// <summary>
         /// When the third party&#39;s credit note was created.
@@ -200,6 +202,21 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
+        /// Gets or Sets FieldMappings
+        /// </summary>
+        [DataMember(Name = "field_mappings", EmitDefaultValue = true)]
+        public Dictionary<string, Object> FieldMappings { get; private set; }
+
+        /// <summary>
+        /// Returns false as FieldMappings should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeFieldMappings()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -214,6 +231,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Number: ").Append(Number).Append("\n");
             sb.Append("  Contact: ").Append(Contact).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  TotalAmount: ").Append(TotalAmount).Append("\n");
             sb.Append("  RemainingCredit: ").Append(RemainingCredit).Append("\n");
             sb.Append("  LineItems: ").Append(LineItems).Append("\n");
@@ -222,6 +240,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  RemoteUpdatedAt: ").Append(RemoteUpdatedAt).Append("\n");
             sb.Append("  Payments: ").Append(Payments).Append("\n");
             sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
+            sb.Append("  FieldMappings: ").Append(FieldMappings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -292,6 +311,11 @@ namespace Merge.AccountingClient.Model
                     this.Contact.Equals(input.Contact))
                 ) && 
                 (
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
+                ) && 
+                (
                     this.TotalAmount == input.TotalAmount ||
                     (this.TotalAmount != null &&
                     this.TotalAmount.Equals(input.TotalAmount))
@@ -330,6 +354,12 @@ namespace Merge.AccountingClient.Model
                 (
                     this.RemoteWasDeleted == input.RemoteWasDeleted ||
                     this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
+                ) && 
+                (
+                    this.FieldMappings == input.FieldMappings ||
+                    this.FieldMappings != null &&
+                    input.FieldMappings != null &&
+                    this.FieldMappings.SequenceEqual(input.FieldMappings)
                 );
         }
 
@@ -355,6 +385,8 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.Number.GetHashCode();
                 if (this.Contact != null)
                     hashCode = hashCode * 59 + this.Contact.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
                 if (this.TotalAmount != null)
                     hashCode = hashCode * 59 + this.TotalAmount.GetHashCode();
                 if (this.RemainingCredit != null)
@@ -369,6 +401,8 @@ namespace Merge.AccountingClient.Model
                 if (this.Payments != null)
                     hashCode = hashCode * 59 + this.Payments.GetHashCode();
                 hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
+                if (this.FieldMappings != null)
+                    hashCode = hashCode * 59 + this.FieldMappings.GetHashCode();
                 return hashCode;
             }
         }

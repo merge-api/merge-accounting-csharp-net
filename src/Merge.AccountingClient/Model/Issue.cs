@@ -123,6 +123,21 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
+        /// Gets or Sets ErrorDetails
+        /// </summary>
+        [DataMember(Name = "error_details", EmitDefaultValue = false)]
+        public Dictionary<string, Object> ErrorDetails { get; private set; }
+
+        /// <summary>
+        /// Returns false as ErrorDetails should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeErrorDetails()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -137,6 +152,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  FirstIncidentTime: ").Append(FirstIncidentTime).Append("\n");
             sb.Append("  LastIncidentTime: ").Append(LastIncidentTime).Append("\n");
             sb.Append("  IsMuted: ").Append(IsMuted).Append("\n");
+            sb.Append("  ErrorDetails: ").Append(ErrorDetails).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -204,6 +220,12 @@ namespace Merge.AccountingClient.Model
                 (
                     this.IsMuted == input.IsMuted ||
                     this.IsMuted.Equals(input.IsMuted)
+                ) && 
+                (
+                    this.ErrorDetails == input.ErrorDetails ||
+                    this.ErrorDetails != null &&
+                    input.ErrorDetails != null &&
+                    this.ErrorDetails.SequenceEqual(input.ErrorDetails)
                 );
         }
 
@@ -228,6 +250,8 @@ namespace Merge.AccountingClient.Model
                 if (this.LastIncidentTime != null)
                     hashCode = hashCode * 59 + this.LastIncidentTime.GetHashCode();
                 hashCode = hashCode * 59 + this.IsMuted.GetHashCode();
+                if (this.ErrorDetails != null)
+                    hashCode = hashCode * 59 + this.ErrorDetails.GetHashCode();
                 return hashCode;
             }
         }

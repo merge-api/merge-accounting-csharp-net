@@ -63,6 +63,7 @@ namespace Merge.AccountingClient.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string xAccountToken = null;
+            //string companyId = null;
             //DateTime? createdAfter = null;
             //DateTime? createdBefore = null;
             //string cursor = null;
@@ -73,7 +74,8 @@ namespace Merge.AccountingClient.Test.Api
             //int? pageSize = null;
             //string remoteFields = null;
             //string remoteId = null;
-            //var response = instance.TrackingCategoriesList(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
+            //string showEnumOrigins = null;
+            //var response = instance.TrackingCategoriesList(xAccountToken, companyId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, showEnumOrigins);
             //Assert.IsType<PaginatedTrackingCategoryList>(response);
         }
 
@@ -88,7 +90,8 @@ namespace Merge.AccountingClient.Test.Api
             //Guid id = null;
             //bool? includeRemoteData = null;
             //string remoteFields = null;
-            //var response = instance.TrackingCategoriesRetrieve(xAccountToken, id, includeRemoteData, remoteFields);
+            //string showEnumOrigins = null;
+            //var response = instance.TrackingCategoriesRetrieve(xAccountToken, id, includeRemoteData, remoteFields, showEnumOrigins);
             //Assert.IsType<TrackingCategory>(response);
         }
     }

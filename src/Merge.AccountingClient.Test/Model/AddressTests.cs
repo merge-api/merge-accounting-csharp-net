@@ -98,6 +98,14 @@ namespace Merge.AccountingClient.Test.Model
             // TODO unit test for the property 'State'
         }
         /// <summary>
+        /// Test the property 'CountrySubdivision'
+        /// </summary>
+        [Fact]
+        public void CountrySubdivisionTest()
+        {
+            // TODO unit test for the property 'CountrySubdivision'
+        }
+        /// <summary>
         /// Test the property 'Country'
         /// </summary>
         [Fact]

@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 <a name="invoiceslist"></a>
 # **InvoicesList**
-> PaginatedInvoiceList InvoicesList (string xAccountToken, string contactId = null, DateTime? createdAfter = null, DateTime? createdBefore = null, string cursor = null, bool? includeDeletedData = null, bool? includeRemoteData = null, DateTime? modifiedAfter = null, DateTime? modifiedBefore = null, int? pageSize = null, string remoteFields = null, string remoteId = null, string type = null)
+> PaginatedInvoiceList InvoicesList (string xAccountToken, string companyId = null, string contactId = null, DateTime? createdAfter = null, DateTime? createdBefore = null, string cursor = null, bool? includeDeletedData = null, bool? includeRemoteData = null, DateTime? modifiedAfter = null, DateTime? modifiedBefore = null, int? pageSize = null, string remoteFields = null, string remoteId = null, string showEnumOrigins = null, string type = null)
 
 
 
@@ -122,6 +122,7 @@ namespace Example
 
             var apiInstance = new InvoicesApi(config);
             var xAccountToken = xAccountToken_example;  // string | Token identifying the end user.
+            var companyId = companyId_example;  // string | If provided, will only return invoices for this company. (optional) 
             var contactId = contactId_example;  // string | If provided, will only return invoices for this contact. (optional) 
             var createdAfter = 2013-10-20T19:20:30+01:00;  // DateTime? | If provided, will only return objects created after this datetime. (optional) 
             var createdBefore = 2013-10-20T19:20:30+01:00;  // DateTime? | If provided, will only return objects created before this datetime. (optional) 
@@ -131,13 +132,14 @@ namespace Example
             var modifiedAfter = 2013-10-20T19:20:30+01:00;  // DateTime? | If provided, will only return objects modified after this datetime. (optional) 
             var modifiedBefore = 2013-10-20T19:20:30+01:00;  // DateTime? | If provided, will only return objects modified before this datetime. (optional) 
             var pageSize = 56;  // int? | Number of results to return per page. (optional) 
-            var remoteFields = type;  // string | Which fields should be returned in non-normalized form. (optional) 
+            var remoteFields = type;  // string | Deprecated. Use show_enum_origins. (optional) 
             var remoteId = remoteId_example;  // string | The API provider's ID for the given object. (optional) 
+            var showEnumOrigins = type;  // string | Which fields should be returned in non-normalized form. (optional) 
             var type = type_example;  // string | If provided, will only return Invoices with this type (optional) 
 
             try
             {
-                PaginatedInvoiceList result = apiInstance.InvoicesList(xAccountToken, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, type);
+                PaginatedInvoiceList result = apiInstance.InvoicesList(xAccountToken, companyId, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, showEnumOrigins, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -156,6 +158,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **string**| Token identifying the end user. | 
+ **companyId** | **string**| If provided, will only return invoices for this company. | [optional] 
  **contactId** | **string**| If provided, will only return invoices for this contact. | [optional] 
  **createdAfter** | **DateTime?**| If provided, will only return objects created after this datetime. | [optional] 
  **createdBefore** | **DateTime?**| If provided, will only return objects created before this datetime. | [optional] 
@@ -165,8 +168,9 @@ Name | Type | Description  | Notes
  **modifiedAfter** | **DateTime?**| If provided, will only return objects modified after this datetime. | [optional] 
  **modifiedBefore** | **DateTime?**| If provided, will only return objects modified before this datetime. | [optional] 
  **pageSize** | **int?**| Number of results to return per page. | [optional] 
- **remoteFields** | **string**| Which fields should be returned in non-normalized form. | [optional] 
+ **remoteFields** | **string**| Deprecated. Use show_enum_origins. | [optional] 
  **remoteId** | **string**| The API provider&#39;s ID for the given object. | [optional] 
+ **showEnumOrigins** | **string**| Which fields should be returned in non-normalized form. | [optional] 
  **type** | **string**| If provided, will only return Invoices with this type | [optional] 
 
 ### Return type
@@ -267,7 +271,7 @@ Name | Type | Description  | Notes
 
 <a name="invoicesretrieve"></a>
 # **InvoicesRetrieve**
-> Invoice InvoicesRetrieve (string xAccountToken, Guid id, bool? includeRemoteData = null, string remoteFields = null)
+> Invoice InvoicesRetrieve (string xAccountToken, Guid id, bool? includeRemoteData = null, string remoteFields = null, string showEnumOrigins = null)
 
 
 
@@ -298,11 +302,12 @@ namespace Example
             var xAccountToken = xAccountToken_example;  // string | Token identifying the end user.
             var id = new Guid(); // Guid | 
             var includeRemoteData = true;  // bool? | Whether to include the original data Merge fetched from the third-party to produce these models. (optional) 
-            var remoteFields = type;  // string | Which fields should be returned in non-normalized form. (optional) 
+            var remoteFields = type;  // string | Deprecated. Use show_enum_origins. (optional) 
+            var showEnumOrigins = type;  // string | Which fields should be returned in non-normalized form. (optional) 
 
             try
             {
-                Invoice result = apiInstance.InvoicesRetrieve(xAccountToken, id, includeRemoteData, remoteFields);
+                Invoice result = apiInstance.InvoicesRetrieve(xAccountToken, id, includeRemoteData, remoteFields, showEnumOrigins);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -323,7 +328,8 @@ Name | Type | Description  | Notes
  **xAccountToken** | **string**| Token identifying the end user. | 
  **id** | [**Guid**](Guid.md)|  | 
  **includeRemoteData** | **bool?**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional] 
- **remoteFields** | **string**| Which fields should be returned in non-normalized form. | [optional] 
+ **remoteFields** | **string**| Deprecated. Use show_enum_origins. | [optional] 
+ **showEnumOrigins** | **string**| Which fields should be returned in non-normalized form. | [optional] 
 
 ### Return type
 

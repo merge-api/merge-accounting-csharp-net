@@ -56,6 +56,21 @@ namespace Merge.AccountingClient.Test.Api
         }
 
         /// <summary>
+        /// Test AttachmentsCreate
+        /// </summary>
+        [Fact]
+        public void AttachmentsCreateTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string xAccountToken = null;
+            //AccountingAttachmentEndpointRequest accountingAttachmentEndpointRequest = null;
+            //bool? isDebugMode = null;
+            //bool? runAsync = null;
+            //var response = instance.AttachmentsCreate(xAccountToken, accountingAttachmentEndpointRequest, isDebugMode, runAsync);
+            //Assert.IsType<AccountingAttachmentResponse>(response);
+        }
+
+        /// <summary>
         /// Test AttachmentsList
         /// </summary>
         [Fact]
@@ -63,6 +78,7 @@ namespace Merge.AccountingClient.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string xAccountToken = null;
+            //string companyId = null;
             //DateTime? createdAfter = null;
             //DateTime? createdBefore = null;
             //string cursor = null;
@@ -72,8 +88,20 @@ namespace Merge.AccountingClient.Test.Api
             //DateTime? modifiedBefore = null;
             //int? pageSize = null;
             //string remoteId = null;
-            //var response = instance.AttachmentsList(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+            //var response = instance.AttachmentsList(xAccountToken, companyId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
             //Assert.IsType<PaginatedAccountingAttachmentList>(response);
+        }
+
+        /// <summary>
+        /// Test AttachmentsMetaPostRetrieve
+        /// </summary>
+        [Fact]
+        public void AttachmentsMetaPostRetrieveTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string xAccountToken = null;
+            //var response = instance.AttachmentsMetaPostRetrieve(xAccountToken);
+            //Assert.IsType<MetaResponse>(response);
         }
 
         /// <summary>

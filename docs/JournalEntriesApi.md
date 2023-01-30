@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 <a name="journalentrieslist"></a>
 # **JournalEntriesList**
-> PaginatedJournalEntryList JournalEntriesList (string xAccountToken, DateTime? createdAfter = null, DateTime? createdBefore = null, string cursor = null, bool? includeDeletedData = null, bool? includeRemoteData = null, DateTime? modifiedAfter = null, DateTime? modifiedBefore = null, int? pageSize = null, string remoteId = null)
+> PaginatedJournalEntryList JournalEntriesList (string xAccountToken, string companyId = null, DateTime? createdAfter = null, DateTime? createdBefore = null, string cursor = null, bool? includeDeletedData = null, bool? includeRemoteData = null, DateTime? modifiedAfter = null, DateTime? modifiedBefore = null, int? pageSize = null, string remoteId = null)
 
 
 
@@ -122,6 +122,7 @@ namespace Example
 
             var apiInstance = new JournalEntriesApi(config);
             var xAccountToken = xAccountToken_example;  // string | Token identifying the end user.
+            var companyId = companyId_example;  // string | If provided, will only return journal entries for this company. (optional) 
             var createdAfter = 2013-10-20T19:20:30+01:00;  // DateTime? | If provided, will only return objects created after this datetime. (optional) 
             var createdBefore = 2013-10-20T19:20:30+01:00;  // DateTime? | If provided, will only return objects created before this datetime. (optional) 
             var cursor = cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw;  // string | The pagination cursor value. (optional) 
@@ -134,7 +135,7 @@ namespace Example
 
             try
             {
-                PaginatedJournalEntryList result = apiInstance.JournalEntriesList(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+                PaginatedJournalEntryList result = apiInstance.JournalEntriesList(xAccountToken, companyId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -153,6 +154,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xAccountToken** | **string**| Token identifying the end user. | 
+ **companyId** | **string**| If provided, will only return journal entries for this company. | [optional] 
  **createdAfter** | **DateTime?**| If provided, will only return objects created after this datetime. | [optional] 
  **createdBefore** | **DateTime?**| If provided, will only return objects created before this datetime. | [optional] 
  **cursor** | **string**| The pagination cursor value. | [optional] 

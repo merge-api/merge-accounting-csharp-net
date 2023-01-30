@@ -56,6 +56,21 @@ namespace Merge.AccountingClient.Test.Api
         }
 
         /// <summary>
+        /// Test ExpensesCreate
+        /// </summary>
+        [Fact]
+        public void ExpensesCreateTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string xAccountToken = null;
+            //ExpenseEndpointRequest expenseEndpointRequest = null;
+            //bool? isDebugMode = null;
+            //bool? runAsync = null;
+            //var response = instance.ExpensesCreate(xAccountToken, expenseEndpointRequest, isDebugMode, runAsync);
+            //Assert.IsType<ExpenseResponse>(response);
+        }
+
+        /// <summary>
         /// Test ExpensesList
         /// </summary>
         [Fact]
@@ -63,6 +78,7 @@ namespace Merge.AccountingClient.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string xAccountToken = null;
+            //string companyId = null;
             //DateTime? createdAfter = null;
             //DateTime? createdBefore = null;
             //string cursor = null;
@@ -72,8 +88,20 @@ namespace Merge.AccountingClient.Test.Api
             //DateTime? modifiedBefore = null;
             //int? pageSize = null;
             //string remoteId = null;
-            //var response = instance.ExpensesList(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+            //var response = instance.ExpensesList(xAccountToken, companyId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
             //Assert.IsType<PaginatedExpenseList>(response);
+        }
+
+        /// <summary>
+        /// Test ExpensesMetaPostRetrieve
+        /// </summary>
+        [Fact]
+        public void ExpensesMetaPostRetrieveTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string xAccountToken = null;
+            //var response = instance.ExpensesMetaPostRetrieve(xAccountToken);
+            //Assert.IsType<MetaResponse>(response);
         }
 
         /// <summary>

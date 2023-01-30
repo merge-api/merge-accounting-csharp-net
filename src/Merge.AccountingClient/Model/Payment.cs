@@ -27,26 +27,39 @@ using OpenAPIDateConverter = Merge.AccountingClient.Client.OpenAPIDateConverter;
 namespace Merge.AccountingClient.Model
 {
     /// <summary>
-    /// # The Payment Object ### Description The &#x60;Payment&#x60; object is used to represent a invoice&#39;s payment.  ### Usage Example Fetch from the &#x60;GET Payment&#x60; endpoint and view an invoice&#39;s payment.
+    /// # The Payment Object ### Description The &#x60;Payment&#x60; object represents general payments made towards a specific transaction.  ### Usage Example Fetch from the &#x60;GET Payment&#x60; endpoint and view an invoice&#39;s payment.
     /// </summary>
     [DataContract(Name = "Payment")]
     public partial class Payment : IEquatable<Payment>, IValidatableObject
     {
+
+        /// <summary>
+        /// The payment&#39;s currency.
+        /// </summary>
+        /// <value>The payment&#39;s currency.</value>
+        [DataMember(Name = "currency", EmitDefaultValue = true)]
+        public CurrencyEnum? Currency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Payment" /> class.
         /// </summary>
         /// <param name="remoteId">The third-party API ID of the matching object..</param>
         /// <param name="transactionDate">The payment&#39;s transaction date..</param>
-        /// <param name="contact">contact.</param>
-        /// <param name="account">account.</param>
-        /// <param name="totalAmount">The payment&#39;s total amount..</param>
+        /// <param name="contact">The supplier, or customer involved in the payment..</param>
+        /// <param name="account">The supplier’s or customer’s account in which the payment is made..</param>
+        /// <param name="currency">The payment&#39;s currency..</param>
+        /// <param name="exchangeRate">The payment&#39;s exchange rate..</param>
+        /// <param name="company">The company the payment belongs to..</param>
+        /// <param name="totalAmount">The total amount of money being paid to the supplier, or customer, after taxes..</param>
         /// <param name="remoteUpdatedAt">When the third party&#39;s payment entry was updated..</param>
-        public Payment(string remoteId = default(string), DateTime? transactionDate = default(DateTime?), Guid? contact = default(Guid?), Guid? account = default(Guid?), float? totalAmount = default(float?), DateTime? remoteUpdatedAt = default(DateTime?))
+        public Payment(string remoteId = default(string), DateTime? transactionDate = default(DateTime?), Guid? contact = default(Guid?), Guid? account = default(Guid?), CurrencyEnum? currency = default(CurrencyEnum?), decimal? exchangeRate = default(decimal?), Guid? company = default(Guid?), float? totalAmount = default(float?), DateTime? remoteUpdatedAt = default(DateTime?))
         {
             this.RemoteId = remoteId;
             this.TransactionDate = transactionDate;
             this.Contact = contact;
             this.Account = account;
+            this.Currency = currency;
+            this.ExchangeRate = exchangeRate;
+            this.Company = company;
             this.TotalAmount = totalAmount;
             this.RemoteUpdatedAt = remoteUpdatedAt;
         }
@@ -96,21 +109,37 @@ namespace Merge.AccountingClient.Model
         public DateTime? TransactionDate { get; set; }
 
         /// <summary>
-        /// Gets or Sets Contact
+        /// The supplier, or customer involved in the payment.
         /// </summary>
+        /// <value>The supplier, or customer involved in the payment.</value>
         [DataMember(Name = "contact", EmitDefaultValue = true)]
         public Guid? Contact { get; set; }
 
         /// <summary>
-        /// Gets or Sets Account
+        /// The supplier’s or customer’s account in which the payment is made.
         /// </summary>
+        /// <value>The supplier’s or customer’s account in which the payment is made.</value>
         [DataMember(Name = "account", EmitDefaultValue = true)]
         public Guid? Account { get; set; }
 
         /// <summary>
-        /// The payment&#39;s total amount.
+        /// The payment&#39;s exchange rate.
         /// </summary>
-        /// <value>The payment&#39;s total amount.</value>
+        /// <value>The payment&#39;s exchange rate.</value>
+        [DataMember(Name = "exchange_rate", EmitDefaultValue = true)]
+        public decimal? ExchangeRate { get; set; }
+
+        /// <summary>
+        /// The company the payment belongs to.
+        /// </summary>
+        /// <value>The company the payment belongs to.</value>
+        [DataMember(Name = "company", EmitDefaultValue = true)]
+        public Guid? Company { get; set; }
+
+        /// <summary>
+        /// The total amount of money being paid to the supplier, or customer, after taxes.
+        /// </summary>
+        /// <value>The total amount of money being paid to the supplier, or customer, after taxes.</value>
         [DataMember(Name = "total_amount", EmitDefaultValue = true)]
         public float? TotalAmount { get; set; }
 
@@ -138,6 +167,21 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
+        /// Gets or Sets FieldMappings
+        /// </summary>
+        [DataMember(Name = "field_mappings", EmitDefaultValue = true)]
+        public Dictionary<string, Object> FieldMappings { get; private set; }
+
+        /// <summary>
+        /// Returns false as FieldMappings should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeFieldMappings()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -151,9 +195,13 @@ namespace Merge.AccountingClient.Model
             sb.Append("  TransactionDate: ").Append(TransactionDate).Append("\n");
             sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
+            sb.Append("  Currency: ").Append(Currency).Append("\n");
+            sb.Append("  ExchangeRate: ").Append(ExchangeRate).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  TotalAmount: ").Append(TotalAmount).Append("\n");
             sb.Append("  RemoteUpdatedAt: ").Append(RemoteUpdatedAt).Append("\n");
             sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
+            sb.Append("  FieldMappings: ").Append(FieldMappings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -220,6 +268,20 @@ namespace Merge.AccountingClient.Model
                     this.Account.Equals(input.Account))
                 ) && 
                 (
+                    this.Currency == input.Currency ||
+                    this.Currency.Equals(input.Currency)
+                ) && 
+                (
+                    this.ExchangeRate == input.ExchangeRate ||
+                    (this.ExchangeRate != null &&
+                    this.ExchangeRate.Equals(input.ExchangeRate))
+                ) && 
+                (
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
+                ) && 
+                (
                     this.TotalAmount == input.TotalAmount ||
                     (this.TotalAmount != null &&
                     this.TotalAmount.Equals(input.TotalAmount))
@@ -232,6 +294,12 @@ namespace Merge.AccountingClient.Model
                 (
                     this.RemoteWasDeleted == input.RemoteWasDeleted ||
                     this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
+                ) && 
+                (
+                    this.FieldMappings == input.FieldMappings ||
+                    this.FieldMappings != null &&
+                    input.FieldMappings != null &&
+                    this.FieldMappings.SequenceEqual(input.FieldMappings)
                 );
         }
 
@@ -256,11 +324,18 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.Contact.GetHashCode();
                 if (this.Account != null)
                     hashCode = hashCode * 59 + this.Account.GetHashCode();
+                hashCode = hashCode * 59 + this.Currency.GetHashCode();
+                if (this.ExchangeRate != null)
+                    hashCode = hashCode * 59 + this.ExchangeRate.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
                 if (this.TotalAmount != null)
                     hashCode = hashCode * 59 + this.TotalAmount.GetHashCode();
                 if (this.RemoteUpdatedAt != null)
                     hashCode = hashCode * 59 + this.RemoteUpdatedAt.GetHashCode();
                 hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
+                if (this.FieldMappings != null)
+                    hashCode = hashCode * 59 + this.FieldMappings.GetHashCode();
                 return hashCode;
             }
         }
@@ -272,6 +347,13 @@ namespace Merge.AccountingClient.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // ExchangeRate (decimal?) pattern
+            Regex regexExchangeRate = new Regex(@"^\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
+            if (false == regexExchangeRate.Match(this.ExchangeRate.ToString()).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExchangeRate, must match a pattern of " + regexExchangeRate, new [] { "ExchangeRate" });
+            }
+
             yield break;
         }
     }

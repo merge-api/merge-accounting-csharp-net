@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Name** | **string** | The report item&#39;s name. | [optional] 
 **Value** | **float?** | The report item&#39;s value. | [optional] 
 **SubItems** | **Dictionary&lt;string, Object&gt;** |  | [optional] [readonly] 
+**Company** | **Guid?** | The company the report item belongs to. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

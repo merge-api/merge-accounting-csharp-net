@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EndUserEmailAddress** | **string** | Your end user&#39;s email address. | 
+**EndUserEmailAddress** | **string** | Your end user&#39;s email address. This is purely for identification purposes - setting this value will not cause any emails to be sent. | 
 **EndUserOrganizationName** | **string** | Your end user&#39;s organization. | 
-**EndUserOriginId** | **string** | Unique ID for your end user. | 
+**EndUserOriginId** | **string** | This unique identifier typically represents the ID for your end user in your product&#39;s database. This value must be distinct from other Linked Accounts&#39; unique identifiers. | 
 **Categories** | [**List&lt;CategoriesEnum&gt;**](CategoriesEnum.md) | The integration categories to show in Merge Link. | 
 **Integration** | **string** | The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://www.merge.dev/docs/basics/integration-metadata/. | [optional] 
 **LinkExpiryMins** | **int** | An integer number of minutes between [30, 720 or 10080 if for a Magic Link URL] for how long this token is valid. Defaults to 30. | [optional] [default to 30]
