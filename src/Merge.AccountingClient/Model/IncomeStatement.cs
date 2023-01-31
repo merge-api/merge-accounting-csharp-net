@@ -27,25 +27,36 @@ using OpenAPIDateConverter = Merge.AccountingClient.Client.OpenAPIDateConverter;
 namespace Merge.AccountingClient.Model
 {
     /// <summary>
-    /// # The IncomeStatement Object ### Description The &#x60;IncomeStatement&#x60; object is used to represent a company&#39;s income statements.  ### Usage Example Fetch from the &#x60;GET IncomeStatement&#x60; endpoint and view a company&#39;s income statement for a given period.
+    /// # The IncomeStatement Object ### Description The &#x60;IncomeStatement&#x60; object is used to represent a company’s income, the cost of sales, operating expenses, and other non-operating expenses. The object also includes other important values like gross profit, gross operating profit, and net income. This represents a period of time (month, quarter, or year).  ### Usage Example Fetch from the &#x60;GET IncomeStatement&#x60; endpoint and view a company&#39;s income statement for a given period.
     /// </summary>
     [DataContract(Name = "IncomeStatement")]
     public partial class IncomeStatement : IEquatable<IncomeStatement>, IValidatableObject
     {
+
+        /// <summary>
+        /// The income statement&#39;s currency.
+        /// </summary>
+        /// <value>The income statement&#39;s currency.</value>
+        [DataMember(Name = "currency", EmitDefaultValue = true)]
+        public CurrencyEnum? Currency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="IncomeStatement" /> class.
         /// </summary>
         /// <param name="remoteId">The third-party API ID of the matching object..</param>
         /// <param name="name">The income statement&#39;s name..</param>
+        /// <param name="currency">The income statement&#39;s currency..</param>
+        /// <param name="company">The company the income statement belongs to..</param>
         /// <param name="startPeriod">The income statement&#39;s start period..</param>
         /// <param name="endPeriod">The income statement&#39;s end period..</param>
-        /// <param name="grossProfit">The income statement&#39;s gross profit..</param>
-        /// <param name="netOperatingIncome">The income statement&#39;s net operating profit..</param>
-        /// <param name="netIncome">The income statement&#39;s net income..</param>
-        public IncomeStatement(string remoteId = default(string), string name = default(string), DateTime? startPeriod = default(DateTime?), DateTime? endPeriod = default(DateTime?), float? grossProfit = default(float?), float? netOperatingIncome = default(float?), float? netIncome = default(float?))
+        /// <param name="grossProfit">The revenue minus the cost of sale..</param>
+        /// <param name="netOperatingIncome">The revenue minus the operating expenses..</param>
+        /// <param name="netIncome">The gross profit minus the total expenses..</param>
+        public IncomeStatement(string remoteId = default(string), string name = default(string), CurrencyEnum? currency = default(CurrencyEnum?), Guid? company = default(Guid?), DateTime? startPeriod = default(DateTime?), DateTime? endPeriod = default(DateTime?), float? grossProfit = default(float?), float? netOperatingIncome = default(float?), float? netIncome = default(float?))
         {
             this.RemoteId = remoteId;
             this.Name = name;
+            this.Currency = currency;
+            this.Company = company;
             this.StartPeriod = startPeriod;
             this.EndPeriod = endPeriod;
             this.GrossProfit = grossProfit;
@@ -98,6 +109,13 @@ namespace Merge.AccountingClient.Model
         public string Name { get; set; }
 
         /// <summary>
+        /// The company the income statement belongs to.
+        /// </summary>
+        /// <value>The company the income statement belongs to.</value>
+        [DataMember(Name = "company", EmitDefaultValue = true)]
+        public Guid? Company { get; set; }
+
+        /// <summary>
         /// The income statement&#39;s start period.
         /// </summary>
         /// <value>The income statement&#39;s start period.</value>
@@ -142,9 +160,9 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
-        /// The income statement&#39;s gross profit.
+        /// The revenue minus the cost of sale.
         /// </summary>
-        /// <value>The income statement&#39;s gross profit.</value>
+        /// <value>The revenue minus the cost of sale.</value>
         [DataMember(Name = "gross_profit", EmitDefaultValue = true)]
         public float? GrossProfit { get; set; }
 
@@ -164,9 +182,9 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
-        /// The income statement&#39;s net operating profit.
+        /// The revenue minus the operating expenses.
         /// </summary>
-        /// <value>The income statement&#39;s net operating profit.</value>
+        /// <value>The revenue minus the operating expenses.</value>
         [DataMember(Name = "net_operating_income", EmitDefaultValue = true)]
         public float? NetOperatingIncome { get; set; }
 
@@ -186,9 +204,9 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
-        /// The income statement&#39;s net income.
+        /// The gross profit minus the total expenses.
         /// </summary>
-        /// <value>The income statement&#39;s net income.</value>
+        /// <value>The gross profit minus the total expenses.</value>
         [DataMember(Name = "net_income", EmitDefaultValue = true)]
         public float? NetIncome { get; set; }
 
@@ -209,6 +227,21 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
+        /// Gets or Sets FieldMappings
+        /// </summary>
+        [DataMember(Name = "field_mappings", EmitDefaultValue = true)]
+        public Dictionary<string, Object> FieldMappings { get; private set; }
+
+        /// <summary>
+        /// Returns false as FieldMappings should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeFieldMappings()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -220,6 +253,8 @@ namespace Merge.AccountingClient.Model
             sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
             sb.Append("  RemoteData: ").Append(RemoteData).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Currency: ").Append(Currency).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  StartPeriod: ").Append(StartPeriod).Append("\n");
             sb.Append("  EndPeriod: ").Append(EndPeriod).Append("\n");
             sb.Append("  Income: ").Append(Income).Append("\n");
@@ -230,6 +265,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  NonOperatingExpenses: ").Append(NonOperatingExpenses).Append("\n");
             sb.Append("  NetIncome: ").Append(NetIncome).Append("\n");
             sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
+            sb.Append("  FieldMappings: ").Append(FieldMappings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -286,6 +322,15 @@ namespace Merge.AccountingClient.Model
                     this.Name.Equals(input.Name))
                 ) && 
                 (
+                    this.Currency == input.Currency ||
+                    this.Currency.Equals(input.Currency)
+                ) && 
+                (
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
+                ) && 
+                (
                     this.StartPeriod == input.StartPeriod ||
                     (this.StartPeriod != null &&
                     this.StartPeriod.Equals(input.StartPeriod))
@@ -337,6 +382,12 @@ namespace Merge.AccountingClient.Model
                 (
                     this.RemoteWasDeleted == input.RemoteWasDeleted ||
                     this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
+                ) && 
+                (
+                    this.FieldMappings == input.FieldMappings ||
+                    this.FieldMappings != null &&
+                    input.FieldMappings != null &&
+                    this.FieldMappings.SequenceEqual(input.FieldMappings)
                 );
         }
 
@@ -357,6 +408,9 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.RemoteData.GetHashCode();
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
+                hashCode = hashCode * 59 + this.Currency.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
                 if (this.StartPeriod != null)
                     hashCode = hashCode * 59 + this.StartPeriod.GetHashCode();
                 if (this.EndPeriod != null)
@@ -376,6 +430,8 @@ namespace Merge.AccountingClient.Model
                 if (this.NetIncome != null)
                     hashCode = hashCode * 59 + this.NetIncome.GetHashCode();
                 hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
+                if (this.FieldMappings != null)
+                    hashCode = hashCode * 59 + this.FieldMappings.GetHashCode();
                 return hashCode;
             }
         }

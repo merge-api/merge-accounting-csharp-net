@@ -58,14 +58,6 @@ namespace Merge.AccountingClient.Test.Model
 
 
         /// <summary>
-        /// Test the property 'RemoteId'
-        /// </summary>
-        [Fact]
-        public void RemoteIdTest()
-        {
-            // TODO unit test for the property 'RemoteId'
-        }
-        /// <summary>
         /// Test the property 'Type'
         /// </summary>
         [Fact]
@@ -122,12 +114,28 @@ namespace Merge.AccountingClient.Test.Model
             // TODO unit test for the property 'Memo'
         }
         /// <summary>
+        /// Test the property 'Company'
+        /// </summary>
+        [Fact]
+        public void CompanyTest()
+        {
+            // TODO unit test for the property 'Company'
+        }
+        /// <summary>
         /// Test the property 'Currency'
         /// </summary>
         [Fact]
         public void CurrencyTest()
         {
             // TODO unit test for the property 'Currency'
+        }
+        /// <summary>
+        /// Test the property 'ExchangeRate'
+        /// </summary>
+        [Fact]
+        public void ExchangeRateTest()
+        {
+            // TODO unit test for the property 'ExchangeRate'
         }
         /// <summary>
         /// Test the property 'TotalDiscount'
@@ -170,20 +178,36 @@ namespace Merge.AccountingClient.Test.Model
             // TODO unit test for the property 'Balance'
         }
         /// <summary>
-        /// Test the property 'RemoteUpdatedAt'
-        /// </summary>
-        [Fact]
-        public void RemoteUpdatedAtTest()
-        {
-            // TODO unit test for the property 'RemoteUpdatedAt'
-        }
-        /// <summary>
         /// Test the property 'Payments'
         /// </summary>
         [Fact]
         public void PaymentsTest()
         {
             // TODO unit test for the property 'Payments'
+        }
+        /// <summary>
+        /// Test the property 'LineItems'
+        /// </summary>
+        [Fact]
+        public void LineItemsTest()
+        {
+            // TODO unit test for the property 'LineItems'
+        }
+        /// <summary>
+        /// Test the property 'IntegrationParams'
+        /// </summary>
+        [Fact]
+        public void IntegrationParamsTest()
+        {
+            // TODO unit test for the property 'IntegrationParams'
+        }
+        /// <summary>
+        /// Test the property 'LinkedAccountParams'
+        /// </summary>
+        [Fact]
+        public void LinkedAccountParamsTest()
+        {
+            // TODO unit test for the property 'LinkedAccountParams'
         }
 
     }

@@ -27,25 +27,42 @@ using OpenAPIDateConverter = Merge.AccountingClient.Client.OpenAPIDateConverter;
 namespace Merge.AccountingClient.Model
 {
     /// <summary>
-    /// TransactionLineItem
+    /// # The TransactionLineItem Object ### Description The &#x60;TransactionLineItem&#x60; object is used to represent a transaction&#39;s line items.  ### Usage Example Fetch from the &#x60;GET TransactionLineItem&#x60; endpoint and view the transaction&#39;s line items.
     /// </summary>
     [DataContract(Name = "TransactionLineItem")]
     public partial class TransactionLineItem : IEquatable<TransactionLineItem>, IValidatableObject
     {
+
+        /// <summary>
+        /// The line item&#39;s currency.
+        /// </summary>
+        /// <value>The line item&#39;s currency.</value>
+        [DataMember(Name = "currency", EmitDefaultValue = true)]
+        public CurrencyEnum? Currency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionLineItem" /> class.
         /// </summary>
-        /// <param name="memo">A memo attached to the line item..</param>
+        [JsonConstructorAttribute]
+        protected TransactionLineItem() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionLineItem" /> class.
+        /// </summary>
+        /// <param name="memo">An internal note used by the business to clarify purpose of the transaction..</param>
         /// <param name="unitPrice">The line item&#39;s unit price..</param>
         /// <param name="quantity">The line item&#39;s quantity..</param>
         /// <param name="item">item.</param>
         /// <param name="account">The line item&#39;s account..</param>
         /// <param name="trackingCategory">The line&#39;s associated tracking category..</param>
+        /// <param name="trackingCategories">The line&#39;s associated tracking categories. (required).</param>
         /// <param name="totalLineAmount">The line item&#39;s total..</param>
         /// <param name="taxRate">The line item&#39;s tax rate..</param>
-        /// <param name="remoteId">The third-party API ID of the matching object..</param>
-        public TransactionLineItem(string memo = default(string), decimal? unitPrice = default(decimal?), decimal? quantity = default(decimal?), Guid? item = default(Guid?), Guid? account = default(Guid?), Guid? trackingCategory = default(Guid?), decimal? totalLineAmount = default(decimal?), Guid? taxRate = default(Guid?), string remoteId = default(string))
+        /// <param name="currency">The line item&#39;s currency..</param>
+        /// <param name="exchangeRate">The line item&#39;s exchange rate..</param>
+        /// <param name="company">The company the line belongs to..</param>
+        public TransactionLineItem(string memo = default(string), decimal? unitPrice = default(decimal?), decimal? quantity = default(decimal?), Guid? item = default(Guid?), Guid? account = default(Guid?), Guid? trackingCategory = default(Guid?), List<Guid> trackingCategories = default(List<Guid>), decimal? totalLineAmount = default(decimal?), Guid? taxRate = default(Guid?), CurrencyEnum? currency = default(CurrencyEnum?), decimal? exchangeRate = default(decimal?), Guid? company = default(Guid?))
         {
+            // to ensure "trackingCategories" is required (not null)
+            this.TrackingCategories = trackingCategories ?? throw new ArgumentNullException("trackingCategories is a required property for TransactionLineItem and cannot be null");
             this.Memo = memo;
             this.UnitPrice = unitPrice;
             this.Quantity = quantity;
@@ -54,13 +71,15 @@ namespace Merge.AccountingClient.Model
             this.TrackingCategory = trackingCategory;
             this.TotalLineAmount = totalLineAmount;
             this.TaxRate = taxRate;
-            this.RemoteId = remoteId;
+            this.Currency = currency;
+            this.ExchangeRate = exchangeRate;
+            this.Company = company;
         }
 
         /// <summary>
-        /// A memo attached to the line item.
+        /// An internal note used by the business to clarify purpose of the transaction.
         /// </summary>
-        /// <value>A memo attached to the line item.</value>
+        /// <value>An internal note used by the business to clarify purpose of the transaction.</value>
         [DataMember(Name = "memo", EmitDefaultValue = true)]
         public string Memo { get; set; }
 
@@ -99,6 +118,13 @@ namespace Merge.AccountingClient.Model
         public Guid? TrackingCategory { get; set; }
 
         /// <summary>
+        /// The line&#39;s associated tracking categories.
+        /// </summary>
+        /// <value>The line&#39;s associated tracking categories.</value>
+        [DataMember(Name = "tracking_categories", IsRequired = true, EmitDefaultValue = false)]
+        public List<Guid> TrackingCategories { get; set; }
+
+        /// <summary>
         /// The line item&#39;s total.
         /// </summary>
         /// <value>The line item&#39;s total.</value>
@@ -113,11 +139,18 @@ namespace Merge.AccountingClient.Model
         public Guid? TaxRate { get; set; }
 
         /// <summary>
-        /// The third-party API ID of the matching object.
+        /// The line item&#39;s exchange rate.
         /// </summary>
-        /// <value>The third-party API ID of the matching object.</value>
-        [DataMember(Name = "remote_id", EmitDefaultValue = true)]
-        public string RemoteId { get; set; }
+        /// <value>The line item&#39;s exchange rate.</value>
+        [DataMember(Name = "exchange_rate", EmitDefaultValue = true)]
+        public decimal? ExchangeRate { get; set; }
+
+        /// <summary>
+        /// The company the line belongs to.
+        /// </summary>
+        /// <value>The company the line belongs to.</value>
+        [DataMember(Name = "company", EmitDefaultValue = true)]
+        public Guid? Company { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -133,9 +166,12 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Item: ").Append(Item).Append("\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  TrackingCategory: ").Append(TrackingCategory).Append("\n");
+            sb.Append("  TrackingCategories: ").Append(TrackingCategories).Append("\n");
             sb.Append("  TotalLineAmount: ").Append(TotalLineAmount).Append("\n");
             sb.Append("  TaxRate: ").Append(TaxRate).Append("\n");
-            sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
+            sb.Append("  Currency: ").Append(Currency).Append("\n");
+            sb.Append("  ExchangeRate: ").Append(ExchangeRate).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -201,6 +237,12 @@ namespace Merge.AccountingClient.Model
                     this.TrackingCategory.Equals(input.TrackingCategory))
                 ) && 
                 (
+                    this.TrackingCategories == input.TrackingCategories ||
+                    this.TrackingCategories != null &&
+                    input.TrackingCategories != null &&
+                    this.TrackingCategories.SequenceEqual(input.TrackingCategories)
+                ) && 
+                (
                     this.TotalLineAmount == input.TotalLineAmount ||
                     (this.TotalLineAmount != null &&
                     this.TotalLineAmount.Equals(input.TotalLineAmount))
@@ -211,9 +253,18 @@ namespace Merge.AccountingClient.Model
                     this.TaxRate.Equals(input.TaxRate))
                 ) && 
                 (
-                    this.RemoteId == input.RemoteId ||
-                    (this.RemoteId != null &&
-                    this.RemoteId.Equals(input.RemoteId))
+                    this.Currency == input.Currency ||
+                    this.Currency.Equals(input.Currency)
+                ) && 
+                (
+                    this.ExchangeRate == input.ExchangeRate ||
+                    (this.ExchangeRate != null &&
+                    this.ExchangeRate.Equals(input.ExchangeRate))
+                ) && 
+                (
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
                 );
         }
 
@@ -238,12 +289,17 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.Account.GetHashCode();
                 if (this.TrackingCategory != null)
                     hashCode = hashCode * 59 + this.TrackingCategory.GetHashCode();
+                if (this.TrackingCategories != null)
+                    hashCode = hashCode * 59 + this.TrackingCategories.GetHashCode();
                 if (this.TotalLineAmount != null)
                     hashCode = hashCode * 59 + this.TotalLineAmount.GetHashCode();
                 if (this.TaxRate != null)
                     hashCode = hashCode * 59 + this.TaxRate.GetHashCode();
-                if (this.RemoteId != null)
-                    hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
+                hashCode = hashCode * 59 + this.Currency.GetHashCode();
+                if (this.ExchangeRate != null)
+                    hashCode = hashCode * 59 + this.ExchangeRate.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
                 return hashCode;
             }
         }
@@ -274,6 +330,13 @@ namespace Merge.AccountingClient.Model
             if (false == regexTotalLineAmount.Match(this.TotalLineAmount.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TotalLineAmount, must match a pattern of " + regexTotalLineAmount, new [] { "TotalLineAmount" });
+            }
+
+            // ExchangeRate (decimal?) pattern
+            Regex regexExchangeRate = new Regex(@"^\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
+            if (false == regexExchangeRate.Match(this.ExchangeRate.ToString()).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExchangeRate, must match a pattern of " + regexExchangeRate, new [] { "ExchangeRate" });
             }
 
             yield break;

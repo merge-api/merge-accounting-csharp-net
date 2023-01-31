@@ -35,18 +35,28 @@ namespace Merge.AccountingClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="VendorCreditLine" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected VendorCreditLine() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VendorCreditLine" /> class.
+        /// </summary>
         /// <param name="remoteId">The third-party API ID of the matching object..</param>
-        /// <param name="netAmount">The line&#39;s net amount..</param>
+        /// <param name="netAmount">The full value of the credit..</param>
         /// <param name="trackingCategory">The line&#39;s associated tracking category..</param>
+        /// <param name="trackingCategories">The line&#39;s associated tracking categories. (required).</param>
         /// <param name="description">The line&#39;s description..</param>
         /// <param name="account">The line&#39;s account..</param>
-        public VendorCreditLine(string remoteId = default(string), float? netAmount = default(float?), Guid? trackingCategory = default(Guid?), string description = default(string), Guid? account = default(Guid?))
+        /// <param name="company">The company the line belongs to..</param>
+        public VendorCreditLine(string remoteId = default(string), float? netAmount = default(float?), Guid? trackingCategory = default(Guid?), List<Guid> trackingCategories = default(List<Guid>), string description = default(string), Guid? account = default(Guid?), Guid? company = default(Guid?))
         {
+            // to ensure "trackingCategories" is required (not null)
+            this.TrackingCategories = trackingCategories ?? throw new ArgumentNullException("trackingCategories is a required property for VendorCreditLine and cannot be null");
             this.RemoteId = remoteId;
             this.NetAmount = netAmount;
             this.TrackingCategory = trackingCategory;
             this.Description = description;
             this.Account = account;
+            this.Company = company;
         }
 
         /// <summary>
@@ -57,9 +67,9 @@ namespace Merge.AccountingClient.Model
         public string RemoteId { get; set; }
 
         /// <summary>
-        /// The line&#39;s net amount.
+        /// The full value of the credit.
         /// </summary>
-        /// <value>The line&#39;s net amount.</value>
+        /// <value>The full value of the credit.</value>
         [DataMember(Name = "net_amount", EmitDefaultValue = true)]
         public float? NetAmount { get; set; }
 
@@ -69,6 +79,13 @@ namespace Merge.AccountingClient.Model
         /// <value>The line&#39;s associated tracking category.</value>
         [DataMember(Name = "tracking_category", EmitDefaultValue = true)]
         public Guid? TrackingCategory { get; set; }
+
+        /// <summary>
+        /// The line&#39;s associated tracking categories.
+        /// </summary>
+        /// <value>The line&#39;s associated tracking categories.</value>
+        [DataMember(Name = "tracking_categories", IsRequired = true, EmitDefaultValue = false)]
+        public List<Guid> TrackingCategories { get; set; }
 
         /// <summary>
         /// The line&#39;s description.
@@ -85,6 +102,13 @@ namespace Merge.AccountingClient.Model
         public Guid? Account { get; set; }
 
         /// <summary>
+        /// The company the line belongs to.
+        /// </summary>
+        /// <value>The company the line belongs to.</value>
+        [DataMember(Name = "company", EmitDefaultValue = true)]
+        public Guid? Company { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -95,8 +119,10 @@ namespace Merge.AccountingClient.Model
             sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
             sb.Append("  NetAmount: ").Append(NetAmount).Append("\n");
             sb.Append("  TrackingCategory: ").Append(TrackingCategory).Append("\n");
+            sb.Append("  TrackingCategories: ").Append(TrackingCategories).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -147,6 +173,12 @@ namespace Merge.AccountingClient.Model
                     this.TrackingCategory.Equals(input.TrackingCategory))
                 ) && 
                 (
+                    this.TrackingCategories == input.TrackingCategories ||
+                    this.TrackingCategories != null &&
+                    input.TrackingCategories != null &&
+                    this.TrackingCategories.SequenceEqual(input.TrackingCategories)
+                ) && 
+                (
                     this.Description == input.Description ||
                     (this.Description != null &&
                     this.Description.Equals(input.Description))
@@ -155,6 +187,11 @@ namespace Merge.AccountingClient.Model
                     this.Account == input.Account ||
                     (this.Account != null &&
                     this.Account.Equals(input.Account))
+                ) && 
+                (
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
                 );
         }
 
@@ -173,10 +210,14 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.NetAmount.GetHashCode();
                 if (this.TrackingCategory != null)
                     hashCode = hashCode * 59 + this.TrackingCategory.GetHashCode();
+                if (this.TrackingCategories != null)
+                    hashCode = hashCode * 59 + this.TrackingCategories.GetHashCode();
                 if (this.Description != null)
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.Account != null)
                     hashCode = hashCode * 59 + this.Account.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
                 return hashCode;
             }
         }

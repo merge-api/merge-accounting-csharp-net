@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Merge.AccountingClient.Client.OpenAPIDateConverter;
 namespace Merge.AccountingClient.Model
 {
     /// <summary>
-    /// # The Item Object ### Description The &#x60;Item&#x60; object is used to represent an item that a company buys, sells, or resells, such as products and services.  ### Usage Example Fetch from the &#x60;LIST Items&#x60; endpoint and view a company&#39;s items.
+    /// # The Item Object ### Description The &#x60;Item&#x60; object refers to the goods involved in a transaction.  ### Usage Example Fetch from the &#x60;LIST Items&#x60; endpoint and view a company&#39;s items.
     /// </summary>
     [DataContract(Name = "Item")]
     public partial class Item : IEquatable<Item>, IValidatableObject
@@ -38,7 +38,7 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The item&#39;s status.</value>
         [DataMember(Name = "status", EmitDefaultValue = true)]
-        public string Status { get; set; }
+        public Status7d1Enum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Item" /> class.
         /// </summary>
@@ -46,11 +46,12 @@ namespace Merge.AccountingClient.Model
         /// <param name="name">The item&#39;s name..</param>
         /// <param name="status">The item&#39;s status..</param>
         /// <param name="unitPrice">The item&#39;s unit price..</param>
-        /// <param name="purchasePrice">The item&#39;s purchase price..</param>
-        /// <param name="purchaseAccount">purchaseAccount.</param>
-        /// <param name="salesAccount">salesAccount.</param>
+        /// <param name="purchasePrice">The price at which the item is purchased from a vendor..</param>
+        /// <param name="purchaseAccount">References the default account used to record a purchase of the item..</param>
+        /// <param name="salesAccount">References the default account used to record a sale..</param>
+        /// <param name="company">The company the item belongs to..</param>
         /// <param name="remoteUpdatedAt">When the third party&#39;s item note was updated..</param>
-        public Item(string remoteId = default(string), string name = default(string), string status = default(string), float? unitPrice = default(float?), float? purchasePrice = default(float?), Guid? purchaseAccount = default(Guid?), Guid? salesAccount = default(Guid?), DateTime? remoteUpdatedAt = default(DateTime?))
+        public Item(string remoteId = default(string), string name = default(string), Status7d1Enum? status = default(Status7d1Enum?), float? unitPrice = default(float?), float? purchasePrice = default(float?), Guid? purchaseAccount = default(Guid?), Guid? salesAccount = default(Guid?), Guid? company = default(Guid?), DateTime? remoteUpdatedAt = default(DateTime?))
         {
             this.RemoteId = remoteId;
             this.Name = name;
@@ -59,6 +60,7 @@ namespace Merge.AccountingClient.Model
             this.PurchasePrice = purchasePrice;
             this.PurchaseAccount = purchaseAccount;
             this.SalesAccount = salesAccount;
+            this.Company = company;
             this.RemoteUpdatedAt = remoteUpdatedAt;
         }
 
@@ -114,23 +116,32 @@ namespace Merge.AccountingClient.Model
         public float? UnitPrice { get; set; }
 
         /// <summary>
-        /// The item&#39;s purchase price.
+        /// The price at which the item is purchased from a vendor.
         /// </summary>
-        /// <value>The item&#39;s purchase price.</value>
+        /// <value>The price at which the item is purchased from a vendor.</value>
         [DataMember(Name = "purchase_price", EmitDefaultValue = true)]
         public float? PurchasePrice { get; set; }
 
         /// <summary>
-        /// Gets or Sets PurchaseAccount
+        /// References the default account used to record a purchase of the item.
         /// </summary>
+        /// <value>References the default account used to record a purchase of the item.</value>
         [DataMember(Name = "purchase_account", EmitDefaultValue = true)]
         public Guid? PurchaseAccount { get; set; }
 
         /// <summary>
-        /// Gets or Sets SalesAccount
+        /// References the default account used to record a sale.
         /// </summary>
+        /// <value>References the default account used to record a sale.</value>
         [DataMember(Name = "sales_account", EmitDefaultValue = true)]
         public Guid? SalesAccount { get; set; }
+
+        /// <summary>
+        /// The company the item belongs to.
+        /// </summary>
+        /// <value>The company the item belongs to.</value>
+        [DataMember(Name = "company", EmitDefaultValue = true)]
+        public Guid? Company { get; set; }
 
         /// <summary>
         /// When the third party&#39;s item note was updated.
@@ -156,6 +167,21 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
+        /// Gets or Sets FieldMappings
+        /// </summary>
+        [DataMember(Name = "field_mappings", EmitDefaultValue = true)]
+        public Dictionary<string, Object> FieldMappings { get; private set; }
+
+        /// <summary>
+        /// Returns false as FieldMappings should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeFieldMappings()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -172,8 +198,10 @@ namespace Merge.AccountingClient.Model
             sb.Append("  PurchasePrice: ").Append(PurchasePrice).Append("\n");
             sb.Append("  PurchaseAccount: ").Append(PurchaseAccount).Append("\n");
             sb.Append("  SalesAccount: ").Append(SalesAccount).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  RemoteUpdatedAt: ").Append(RemoteUpdatedAt).Append("\n");
             sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
+            sb.Append("  FieldMappings: ").Append(FieldMappings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -254,6 +282,11 @@ namespace Merge.AccountingClient.Model
                     this.SalesAccount.Equals(input.SalesAccount))
                 ) && 
                 (
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
+                ) && 
+                (
                     this.RemoteUpdatedAt == input.RemoteUpdatedAt ||
                     (this.RemoteUpdatedAt != null &&
                     this.RemoteUpdatedAt.Equals(input.RemoteUpdatedAt))
@@ -261,6 +294,12 @@ namespace Merge.AccountingClient.Model
                 (
                     this.RemoteWasDeleted == input.RemoteWasDeleted ||
                     this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
+                ) && 
+                (
+                    this.FieldMappings == input.FieldMappings ||
+                    this.FieldMappings != null &&
+                    input.FieldMappings != null &&
+                    this.FieldMappings.SequenceEqual(input.FieldMappings)
                 );
         }
 
@@ -290,9 +329,13 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.PurchaseAccount.GetHashCode();
                 if (this.SalesAccount != null)
                     hashCode = hashCode * 59 + this.SalesAccount.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
                 if (this.RemoteUpdatedAt != null)
                     hashCode = hashCode * 59 + this.RemoteUpdatedAt.GetHashCode();
                 hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
+                if (this.FieldMappings != null)
+                    hashCode = hashCode * 59 + this.FieldMappings.GetHashCode();
                 return hashCode;
             }
         }

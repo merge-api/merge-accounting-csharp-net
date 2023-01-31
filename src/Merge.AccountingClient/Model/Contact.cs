@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Merge.AccountingClient.Client.OpenAPIDateConverter;
 namespace Merge.AccountingClient.Model
 {
     /// <summary>
-    /// # The Contact Object ### Description The &#x60;Contact&#x60; object is used to represent a Contact. This can be either a supplier or a customer.  ### Usage Example Fetch from the &#x60;LIST Contacts&#x60; endpoint and view a company&#39;s contacts.
+    /// # The Contact Object ### Description The &#x60;Contact&#x60; object refers to either a supplier or a customer.  ### Usage Example Fetch from the &#x60;LIST Contacts&#x60; endpoint and view a company&#39;s contacts.
     /// </summary>
     [DataContract(Name = "Contact")]
     public partial class Contact : IEquatable<Contact>, IValidatableObject
@@ -38,7 +38,7 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The contact&#39;s status</value>
         [DataMember(Name = "status", EmitDefaultValue = true)]
-        public string Status { get; set; }
+        public Status7d1Enum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Contact" /> class.
         /// </summary>
@@ -51,9 +51,10 @@ namespace Merge.AccountingClient.Model
         /// <param name="status">The contact&#39;s status.</param>
         /// <param name="currency">The currency the contact&#39;s transactions are in..</param>
         /// <param name="remoteUpdatedAt">When the third party&#39;s contact was updated..</param>
+        /// <param name="company">The company the contact belongs to..</param>
         /// <param name="addresses">&#x60;Address&#x60; object IDs for the given &#x60;Contacts&#x60; object..</param>
         /// <param name="phoneNumbers">&#x60;AccountingPhoneNumber&#x60; object for the given &#x60;Contacts&#x60; object..</param>
-        public Contact(string remoteId = default(string), string name = default(string), bool? isSupplier = default(bool?), bool? isCustomer = default(bool?), string emailAddress = default(string), string taxNumber = default(string), string status = default(string), string currency = default(string), DateTime? remoteUpdatedAt = default(DateTime?), List<Guid?> addresses = default(List<Guid?>), List<AccountingPhoneNumber> phoneNumbers = default(List<AccountingPhoneNumber>))
+        public Contact(string remoteId = default(string), string name = default(string), bool? isSupplier = default(bool?), bool? isCustomer = default(bool?), string emailAddress = default(string), string taxNumber = default(string), Status7d1Enum? status = default(Status7d1Enum?), string currency = default(string), DateTime? remoteUpdatedAt = default(DateTime?), Guid? company = default(Guid?), List<Guid?> addresses = default(List<Guid?>), List<AccountingPhoneNumber> phoneNumbers = default(List<AccountingPhoneNumber>))
         {
             this.RemoteId = remoteId;
             this.Name = name;
@@ -64,6 +65,7 @@ namespace Merge.AccountingClient.Model
             this.Status = status;
             this.Currency = currency;
             this.RemoteUpdatedAt = remoteUpdatedAt;
+            this.Company = company;
             this.Addresses = addresses;
             this.PhoneNumbers = phoneNumbers;
         }
@@ -155,6 +157,13 @@ namespace Merge.AccountingClient.Model
         public DateTime? RemoteUpdatedAt { get; set; }
 
         /// <summary>
+        /// The company the contact belongs to.
+        /// </summary>
+        /// <value>The company the contact belongs to.</value>
+        [DataMember(Name = "company", EmitDefaultValue = true)]
+        public Guid? Company { get; set; }
+
+        /// <summary>
         /// &#x60;Address&#x60; object IDs for the given &#x60;Contacts&#x60; object.
         /// </summary>
         /// <value>&#x60;Address&#x60; object IDs for the given &#x60;Contacts&#x60; object.</value>
@@ -185,6 +194,21 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
+        /// Gets or Sets FieldMappings
+        /// </summary>
+        [DataMember(Name = "field_mappings", EmitDefaultValue = true)]
+        public Dictionary<string, Object> FieldMappings { get; private set; }
+
+        /// <summary>
+        /// Returns false as FieldMappings should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeFieldMappings()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -203,9 +227,11 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  RemoteUpdatedAt: ").Append(RemoteUpdatedAt).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  Addresses: ").Append(Addresses).Append("\n");
             sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
             sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
+            sb.Append("  FieldMappings: ").Append(FieldMappings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -296,6 +322,11 @@ namespace Merge.AccountingClient.Model
                     this.RemoteUpdatedAt.Equals(input.RemoteUpdatedAt))
                 ) && 
                 (
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
+                ) && 
+                (
                     this.Addresses == input.Addresses ||
                     this.Addresses != null &&
                     input.Addresses != null &&
@@ -310,6 +341,12 @@ namespace Merge.AccountingClient.Model
                 (
                     this.RemoteWasDeleted == input.RemoteWasDeleted ||
                     this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
+                ) && 
+                (
+                    this.FieldMappings == input.FieldMappings ||
+                    this.FieldMappings != null &&
+                    input.FieldMappings != null &&
+                    this.FieldMappings.SequenceEqual(input.FieldMappings)
                 );
         }
 
@@ -343,11 +380,15 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.Currency.GetHashCode();
                 if (this.RemoteUpdatedAt != null)
                     hashCode = hashCode * 59 + this.RemoteUpdatedAt.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
                 if (this.Addresses != null)
                     hashCode = hashCode * 59 + this.Addresses.GetHashCode();
                 if (this.PhoneNumbers != null)
                     hashCode = hashCode * 59 + this.PhoneNumbers.GetHashCode();
                 hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
+                if (this.FieldMappings != null)
+                    hashCode = hashCode * 59 + this.FieldMappings.GetHashCode();
                 return hashCode;
             }
         }

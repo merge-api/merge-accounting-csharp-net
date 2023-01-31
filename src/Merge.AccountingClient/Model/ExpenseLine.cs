@@ -35,28 +35,25 @@ namespace Merge.AccountingClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ExpenseLine" /> class.
         /// </summary>
-        /// <param name="remoteId">The third-party API ID of the matching object..</param>
         /// <param name="item">The line&#39;s item..</param>
         /// <param name="netAmount">The line&#39;s net amount..</param>
         /// <param name="trackingCategory">trackingCategory.</param>
-        /// <param name="account">account.</param>
-        /// <param name="description">The line item&#39;s description..</param>
-        public ExpenseLine(string remoteId = default(string), Guid? item = default(Guid?), float? netAmount = default(float?), Guid? trackingCategory = default(Guid?), Guid? account = default(Guid?), string description = default(string))
+        /// <param name="trackingCategories">trackingCategories.</param>
+        /// <param name="company">The company the line belongs to..</param>
+        /// <param name="account">The expense&#39;s payment account..</param>
+        /// <param name="description">The description of the item that was purchased by the company..</param>
+        /// <param name="remoteId">The third-party API ID of the matching object..</param>
+        public ExpenseLine(Guid? item = default(Guid?), float? netAmount = default(float?), Guid? trackingCategory = default(Guid?), List<Guid?> trackingCategories = default(List<Guid?>), Guid? company = default(Guid?), Guid? account = default(Guid?), string description = default(string), string remoteId = default(string))
         {
-            this.RemoteId = remoteId;
             this.Item = item;
             this.NetAmount = netAmount;
             this.TrackingCategory = trackingCategory;
+            this.TrackingCategories = trackingCategories;
+            this.Company = company;
             this.Account = account;
             this.Description = description;
+            this.RemoteId = remoteId;
         }
-
-        /// <summary>
-        /// The third-party API ID of the matching object.
-        /// </summary>
-        /// <value>The third-party API ID of the matching object.</value>
-        [DataMember(Name = "remote_id", EmitDefaultValue = true)]
-        public string RemoteId { get; set; }
 
         /// <summary>
         /// The line&#39;s item.
@@ -79,17 +76,38 @@ namespace Merge.AccountingClient.Model
         public Guid? TrackingCategory { get; set; }
 
         /// <summary>
-        /// Gets or Sets Account
+        /// Gets or Sets TrackingCategories
         /// </summary>
+        [DataMember(Name = "tracking_categories", EmitDefaultValue = false)]
+        public List<Guid?> TrackingCategories { get; set; }
+
+        /// <summary>
+        /// The company the line belongs to.
+        /// </summary>
+        /// <value>The company the line belongs to.</value>
+        [DataMember(Name = "company", EmitDefaultValue = true)]
+        public Guid? Company { get; set; }
+
+        /// <summary>
+        /// The expense&#39;s payment account.
+        /// </summary>
+        /// <value>The expense&#39;s payment account.</value>
         [DataMember(Name = "account", EmitDefaultValue = true)]
         public Guid? Account { get; set; }
 
         /// <summary>
-        /// The line item&#39;s description.
+        /// The description of the item that was purchased by the company.
         /// </summary>
-        /// <value>The line item&#39;s description.</value>
+        /// <value>The description of the item that was purchased by the company.</value>
         [DataMember(Name = "description", EmitDefaultValue = true)]
         public string Description { get; set; }
+
+        /// <summary>
+        /// The third-party API ID of the matching object.
+        /// </summary>
+        /// <value>The third-party API ID of the matching object.</value>
+        [DataMember(Name = "remote_id", EmitDefaultValue = true)]
+        public string RemoteId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -99,12 +117,14 @@ namespace Merge.AccountingClient.Model
         {
             var sb = new StringBuilder();
             sb.Append("class ExpenseLine {\n");
-            sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
             sb.Append("  Item: ").Append(Item).Append("\n");
             sb.Append("  NetAmount: ").Append(NetAmount).Append("\n");
             sb.Append("  TrackingCategory: ").Append(TrackingCategory).Append("\n");
+            sb.Append("  TrackingCategories: ").Append(TrackingCategories).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -140,11 +160,6 @@ namespace Merge.AccountingClient.Model
 
             return 
                 (
-                    this.RemoteId == input.RemoteId ||
-                    (this.RemoteId != null &&
-                    this.RemoteId.Equals(input.RemoteId))
-                ) && 
-                (
                     this.Item == input.Item ||
                     (this.Item != null &&
                     this.Item.Equals(input.Item))
@@ -160,6 +175,17 @@ namespace Merge.AccountingClient.Model
                     this.TrackingCategory.Equals(input.TrackingCategory))
                 ) && 
                 (
+                    this.TrackingCategories == input.TrackingCategories ||
+                    this.TrackingCategories != null &&
+                    input.TrackingCategories != null &&
+                    this.TrackingCategories.SequenceEqual(input.TrackingCategories)
+                ) && 
+                (
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
+                ) && 
+                (
                     this.Account == input.Account ||
                     (this.Account != null &&
                     this.Account.Equals(input.Account))
@@ -168,6 +194,11 @@ namespace Merge.AccountingClient.Model
                     this.Description == input.Description ||
                     (this.Description != null &&
                     this.Description.Equals(input.Description))
+                ) && 
+                (
+                    this.RemoteId == input.RemoteId ||
+                    (this.RemoteId != null &&
+                    this.RemoteId.Equals(input.RemoteId))
                 );
         }
 
@@ -180,18 +211,22 @@ namespace Merge.AccountingClient.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.RemoteId != null)
-                    hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
                 if (this.Item != null)
                     hashCode = hashCode * 59 + this.Item.GetHashCode();
                 if (this.NetAmount != null)
                     hashCode = hashCode * 59 + this.NetAmount.GetHashCode();
                 if (this.TrackingCategory != null)
                     hashCode = hashCode * 59 + this.TrackingCategory.GetHashCode();
+                if (this.TrackingCategories != null)
+                    hashCode = hashCode * 59 + this.TrackingCategories.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
                 if (this.Account != null)
                     hashCode = hashCode * 59 + this.Account.GetHashCode();
                 if (this.Description != null)
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
+                if (this.RemoteId != null)
+                    hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
                 return hashCode;
             }
         }

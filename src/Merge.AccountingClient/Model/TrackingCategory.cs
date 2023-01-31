@@ -38,18 +38,83 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The tracking category&#39;s status.</value>
         [DataMember(Name = "status", EmitDefaultValue = true)]
-        public string Status { get; set; }
+        public Status7d1Enum? Status { get; set; }
+
+        /// <summary>
+        /// The tracking category’s type.
+        /// </summary>
+        /// <value>The tracking category’s type.</value>
+        [DataMember(Name = "category_type", EmitDefaultValue = true)]
+        public CategoryTypeEnum? CategoryType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TrackingCategory" /> class.
         /// </summary>
-        /// <param name="remoteId">The third-party API ID of the matching object..</param>
         /// <param name="name">The tracking category&#39;s name..</param>
         /// <param name="status">The tracking category&#39;s status..</param>
-        public TrackingCategory(string remoteId = default(string), string name = default(string), string status = default(string))
+        /// <param name="categoryType">The tracking category’s type..</param>
+        /// <param name="parentCategory">ID of the parent tracking category..</param>
+        /// <param name="company">The company the tracking category belongs to..</param>
+        /// <param name="remoteId">The third-party API ID of the matching object..</param>
+        public TrackingCategory(string name = default(string), Status7d1Enum? status = default(Status7d1Enum?), CategoryTypeEnum? categoryType = default(CategoryTypeEnum?), Guid? parentCategory = default(Guid?), Guid? company = default(Guid?), string remoteId = default(string))
         {
-            this.RemoteId = remoteId;
             this.Name = name;
             this.Status = status;
+            this.CategoryType = categoryType;
+            this.ParentCategory = parentCategory;
+            this.Company = company;
+            this.RemoteId = remoteId;
+        }
+
+        /// <summary>
+        /// Gets or Sets RemoteData
+        /// </summary>
+        [DataMember(Name = "remote_data", EmitDefaultValue = true)]
+        public List<RemoteData> RemoteData { get; private set; }
+
+        /// <summary>
+        /// Returns false as RemoteData should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeRemoteData()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// The tracking category&#39;s name.
+        /// </summary>
+        /// <value>The tracking category&#39;s name.</value>
+        [DataMember(Name = "name", EmitDefaultValue = true)]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// ID of the parent tracking category.
+        /// </summary>
+        /// <value>ID of the parent tracking category.</value>
+        [DataMember(Name = "parent_category", EmitDefaultValue = true)]
+        public Guid? ParentCategory { get; set; }
+
+        /// <summary>
+        /// The company the tracking category belongs to.
+        /// </summary>
+        /// <value>The company the tracking category belongs to.</value>
+        [DataMember(Name = "company", EmitDefaultValue = true)]
+        public Guid? Company { get; set; }
+
+        /// <summary>
+        /// Indicates whether or not this object has been deleted by third party webhooks.
+        /// </summary>
+        /// <value>Indicates whether or not this object has been deleted by third party webhooks.</value>
+        [DataMember(Name = "remote_was_deleted", EmitDefaultValue = true)]
+        public bool RemoteWasDeleted { get; private set; }
+
+        /// <summary>
+        /// Returns false as RemoteWasDeleted should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeRemoteWasDeleted()
+        {
+            return false;
         }
 
         /// <summary>
@@ -75,39 +140,16 @@ namespace Merge.AccountingClient.Model
         public string RemoteId { get; set; }
 
         /// <summary>
-        /// Gets or Sets RemoteData
+        /// Gets or Sets FieldMappings
         /// </summary>
-        [DataMember(Name = "remote_data", EmitDefaultValue = true)]
-        public List<RemoteData> RemoteData { get; private set; }
+        [DataMember(Name = "field_mappings", EmitDefaultValue = true)]
+        public Dictionary<string, Object> FieldMappings { get; private set; }
 
         /// <summary>
-        /// Returns false as RemoteData should not be serialized given that it's read-only.
+        /// Returns false as FieldMappings should not be serialized given that it's read-only.
         /// </summary>
         /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeRemoteData()
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// The tracking category&#39;s name.
-        /// </summary>
-        /// <value>The tracking category&#39;s name.</value>
-        [DataMember(Name = "name", EmitDefaultValue = true)]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Indicates whether or not this object has been deleted by third party webhooks.
-        /// </summary>
-        /// <value>Indicates whether or not this object has been deleted by third party webhooks.</value>
-        [DataMember(Name = "remote_was_deleted", EmitDefaultValue = true)]
-        public bool RemoteWasDeleted { get; private set; }
-
-        /// <summary>
-        /// Returns false as RemoteWasDeleted should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeRemoteWasDeleted()
+        public bool ShouldSerializeFieldMappings()
         {
             return false;
         }
@@ -120,12 +162,16 @@ namespace Merge.AccountingClient.Model
         {
             var sb = new StringBuilder();
             sb.Append("class TrackingCategory {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
             sb.Append("  RemoteData: ").Append(RemoteData).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  CategoryType: ").Append(CategoryType).Append("\n");
+            sb.Append("  ParentCategory: ").Append(ParentCategory).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
+            sb.Append("  FieldMappings: ").Append(FieldMappings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -161,16 +207,6 @@ namespace Merge.AccountingClient.Model
 
             return 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
-                (
-                    this.RemoteId == input.RemoteId ||
-                    (this.RemoteId != null &&
-                    this.RemoteId.Equals(input.RemoteId))
-                ) && 
-                (
                     this.RemoteData == input.RemoteData ||
                     this.RemoteData != null &&
                     input.RemoteData != null &&
@@ -186,8 +222,38 @@ namespace Merge.AccountingClient.Model
                     this.Status.Equals(input.Status)
                 ) && 
                 (
+                    this.CategoryType == input.CategoryType ||
+                    this.CategoryType.Equals(input.CategoryType)
+                ) && 
+                (
+                    this.ParentCategory == input.ParentCategory ||
+                    (this.ParentCategory != null &&
+                    this.ParentCategory.Equals(input.ParentCategory))
+                ) && 
+                (
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
+                ) && 
+                (
                     this.RemoteWasDeleted == input.RemoteWasDeleted ||
                     this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
+                ) && 
+                (
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.RemoteId == input.RemoteId ||
+                    (this.RemoteId != null &&
+                    this.RemoteId.Equals(input.RemoteId))
+                ) && 
+                (
+                    this.FieldMappings == input.FieldMappings ||
+                    this.FieldMappings != null &&
+                    input.FieldMappings != null &&
+                    this.FieldMappings.SequenceEqual(input.FieldMappings)
                 );
         }
 
@@ -200,16 +266,23 @@ namespace Merge.AccountingClient.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.RemoteId != null)
-                    hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
                 if (this.RemoteData != null)
                     hashCode = hashCode * 59 + this.RemoteData.GetHashCode();
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
                 hashCode = hashCode * 59 + this.Status.GetHashCode();
+                hashCode = hashCode * 59 + this.CategoryType.GetHashCode();
+                if (this.ParentCategory != null)
+                    hashCode = hashCode * 59 + this.ParentCategory.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
                 hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.RemoteId != null)
+                    hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
+                if (this.FieldMappings != null)
+                    hashCode = hashCode * 59 + this.FieldMappings.GetHashCode();
                 return hashCode;
             }
         }

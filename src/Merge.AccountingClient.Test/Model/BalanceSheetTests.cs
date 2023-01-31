@@ -90,6 +90,22 @@ namespace Merge.AccountingClient.Test.Model
             // TODO unit test for the property 'Name'
         }
         /// <summary>
+        /// Test the property 'Currency'
+        /// </summary>
+        [Fact]
+        public void CurrencyTest()
+        {
+            // TODO unit test for the property 'Currency'
+        }
+        /// <summary>
+        /// Test the property 'Company'
+        /// </summary>
+        [Fact]
+        public void CompanyTest()
+        {
+            // TODO unit test for the property 'Company'
+        }
+        /// <summary>
         /// Test the property 'Date'
         /// </summary>
         [Fact]
@@ -144,6 +160,14 @@ namespace Merge.AccountingClient.Test.Model
         public void RemoteWasDeletedTest()
         {
             // TODO unit test for the property 'RemoteWasDeleted'
+        }
+        /// <summary>
+        /// Test the property 'FieldMappings'
+        /// </summary>
+        [Fact]
+        public void FieldMappingsTest()
+        {
+            // TODO unit test for the property 'FieldMappings'
         }
 
     }

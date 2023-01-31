@@ -146,12 +146,36 @@ namespace Merge.AccountingClient.Test.Model
             // TODO unit test for the property 'AccountNumber'
         }
         /// <summary>
+        /// Test the property 'ParentAccount'
+        /// </summary>
+        [Fact]
+        public void ParentAccountTest()
+        {
+            // TODO unit test for the property 'ParentAccount'
+        }
+        /// <summary>
+        /// Test the property 'Company'
+        /// </summary>
+        [Fact]
+        public void CompanyTest()
+        {
+            // TODO unit test for the property 'Company'
+        }
+        /// <summary>
         /// Test the property 'RemoteWasDeleted'
         /// </summary>
         [Fact]
         public void RemoteWasDeletedTest()
         {
             // TODO unit test for the property 'RemoteWasDeleted'
+        }
+        /// <summary>
+        /// Test the property 'FieldMappings'
+        /// </summary>
+        [Fact]
+        public void FieldMappingsTest()
+        {
+            // TODO unit test for the property 'FieldMappings'
         }
 
     }

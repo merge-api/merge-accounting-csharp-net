@@ -38,7 +38,7 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The encoding of the value of &#x60;data&#x60;. Defaults to &#x60;RAW&#x60; if not defined.</value>
         [DataMember(Name = "encoding", EmitDefaultValue = true)]
-        public string Encoding { get; set; }
+        public EncodingEnum? Encoding { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="MultipartFormFieldRequest" /> class.
         /// </summary>
@@ -52,7 +52,7 @@ namespace Merge.AccountingClient.Model
         /// <param name="encoding">The encoding of the value of &#x60;data&#x60;. Defaults to &#x60;RAW&#x60; if not defined..</param>
         /// <param name="fileName">The file name of the form field, if the field is for a file..</param>
         /// <param name="contentType">The MIME type of the file, if the field is for a file..</param>
-        public MultipartFormFieldRequest(string name = default(string), string data = default(string), string encoding = default(string), string fileName = default(string), string contentType = default(string))
+        public MultipartFormFieldRequest(string name = default(string), string data = default(string), EncodingEnum? encoding = default(EncodingEnum?), string fileName = default(string), string contentType = default(string))
         {
             // to ensure "name" is required (not null)
             this.Name = name ?? throw new ArgumentNullException("name is a required property for MultipartFormFieldRequest and cannot be null");

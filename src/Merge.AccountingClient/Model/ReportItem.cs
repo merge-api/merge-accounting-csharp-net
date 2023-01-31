@@ -38,11 +38,13 @@ namespace Merge.AccountingClient.Model
         /// <param name="remoteId">The third-party API ID of the matching object..</param>
         /// <param name="name">The report item&#39;s name..</param>
         /// <param name="value">The report item&#39;s value..</param>
-        public ReportItem(string remoteId = default(string), string name = default(string), float? value = default(float?))
+        /// <param name="company">The company the report item belongs to..</param>
+        public ReportItem(string remoteId = default(string), string name = default(string), float? value = default(float?), Guid? company = default(Guid?))
         {
             this.RemoteId = remoteId;
             this.Name = name;
             this.Value = value;
+            this.Company = company;
         }
 
         /// <summary>
@@ -82,6 +84,13 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
+        /// The company the report item belongs to.
+        /// </summary>
+        /// <value>The company the report item belongs to.</value>
+        [DataMember(Name = "company", EmitDefaultValue = true)]
+        public Guid? Company { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -93,6 +102,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("  SubItems: ").Append(SubItems).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -147,6 +157,11 @@ namespace Merge.AccountingClient.Model
                     this.SubItems != null &&
                     input.SubItems != null &&
                     this.SubItems.SequenceEqual(input.SubItems)
+                ) && 
+                (
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
                 );
         }
 
@@ -167,6 +182,8 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.Value.GetHashCode();
                 if (this.SubItems != null)
                     hashCode = hashCode * 59 + this.SubItems.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
                 return hashCode;
             }
         }

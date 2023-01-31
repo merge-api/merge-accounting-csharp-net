@@ -9,8 +9,9 @@ Name | Type | Description | Notes
 **ModelId** | **string** |  | 
 **LastSyncStart** | **DateTime** |  | [optional] 
 **NextSyncStart** | **DateTime** |  | [optional] 
-**Status** | **string** |  | 
+**Status** | **SyncStatusStatusEnum** |  | 
 **IsInitialSync** | **bool** |  | 
+**SelectiveSyncConfigurationsUsage** | **SelectiveSyncConfigurationsUsageEnum** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

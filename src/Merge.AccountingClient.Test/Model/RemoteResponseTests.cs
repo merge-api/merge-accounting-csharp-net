@@ -98,6 +98,14 @@ namespace Merge.AccountingClient.Test.Model
             // TODO unit test for the property 'ResponseHeaders'
         }
         /// <summary>
+        /// Test the property 'ResponseType'
+        /// </summary>
+        [Fact]
+        public void ResponseTypeTest()
+        {
+            // TODO unit test for the property 'ResponseType'
+        }
+        /// <summary>
         /// Test the property 'Headers'
         /// </summary>
         [Fact]

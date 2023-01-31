@@ -38,7 +38,7 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The currency set in the company&#39;s accounting platform.</value>
         [DataMember(Name = "currency", EmitDefaultValue = true)]
-        public string Currency { get; set; }
+        public CurrencyEnum? Currency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CompanyInfo" /> class.
         /// </summary>
@@ -53,7 +53,7 @@ namespace Merge.AccountingClient.Model
         /// <param name="urls">The company&#39;s urls..</param>
         /// <param name="addresses">addresses.</param>
         /// <param name="phoneNumbers">phoneNumbers.</param>
-        public CompanyInfo(string remoteId = default(string), string name = default(string), string legalName = default(string), string taxNumber = default(string), int? fiscalYearEndMonth = default(int?), int? fiscalYearEndDay = default(int?), string currency = default(string), DateTime? remoteCreatedAt = default(DateTime?), List<string> urls = default(List<string>), List<Address> addresses = default(List<Address>), List<AccountingPhoneNumber> phoneNumbers = default(List<AccountingPhoneNumber>))
+        public CompanyInfo(string remoteId = default(string), string name = default(string), string legalName = default(string), string taxNumber = default(string), int? fiscalYearEndMonth = default(int?), int? fiscalYearEndDay = default(int?), CurrencyEnum? currency = default(CurrencyEnum?), DateTime? remoteCreatedAt = default(DateTime?), List<string> urls = default(List<string>), List<Address> addresses = default(List<Address>), List<AccountingPhoneNumber> phoneNumbers = default(List<AccountingPhoneNumber>))
         {
             this.RemoteId = remoteId;
             this.Name = name;
@@ -183,6 +183,21 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
+        /// Gets or Sets FieldMappings
+        /// </summary>
+        [DataMember(Name = "field_mappings", EmitDefaultValue = true)]
+        public Dictionary<string, Object> FieldMappings { get; private set; }
+
+        /// <summary>
+        /// Returns false as FieldMappings should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeFieldMappings()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -204,6 +219,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Addresses: ").Append(Addresses).Append("\n");
             sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
             sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
+            sb.Append("  FieldMappings: ").Append(FieldMappings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -309,6 +325,12 @@ namespace Merge.AccountingClient.Model
                 (
                     this.RemoteWasDeleted == input.RemoteWasDeleted ||
                     this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
+                ) && 
+                (
+                    this.FieldMappings == input.FieldMappings ||
+                    this.FieldMappings != null &&
+                    input.FieldMappings != null &&
+                    this.FieldMappings.SequenceEqual(input.FieldMappings)
                 );
         }
 
@@ -347,6 +369,8 @@ namespace Merge.AccountingClient.Model
                 if (this.PhoneNumbers != null)
                     hashCode = hashCode * 59 + this.PhoneNumbers.GetHashCode();
                 hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
+                if (this.FieldMappings != null)
+                    hashCode = hashCode * 59 + this.FieldMappings.GetHashCode();
                 return hashCode;
             }
         }

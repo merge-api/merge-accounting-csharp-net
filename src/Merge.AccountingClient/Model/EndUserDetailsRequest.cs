@@ -40,9 +40,9 @@ namespace Merge.AccountingClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EndUserDetailsRequest" /> class.
         /// </summary>
-        /// <param name="endUserEmailAddress">Your end user&#39;s email address. (required).</param>
+        /// <param name="endUserEmailAddress">Your end user&#39;s email address. This is purely for identification purposes - setting this value will not cause any emails to be sent. (required).</param>
         /// <param name="endUserOrganizationName">Your end user&#39;s organization. (required).</param>
-        /// <param name="endUserOriginId">Unique ID for your end user. (required).</param>
+        /// <param name="endUserOriginId">This unique identifier typically represents the ID for your end user in your product&#39;s database. This value must be distinct from other Linked Accounts&#39; unique identifiers. (required).</param>
         /// <param name="categories">The integration categories to show in Merge Link. (required).</param>
         /// <param name="integration">The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://www.merge.dev/docs/basics/integration-metadata/..</param>
         /// <param name="linkExpiryMins">An integer number of minutes between [30, 720 or 10080 if for a Magic Link URL] for how long this token is valid. Defaults to 30. (default to 30).</param>
@@ -64,9 +64,9 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
-        /// Your end user&#39;s email address.
+        /// Your end user&#39;s email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.
         /// </summary>
-        /// <value>Your end user&#39;s email address.</value>
+        /// <value>Your end user&#39;s email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.</value>
         [DataMember(Name = "end_user_email_address", IsRequired = true, EmitDefaultValue = false)]
         public string EndUserEmailAddress { get; set; }
 
@@ -78,9 +78,9 @@ namespace Merge.AccountingClient.Model
         public string EndUserOrganizationName { get; set; }
 
         /// <summary>
-        /// Unique ID for your end user.
+        /// This unique identifier typically represents the ID for your end user in your product&#39;s database. This value must be distinct from other Linked Accounts&#39; unique identifiers.
         /// </summary>
-        /// <value>Unique ID for your end user.</value>
+        /// <value>This unique identifier typically represents the ID for your end user in your product&#39;s database. This value must be distinct from other Linked Accounts&#39; unique identifiers.</value>
         [DataMember(Name = "end_user_origin_id", IsRequired = true, EmitDefaultValue = false)]
         public string EndUserOriginId { get; set; }
 

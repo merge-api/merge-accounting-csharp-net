@@ -10,7 +10,9 @@ Name | Type | Description | Notes
 **RemoteData** | [**List&lt;RemoteData&gt;**](RemoteData.md) |  | [optional] [readonly] 
 **FileName** | **string** | The attachment&#39;s name. | [optional] 
 **FileUrl** | **string** | The attachment&#39;s url. | [optional] 
+**Company** | **Guid?** | The company the accounting attachment belongs to. | [optional] 
 **RemoteWasDeleted** | **bool** | Indicates whether or not this object has been deleted by third party webhooks. | [optional] [readonly] 
+**FieldMappings** | **Dictionary&lt;string, Object&gt;** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

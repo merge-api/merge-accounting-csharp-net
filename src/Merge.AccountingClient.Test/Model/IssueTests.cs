@@ -113,6 +113,14 @@ namespace Merge.AccountingClient.Test.Model
         {
             // TODO unit test for the property 'IsMuted'
         }
+        /// <summary>
+        /// Test the property 'ErrorDetails'
+        /// </summary>
+        [Fact]
+        public void ErrorDetailsTest()
+        {
+            // TODO unit test for the property 'ErrorDetails'
+        }
 
     }
 

@@ -38,11 +38,13 @@ namespace Merge.AccountingClient.Model
         /// <param name="remoteId">The third-party API ID of the matching object..</param>
         /// <param name="fileName">The attachment&#39;s name..</param>
         /// <param name="fileUrl">The attachment&#39;s url..</param>
-        public AccountingAttachment(string remoteId = default(string), string fileName = default(string), string fileUrl = default(string))
+        /// <param name="company">The company the accounting attachment belongs to..</param>
+        public AccountingAttachment(string remoteId = default(string), string fileName = default(string), string fileUrl = default(string), Guid? company = default(Guid?))
         {
             this.RemoteId = remoteId;
             this.FileName = fileName;
             this.FileUrl = fileUrl;
+            this.Company = company;
         }
 
         /// <summary>
@@ -97,6 +99,13 @@ namespace Merge.AccountingClient.Model
         public string FileUrl { get; set; }
 
         /// <summary>
+        /// The company the accounting attachment belongs to.
+        /// </summary>
+        /// <value>The company the accounting attachment belongs to.</value>
+        [DataMember(Name = "company", EmitDefaultValue = true)]
+        public Guid? Company { get; set; }
+
+        /// <summary>
         /// Indicates whether or not this object has been deleted by third party webhooks.
         /// </summary>
         /// <value>Indicates whether or not this object has been deleted by third party webhooks.</value>
@@ -108,6 +117,21 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <returns>false (boolean)</returns>
         public bool ShouldSerializeRemoteWasDeleted()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// Gets or Sets FieldMappings
+        /// </summary>
+        [DataMember(Name = "field_mappings", EmitDefaultValue = true)]
+        public Dictionary<string, Object> FieldMappings { get; private set; }
+
+        /// <summary>
+        /// Returns false as FieldMappings should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeFieldMappings()
         {
             return false;
         }
@@ -125,7 +149,9 @@ namespace Merge.AccountingClient.Model
             sb.Append("  RemoteData: ").Append(RemoteData).Append("\n");
             sb.Append("  FileName: ").Append(FileName).Append("\n");
             sb.Append("  FileUrl: ").Append(FileUrl).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
+            sb.Append("  FieldMappings: ").Append(FieldMappings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -187,8 +213,19 @@ namespace Merge.AccountingClient.Model
                     this.FileUrl.Equals(input.FileUrl))
                 ) && 
                 (
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
+                ) && 
+                (
                     this.RemoteWasDeleted == input.RemoteWasDeleted ||
                     this.RemoteWasDeleted.Equals(input.RemoteWasDeleted)
+                ) && 
+                (
+                    this.FieldMappings == input.FieldMappings ||
+                    this.FieldMappings != null &&
+                    input.FieldMappings != null &&
+                    this.FieldMappings.SequenceEqual(input.FieldMappings)
                 );
         }
 
@@ -211,7 +248,11 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.FileName.GetHashCode();
                 if (this.FileUrl != null)
                     hashCode = hashCode * 59 + this.FileUrl.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
                 hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
+                if (this.FieldMappings != null)
+                    hashCode = hashCode * 59 + this.FieldMappings.GetHashCode();
                 return hashCode;
             }
         }

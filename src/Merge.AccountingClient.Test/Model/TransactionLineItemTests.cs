@@ -106,6 +106,14 @@ namespace Merge.AccountingClient.Test.Model
             // TODO unit test for the property 'TrackingCategory'
         }
         /// <summary>
+        /// Test the property 'TrackingCategories'
+        /// </summary>
+        [Fact]
+        public void TrackingCategoriesTest()
+        {
+            // TODO unit test for the property 'TrackingCategories'
+        }
+        /// <summary>
         /// Test the property 'TotalLineAmount'
         /// </summary>
         [Fact]
@@ -122,12 +130,28 @@ namespace Merge.AccountingClient.Test.Model
             // TODO unit test for the property 'TaxRate'
         }
         /// <summary>
-        /// Test the property 'RemoteId'
+        /// Test the property 'Currency'
         /// </summary>
         [Fact]
-        public void RemoteIdTest()
+        public void CurrencyTest()
         {
-            // TODO unit test for the property 'RemoteId'
+            // TODO unit test for the property 'Currency'
+        }
+        /// <summary>
+        /// Test the property 'ExchangeRate'
+        /// </summary>
+        [Fact]
+        public void ExchangeRateTest()
+        {
+            // TODO unit test for the property 'ExchangeRate'
+        }
+        /// <summary>
+        /// Test the property 'Company'
+        /// </summary>
+        [Fact]
+        public void CompanyTest()
+        {
+            // TODO unit test for the property 'Company'
         }
 
     }

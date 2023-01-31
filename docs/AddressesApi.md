@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="addressesretrieve"></a>
 # **AddressesRetrieve**
-> Address AddressesRetrieve (string xAccountToken, Guid id, bool? includeRemoteData = null, string remoteFields = null)
+> Address AddressesRetrieve (string xAccountToken, Guid id, bool? includeRemoteData = null, string remoteFields = null, string showEnumOrigins = null)
 
 
 
@@ -40,11 +40,12 @@ namespace Example
             var xAccountToken = xAccountToken_example;  // string | Token identifying the end user.
             var id = new Guid(); // Guid | 
             var includeRemoteData = true;  // bool? | Whether to include the original data Merge fetched from the third-party to produce these models. (optional) 
-            var remoteFields = type;  // string | Which fields should be returned in non-normalized form. (optional) 
+            var remoteFields = type;  // string | Deprecated. Use show_enum_origins. (optional) 
+            var showEnumOrigins = type;  // string | Which fields should be returned in non-normalized form. (optional) 
 
             try
             {
-                Address result = apiInstance.AddressesRetrieve(xAccountToken, id, includeRemoteData, remoteFields);
+                Address result = apiInstance.AddressesRetrieve(xAccountToken, id, includeRemoteData, remoteFields, showEnumOrigins);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -65,7 +66,8 @@ Name | Type | Description  | Notes
  **xAccountToken** | **string**| Token identifying the end user. | 
  **id** | [**Guid**](Guid.md)|  | 
  **includeRemoteData** | **bool?**| Whether to include the original data Merge fetched from the third-party to produce these models. | [optional] 
- **remoteFields** | **string**| Which fields should be returned in non-normalized form. | [optional] 
+ **remoteFields** | **string**| Deprecated. Use show_enum_origins. | [optional] 
+ **showEnumOrigins** | **string**| Which fields should be returned in non-normalized form. | [optional] 
 
 ### Return type
 

@@ -78,6 +78,7 @@ namespace Merge.AccountingClient.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string xAccountToken = null;
+            //string companyId = null;
             //string contactId = null;
             //DateTime? createdAfter = null;
             //DateTime? createdBefore = null;
@@ -89,8 +90,9 @@ namespace Merge.AccountingClient.Test.Api
             //int? pageSize = null;
             //string remoteFields = null;
             //string remoteId = null;
+            //string showEnumOrigins = null;
             //string type = null;
-            //var response = instance.InvoicesList(xAccountToken, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, type);
+            //var response = instance.InvoicesList(xAccountToken, companyId, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, showEnumOrigins, type);
             //Assert.IsType<PaginatedInvoiceList>(response);
         }
 
@@ -117,7 +119,8 @@ namespace Merge.AccountingClient.Test.Api
             //Guid id = null;
             //bool? includeRemoteData = null;
             //string remoteFields = null;
-            //var response = instance.InvoicesRetrieve(xAccountToken, id, includeRemoteData, remoteFields);
+            //string showEnumOrigins = null;
+            //var response = instance.InvoicesRetrieve(xAccountToken, id, includeRemoteData, remoteFields, showEnumOrigins);
             //Assert.IsType<Invoice>(response);
         }
     }

@@ -31,10 +31,38 @@ namespace Merge.AccountingClient.Api
         /// 
         /// </summary>
         /// <remarks>
+        /// Creates an &#x60;Account&#x60; object with the given values.
+        /// </remarks>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="accountEndpointRequest"></param>
+        /// <param name="isDebugMode">Whether to include debug fields (such as log file links) in the response. (optional)</param>
+        /// <param name="runAsync">Whether or not third-party updates should be run asynchronously. (optional)</param>
+        /// <returns>AccountResponse</returns>
+        AccountResponse AccountsCreate(string xAccountToken, AccountEndpointRequest accountEndpointRequest, bool? isDebugMode = default(bool?), bool? runAsync = default(bool?));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Creates an &#x60;Account&#x60; object with the given values.
+        /// </remarks>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="accountEndpointRequest"></param>
+        /// <param name="isDebugMode">Whether to include debug fields (such as log file links) in the response. (optional)</param>
+        /// <param name="runAsync">Whether or not third-party updates should be run asynchronously. (optional)</param>
+        /// <returns>ApiResponse of AccountResponse</returns>
+        ApiResponse<AccountResponse> AccountsCreateWithHttpInfo(string xAccountToken, AccountEndpointRequest accountEndpointRequest, bool? isDebugMode = default(bool?), bool? runAsync = default(bool?));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
         /// Returns a list of &#x60;Account&#x60; objects.
         /// </remarks>
         /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="companyId">If provided, will only return accounts for this company. (optional)</param>
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
@@ -43,10 +71,11 @@ namespace Merge.AccountingClient.Api
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
-        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
+        /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
+        /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>PaginatedAccountList</returns>
-        PaginatedAccountList AccountsList(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string));
+        PaginatedAccountList AccountsList(string xAccountToken, string companyId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string));
 
         /// <summary>
         /// 
@@ -56,6 +85,7 @@ namespace Merge.AccountingClient.Api
         /// </remarks>
         /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="companyId">If provided, will only return accounts for this company. (optional)</param>
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
@@ -64,10 +94,32 @@ namespace Merge.AccountingClient.Api
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
-        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
+        /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
+        /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>ApiResponse of PaginatedAccountList</returns>
-        ApiResponse<PaginatedAccountList> AccountsListWithHttpInfo(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string));
+        ApiResponse<PaginatedAccountList> AccountsListWithHttpInfo(string xAccountToken, string companyId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns metadata for &#x60;Account&#x60; POSTs.
+        /// </remarks>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <returns>MetaResponse</returns>
+        MetaResponse AccountsMetaPostRetrieve(string xAccountToken);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns metadata for &#x60;Account&#x60; POSTs.
+        /// </remarks>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <returns>ApiResponse of MetaResponse</returns>
+        ApiResponse<MetaResponse> AccountsMetaPostRetrieveWithHttpInfo(string xAccountToken);
         /// <summary>
         /// 
         /// </summary>
@@ -78,9 +130,10 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
-        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
+        /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
+        /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>Account</returns>
-        Account AccountsRetrieve(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string));
+        Account AccountsRetrieve(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), string showEnumOrigins = default(string));
 
         /// <summary>
         /// 
@@ -92,9 +145,10 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
-        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
+        /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
+        /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>ApiResponse of Account</returns>
-        ApiResponse<Account> AccountsRetrieveWithHttpInfo(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string));
+        ApiResponse<Account> AccountsRetrieveWithHttpInfo(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), string showEnumOrigins = default(string));
         #endregion Synchronous Operations
     }
 
@@ -108,10 +162,40 @@ namespace Merge.AccountingClient.Api
         /// 
         /// </summary>
         /// <remarks>
+        /// Creates an &#x60;Account&#x60; object with the given values.
+        /// </remarks>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="accountEndpointRequest"></param>
+        /// <param name="isDebugMode">Whether to include debug fields (such as log file links) in the response. (optional)</param>
+        /// <param name="runAsync">Whether or not third-party updates should be run asynchronously. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AccountResponse</returns>
+        System.Threading.Tasks.Task<AccountResponse> AccountsCreateAsync(string xAccountToken, AccountEndpointRequest accountEndpointRequest, bool? isDebugMode = default(bool?), bool? runAsync = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Creates an &#x60;Account&#x60; object with the given values.
+        /// </remarks>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="accountEndpointRequest"></param>
+        /// <param name="isDebugMode">Whether to include debug fields (such as log file links) in the response. (optional)</param>
+        /// <param name="runAsync">Whether or not third-party updates should be run asynchronously. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AccountResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AccountResponse>> AccountsCreateWithHttpInfoAsync(string xAccountToken, AccountEndpointRequest accountEndpointRequest, bool? isDebugMode = default(bool?), bool? runAsync = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
         /// Returns a list of &#x60;Account&#x60; objects.
         /// </remarks>
         /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="companyId">If provided, will only return accounts for this company. (optional)</param>
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
@@ -120,11 +204,12 @@ namespace Merge.AccountingClient.Api
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
-        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
+        /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
+        /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PaginatedAccountList</returns>
-        System.Threading.Tasks.Task<PaginatedAccountList> AccountsListAsync(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PaginatedAccountList> AccountsListAsync(string xAccountToken, string companyId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -134,6 +219,7 @@ namespace Merge.AccountingClient.Api
         /// </remarks>
         /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="companyId">If provided, will only return accounts for this company. (optional)</param>
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
@@ -142,11 +228,35 @@ namespace Merge.AccountingClient.Api
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
-        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
+        /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
+        /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PaginatedAccountList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PaginatedAccountList>> AccountsListWithHttpInfoAsync(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PaginatedAccountList>> AccountsListWithHttpInfoAsync(string xAccountToken, string companyId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns metadata for &#x60;Account&#x60; POSTs.
+        /// </remarks>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of MetaResponse</returns>
+        System.Threading.Tasks.Task<MetaResponse> AccountsMetaPostRetrieveAsync(string xAccountToken, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns metadata for &#x60;Account&#x60; POSTs.
+        /// </remarks>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (MetaResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<MetaResponse>> AccountsMetaPostRetrieveWithHttpInfoAsync(string xAccountToken, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -157,10 +267,11 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
-        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
+        /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
+        /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Account</returns>
-        System.Threading.Tasks.Task<Account> AccountsRetrieveAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<Account> AccountsRetrieveAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), string showEnumOrigins = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -172,10 +283,11 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
-        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
+        /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
+        /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Account)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Account>> AccountsRetrieveWithHttpInfoAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Account>> AccountsRetrieveWithHttpInfoAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), string showEnumOrigins = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -297,10 +409,180 @@ namespace Merge.AccountingClient.Api
         }
 
         /// <summary>
+        ///  Creates an &#x60;Account&#x60; object with the given values.
+        /// </summary>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="accountEndpointRequest"></param>
+        /// <param name="isDebugMode">Whether to include debug fields (such as log file links) in the response. (optional)</param>
+        /// <param name="runAsync">Whether or not third-party updates should be run asynchronously. (optional)</param>
+        /// <returns>AccountResponse</returns>
+        public AccountResponse AccountsCreate(string xAccountToken, AccountEndpointRequest accountEndpointRequest, bool? isDebugMode = default(bool?), bool? runAsync = default(bool?))
+        {
+            Merge.AccountingClient.Client.ApiResponse<AccountResponse> localVarResponse = AccountsCreateWithHttpInfo(xAccountToken, accountEndpointRequest, isDebugMode, runAsync);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Creates an &#x60;Account&#x60; object with the given values.
+        /// </summary>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="accountEndpointRequest"></param>
+        /// <param name="isDebugMode">Whether to include debug fields (such as log file links) in the response. (optional)</param>
+        /// <param name="runAsync">Whether or not third-party updates should be run asynchronously. (optional)</param>
+        /// <returns>ApiResponse of AccountResponse</returns>
+        public Merge.AccountingClient.Client.ApiResponse<AccountResponse> AccountsCreateWithHttpInfo(string xAccountToken, AccountEndpointRequest accountEndpointRequest, bool? isDebugMode = default(bool?), bool? runAsync = default(bool?))
+        {
+            // verify the required parameter 'xAccountToken' is set
+            if (xAccountToken == null)
+                throw new Merge.AccountingClient.Client.ApiException(400, "Missing required parameter 'xAccountToken' when calling AccountsApi->AccountsCreate");
+
+            // verify the required parameter 'accountEndpointRequest' is set
+            if (accountEndpointRequest == null)
+                throw new Merge.AccountingClient.Client.ApiException(400, "Missing required parameter 'accountEndpointRequest' when calling AccountsApi->AccountsCreate");
+
+            Merge.AccountingClient.Client.RequestOptions localVarRequestOptions = new Merge.AccountingClient.Client.RequestOptions();
+
+            String[] _contentTypes = new String[] {
+                "application/json",
+                "application/x-www-form-urlencoded",
+                "multipart/form-data"
+            };
+
+            // to determine the Accept header
+            String[] _accepts = new String[] {
+                "application/json"
+            };
+
+            var localVarContentType = Merge.AccountingClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Merge.AccountingClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (isDebugMode != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "is_debug_mode", isDebugMode));
+            }
+            if (runAsync != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "run_async", runAsync));
+            }
+            localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
+            localVarRequestOptions.Data = accountEndpointRequest;
+
+            // authentication (tokenAuth) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<AccountResponse>("/accounts", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AccountsCreate", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Creates an &#x60;Account&#x60; object with the given values.
+        /// </summary>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="accountEndpointRequest"></param>
+        /// <param name="isDebugMode">Whether to include debug fields (such as log file links) in the response. (optional)</param>
+        /// <param name="runAsync">Whether or not third-party updates should be run asynchronously. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AccountResponse</returns>
+        public async System.Threading.Tasks.Task<AccountResponse> AccountsCreateAsync(string xAccountToken, AccountEndpointRequest accountEndpointRequest, bool? isDebugMode = default(bool?), bool? runAsync = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            Merge.AccountingClient.Client.ApiResponse<AccountResponse> localVarResponse = await AccountsCreateWithHttpInfoAsync(xAccountToken, accountEndpointRequest, isDebugMode, runAsync, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Creates an &#x60;Account&#x60; object with the given values.
+        /// </summary>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="accountEndpointRequest"></param>
+        /// <param name="isDebugMode">Whether to include debug fields (such as log file links) in the response. (optional)</param>
+        /// <param name="runAsync">Whether or not third-party updates should be run asynchronously. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AccountResponse)</returns>
+        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<AccountResponse>> AccountsCreateWithHttpInfoAsync(string xAccountToken, AccountEndpointRequest accountEndpointRequest, bool? isDebugMode = default(bool?), bool? runAsync = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'xAccountToken' is set
+            if (xAccountToken == null)
+                throw new Merge.AccountingClient.Client.ApiException(400, "Missing required parameter 'xAccountToken' when calling AccountsApi->AccountsCreate");
+
+            // verify the required parameter 'accountEndpointRequest' is set
+            if (accountEndpointRequest == null)
+                throw new Merge.AccountingClient.Client.ApiException(400, "Missing required parameter 'accountEndpointRequest' when calling AccountsApi->AccountsCreate");
+
+
+            Merge.AccountingClient.Client.RequestOptions localVarRequestOptions = new Merge.AccountingClient.Client.RequestOptions();
+
+            String[] _contentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded", 
+                "multipart/form-data"
+            };
+
+            // to determine the Accept header
+            String[] _accepts = new String[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Merge.AccountingClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Merge.AccountingClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (isDebugMode != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "is_debug_mode", isDebugMode));
+            }
+            if (runAsync != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "run_async", runAsync));
+            }
+            localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
+            localVarRequestOptions.Data = accountEndpointRequest;
+
+            // authentication (tokenAuth) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AccountResponse>("/accounts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AccountsCreate", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         ///  Returns a list of &#x60;Account&#x60; objects.
         /// </summary>
         /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="companyId">If provided, will only return accounts for this company. (optional)</param>
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
@@ -309,12 +591,13 @@ namespace Merge.AccountingClient.Api
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
-        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
+        /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
+        /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>PaginatedAccountList</returns>
-        public PaginatedAccountList AccountsList(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string))
+        public PaginatedAccountList AccountsList(string xAccountToken, string companyId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string))
         {
-            Merge.AccountingClient.Client.ApiResponse<PaginatedAccountList> localVarResponse = AccountsListWithHttpInfo(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
+            Merge.AccountingClient.Client.ApiResponse<PaginatedAccountList> localVarResponse = AccountsListWithHttpInfo(xAccountToken, companyId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, showEnumOrigins);
             return localVarResponse.Data;
         }
 
@@ -323,6 +606,7 @@ namespace Merge.AccountingClient.Api
         /// </summary>
         /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="companyId">If provided, will only return accounts for this company. (optional)</param>
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
@@ -331,10 +615,11 @@ namespace Merge.AccountingClient.Api
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
-        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
+        /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
+        /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>ApiResponse of PaginatedAccountList</returns>
-        public Merge.AccountingClient.Client.ApiResponse<PaginatedAccountList> AccountsListWithHttpInfo(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string))
+        public Merge.AccountingClient.Client.ApiResponse<PaginatedAccountList> AccountsListWithHttpInfo(string xAccountToken, string companyId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string))
         {
             // verify the required parameter 'xAccountToken' is set
             if (xAccountToken == null)
@@ -356,6 +641,10 @@ namespace Merge.AccountingClient.Api
             var localVarAccept = Merge.AccountingClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
+            if (companyId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "company_id", companyId));
+            }
             if (createdAfter != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "created_after", createdAfter));
@@ -395,6 +684,10 @@ namespace Merge.AccountingClient.Api
             if (remoteId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "remote_id", remoteId));
+            }
+            if (showEnumOrigins != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "show_enum_origins", showEnumOrigins));
             }
             localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
 
@@ -421,6 +714,7 @@ namespace Merge.AccountingClient.Api
         /// </summary>
         /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="companyId">If provided, will only return accounts for this company. (optional)</param>
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
@@ -429,13 +723,14 @@ namespace Merge.AccountingClient.Api
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
-        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
+        /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
+        /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PaginatedAccountList</returns>
-        public async System.Threading.Tasks.Task<PaginatedAccountList> AccountsListAsync(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PaginatedAccountList> AccountsListAsync(string xAccountToken, string companyId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Merge.AccountingClient.Client.ApiResponse<PaginatedAccountList> localVarResponse = await AccountsListWithHttpInfoAsync(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, cancellationToken).ConfigureAwait(false);
+            Merge.AccountingClient.Client.ApiResponse<PaginatedAccountList> localVarResponse = await AccountsListWithHttpInfoAsync(xAccountToken, companyId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, showEnumOrigins, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -444,6 +739,7 @@ namespace Merge.AccountingClient.Api
         /// </summary>
         /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="companyId">If provided, will only return accounts for this company. (optional)</param>
         /// <param name="createdAfter">If provided, will only return objects created after this datetime. (optional)</param>
         /// <param name="createdBefore">If provided, will only return objects created before this datetime. (optional)</param>
         /// <param name="cursor">The pagination cursor value. (optional)</param>
@@ -452,11 +748,12 @@ namespace Merge.AccountingClient.Api
         /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
         /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
-        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
+        /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
+        /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PaginatedAccountList)</returns>
-        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<PaginatedAccountList>> AccountsListWithHttpInfoAsync(string xAccountToken, DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<PaginatedAccountList>> AccountsListWithHttpInfoAsync(string xAccountToken, string companyId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'xAccountToken' is set
             if (xAccountToken == null)
@@ -480,6 +777,10 @@ namespace Merge.AccountingClient.Api
             var localVarAccept = Merge.AccountingClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
+            if (companyId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "company_id", companyId));
+            }
             if (createdAfter != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "created_after", createdAfter));
@@ -520,6 +821,10 @@ namespace Merge.AccountingClient.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "remote_id", remoteId));
             }
+            if (showEnumOrigins != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "show_enum_origins", showEnumOrigins));
+            }
             localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
 
             // authentication (tokenAuth) required
@@ -542,17 +847,143 @@ namespace Merge.AccountingClient.Api
         }
 
         /// <summary>
+        ///  Returns metadata for &#x60;Account&#x60; POSTs.
+        /// </summary>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <returns>MetaResponse</returns>
+        public MetaResponse AccountsMetaPostRetrieve(string xAccountToken)
+        {
+            Merge.AccountingClient.Client.ApiResponse<MetaResponse> localVarResponse = AccountsMetaPostRetrieveWithHttpInfo(xAccountToken);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Returns metadata for &#x60;Account&#x60; POSTs.
+        /// </summary>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <returns>ApiResponse of MetaResponse</returns>
+        public Merge.AccountingClient.Client.ApiResponse<MetaResponse> AccountsMetaPostRetrieveWithHttpInfo(string xAccountToken)
+        {
+            // verify the required parameter 'xAccountToken' is set
+            if (xAccountToken == null)
+                throw new Merge.AccountingClient.Client.ApiException(400, "Missing required parameter 'xAccountToken' when calling AccountsApi->AccountsMetaPostRetrieve");
+
+            Merge.AccountingClient.Client.RequestOptions localVarRequestOptions = new Merge.AccountingClient.Client.RequestOptions();
+
+            String[] _contentTypes = new String[] {
+            };
+
+            // to determine the Accept header
+            String[] _accepts = new String[] {
+                "application/json"
+            };
+
+            var localVarContentType = Merge.AccountingClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Merge.AccountingClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
+
+            // authentication (tokenAuth) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<MetaResponse>("/accounts/meta/post", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AccountsMetaPostRetrieve", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        ///  Returns metadata for &#x60;Account&#x60; POSTs.
+        /// </summary>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of MetaResponse</returns>
+        public async System.Threading.Tasks.Task<MetaResponse> AccountsMetaPostRetrieveAsync(string xAccountToken, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            Merge.AccountingClient.Client.ApiResponse<MetaResponse> localVarResponse = await AccountsMetaPostRetrieveWithHttpInfoAsync(xAccountToken, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  Returns metadata for &#x60;Account&#x60; POSTs.
+        /// </summary>
+        /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xAccountToken">Token identifying the end user.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (MetaResponse)</returns>
+        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<MetaResponse>> AccountsMetaPostRetrieveWithHttpInfoAsync(string xAccountToken, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'xAccountToken' is set
+            if (xAccountToken == null)
+                throw new Merge.AccountingClient.Client.ApiException(400, "Missing required parameter 'xAccountToken' when calling AccountsApi->AccountsMetaPostRetrieve");
+
+
+            Merge.AccountingClient.Client.RequestOptions localVarRequestOptions = new Merge.AccountingClient.Client.RequestOptions();
+
+            String[] _contentTypes = new String[] {
+            };
+
+            // to determine the Accept header
+            String[] _accepts = new String[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Merge.AccountingClient.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Merge.AccountingClient.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
+
+            // authentication (tokenAuth) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<MetaResponse>("/accounts/meta/post", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AccountsMetaPostRetrieve", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         ///  Returns an &#x60;Account&#x60; object with the given &#x60;id&#x60;.
         /// </summary>
         /// <exception cref="Merge.AccountingClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
-        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
+        /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
+        /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>Account</returns>
-        public Account AccountsRetrieve(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string))
+        public Account AccountsRetrieve(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), string showEnumOrigins = default(string))
         {
-            Merge.AccountingClient.Client.ApiResponse<Account> localVarResponse = AccountsRetrieveWithHttpInfo(xAccountToken, id, includeRemoteData, remoteFields);
+            Merge.AccountingClient.Client.ApiResponse<Account> localVarResponse = AccountsRetrieveWithHttpInfo(xAccountToken, id, includeRemoteData, remoteFields, showEnumOrigins);
             return localVarResponse.Data;
         }
 
@@ -563,9 +994,10 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
-        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
+        /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
+        /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
         /// <returns>ApiResponse of Account</returns>
-        public Merge.AccountingClient.Client.ApiResponse<Account> AccountsRetrieveWithHttpInfo(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string))
+        public Merge.AccountingClient.Client.ApiResponse<Account> AccountsRetrieveWithHttpInfo(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), string showEnumOrigins = default(string))
         {
             // verify the required parameter 'xAccountToken' is set
             if (xAccountToken == null)
@@ -595,6 +1027,10 @@ namespace Merge.AccountingClient.Api
             if (remoteFields != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "remote_fields", remoteFields));
+            }
+            if (showEnumOrigins != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "show_enum_origins", showEnumOrigins));
             }
             localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
 
@@ -623,12 +1059,13 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
-        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
+        /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
+        /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Account</returns>
-        public async System.Threading.Tasks.Task<Account> AccountsRetrieveAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Account> AccountsRetrieveAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), string showEnumOrigins = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Merge.AccountingClient.Client.ApiResponse<Account> localVarResponse = await AccountsRetrieveWithHttpInfoAsync(xAccountToken, id, includeRemoteData, remoteFields, cancellationToken).ConfigureAwait(false);
+            Merge.AccountingClient.Client.ApiResponse<Account> localVarResponse = await AccountsRetrieveWithHttpInfoAsync(xAccountToken, id, includeRemoteData, remoteFields, showEnumOrigins, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -639,10 +1076,11 @@ namespace Merge.AccountingClient.Api
         /// <param name="xAccountToken">Token identifying the end user.</param>
         /// <param name="id"></param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
-        /// <param name="remoteFields">Which fields should be returned in non-normalized form. (optional)</param>
+        /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
+        /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Account)</returns>
-        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<Account>> AccountsRetrieveWithHttpInfoAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<Account>> AccountsRetrieveWithHttpInfoAsync(string xAccountToken, Guid id, bool? includeRemoteData = default(bool?), string remoteFields = default(string), string showEnumOrigins = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'xAccountToken' is set
             if (xAccountToken == null)
@@ -674,6 +1112,10 @@ namespace Merge.AccountingClient.Api
             if (remoteFields != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "remote_fields", remoteFields));
+            }
+            if (showEnumOrigins != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "show_enum_origins", showEnumOrigins));
             }
             localVarRequestOptions.HeaderParameters.Add("X-Account-Token", Merge.AccountingClient.Client.ClientUtils.ParameterToString(xAccountToken)); // header parameter
 

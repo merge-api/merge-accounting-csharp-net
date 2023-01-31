@@ -37,7 +37,13 @@ namespace Merge.AccountingClient.Model
         /// Gets or Sets Status
         /// </summary>
         [DataMember(Name = "status", IsRequired = true, EmitDefaultValue = false)]
-        public string Status { get; set; }
+        public SyncStatusStatusEnum Status { get; set; }
+
+        /// <summary>
+        /// Gets or Sets SelectiveSyncConfigurationsUsage
+        /// </summary>
+        [DataMember(Name = "selective_sync_configurations_usage", EmitDefaultValue = false)]
+        public SelectiveSyncConfigurationsUsageEnum? SelectiveSyncConfigurationsUsage { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SyncStatus" /> class.
         /// </summary>
@@ -52,7 +58,8 @@ namespace Merge.AccountingClient.Model
         /// <param name="nextSyncStart">nextSyncStart.</param>
         /// <param name="status">status (required).</param>
         /// <param name="isInitialSync">isInitialSync (required).</param>
-        public SyncStatus(string modelName = default(string), string modelId = default(string), DateTime lastSyncStart = default(DateTime), DateTime nextSyncStart = default(DateTime), string status = default(string), bool isInitialSync = default(bool))
+        /// <param name="selectiveSyncConfigurationsUsage">selectiveSyncConfigurationsUsage.</param>
+        public SyncStatus(string modelName = default(string), string modelId = default(string), DateTime lastSyncStart = default(DateTime), DateTime nextSyncStart = default(DateTime), SyncStatusStatusEnum status = default(SyncStatusStatusEnum), bool isInitialSync = default(bool), SelectiveSyncConfigurationsUsageEnum? selectiveSyncConfigurationsUsage = default(SelectiveSyncConfigurationsUsageEnum?))
         {
             // to ensure "modelName" is required (not null)
             this.ModelName = modelName ?? throw new ArgumentNullException("modelName is a required property for SyncStatus and cannot be null");
@@ -62,6 +69,7 @@ namespace Merge.AccountingClient.Model
             this.IsInitialSync = isInitialSync;
             this.LastSyncStart = lastSyncStart;
             this.NextSyncStart = nextSyncStart;
+            this.SelectiveSyncConfigurationsUsage = selectiveSyncConfigurationsUsage;
         }
 
         /// <summary>
@@ -108,6 +116,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  NextSyncStart: ").Append(NextSyncStart).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  IsInitialSync: ").Append(IsInitialSync).Append("\n");
+            sb.Append("  SelectiveSyncConfigurationsUsage: ").Append(SelectiveSyncConfigurationsUsage).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -169,6 +178,10 @@ namespace Merge.AccountingClient.Model
                 (
                     this.IsInitialSync == input.IsInitialSync ||
                     this.IsInitialSync.Equals(input.IsInitialSync)
+                ) && 
+                (
+                    this.SelectiveSyncConfigurationsUsage == input.SelectiveSyncConfigurationsUsage ||
+                    this.SelectiveSyncConfigurationsUsage.Equals(input.SelectiveSyncConfigurationsUsage)
                 );
         }
 
@@ -191,6 +204,7 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.NextSyncStart.GetHashCode();
                 hashCode = hashCode * 59 + this.Status.GetHashCode();
                 hashCode = hashCode * 59 + this.IsInitialSync.GetHashCode();
+                hashCode = hashCode * 59 + this.SelectiveSyncConfigurationsUsage.GetHashCode();
                 return hashCode;
             }
         }

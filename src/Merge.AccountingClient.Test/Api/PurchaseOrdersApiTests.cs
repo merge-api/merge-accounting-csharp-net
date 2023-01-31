@@ -56,6 +56,21 @@ namespace Merge.AccountingClient.Test.Api
         }
 
         /// <summary>
+        /// Test PurchaseOrdersCreate
+        /// </summary>
+        [Fact]
+        public void PurchaseOrdersCreateTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string xAccountToken = null;
+            //PurchaseOrderEndpointRequest purchaseOrderEndpointRequest = null;
+            //bool? isDebugMode = null;
+            //bool? runAsync = null;
+            //var response = instance.PurchaseOrdersCreate(xAccountToken, purchaseOrderEndpointRequest, isDebugMode, runAsync);
+            //Assert.IsType<PurchaseOrderResponse>(response);
+        }
+
+        /// <summary>
         /// Test PurchaseOrdersList
         /// </summary>
         [Fact]
@@ -63,6 +78,7 @@ namespace Merge.AccountingClient.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string xAccountToken = null;
+            //string companyId = null;
             //DateTime? createdAfter = null;
             //DateTime? createdBefore = null;
             //string cursor = null;
@@ -73,8 +89,21 @@ namespace Merge.AccountingClient.Test.Api
             //int? pageSize = null;
             //string remoteFields = null;
             //string remoteId = null;
-            //var response = instance.PurchaseOrdersList(xAccountToken, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId);
+            //string showEnumOrigins = null;
+            //var response = instance.PurchaseOrdersList(xAccountToken, companyId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, showEnumOrigins);
             //Assert.IsType<PaginatedPurchaseOrderList>(response);
+        }
+
+        /// <summary>
+        /// Test PurchaseOrdersMetaPostRetrieve
+        /// </summary>
+        [Fact]
+        public void PurchaseOrdersMetaPostRetrieveTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string xAccountToken = null;
+            //var response = instance.PurchaseOrdersMetaPostRetrieve(xAccountToken);
+            //Assert.IsType<MetaResponse>(response);
         }
 
         /// <summary>
@@ -88,7 +117,8 @@ namespace Merge.AccountingClient.Test.Api
             //Guid id = null;
             //bool? includeRemoteData = null;
             //string remoteFields = null;
-            //var response = instance.PurchaseOrdersRetrieve(xAccountToken, id, includeRemoteData, remoteFields);
+            //string showEnumOrigins = null;
+            //var response = instance.PurchaseOrdersRetrieve(xAccountToken, id, includeRemoteData, remoteFields, showEnumOrigins);
             //Assert.IsType<PurchaseOrder>(response);
         }
     }
