@@ -84,13 +84,15 @@ namespace Merge.AccountingClient.Test.Api
             //string cursor = null;
             //bool? includeDeletedData = null;
             //bool? includeRemoteData = null;
+            //DateTime? issueDateAfter = null;
+            //DateTime? issueDateBefore = null;
             //DateTime? modifiedAfter = null;
             //DateTime? modifiedBefore = null;
             //int? pageSize = null;
             //string remoteFields = null;
             //string remoteId = null;
             //string showEnumOrigins = null;
-            //var response = instance.PurchaseOrdersList(xAccountToken, companyId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, showEnumOrigins);
+            //var response = instance.PurchaseOrdersList(xAccountToken, companyId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, issueDateAfter, issueDateBefore, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, showEnumOrigins);
             //Assert.IsType<PaginatedPurchaseOrderList>(response);
         }
 

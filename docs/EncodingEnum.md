@@ -1,4 +1,5 @@
 # Merge.AccountingClient.Model.EncodingEnum
+* `RAW` - RAW * `BASE64` - BASE64 * `GZIP_BASE64` - GZIP_BASE64
 
 ## Properties
 

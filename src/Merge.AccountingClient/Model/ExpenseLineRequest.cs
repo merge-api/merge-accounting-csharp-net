@@ -35,29 +35,40 @@ namespace Merge.AccountingClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ExpenseLineRequest" /> class.
         /// </summary>
+        /// <param name="remoteId">The third-party API ID of the matching object..</param>
         /// <param name="item">The line&#39;s item..</param>
         /// <param name="netAmount">The line&#39;s net amount..</param>
         /// <param name="trackingCategory">trackingCategory.</param>
         /// <param name="trackingCategories">trackingCategories.</param>
         /// <param name="company">The company the line belongs to..</param>
         /// <param name="account">The expense&#39;s payment account..</param>
+        /// <param name="contact">The expense&#39;s contact..</param>
         /// <param name="description">The description of the item that was purchased by the company..</param>
-        /// <param name="remoteId">The third-party API ID of the matching object..</param>
+        /// <param name="exchangeRate">The expense line item&#39;s exchange rate..</param>
         /// <param name="integrationParams">integrationParams.</param>
         /// <param name="linkedAccountParams">linkedAccountParams.</param>
-        public ExpenseLineRequest(Guid? item = default(Guid?), float? netAmount = default(float?), Guid? trackingCategory = default(Guid?), List<Guid?> trackingCategories = default(List<Guid?>), Guid? company = default(Guid?), Guid? account = default(Guid?), string description = default(string), string remoteId = default(string), Dictionary<string, Object> integrationParams = default(Dictionary<string, Object>), Dictionary<string, Object> linkedAccountParams = default(Dictionary<string, Object>))
+        public ExpenseLineRequest(string remoteId = default(string), Guid? item = default(Guid?), double? netAmount = default(double?), Guid? trackingCategory = default(Guid?), List<Guid?> trackingCategories = default(List<Guid?>), Guid? company = default(Guid?), Guid? account = default(Guid?), Guid? contact = default(Guid?), string description = default(string), decimal? exchangeRate = default(decimal?), Dictionary<string, Object> integrationParams = default(Dictionary<string, Object>), Dictionary<string, Object> linkedAccountParams = default(Dictionary<string, Object>))
         {
+            this.RemoteId = remoteId;
             this.Item = item;
             this.NetAmount = netAmount;
             this.TrackingCategory = trackingCategory;
             this.TrackingCategories = trackingCategories;
             this.Company = company;
             this.Account = account;
+            this.Contact = contact;
             this.Description = description;
-            this.RemoteId = remoteId;
+            this.ExchangeRate = exchangeRate;
             this.IntegrationParams = integrationParams;
             this.LinkedAccountParams = linkedAccountParams;
         }
+
+        /// <summary>
+        /// The third-party API ID of the matching object.
+        /// </summary>
+        /// <value>The third-party API ID of the matching object.</value>
+        [DataMember(Name = "remote_id", EmitDefaultValue = true)]
+        public string RemoteId { get; set; }
 
         /// <summary>
         /// The line&#39;s item.
@@ -71,7 +82,7 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The line&#39;s net amount.</value>
         [DataMember(Name = "net_amount", EmitDefaultValue = true)]
-        public float? NetAmount { get; set; }
+        public double? NetAmount { get; set; }
 
         /// <summary>
         /// Gets or Sets TrackingCategory
@@ -100,6 +111,13 @@ namespace Merge.AccountingClient.Model
         public Guid? Account { get; set; }
 
         /// <summary>
+        /// The expense&#39;s contact.
+        /// </summary>
+        /// <value>The expense&#39;s contact.</value>
+        [DataMember(Name = "contact", EmitDefaultValue = true)]
+        public Guid? Contact { get; set; }
+
+        /// <summary>
         /// The description of the item that was purchased by the company.
         /// </summary>
         /// <value>The description of the item that was purchased by the company.</value>
@@ -107,11 +125,11 @@ namespace Merge.AccountingClient.Model
         public string Description { get; set; }
 
         /// <summary>
-        /// The third-party API ID of the matching object.
+        /// The expense line item&#39;s exchange rate.
         /// </summary>
-        /// <value>The third-party API ID of the matching object.</value>
-        [DataMember(Name = "remote_id", EmitDefaultValue = true)]
-        public string RemoteId { get; set; }
+        /// <value>The expense line item&#39;s exchange rate.</value>
+        [DataMember(Name = "exchange_rate", EmitDefaultValue = true)]
+        public decimal? ExchangeRate { get; set; }
 
         /// <summary>
         /// Gets or Sets IntegrationParams
@@ -133,14 +151,16 @@ namespace Merge.AccountingClient.Model
         {
             var sb = new StringBuilder();
             sb.Append("class ExpenseLineRequest {\n");
+            sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
             sb.Append("  Item: ").Append(Item).Append("\n");
             sb.Append("  NetAmount: ").Append(NetAmount).Append("\n");
             sb.Append("  TrackingCategory: ").Append(TrackingCategory).Append("\n");
             sb.Append("  TrackingCategories: ").Append(TrackingCategories).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
+            sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
+            sb.Append("  ExchangeRate: ").Append(ExchangeRate).Append("\n");
             sb.Append("  IntegrationParams: ").Append(IntegrationParams).Append("\n");
             sb.Append("  LinkedAccountParams: ").Append(LinkedAccountParams).Append("\n");
             sb.Append("}\n");
@@ -178,6 +198,11 @@ namespace Merge.AccountingClient.Model
 
             return 
                 (
+                    this.RemoteId == input.RemoteId ||
+                    (this.RemoteId != null &&
+                    this.RemoteId.Equals(input.RemoteId))
+                ) && 
+                (
                     this.Item == input.Item ||
                     (this.Item != null &&
                     this.Item.Equals(input.Item))
@@ -209,14 +234,19 @@ namespace Merge.AccountingClient.Model
                     this.Account.Equals(input.Account))
                 ) && 
                 (
+                    this.Contact == input.Contact ||
+                    (this.Contact != null &&
+                    this.Contact.Equals(input.Contact))
+                ) && 
+                (
                     this.Description == input.Description ||
                     (this.Description != null &&
                     this.Description.Equals(input.Description))
                 ) && 
                 (
-                    this.RemoteId == input.RemoteId ||
-                    (this.RemoteId != null &&
-                    this.RemoteId.Equals(input.RemoteId))
+                    this.ExchangeRate == input.ExchangeRate ||
+                    (this.ExchangeRate != null &&
+                    this.ExchangeRate.Equals(input.ExchangeRate))
                 ) && 
                 (
                     this.IntegrationParams == input.IntegrationParams ||
@@ -241,6 +271,8 @@ namespace Merge.AccountingClient.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.RemoteId != null)
+                    hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
                 if (this.Item != null)
                     hashCode = hashCode * 59 + this.Item.GetHashCode();
                 if (this.NetAmount != null)
@@ -253,10 +285,12 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.Company.GetHashCode();
                 if (this.Account != null)
                     hashCode = hashCode * 59 + this.Account.GetHashCode();
+                if (this.Contact != null)
+                    hashCode = hashCode * 59 + this.Contact.GetHashCode();
                 if (this.Description != null)
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.RemoteId != null)
-                    hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
+                if (this.ExchangeRate != null)
+                    hashCode = hashCode * 59 + this.ExchangeRate.GetHashCode();
                 if (this.IntegrationParams != null)
                     hashCode = hashCode * 59 + this.IntegrationParams.GetHashCode();
                 if (this.LinkedAccountParams != null)
@@ -272,6 +306,13 @@ namespace Merge.AccountingClient.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // ExchangeRate (decimal?) pattern
+            Regex regexExchangeRate = new Regex(@"^-?\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
+            if (false == regexExchangeRate.Match(this.ExchangeRate).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExchangeRate, must match a pattern of " + regexExchangeRate, new [] { "ExchangeRate" });
+            }
+
             yield break;
         }
     }

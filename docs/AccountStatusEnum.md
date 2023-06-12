@@ -1,4 +1,5 @@
 # Merge.AccountingClient.Model.AccountStatusEnum
+* `ACTIVE` - ACTIVE * `PENDING` - PENDING * `INACTIVE` - INACTIVE
 
 ## Properties
 

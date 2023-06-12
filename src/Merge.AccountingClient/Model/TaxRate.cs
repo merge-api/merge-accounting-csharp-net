@@ -40,28 +40,13 @@ namespace Merge.AccountingClient.Model
         /// <param name="effectiveTaxRate">The tax rate&#39;s effective tax rate..</param>
         /// <param name="company">The company the tax rate belongs to..</param>
         /// <param name="remoteId">The third-party API ID of the matching object..</param>
-        public TaxRate(string description = default(string), float? totalTaxRate = default(float?), float? effectiveTaxRate = default(float?), Guid? company = default(Guid?), string remoteId = default(string))
+        public TaxRate(string description = default(string), double? totalTaxRate = default(double?), double? effectiveTaxRate = default(double?), Guid? company = default(Guid?), string remoteId = default(string))
         {
             this.Description = description;
             this.TotalTaxRate = totalTaxRate;
             this.EffectiveTaxRate = effectiveTaxRate;
             this.Company = company;
             this.RemoteId = remoteId;
-        }
-
-        /// <summary>
-        /// Gets or Sets RemoteData
-        /// </summary>
-        [DataMember(Name = "remote_data", EmitDefaultValue = true)]
-        public List<RemoteData> RemoteData { get; private set; }
-
-        /// <summary>
-        /// Returns false as RemoteData should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeRemoteData()
-        {
-            return false;
         }
 
         /// <summary>
@@ -76,14 +61,14 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The tax rate&#39;s total tax rate.</value>
         [DataMember(Name = "total_tax_rate", EmitDefaultValue = true)]
-        public float? TotalTaxRate { get; set; }
+        public double? TotalTaxRate { get; set; }
 
         /// <summary>
         /// The tax rate&#39;s effective tax rate.
         /// </summary>
         /// <value>The tax rate&#39;s effective tax rate.</value>
         [DataMember(Name = "effective_tax_rate", EmitDefaultValue = true)]
-        public float? EffectiveTaxRate { get; set; }
+        public double? EffectiveTaxRate { get; set; }
 
         /// <summary>
         /// The company the tax rate belongs to.
@@ -146,6 +131,37 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
+        /// This is the datetime that this object was last updated by Merge
+        /// </summary>
+        /// <value>This is the datetime that this object was last updated by Merge</value>
+        [DataMember(Name = "modified_at", EmitDefaultValue = false)]
+        public DateTime ModifiedAt { get; private set; }
+
+        /// <summary>
+        /// Returns false as ModifiedAt should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeModifiedAt()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// Gets or Sets RemoteData
+        /// </summary>
+        [DataMember(Name = "remote_data", EmitDefaultValue = true)]
+        public List<RemoteData> RemoteData { get; private set; }
+
+        /// <summary>
+        /// Returns false as RemoteData should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeRemoteData()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -153,7 +169,6 @@ namespace Merge.AccountingClient.Model
         {
             var sb = new StringBuilder();
             sb.Append("class TaxRate {\n");
-            sb.Append("  RemoteData: ").Append(RemoteData).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  TotalTaxRate: ").Append(TotalTaxRate).Append("\n");
             sb.Append("  EffectiveTaxRate: ").Append(EffectiveTaxRate).Append("\n");
@@ -162,6 +177,8 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
             sb.Append("  FieldMappings: ").Append(FieldMappings).Append("\n");
+            sb.Append("  ModifiedAt: ").Append(ModifiedAt).Append("\n");
+            sb.Append("  RemoteData: ").Append(RemoteData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -196,12 +213,6 @@ namespace Merge.AccountingClient.Model
                 return false;
 
             return 
-                (
-                    this.RemoteData == input.RemoteData ||
-                    this.RemoteData != null &&
-                    input.RemoteData != null &&
-                    this.RemoteData.SequenceEqual(input.RemoteData)
-                ) && 
                 (
                     this.Description == input.Description ||
                     (this.Description != null &&
@@ -241,6 +252,17 @@ namespace Merge.AccountingClient.Model
                     this.FieldMappings != null &&
                     input.FieldMappings != null &&
                     this.FieldMappings.SequenceEqual(input.FieldMappings)
+                ) && 
+                (
+                    this.ModifiedAt == input.ModifiedAt ||
+                    (this.ModifiedAt != null &&
+                    this.ModifiedAt.Equals(input.ModifiedAt))
+                ) && 
+                (
+                    this.RemoteData == input.RemoteData ||
+                    this.RemoteData != null &&
+                    input.RemoteData != null &&
+                    this.RemoteData.SequenceEqual(input.RemoteData)
                 );
         }
 
@@ -253,8 +275,6 @@ namespace Merge.AccountingClient.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.RemoteData != null)
-                    hashCode = hashCode * 59 + this.RemoteData.GetHashCode();
                 if (this.Description != null)
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.TotalTaxRate != null)
@@ -270,6 +290,10 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
                 if (this.FieldMappings != null)
                     hashCode = hashCode * 59 + this.FieldMappings.GetHashCode();
+                if (this.ModifiedAt != null)
+                    hashCode = hashCode * 59 + this.ModifiedAt.GetHashCode();
+                if (this.RemoteData != null)
+                    hashCode = hashCode * 59 + this.RemoteData.GetHashCode();
                 return hashCode;
             }
         }

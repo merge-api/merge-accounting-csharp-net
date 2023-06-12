@@ -1,4 +1,5 @@
 # Merge.AccountingClient.Model.RequestFormatEnum
+* `JSON` - JSON * `XML` - XML * `MULTIPART` - MULTIPART
 
 ## Properties
 

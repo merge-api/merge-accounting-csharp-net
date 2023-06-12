@@ -1,4 +1,5 @@
 # Merge.AccountingClient.Model.ClassificationEnum
+* `ASSET` - ASSET * `EQUITY` - EQUITY * `EXPENSE` - EXPENSE * `LIABILITY` - LIABILITY * `REVENUE` - REVENUE
 
 ## Properties
 

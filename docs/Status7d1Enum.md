@@ -1,4 +1,5 @@
 # Merge.AccountingClient.Model.Status7d1Enum
+* `ACTIVE` - ACTIVE * `ARCHIVED` - ARCHIVED
 
 ## Properties
 

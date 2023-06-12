@@ -85,6 +85,8 @@ namespace Merge.AccountingClient.Test.Api
             //string cursor = null;
             //bool? includeDeletedData = null;
             //bool? includeRemoteData = null;
+            //DateTime? issueDateAfter = null;
+            //DateTime? issueDateBefore = null;
             //DateTime? modifiedAfter = null;
             //DateTime? modifiedBefore = null;
             //int? pageSize = null;
@@ -92,7 +94,7 @@ namespace Merge.AccountingClient.Test.Api
             //string remoteId = null;
             //string showEnumOrigins = null;
             //string type = null;
-            //var response = instance.InvoicesList(xAccountToken, companyId, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, showEnumOrigins, type);
+            //var response = instance.InvoicesList(xAccountToken, companyId, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, issueDateAfter, issueDateBefore, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, showEnumOrigins, type);
             //Assert.IsType<PaginatedInvoiceList>(response);
         }
 

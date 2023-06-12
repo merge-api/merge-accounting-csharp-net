@@ -47,7 +47,8 @@ namespace Merge.AccountingClient.Model
         /// <param name="description">The line&#39;s description..</param>
         /// <param name="account">The line&#39;s account..</param>
         /// <param name="company">The company the line belongs to..</param>
-        public VendorCreditLine(string remoteId = default(string), float? netAmount = default(float?), Guid? trackingCategory = default(Guid?), List<Guid> trackingCategories = default(List<Guid>), string description = default(string), Guid? account = default(Guid?), Guid? company = default(Guid?))
+        /// <param name="exchangeRate">The vendor credit line item&#39;s exchange rate..</param>
+        public VendorCreditLine(string remoteId = default(string), double? netAmount = default(double?), Guid? trackingCategory = default(Guid?), List<Guid> trackingCategories = default(List<Guid>), string description = default(string), Guid? account = default(Guid?), Guid? company = default(Guid?), decimal? exchangeRate = default(decimal?))
         {
             // to ensure "trackingCategories" is required (not null)
             this.TrackingCategories = trackingCategories ?? throw new ArgumentNullException("trackingCategories is a required property for VendorCreditLine and cannot be null");
@@ -57,6 +58,7 @@ namespace Merge.AccountingClient.Model
             this.Description = description;
             this.Account = account;
             this.Company = company;
+            this.ExchangeRate = exchangeRate;
         }
 
         /// <summary>
@@ -71,7 +73,7 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The full value of the credit.</value>
         [DataMember(Name = "net_amount", EmitDefaultValue = true)]
-        public float? NetAmount { get; set; }
+        public double? NetAmount { get; set; }
 
         /// <summary>
         /// The line&#39;s associated tracking category.
@@ -109,6 +111,29 @@ namespace Merge.AccountingClient.Model
         public Guid? Company { get; set; }
 
         /// <summary>
+        /// The vendor credit line item&#39;s exchange rate.
+        /// </summary>
+        /// <value>The vendor credit line item&#39;s exchange rate.</value>
+        [DataMember(Name = "exchange_rate", EmitDefaultValue = true)]
+        public decimal? ExchangeRate { get; set; }
+
+        /// <summary>
+        /// This is the datetime that this object was last updated by Merge
+        /// </summary>
+        /// <value>This is the datetime that this object was last updated by Merge</value>
+        [DataMember(Name = "modified_at", EmitDefaultValue = false)]
+        public DateTime ModifiedAt { get; private set; }
+
+        /// <summary>
+        /// Returns false as ModifiedAt should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeModifiedAt()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -123,6 +148,8 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
+            sb.Append("  ExchangeRate: ").Append(ExchangeRate).Append("\n");
+            sb.Append("  ModifiedAt: ").Append(ModifiedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -192,6 +219,16 @@ namespace Merge.AccountingClient.Model
                     this.Company == input.Company ||
                     (this.Company != null &&
                     this.Company.Equals(input.Company))
+                ) && 
+                (
+                    this.ExchangeRate == input.ExchangeRate ||
+                    (this.ExchangeRate != null &&
+                    this.ExchangeRate.Equals(input.ExchangeRate))
+                ) && 
+                (
+                    this.ModifiedAt == input.ModifiedAt ||
+                    (this.ModifiedAt != null &&
+                    this.ModifiedAt.Equals(input.ModifiedAt))
                 );
         }
 
@@ -218,6 +255,10 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.Account.GetHashCode();
                 if (this.Company != null)
                     hashCode = hashCode * 59 + this.Company.GetHashCode();
+                if (this.ExchangeRate != null)
+                    hashCode = hashCode * 59 + this.ExchangeRate.GetHashCode();
+                if (this.ModifiedAt != null)
+                    hashCode = hashCode * 59 + this.ModifiedAt.GetHashCode();
                 return hashCode;
             }
         }
@@ -229,6 +270,13 @@ namespace Merge.AccountingClient.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // ExchangeRate (decimal?) pattern
+            Regex regexExchangeRate = new Regex(@"^-?\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
+            if (false == regexExchangeRate.Match(this.ExchangeRate).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExchangeRate, must match a pattern of " + regexExchangeRate, new [] { "ExchangeRate" });
+            }
+
             yield break;
         }
     }

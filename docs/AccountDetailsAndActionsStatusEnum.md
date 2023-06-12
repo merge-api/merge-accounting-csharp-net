@@ -1,4 +1,5 @@
 # Merge.AccountingClient.Model.AccountDetailsAndActionsStatusEnum
+* `COMPLETE` - COMPLETE * `INCOMPLETE` - INCOMPLETE * `RELINK_NEEDED` - RELINK_NEEDED
 
 ## Properties
 

@@ -121,6 +121,14 @@ namespace Merge.AccountingClient.Test.Model
         {
             // TODO unit test for the property 'ZipCode'
         }
+        /// <summary>
+        /// Test the property 'ModifiedAt'
+        /// </summary>
+        [Fact]
+        public void ModifiedAtTest()
+        {
+            // TODO unit test for the property 'ModifiedAt'
+        }
 
     }
 
