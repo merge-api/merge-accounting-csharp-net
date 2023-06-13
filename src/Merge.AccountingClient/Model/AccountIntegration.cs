@@ -259,7 +259,7 @@ namespace Merge.AccountingClient.Model
 
             // Color (string) pattern
             Regex regexColor = new Regex(@"^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$", RegexOptions.CultureInvariant);
-            if (false == regexColor.Match(this.Color).Success)
+            if (false == regexColor.Match(this.Color.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Color, must match a pattern of " + regexColor, new [] { "Color" });
             }

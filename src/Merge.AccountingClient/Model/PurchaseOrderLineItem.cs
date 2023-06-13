@@ -354,21 +354,21 @@ namespace Merge.AccountingClient.Model
         {
             // TaxAmount (decimal?) pattern
             Regex regexTaxAmount = new Regex(@"^-?\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
-            if (false == regexTaxAmount.Match(this.TaxAmount).Success)
+            if (false == regexTaxAmount.Match(this.TaxAmount.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TaxAmount, must match a pattern of " + regexTaxAmount, new [] { "TaxAmount" });
             }
 
             // TotalLineAmount (decimal?) pattern
             Regex regexTotalLineAmount = new Regex(@"^-?\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
-            if (false == regexTotalLineAmount.Match(this.TotalLineAmount).Success)
+            if (false == regexTotalLineAmount.Match(this.TotalLineAmount.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TotalLineAmount, must match a pattern of " + regexTotalLineAmount, new [] { "TotalLineAmount" });
             }
 
             // ExchangeRate (decimal?) pattern
             Regex regexExchangeRate = new Regex(@"^-?\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
-            if (false == regexExchangeRate.Match(this.ExchangeRate).Success)
+            if (false == regexExchangeRate.Match(this.ExchangeRate.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExchangeRate, must match a pattern of " + regexExchangeRate, new [] { "ExchangeRate" });
             }

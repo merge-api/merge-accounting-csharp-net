@@ -354,28 +354,28 @@ namespace Merge.AccountingClient.Model
         {
             // UnitPrice (decimal?) pattern
             Regex regexUnitPrice = new Regex(@"^-?\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
-            if (false == regexUnitPrice.Match(this.UnitPrice).Success)
+            if (false == regexUnitPrice.Match(this.UnitPrice.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UnitPrice, must match a pattern of " + regexUnitPrice, new [] { "UnitPrice" });
             }
 
             // Quantity (decimal?) pattern
             Regex regexQuantity = new Regex(@"^-?\\d{0,24}(?:\\.\\d{0,8})?$", RegexOptions.CultureInvariant);
-            if (false == regexQuantity.Match(this.Quantity).Success)
+            if (false == regexQuantity.Match(this.Quantity.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Quantity, must match a pattern of " + regexQuantity, new [] { "Quantity" });
             }
 
             // TotalLineAmount (decimal?) pattern
             Regex regexTotalLineAmount = new Regex(@"^-?\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
-            if (false == regexTotalLineAmount.Match(this.TotalLineAmount).Success)
+            if (false == regexTotalLineAmount.Match(this.TotalLineAmount.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TotalLineAmount, must match a pattern of " + regexTotalLineAmount, new [] { "TotalLineAmount" });
             }
 
             // ExchangeRate (decimal?) pattern
             Regex regexExchangeRate = new Regex(@"^-?\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
-            if (false == regexExchangeRate.Match(this.ExchangeRate).Success)
+            if (false == regexExchangeRate.Match(this.ExchangeRate.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExchangeRate, must match a pattern of " + regexExchangeRate, new [] { "ExchangeRate" });
             }

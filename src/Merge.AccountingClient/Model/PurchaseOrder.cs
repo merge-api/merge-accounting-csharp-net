@@ -497,7 +497,7 @@ namespace Merge.AccountingClient.Model
         {
             // ExchangeRate (decimal?) pattern
             Regex regexExchangeRate = new Regex(@"^-?\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
-            if (false == regexExchangeRate.Match(this.ExchangeRate).Success)
+            if (false == regexExchangeRate.Match(this.ExchangeRate.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExchangeRate, must match a pattern of " + regexExchangeRate, new [] { "ExchangeRate" });
             }
