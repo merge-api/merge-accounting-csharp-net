@@ -1,4 +1,5 @@
 # Merge.AccountingClient.Model.IssueStatusEnum
+* `ONGOING` - ONGOING * `RESOLVED` - RESOLVED
 
 ## Properties
 

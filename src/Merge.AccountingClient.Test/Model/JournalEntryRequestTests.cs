@@ -114,6 +114,14 @@ namespace Merge.AccountingClient.Test.Model
             // TODO unit test for the property 'Lines'
         }
         /// <summary>
+        /// Test the property 'PostingStatus'
+        /// </summary>
+        [Fact]
+        public void PostingStatusTest()
+        {
+            // TODO unit test for the property 'PostingStatus'
+        }
+        /// <summary>
         /// Test the property 'IntegrationParams'
         /// </summary>
         [Fact]

@@ -34,9 +34,9 @@ namespace Merge.AccountingClient.Model
     {
 
         /// <summary>
-        /// The contact&#39;s status
+        /// The contact&#39;s status  * &#x60;ACTIVE&#x60; - ACTIVE * &#x60;ARCHIVED&#x60; - ARCHIVED
         /// </summary>
-        /// <value>The contact&#39;s status</value>
+        /// <value>The contact&#39;s status  * &#x60;ACTIVE&#x60; - ACTIVE * &#x60;ARCHIVED&#x60; - ARCHIVED</value>
         [DataMember(Name = "status", EmitDefaultValue = true)]
         public Status7d1Enum? Status { get; set; }
         /// <summary>
@@ -47,7 +47,7 @@ namespace Merge.AccountingClient.Model
         /// <param name="isCustomer">Whether the contact is a customer..</param>
         /// <param name="emailAddress">The contact&#39;s email address..</param>
         /// <param name="taxNumber">The contact&#39;s tax number..</param>
-        /// <param name="status">The contact&#39;s status.</param>
+        /// <param name="status">The contact&#39;s status  * &#x60;ACTIVE&#x60; - ACTIVE * &#x60;ARCHIVED&#x60; - ARCHIVED.</param>
         /// <param name="currency">The currency the contact&#39;s transactions are in..</param>
         /// <param name="company">The company the contact belongs to..</param>
         /// <param name="addresses">&#x60;Address&#x60; object IDs for the given &#x60;Contacts&#x60; object..</param>

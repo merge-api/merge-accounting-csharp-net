@@ -51,7 +51,7 @@ namespace Merge.AccountingClient.Model
         /// <param name="trackingCategory">The credit note line item&#39;s associated tracking category..</param>
         /// <param name="trackingCategories">The credit note line item&#39;s associated tracking categories. (required).</param>
         /// <param name="account">The credit note line item&#39;s account..</param>
-        /// <param name="company">The company the credit note line item belongs to..</param>
+        /// <param name="company">The company the credit note belongs to..</param>
         /// <param name="remoteId">The third-party API ID of the matching object..</param>
         public CreditNoteLineItem(Guid? item = default(Guid?), string name = default(string), string description = default(string), decimal? quantity = default(decimal?), string memo = default(string), decimal? unitPrice = default(decimal?), Guid? taxRate = default(Guid?), decimal? totalLineAmount = default(decimal?), Guid? trackingCategory = default(Guid?), List<Guid> trackingCategories = default(List<Guid>), Guid? account = default(Guid?), Guid? company = default(Guid?), string remoteId = default(string))
         {
@@ -148,9 +148,9 @@ namespace Merge.AccountingClient.Model
         public Guid? Account { get; set; }
 
         /// <summary>
-        /// The company the credit note line item belongs to.
+        /// The company the credit note belongs to.
         /// </summary>
-        /// <value>The company the credit note line item belongs to.</value>
+        /// <value>The company the credit note belongs to.</value>
         [DataMember(Name = "company", EmitDefaultValue = true)]
         public Guid? Company { get; set; }
 
@@ -160,6 +160,22 @@ namespace Merge.AccountingClient.Model
         /// <value>The third-party API ID of the matching object.</value>
         [DataMember(Name = "remote_id", EmitDefaultValue = true)]
         public string RemoteId { get; set; }
+
+        /// <summary>
+        /// This is the datetime that this object was last updated by Merge
+        /// </summary>
+        /// <value>This is the datetime that this object was last updated by Merge</value>
+        [DataMember(Name = "modified_at", EmitDefaultValue = false)]
+        public DateTime ModifiedAt { get; private set; }
+
+        /// <summary>
+        /// Returns false as ModifiedAt should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeModifiedAt()
+        {
+            return false;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -182,6 +198,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
+            sb.Append("  ModifiedAt: ").Append(ModifiedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -281,6 +298,11 @@ namespace Merge.AccountingClient.Model
                     this.RemoteId == input.RemoteId ||
                     (this.RemoteId != null &&
                     this.RemoteId.Equals(input.RemoteId))
+                ) && 
+                (
+                    this.ModifiedAt == input.ModifiedAt ||
+                    (this.ModifiedAt != null &&
+                    this.ModifiedAt.Equals(input.ModifiedAt))
                 );
         }
 
@@ -319,6 +341,8 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.Company.GetHashCode();
                 if (this.RemoteId != null)
                     hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
+                if (this.ModifiedAt != null)
+                    hashCode = hashCode * 59 + this.ModifiedAt.GetHashCode();
                 return hashCode;
             }
         }
@@ -331,21 +355,21 @@ namespace Merge.AccountingClient.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Quantity (decimal?) pattern
-            Regex regexQuantity = new Regex(@"^\\d{0,24}(?:\\.\\d{0,8})?$", RegexOptions.CultureInvariant);
+            Regex regexQuantity = new Regex(@"^-?\\d{0,24}(?:\\.\\d{0,8})?$", RegexOptions.CultureInvariant);
             if (false == regexQuantity.Match(this.Quantity.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Quantity, must match a pattern of " + regexQuantity, new [] { "Quantity" });
             }
 
             // UnitPrice (decimal?) pattern
-            Regex regexUnitPrice = new Regex(@"^\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
+            Regex regexUnitPrice = new Regex(@"^-?\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
             if (false == regexUnitPrice.Match(this.UnitPrice.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UnitPrice, must match a pattern of " + regexUnitPrice, new [] { "UnitPrice" });
             }
 
             // TotalLineAmount (decimal?) pattern
-            Regex regexTotalLineAmount = new Regex(@"^\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
+            Regex regexTotalLineAmount = new Regex(@"^-?\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
             if (false == regexTotalLineAmount.Match(this.TotalLineAmount.ToString()).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TotalLineAmount, must match a pattern of " + regexTotalLineAmount, new [] { "TotalLineAmount" });

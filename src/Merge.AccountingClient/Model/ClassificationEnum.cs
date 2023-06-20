@@ -27,8 +27,9 @@ using OpenAPIDateConverter = Merge.AccountingClient.Client.OpenAPIDateConverter;
 namespace Merge.AccountingClient.Model
 {
     /// <summary>
-    /// Defines ClassificationEnum
+    /// * &#x60;ASSET&#x60; - ASSET * &#x60;EQUITY&#x60; - EQUITY * &#x60;EXPENSE&#x60; - EXPENSE * &#x60;LIABILITY&#x60; - LIABILITY * &#x60;REVENUE&#x60; - REVENUE
     /// </summary>
+    /// <value>* &#x60;ASSET&#x60; - ASSET * &#x60;EQUITY&#x60; - EQUITY * &#x60;EXPENSE&#x60; - EXPENSE * &#x60;LIABILITY&#x60; - LIABILITY * &#x60;REVENUE&#x60; - REVENUE</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ClassificationEnum
     {

@@ -5,14 +5,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**RemoteId** | **string** | The third-party API ID of the matching object. | [optional] 
 **Item** | **Guid?** | The line&#39;s item. | [optional] 
-**NetAmount** | **float?** | The line&#39;s net amount. | [optional] 
+**NetAmount** | **double?** | The line&#39;s net amount. | [optional] 
 **TrackingCategory** | **Guid?** |  | [optional] 
 **TrackingCategories** | **List&lt;Guid?&gt;** |  | [optional] 
 **Company** | **Guid?** | The company the line belongs to. | [optional] 
 **Account** | **Guid?** | The expense&#39;s payment account. | [optional] 
+**Contact** | **Guid?** | The expense&#39;s contact. | [optional] 
 **Description** | **string** | The description of the item that was purchased by the company. | [optional] 
-**RemoteId** | **string** | The third-party API ID of the matching object. | [optional] 
+**ExchangeRate** | **decimal?** | The expense line item&#39;s exchange rate. | [optional] 
 **IntegrationParams** | **Dictionary&lt;string, Object&gt;** |  | [optional] 
 **LinkedAccountParams** | **Dictionary&lt;string, Object&gt;** |  | [optional] 
 

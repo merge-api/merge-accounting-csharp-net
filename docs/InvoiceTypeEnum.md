@@ -1,4 +1,5 @@
 # Merge.AccountingClient.Model.InvoiceTypeEnum
+* `ACCOUNTS_RECEIVABLE` - ACCOUNTS_RECEIVABLE * `ACCOUNTS_PAYABLE` - ACCOUNTS_PAYABLE
 
 ## Properties
 

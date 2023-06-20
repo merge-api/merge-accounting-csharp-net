@@ -113,6 +113,22 @@ namespace Merge.AccountingClient.Test.Model
         {
             // TODO unit test for the property 'Company'
         }
+        /// <summary>
+        /// Test the property 'ExchangeRate'
+        /// </summary>
+        [Fact]
+        public void ExchangeRateTest()
+        {
+            // TODO unit test for the property 'ExchangeRate'
+        }
+        /// <summary>
+        /// Test the property 'ModifiedAt'
+        /// </summary>
+        [Fact]
+        public void ModifiedAtTest()
+        {
+            // TODO unit test for the property 'ModifiedAt'
+        }
 
     }
 

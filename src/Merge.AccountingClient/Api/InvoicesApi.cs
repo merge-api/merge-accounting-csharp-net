@@ -69,15 +69,17 @@ namespace Merge.AccountingClient.Api
         /// <param name="cursor">The pagination cursor value. (optional)</param>
         /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
-        /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
-        /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
+        /// <param name="issueDateAfter">If provided, will only return objects created after this datetime. (optional)</param>
+        /// <param name="issueDateBefore">If provided, will only return objects created before this datetime. (optional)</param>
+        /// <param name="modifiedAfter">If provided, only objects synced by Merge after this date time will be returned. (optional)</param>
+        /// <param name="modifiedBefore">If provided, only objects synced by Merge before this date time will be returned. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
         /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
-        /// <param name="type">If provided, will only return Invoices with this type (optional)</param>
+        /// <param name="type">If provided, will only return Invoices with this type  * &#x60;ACCOUNTS_RECEIVABLE&#x60; - ACCOUNTS_RECEIVABLE * &#x60;ACCOUNTS_PAYABLE&#x60; - ACCOUNTS_PAYABLE (optional)</param>
         /// <returns>PaginatedInvoiceList</returns>
-        PaginatedInvoiceList InvoicesList(string xAccountToken, string companyId = default(string), string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), string type = default(string));
+        PaginatedInvoiceList InvoicesList(string xAccountToken, string companyId = default(string), string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? issueDateAfter = default(DateTime?), DateTime? issueDateBefore = default(DateTime?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), string type = default(string));
 
         /// <summary>
         /// 
@@ -94,15 +96,17 @@ namespace Merge.AccountingClient.Api
         /// <param name="cursor">The pagination cursor value. (optional)</param>
         /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
-        /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
-        /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
+        /// <param name="issueDateAfter">If provided, will only return objects created after this datetime. (optional)</param>
+        /// <param name="issueDateBefore">If provided, will only return objects created before this datetime. (optional)</param>
+        /// <param name="modifiedAfter">If provided, only objects synced by Merge after this date time will be returned. (optional)</param>
+        /// <param name="modifiedBefore">If provided, only objects synced by Merge before this date time will be returned. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
         /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
-        /// <param name="type">If provided, will only return Invoices with this type (optional)</param>
+        /// <param name="type">If provided, will only return Invoices with this type  * &#x60;ACCOUNTS_RECEIVABLE&#x60; - ACCOUNTS_RECEIVABLE * &#x60;ACCOUNTS_PAYABLE&#x60; - ACCOUNTS_PAYABLE (optional)</param>
         /// <returns>ApiResponse of PaginatedInvoiceList</returns>
-        ApiResponse<PaginatedInvoiceList> InvoicesListWithHttpInfo(string xAccountToken, string companyId = default(string), string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), string type = default(string));
+        ApiResponse<PaginatedInvoiceList> InvoicesListWithHttpInfo(string xAccountToken, string companyId = default(string), string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? issueDateAfter = default(DateTime?), DateTime? issueDateBefore = default(DateTime?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), string type = default(string));
         /// <summary>
         /// 
         /// </summary>
@@ -206,16 +210,18 @@ namespace Merge.AccountingClient.Api
         /// <param name="cursor">The pagination cursor value. (optional)</param>
         /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
-        /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
-        /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
+        /// <param name="issueDateAfter">If provided, will only return objects created after this datetime. (optional)</param>
+        /// <param name="issueDateBefore">If provided, will only return objects created before this datetime. (optional)</param>
+        /// <param name="modifiedAfter">If provided, only objects synced by Merge after this date time will be returned. (optional)</param>
+        /// <param name="modifiedBefore">If provided, only objects synced by Merge before this date time will be returned. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
         /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
-        /// <param name="type">If provided, will only return Invoices with this type (optional)</param>
+        /// <param name="type">If provided, will only return Invoices with this type  * &#x60;ACCOUNTS_RECEIVABLE&#x60; - ACCOUNTS_RECEIVABLE * &#x60;ACCOUNTS_PAYABLE&#x60; - ACCOUNTS_PAYABLE (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PaginatedInvoiceList</returns>
-        System.Threading.Tasks.Task<PaginatedInvoiceList> InvoicesListAsync(string xAccountToken, string companyId = default(string), string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), string type = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PaginatedInvoiceList> InvoicesListAsync(string xAccountToken, string companyId = default(string), string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? issueDateAfter = default(DateTime?), DateTime? issueDateBefore = default(DateTime?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), string type = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -232,16 +238,18 @@ namespace Merge.AccountingClient.Api
         /// <param name="cursor">The pagination cursor value. (optional)</param>
         /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
-        /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
-        /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
+        /// <param name="issueDateAfter">If provided, will only return objects created after this datetime. (optional)</param>
+        /// <param name="issueDateBefore">If provided, will only return objects created before this datetime. (optional)</param>
+        /// <param name="modifiedAfter">If provided, only objects synced by Merge after this date time will be returned. (optional)</param>
+        /// <param name="modifiedBefore">If provided, only objects synced by Merge before this date time will be returned. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
         /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
-        /// <param name="type">If provided, will only return Invoices with this type (optional)</param>
+        /// <param name="type">If provided, will only return Invoices with this type  * &#x60;ACCOUNTS_RECEIVABLE&#x60; - ACCOUNTS_RECEIVABLE * &#x60;ACCOUNTS_PAYABLE&#x60; - ACCOUNTS_PAYABLE (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PaginatedInvoiceList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PaginatedInvoiceList>> InvoicesListWithHttpInfoAsync(string xAccountToken, string companyId = default(string), string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), string type = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PaginatedInvoiceList>> InvoicesListWithHttpInfoAsync(string xAccountToken, string companyId = default(string), string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? issueDateAfter = default(DateTime?), DateTime? issueDateBefore = default(DateTime?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), string type = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -597,17 +605,19 @@ namespace Merge.AccountingClient.Api
         /// <param name="cursor">The pagination cursor value. (optional)</param>
         /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
-        /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
-        /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
+        /// <param name="issueDateAfter">If provided, will only return objects created after this datetime. (optional)</param>
+        /// <param name="issueDateBefore">If provided, will only return objects created before this datetime. (optional)</param>
+        /// <param name="modifiedAfter">If provided, only objects synced by Merge after this date time will be returned. (optional)</param>
+        /// <param name="modifiedBefore">If provided, only objects synced by Merge before this date time will be returned. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
         /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
-        /// <param name="type">If provided, will only return Invoices with this type (optional)</param>
+        /// <param name="type">If provided, will only return Invoices with this type  * &#x60;ACCOUNTS_RECEIVABLE&#x60; - ACCOUNTS_RECEIVABLE * &#x60;ACCOUNTS_PAYABLE&#x60; - ACCOUNTS_PAYABLE (optional)</param>
         /// <returns>PaginatedInvoiceList</returns>
-        public PaginatedInvoiceList InvoicesList(string xAccountToken, string companyId = default(string), string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), string type = default(string))
+        public PaginatedInvoiceList InvoicesList(string xAccountToken, string companyId = default(string), string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? issueDateAfter = default(DateTime?), DateTime? issueDateBefore = default(DateTime?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), string type = default(string))
         {
-            Merge.AccountingClient.Client.ApiResponse<PaginatedInvoiceList> localVarResponse = InvoicesListWithHttpInfo(xAccountToken, companyId, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, showEnumOrigins, type);
+            Merge.AccountingClient.Client.ApiResponse<PaginatedInvoiceList> localVarResponse = InvoicesListWithHttpInfo(xAccountToken, companyId, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, issueDateAfter, issueDateBefore, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, showEnumOrigins, type);
             return localVarResponse.Data;
         }
 
@@ -623,15 +633,17 @@ namespace Merge.AccountingClient.Api
         /// <param name="cursor">The pagination cursor value. (optional)</param>
         /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
-        /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
-        /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
+        /// <param name="issueDateAfter">If provided, will only return objects created after this datetime. (optional)</param>
+        /// <param name="issueDateBefore">If provided, will only return objects created before this datetime. (optional)</param>
+        /// <param name="modifiedAfter">If provided, only objects synced by Merge after this date time will be returned. (optional)</param>
+        /// <param name="modifiedBefore">If provided, only objects synced by Merge before this date time will be returned. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
         /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
-        /// <param name="type">If provided, will only return Invoices with this type (optional)</param>
+        /// <param name="type">If provided, will only return Invoices with this type  * &#x60;ACCOUNTS_RECEIVABLE&#x60; - ACCOUNTS_RECEIVABLE * &#x60;ACCOUNTS_PAYABLE&#x60; - ACCOUNTS_PAYABLE (optional)</param>
         /// <returns>ApiResponse of PaginatedInvoiceList</returns>
-        public Merge.AccountingClient.Client.ApiResponse<PaginatedInvoiceList> InvoicesListWithHttpInfo(string xAccountToken, string companyId = default(string), string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), string type = default(string))
+        public Merge.AccountingClient.Client.ApiResponse<PaginatedInvoiceList> InvoicesListWithHttpInfo(string xAccountToken, string companyId = default(string), string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? issueDateAfter = default(DateTime?), DateTime? issueDateBefore = default(DateTime?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), string type = default(string))
         {
             // verify the required parameter 'xAccountToken' is set
             if (xAccountToken == null)
@@ -680,6 +692,14 @@ namespace Merge.AccountingClient.Api
             if (includeRemoteData != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "include_remote_data", includeRemoteData));
+            }
+            if (issueDateAfter != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "issue_date_after", issueDateAfter));
+            }
+            if (issueDateBefore != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "issue_date_before", issueDateBefore));
             }
             if (modifiedAfter != null)
             {
@@ -741,18 +761,20 @@ namespace Merge.AccountingClient.Api
         /// <param name="cursor">The pagination cursor value. (optional)</param>
         /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
-        /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
-        /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
+        /// <param name="issueDateAfter">If provided, will only return objects created after this datetime. (optional)</param>
+        /// <param name="issueDateBefore">If provided, will only return objects created before this datetime. (optional)</param>
+        /// <param name="modifiedAfter">If provided, only objects synced by Merge after this date time will be returned. (optional)</param>
+        /// <param name="modifiedBefore">If provided, only objects synced by Merge before this date time will be returned. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
         /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
-        /// <param name="type">If provided, will only return Invoices with this type (optional)</param>
+        /// <param name="type">If provided, will only return Invoices with this type  * &#x60;ACCOUNTS_RECEIVABLE&#x60; - ACCOUNTS_RECEIVABLE * &#x60;ACCOUNTS_PAYABLE&#x60; - ACCOUNTS_PAYABLE (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PaginatedInvoiceList</returns>
-        public async System.Threading.Tasks.Task<PaginatedInvoiceList> InvoicesListAsync(string xAccountToken, string companyId = default(string), string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), string type = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PaginatedInvoiceList> InvoicesListAsync(string xAccountToken, string companyId = default(string), string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? issueDateAfter = default(DateTime?), DateTime? issueDateBefore = default(DateTime?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), string type = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Merge.AccountingClient.Client.ApiResponse<PaginatedInvoiceList> localVarResponse = await InvoicesListWithHttpInfoAsync(xAccountToken, companyId, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, showEnumOrigins, type, cancellationToken).ConfigureAwait(false);
+            Merge.AccountingClient.Client.ApiResponse<PaginatedInvoiceList> localVarResponse = await InvoicesListWithHttpInfoAsync(xAccountToken, companyId, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, issueDateAfter, issueDateBefore, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, showEnumOrigins, type, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -768,16 +790,18 @@ namespace Merge.AccountingClient.Api
         /// <param name="cursor">The pagination cursor value. (optional)</param>
         /// <param name="includeDeletedData">Whether to include data that was marked as deleted by third party webhooks. (optional)</param>
         /// <param name="includeRemoteData">Whether to include the original data Merge fetched from the third-party to produce these models. (optional)</param>
-        /// <param name="modifiedAfter">If provided, will only return objects modified after this datetime. (optional)</param>
-        /// <param name="modifiedBefore">If provided, will only return objects modified before this datetime. (optional)</param>
+        /// <param name="issueDateAfter">If provided, will only return objects created after this datetime. (optional)</param>
+        /// <param name="issueDateBefore">If provided, will only return objects created before this datetime. (optional)</param>
+        /// <param name="modifiedAfter">If provided, only objects synced by Merge after this date time will be returned. (optional)</param>
+        /// <param name="modifiedBefore">If provided, only objects synced by Merge before this date time will be returned. (optional)</param>
         /// <param name="pageSize">Number of results to return per page. (optional)</param>
         /// <param name="remoteFields">Deprecated. Use show_enum_origins. (optional)</param>
         /// <param name="remoteId">The API provider&#39;s ID for the given object. (optional)</param>
         /// <param name="showEnumOrigins">Which fields should be returned in non-normalized form. (optional)</param>
-        /// <param name="type">If provided, will only return Invoices with this type (optional)</param>
+        /// <param name="type">If provided, will only return Invoices with this type  * &#x60;ACCOUNTS_RECEIVABLE&#x60; - ACCOUNTS_RECEIVABLE * &#x60;ACCOUNTS_PAYABLE&#x60; - ACCOUNTS_PAYABLE (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PaginatedInvoiceList)</returns>
-        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<PaginatedInvoiceList>> InvoicesListWithHttpInfoAsync(string xAccountToken, string companyId = default(string), string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), string type = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Merge.AccountingClient.Client.ApiResponse<PaginatedInvoiceList>> InvoicesListWithHttpInfoAsync(string xAccountToken, string companyId = default(string), string contactId = default(string), DateTime? createdAfter = default(DateTime?), DateTime? createdBefore = default(DateTime?), string cursor = default(string), bool? includeDeletedData = default(bool?), bool? includeRemoteData = default(bool?), DateTime? issueDateAfter = default(DateTime?), DateTime? issueDateBefore = default(DateTime?), DateTime? modifiedAfter = default(DateTime?), DateTime? modifiedBefore = default(DateTime?), int? pageSize = default(int?), string remoteFields = default(string), string remoteId = default(string), string showEnumOrigins = default(string), string type = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'xAccountToken' is set
             if (xAccountToken == null)
@@ -828,6 +852,14 @@ namespace Merge.AccountingClient.Api
             if (includeRemoteData != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "include_remote_data", includeRemoteData));
+            }
+            if (issueDateAfter != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "issue_date_after", issueDateAfter));
+            }
+            if (issueDateBefore != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Merge.AccountingClient.Client.ClientUtils.ParameterToMultiMap("", "issue_date_before", issueDateBefore));
             }
             if (modifiedAfter != null)
             {

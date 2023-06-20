@@ -27,8 +27,9 @@ using OpenAPIDateConverter = Merge.AccountingClient.Client.OpenAPIDateConverter;
 namespace Merge.AccountingClient.Model
 {
     /// <summary>
-    /// Defines Status7d1Enum
+    /// * &#x60;ACTIVE&#x60; - ACTIVE * &#x60;ARCHIVED&#x60; - ARCHIVED
     /// </summary>
+    /// <value>* &#x60;ACTIVE&#x60; - ACTIVE * &#x60;ARCHIVED&#x60; - ARCHIVED</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum Status7d1Enum
     {

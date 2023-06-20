@@ -114,6 +114,14 @@ namespace Merge.AccountingClient.Test.Model
             // TODO unit test for the property 'Memo'
         }
         /// <summary>
+        /// Test the property 'Company'
+        /// </summary>
+        [Fact]
+        public void CompanyTest()
+        {
+            // TODO unit test for the property 'Company'
+        }
+        /// <summary>
         /// Test the property 'TotalAmount'
         /// </summary>
         [Fact]

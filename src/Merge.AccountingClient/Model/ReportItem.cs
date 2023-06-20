@@ -39,7 +39,7 @@ namespace Merge.AccountingClient.Model
         /// <param name="name">The report item&#39;s name..</param>
         /// <param name="value">The report item&#39;s value..</param>
         /// <param name="company">The company the report item belongs to..</param>
-        public ReportItem(string remoteId = default(string), string name = default(string), float? value = default(float?), Guid? company = default(Guid?))
+        public ReportItem(string remoteId = default(string), string name = default(string), double? value = default(double?), Guid? company = default(Guid?))
         {
             this.RemoteId = remoteId;
             this.Name = name;
@@ -66,7 +66,7 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The report item&#39;s value.</value>
         [DataMember(Name = "value", EmitDefaultValue = true)]
-        public float? Value { get; set; }
+        public double? Value { get; set; }
 
         /// <summary>
         /// Gets or Sets SubItems
@@ -91,6 +91,22 @@ namespace Merge.AccountingClient.Model
         public Guid? Company { get; set; }
 
         /// <summary>
+        /// This is the datetime that this object was last updated by Merge
+        /// </summary>
+        /// <value>This is the datetime that this object was last updated by Merge</value>
+        [DataMember(Name = "modified_at", EmitDefaultValue = false)]
+        public DateTime ModifiedAt { get; private set; }
+
+        /// <summary>
+        /// Returns false as ModifiedAt should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeModifiedAt()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -103,6 +119,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("  SubItems: ").Append(SubItems).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
+            sb.Append("  ModifiedAt: ").Append(ModifiedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -162,6 +179,11 @@ namespace Merge.AccountingClient.Model
                     this.Company == input.Company ||
                     (this.Company != null &&
                     this.Company.Equals(input.Company))
+                ) && 
+                (
+                    this.ModifiedAt == input.ModifiedAt ||
+                    (this.ModifiedAt != null &&
+                    this.ModifiedAt.Equals(input.ModifiedAt))
                 );
         }
 
@@ -184,6 +206,8 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.SubItems.GetHashCode();
                 if (this.Company != null)
                     hashCode = hashCode * 59 + this.Company.GetHashCode();
+                if (this.ModifiedAt != null)
+                    hashCode = hashCode * 59 + this.ModifiedAt.GetHashCode();
                 return hashCode;
             }
         }

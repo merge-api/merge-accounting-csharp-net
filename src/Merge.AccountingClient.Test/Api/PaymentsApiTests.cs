@@ -90,7 +90,9 @@ namespace Merge.AccountingClient.Test.Api
             //DateTime? modifiedBefore = null;
             //int? pageSize = null;
             //string remoteId = null;
-            //var response = instance.PaymentsList(xAccountToken, accountId, companyId, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId);
+            //DateTime? transactionDateAfter = null;
+            //DateTime? transactionDateBefore = null;
+            //var response = instance.PaymentsList(xAccountToken, accountId, companyId, contactId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteId, transactionDateAfter, transactionDateBefore);
             //Assert.IsType<PaginatedPaymentList>(response);
         }
 

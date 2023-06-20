@@ -35,23 +35,32 @@ namespace Merge.AccountingClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="JournalLine" /> class.
         /// </summary>
+        /// <param name="remoteId">The third-party API ID of the matching object..</param>
         /// <param name="account">account.</param>
         /// <param name="netAmount">The value of the line item including taxes and other fees..</param>
         /// <param name="trackingCategory">trackingCategory.</param>
         /// <param name="trackingCategories">trackingCategories.</param>
         /// <param name="contact">contact.</param>
         /// <param name="description">The line&#39;s description..</param>
-        /// <param name="remoteId">The third-party API ID of the matching object..</param>
-        public JournalLine(Guid? account = default(Guid?), float? netAmount = default(float?), Guid? trackingCategory = default(Guid?), List<Guid?> trackingCategories = default(List<Guid?>), Guid? contact = default(Guid?), string description = default(string), string remoteId = default(string))
+        /// <param name="exchangeRate">The journal line item&#39;s exchange rate..</param>
+        public JournalLine(string remoteId = default(string), Guid? account = default(Guid?), double? netAmount = default(double?), Guid? trackingCategory = default(Guid?), List<Guid?> trackingCategories = default(List<Guid?>), Guid? contact = default(Guid?), string description = default(string), decimal? exchangeRate = default(decimal?))
         {
+            this.RemoteId = remoteId;
             this.Account = account;
             this.NetAmount = netAmount;
             this.TrackingCategory = trackingCategory;
             this.TrackingCategories = trackingCategories;
             this.Contact = contact;
             this.Description = description;
-            this.RemoteId = remoteId;
+            this.ExchangeRate = exchangeRate;
         }
+
+        /// <summary>
+        /// The third-party API ID of the matching object.
+        /// </summary>
+        /// <value>The third-party API ID of the matching object.</value>
+        [DataMember(Name = "remote_id", EmitDefaultValue = true)]
+        public string RemoteId { get; set; }
 
         /// <summary>
         /// Gets or Sets Account
@@ -64,7 +73,7 @@ namespace Merge.AccountingClient.Model
         /// </summary>
         /// <value>The value of the line item including taxes and other fees.</value>
         [DataMember(Name = "net_amount", EmitDefaultValue = true)]
-        public float? NetAmount { get; set; }
+        public double? NetAmount { get; set; }
 
         /// <summary>
         /// Gets or Sets TrackingCategory
@@ -92,11 +101,27 @@ namespace Merge.AccountingClient.Model
         public string Description { get; set; }
 
         /// <summary>
-        /// The third-party API ID of the matching object.
+        /// The journal line item&#39;s exchange rate.
         /// </summary>
-        /// <value>The third-party API ID of the matching object.</value>
-        [DataMember(Name = "remote_id", EmitDefaultValue = true)]
-        public string RemoteId { get; set; }
+        /// <value>The journal line item&#39;s exchange rate.</value>
+        [DataMember(Name = "exchange_rate", EmitDefaultValue = true)]
+        public decimal? ExchangeRate { get; set; }
+
+        /// <summary>
+        /// This is the datetime that this object was last updated by Merge
+        /// </summary>
+        /// <value>This is the datetime that this object was last updated by Merge</value>
+        [DataMember(Name = "modified_at", EmitDefaultValue = false)]
+        public DateTime ModifiedAt { get; private set; }
+
+        /// <summary>
+        /// Returns false as ModifiedAt should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeModifiedAt()
+        {
+            return false;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -106,13 +131,15 @@ namespace Merge.AccountingClient.Model
         {
             var sb = new StringBuilder();
             sb.Append("class JournalLine {\n");
+            sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  NetAmount: ").Append(NetAmount).Append("\n");
             sb.Append("  TrackingCategory: ").Append(TrackingCategory).Append("\n");
             sb.Append("  TrackingCategories: ").Append(TrackingCategories).Append("\n");
             sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
+            sb.Append("  ExchangeRate: ").Append(ExchangeRate).Append("\n");
+            sb.Append("  ModifiedAt: ").Append(ModifiedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -148,6 +175,11 @@ namespace Merge.AccountingClient.Model
 
             return 
                 (
+                    this.RemoteId == input.RemoteId ||
+                    (this.RemoteId != null &&
+                    this.RemoteId.Equals(input.RemoteId))
+                ) && 
+                (
                     this.Account == input.Account ||
                     (this.Account != null &&
                     this.Account.Equals(input.Account))
@@ -179,9 +211,14 @@ namespace Merge.AccountingClient.Model
                     this.Description.Equals(input.Description))
                 ) && 
                 (
-                    this.RemoteId == input.RemoteId ||
-                    (this.RemoteId != null &&
-                    this.RemoteId.Equals(input.RemoteId))
+                    this.ExchangeRate == input.ExchangeRate ||
+                    (this.ExchangeRate != null &&
+                    this.ExchangeRate.Equals(input.ExchangeRate))
+                ) && 
+                (
+                    this.ModifiedAt == input.ModifiedAt ||
+                    (this.ModifiedAt != null &&
+                    this.ModifiedAt.Equals(input.ModifiedAt))
                 );
         }
 
@@ -194,6 +231,8 @@ namespace Merge.AccountingClient.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.RemoteId != null)
+                    hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
                 if (this.Account != null)
                     hashCode = hashCode * 59 + this.Account.GetHashCode();
                 if (this.NetAmount != null)
@@ -206,8 +245,10 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.Contact.GetHashCode();
                 if (this.Description != null)
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.RemoteId != null)
-                    hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
+                if (this.ExchangeRate != null)
+                    hashCode = hashCode * 59 + this.ExchangeRate.GetHashCode();
+                if (this.ModifiedAt != null)
+                    hashCode = hashCode * 59 + this.ModifiedAt.GetHashCode();
                 return hashCode;
             }
         }
@@ -219,6 +260,13 @@ namespace Merge.AccountingClient.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // ExchangeRate (decimal?) pattern
+            Regex regexExchangeRate = new Regex(@"^-?\\d{0,32}(?:\\.\\d{0,16})?$", RegexOptions.CultureInvariant);
+            if (false == regexExchangeRate.Match(this.ExchangeRate.ToString()).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExchangeRate, must match a pattern of " + regexExchangeRate, new [] { "ExchangeRate" });
+            }
+
             yield break;
         }
     }

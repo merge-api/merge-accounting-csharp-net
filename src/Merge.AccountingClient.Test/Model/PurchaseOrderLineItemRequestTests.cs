@@ -58,6 +58,14 @@ namespace Merge.AccountingClient.Test.Model
 
 
         /// <summary>
+        /// Test the property 'RemoteId'
+        /// </summary>
+        [Fact]
+        public void RemoteIdTest()
+        {
+            // TODO unit test for the property 'RemoteId'
+        }
+        /// <summary>
         /// Test the property 'Description'
         /// </summary>
         [Fact]

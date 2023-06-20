@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **IsCustomer** | **bool?** | Whether the contact is a customer. | [optional] 
 **EmailAddress** | **string** | The contact&#39;s email address. | [optional] 
 **TaxNumber** | **string** | The contact&#39;s tax number. | [optional] 
-**Status** | **Status7d1Enum** | The contact&#39;s status | [optional] 
+**Status** | **Status7d1Enum** | The contact&#39;s status  * &#x60;ACTIVE&#x60; - ACTIVE * &#x60;ARCHIVED&#x60; - ARCHIVED | [optional] 
 **Currency** | **string** | The currency the contact&#39;s transactions are in. | [optional] 
 **Company** | **Guid?** | The company the contact belongs to. | [optional] 
 **Addresses** | **List&lt;Guid?&gt;** | &#x60;Address&#x60; object IDs for the given &#x60;Contacts&#x60; object. | [optional] 

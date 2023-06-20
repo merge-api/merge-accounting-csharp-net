@@ -34,24 +34,24 @@ namespace Merge.AccountingClient.Model
     {
 
         /// <summary>
-        /// The tracking category&#39;s status.
+        /// The tracking category&#39;s status.  * &#x60;ACTIVE&#x60; - ACTIVE * &#x60;ARCHIVED&#x60; - ARCHIVED
         /// </summary>
-        /// <value>The tracking category&#39;s status.</value>
+        /// <value>The tracking category&#39;s status.  * &#x60;ACTIVE&#x60; - ACTIVE * &#x60;ARCHIVED&#x60; - ARCHIVED</value>
         [DataMember(Name = "status", EmitDefaultValue = true)]
         public Status7d1Enum? Status { get; set; }
 
         /// <summary>
-        /// The tracking category’s type.
+        /// The tracking category’s type.  * &#x60;CLASS&#x60; - CLASS * &#x60;DEPARTMENT&#x60; - DEPARTMENT
         /// </summary>
-        /// <value>The tracking category’s type.</value>
+        /// <value>The tracking category’s type.  * &#x60;CLASS&#x60; - CLASS * &#x60;DEPARTMENT&#x60; - DEPARTMENT</value>
         [DataMember(Name = "category_type", EmitDefaultValue = true)]
         public CategoryTypeEnum? CategoryType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TrackingCategory" /> class.
         /// </summary>
         /// <param name="name">The tracking category&#39;s name..</param>
-        /// <param name="status">The tracking category&#39;s status..</param>
-        /// <param name="categoryType">The tracking category’s type..</param>
+        /// <param name="status">The tracking category&#39;s status.  * &#x60;ACTIVE&#x60; - ACTIVE * &#x60;ARCHIVED&#x60; - ARCHIVED.</param>
+        /// <param name="categoryType">The tracking category’s type.  * &#x60;CLASS&#x60; - CLASS * &#x60;DEPARTMENT&#x60; - DEPARTMENT.</param>
         /// <param name="parentCategory">ID of the parent tracking category..</param>
         /// <param name="company">The company the tracking category belongs to..</param>
         /// <param name="remoteId">The third-party API ID of the matching object..</param>
@@ -63,21 +63,6 @@ namespace Merge.AccountingClient.Model
             this.ParentCategory = parentCategory;
             this.Company = company;
             this.RemoteId = remoteId;
-        }
-
-        /// <summary>
-        /// Gets or Sets RemoteData
-        /// </summary>
-        [DataMember(Name = "remote_data", EmitDefaultValue = true)]
-        public List<RemoteData> RemoteData { get; private set; }
-
-        /// <summary>
-        /// Returns false as RemoteData should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeRemoteData()
-        {
-            return false;
         }
 
         /// <summary>
@@ -155,6 +140,37 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
+        /// This is the datetime that this object was last updated by Merge
+        /// </summary>
+        /// <value>This is the datetime that this object was last updated by Merge</value>
+        [DataMember(Name = "modified_at", EmitDefaultValue = false)]
+        public DateTime ModifiedAt { get; private set; }
+
+        /// <summary>
+        /// Returns false as ModifiedAt should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeModifiedAt()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// Gets or Sets RemoteData
+        /// </summary>
+        [DataMember(Name = "remote_data", EmitDefaultValue = true)]
+        public List<RemoteData> RemoteData { get; private set; }
+
+        /// <summary>
+        /// Returns false as RemoteData should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeRemoteData()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -162,7 +178,6 @@ namespace Merge.AccountingClient.Model
         {
             var sb = new StringBuilder();
             sb.Append("class TrackingCategory {\n");
-            sb.Append("  RemoteData: ").Append(RemoteData).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  CategoryType: ").Append(CategoryType).Append("\n");
@@ -172,6 +187,8 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
             sb.Append("  FieldMappings: ").Append(FieldMappings).Append("\n");
+            sb.Append("  ModifiedAt: ").Append(ModifiedAt).Append("\n");
+            sb.Append("  RemoteData: ").Append(RemoteData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -206,12 +223,6 @@ namespace Merge.AccountingClient.Model
                 return false;
 
             return 
-                (
-                    this.RemoteData == input.RemoteData ||
-                    this.RemoteData != null &&
-                    input.RemoteData != null &&
-                    this.RemoteData.SequenceEqual(input.RemoteData)
-                ) && 
                 (
                     this.Name == input.Name ||
                     (this.Name != null &&
@@ -254,6 +265,17 @@ namespace Merge.AccountingClient.Model
                     this.FieldMappings != null &&
                     input.FieldMappings != null &&
                     this.FieldMappings.SequenceEqual(input.FieldMappings)
+                ) && 
+                (
+                    this.ModifiedAt == input.ModifiedAt ||
+                    (this.ModifiedAt != null &&
+                    this.ModifiedAt.Equals(input.ModifiedAt))
+                ) && 
+                (
+                    this.RemoteData == input.RemoteData ||
+                    this.RemoteData != null &&
+                    input.RemoteData != null &&
+                    this.RemoteData.SequenceEqual(input.RemoteData)
                 );
         }
 
@@ -266,8 +288,6 @@ namespace Merge.AccountingClient.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.RemoteData != null)
-                    hashCode = hashCode * 59 + this.RemoteData.GetHashCode();
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
                 hashCode = hashCode * 59 + this.Status.GetHashCode();
@@ -283,6 +303,10 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
                 if (this.FieldMappings != null)
                     hashCode = hashCode * 59 + this.FieldMappings.GetHashCode();
+                if (this.ModifiedAt != null)
+                    hashCode = hashCode * 59 + this.ModifiedAt.GetHashCode();
+                if (this.RemoteData != null)
+                    hashCode = hashCode * 59 + this.RemoteData.GetHashCode();
                 return hashCode;
             }
         }

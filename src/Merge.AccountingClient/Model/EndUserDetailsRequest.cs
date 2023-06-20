@@ -47,7 +47,8 @@ namespace Merge.AccountingClient.Model
         /// <param name="integration">The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://www.merge.dev/docs/basics/integration-metadata/..</param>
         /// <param name="linkExpiryMins">An integer number of minutes between [30, 720 or 10080 if for a Magic Link URL] for how long this token is valid. Defaults to 30. (default to 30).</param>
         /// <param name="shouldCreateMagicLinkUrl">Whether to generate a Magic Link URL. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/product/integrations,-fast.-say-hello-to-magic-link/. (default to false).</param>
-        public EndUserDetailsRequest(string endUserEmailAddress = default(string), string endUserOrganizationName = default(string), string endUserOriginId = default(string), List<CategoriesEnum> categories = default(List<CategoriesEnum>), string integration = default(string), int linkExpiryMins = 30, bool? shouldCreateMagicLinkUrl = false)
+        /// <param name="commonModels">An array of objects to specify the models and fields that will be disabled for a given Linked Account. Each object uses model_id, enabled_actions, and disabled_fields to specify the model, method, and fields that are scoped for a given Linked Account..</param>
+        public EndUserDetailsRequest(string endUserEmailAddress = default(string), string endUserOrganizationName = default(string), string endUserOriginId = default(string), List<CategoriesEnum> categories = default(List<CategoriesEnum>), string integration = default(string), int linkExpiryMins = 30, bool? shouldCreateMagicLinkUrl = false, List<CommonModelScopesBodyRequest> commonModels = default(List<CommonModelScopesBodyRequest>))
         {
             // to ensure "endUserEmailAddress" is required (not null)
             this.EndUserEmailAddress = endUserEmailAddress ?? throw new ArgumentNullException("endUserEmailAddress is a required property for EndUserDetailsRequest and cannot be null");
@@ -61,6 +62,7 @@ namespace Merge.AccountingClient.Model
             this.LinkExpiryMins = linkExpiryMins;
             // use default value if no "shouldCreateMagicLinkUrl" provided
             this.ShouldCreateMagicLinkUrl = shouldCreateMagicLinkUrl ?? false;
+            this.CommonModels = commonModels;
         }
 
         /// <summary>
@@ -113,6 +115,13 @@ namespace Merge.AccountingClient.Model
         public bool? ShouldCreateMagicLinkUrl { get; set; }
 
         /// <summary>
+        /// An array of objects to specify the models and fields that will be disabled for a given Linked Account. Each object uses model_id, enabled_actions, and disabled_fields to specify the model, method, and fields that are scoped for a given Linked Account.
+        /// </summary>
+        /// <value>An array of objects to specify the models and fields that will be disabled for a given Linked Account. Each object uses model_id, enabled_actions, and disabled_fields to specify the model, method, and fields that are scoped for a given Linked Account.</value>
+        [DataMember(Name = "common_models", EmitDefaultValue = true)]
+        public List<CommonModelScopesBodyRequest> CommonModels { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -127,6 +136,7 @@ namespace Merge.AccountingClient.Model
             sb.Append("  Integration: ").Append(Integration).Append("\n");
             sb.Append("  LinkExpiryMins: ").Append(LinkExpiryMins).Append("\n");
             sb.Append("  ShouldCreateMagicLinkUrl: ").Append(ShouldCreateMagicLinkUrl).Append("\n");
+            sb.Append("  CommonModels: ").Append(CommonModels).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -195,6 +205,12 @@ namespace Merge.AccountingClient.Model
                     this.ShouldCreateMagicLinkUrl == input.ShouldCreateMagicLinkUrl ||
                     (this.ShouldCreateMagicLinkUrl != null &&
                     this.ShouldCreateMagicLinkUrl.Equals(input.ShouldCreateMagicLinkUrl))
+                ) && 
+                (
+                    this.CommonModels == input.CommonModels ||
+                    this.CommonModels != null &&
+                    input.CommonModels != null &&
+                    this.CommonModels.SequenceEqual(input.CommonModels)
                 );
         }
 
@@ -220,6 +236,8 @@ namespace Merge.AccountingClient.Model
                 hashCode = hashCode * 59 + this.LinkExpiryMins.GetHashCode();
                 if (this.ShouldCreateMagicLinkUrl != null)
                     hashCode = hashCode * 59 + this.ShouldCreateMagicLinkUrl.GetHashCode();
+                if (this.CommonModels != null)
+                    hashCode = hashCode * 59 + this.CommonModels.GetHashCode();
                 return hashCode;
             }
         }

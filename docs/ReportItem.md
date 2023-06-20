@@ -7,9 +7,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RemoteId** | **string** | The third-party API ID of the matching object. | [optional] 
 **Name** | **string** | The report item&#39;s name. | [optional] 
-**Value** | **float?** | The report item&#39;s value. | [optional] 
+**Value** | **double?** | The report item&#39;s value. | [optional] 
 **SubItems** | **Dictionary&lt;string, Object&gt;** |  | [optional] [readonly] 
 **Company** | **Guid?** | The company the report item belongs to. | [optional] 
+**ModifiedAt** | **DateTime** | This is the datetime that this object was last updated by Merge | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

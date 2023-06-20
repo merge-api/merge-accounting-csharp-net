@@ -75,7 +75,9 @@ namespace Merge.AccountingClient.Test.Api
             //string remoteFields = null;
             //string remoteId = null;
             //string showEnumOrigins = null;
-            //var response = instance.CreditNotesList(xAccountToken, companyId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, showEnumOrigins);
+            //DateTime? transactionDateAfter = null;
+            //DateTime? transactionDateBefore = null;
+            //var response = instance.CreditNotesList(xAccountToken, companyId, createdAfter, createdBefore, cursor, includeDeletedData, includeRemoteData, modifiedAfter, modifiedBefore, pageSize, remoteFields, remoteId, showEnumOrigins, transactionDateAfter, transactionDateBefore);
             //Assert.IsType<PaginatedCreditNoteList>(response);
         }
 

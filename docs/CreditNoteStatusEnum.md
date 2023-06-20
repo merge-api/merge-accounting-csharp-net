@@ -1,4 +1,5 @@
 # Merge.AccountingClient.Model.CreditNoteStatusEnum
+* `SUBMITTED` - SUBMITTED * `AUTHORIZED` - AUTHORIZED * `PAID` - PAID
 
 ## Properties
 

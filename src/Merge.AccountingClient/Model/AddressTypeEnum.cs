@@ -27,8 +27,9 @@ using OpenAPIDateConverter = Merge.AccountingClient.Client.OpenAPIDateConverter;
 namespace Merge.AccountingClient.Model
 {
     /// <summary>
-    /// Defines AddressTypeEnum
+    /// * &#x60;BILLING&#x60; - BILLING * &#x60;SHIPPING&#x60; - SHIPPING
     /// </summary>
+    /// <value>* &#x60;BILLING&#x60; - BILLING * &#x60;SHIPPING&#x60; - SHIPPING</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum AddressTypeEnum
     {

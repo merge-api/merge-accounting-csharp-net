@@ -27,8 +27,9 @@ using OpenAPIDateConverter = Merge.AccountingClient.Client.OpenAPIDateConverter;
 namespace Merge.AccountingClient.Model
 {
     /// <summary>
-    /// Defines InvoiceTypeEnum
+    /// * &#x60;ACCOUNTS_RECEIVABLE&#x60; - ACCOUNTS_RECEIVABLE * &#x60;ACCOUNTS_PAYABLE&#x60; - ACCOUNTS_PAYABLE
     /// </summary>
+    /// <value>* &#x60;ACCOUNTS_RECEIVABLE&#x60; - ACCOUNTS_RECEIVABLE * &#x60;ACCOUNTS_PAYABLE&#x60; - ACCOUNTS_PAYABLE</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum InvoiceTypeEnum
     {

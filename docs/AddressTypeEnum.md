@@ -1,4 +1,5 @@
 # Merge.AccountingClient.Model.AddressTypeEnum
+* `BILLING` - BILLING * `SHIPPING` - SHIPPING
 
 ## Properties
 

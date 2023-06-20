@@ -74,14 +74,6 @@ namespace Merge.AccountingClient.Test.Model
             // TODO unit test for the property 'RemoteId'
         }
         /// <summary>
-        /// Test the property 'RemoteData'
-        /// </summary>
-        [Fact]
-        public void RemoteDataTest()
-        {
-            // TODO unit test for the property 'RemoteData'
-        }
-        /// <summary>
         /// Test the property 'Name'
         /// </summary>
         [Fact]
@@ -168,6 +160,22 @@ namespace Merge.AccountingClient.Test.Model
         public void FieldMappingsTest()
         {
             // TODO unit test for the property 'FieldMappings'
+        }
+        /// <summary>
+        /// Test the property 'ModifiedAt'
+        /// </summary>
+        [Fact]
+        public void ModifiedAtTest()
+        {
+            // TODO unit test for the property 'ModifiedAt'
+        }
+        /// <summary>
+        /// Test the property 'RemoteData'
+        /// </summary>
+        [Fact]
+        public void RemoteDataTest()
+        {
+            // TODO unit test for the property 'RemoteData'
         }
 
     }

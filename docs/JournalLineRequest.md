@@ -5,13 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**RemoteId** | **string** | The third-party API ID of the matching object. | [optional] 
 **Account** | **Guid?** |  | [optional] 
-**NetAmount** | **float?** | The value of the line item including taxes and other fees. | [optional] 
+**NetAmount** | **double?** | The value of the line item including taxes and other fees. | [optional] 
 **TrackingCategory** | **Guid?** |  | [optional] 
 **TrackingCategories** | **List&lt;Guid?&gt;** |  | [optional] 
 **Contact** | **Guid?** |  | [optional] 
 **Description** | **string** | The line&#39;s description. | [optional] 
-**RemoteId** | **string** | The third-party API ID of the matching object. | [optional] 
+**ExchangeRate** | **decimal?** | The journal line item&#39;s exchange rate. | [optional] 
 **IntegrationParams** | **Dictionary&lt;string, Object&gt;** |  | [optional] 
 **LinkedAccountParams** | **Dictionary&lt;string, Object&gt;** |  | [optional] 
 

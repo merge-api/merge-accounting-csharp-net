@@ -1,4 +1,5 @@
 # Merge.AccountingClient.Model.PurchaseOrderStatusEnum
+* `DRAFT` - DRAFT * `SUBMITTED` - SUBMITTED * `AUTHORIZED` - AUTHORIZED * `BILLED` - BILLED * `DELETED` - DELETED
 
 ## Properties
 

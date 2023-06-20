@@ -1,4 +1,5 @@
 # Merge.AccountingClient.Model.CategoryTypeEnum
+* `CLASS` - CLASS * `DEPARTMENT` - DEPARTMENT
 
 ## Properties
 

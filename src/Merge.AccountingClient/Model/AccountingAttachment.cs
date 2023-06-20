@@ -70,21 +70,6 @@ namespace Merge.AccountingClient.Model
         public string RemoteId { get; set; }
 
         /// <summary>
-        /// Gets or Sets RemoteData
-        /// </summary>
-        [DataMember(Name = "remote_data", EmitDefaultValue = true)]
-        public List<RemoteData> RemoteData { get; private set; }
-
-        /// <summary>
-        /// Returns false as RemoteData should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeRemoteData()
-        {
-            return false;
-        }
-
-        /// <summary>
         /// The attachment&#39;s name.
         /// </summary>
         /// <value>The attachment&#39;s name.</value>
@@ -137,6 +122,37 @@ namespace Merge.AccountingClient.Model
         }
 
         /// <summary>
+        /// This is the datetime that this object was last updated by Merge
+        /// </summary>
+        /// <value>This is the datetime that this object was last updated by Merge</value>
+        [DataMember(Name = "modified_at", EmitDefaultValue = false)]
+        public DateTime ModifiedAt { get; private set; }
+
+        /// <summary>
+        /// Returns false as ModifiedAt should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeModifiedAt()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// Gets or Sets RemoteData
+        /// </summary>
+        [DataMember(Name = "remote_data", EmitDefaultValue = true)]
+        public List<RemoteData> RemoteData { get; private set; }
+
+        /// <summary>
+        /// Returns false as RemoteData should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeRemoteData()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -146,12 +162,13 @@ namespace Merge.AccountingClient.Model
             sb.Append("class AccountingAttachment {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  RemoteId: ").Append(RemoteId).Append("\n");
-            sb.Append("  RemoteData: ").Append(RemoteData).Append("\n");
             sb.Append("  FileName: ").Append(FileName).Append("\n");
             sb.Append("  FileUrl: ").Append(FileUrl).Append("\n");
             sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  RemoteWasDeleted: ").Append(RemoteWasDeleted).Append("\n");
             sb.Append("  FieldMappings: ").Append(FieldMappings).Append("\n");
+            sb.Append("  ModifiedAt: ").Append(ModifiedAt).Append("\n");
+            sb.Append("  RemoteData: ").Append(RemoteData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -197,12 +214,6 @@ namespace Merge.AccountingClient.Model
                     this.RemoteId.Equals(input.RemoteId))
                 ) && 
                 (
-                    this.RemoteData == input.RemoteData ||
-                    this.RemoteData != null &&
-                    input.RemoteData != null &&
-                    this.RemoteData.SequenceEqual(input.RemoteData)
-                ) && 
-                (
                     this.FileName == input.FileName ||
                     (this.FileName != null &&
                     this.FileName.Equals(input.FileName))
@@ -226,6 +237,17 @@ namespace Merge.AccountingClient.Model
                     this.FieldMappings != null &&
                     input.FieldMappings != null &&
                     this.FieldMappings.SequenceEqual(input.FieldMappings)
+                ) && 
+                (
+                    this.ModifiedAt == input.ModifiedAt ||
+                    (this.ModifiedAt != null &&
+                    this.ModifiedAt.Equals(input.ModifiedAt))
+                ) && 
+                (
+                    this.RemoteData == input.RemoteData ||
+                    this.RemoteData != null &&
+                    input.RemoteData != null &&
+                    this.RemoteData.SequenceEqual(input.RemoteData)
                 );
         }
 
@@ -242,8 +264,6 @@ namespace Merge.AccountingClient.Model
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.RemoteId != null)
                     hashCode = hashCode * 59 + this.RemoteId.GetHashCode();
-                if (this.RemoteData != null)
-                    hashCode = hashCode * 59 + this.RemoteData.GetHashCode();
                 if (this.FileName != null)
                     hashCode = hashCode * 59 + this.FileName.GetHashCode();
                 if (this.FileUrl != null)
@@ -253,6 +273,10 @@ namespace Merge.AccountingClient.Model
                 hashCode = hashCode * 59 + this.RemoteWasDeleted.GetHashCode();
                 if (this.FieldMappings != null)
                     hashCode = hashCode * 59 + this.FieldMappings.GetHashCode();
+                if (this.ModifiedAt != null)
+                    hashCode = hashCode * 59 + this.ModifiedAt.GetHashCode();
+                if (this.RemoteData != null)
+                    hashCode = hashCode * 59 + this.RemoteData.GetHashCode();
                 return hashCode;
             }
         }
